@@ -1,0 +1,551 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B5AACF90-BE7B-498A-B4E2-D1D4F1C1F499}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ITAssetMgmtForms</RootNamespace>
+    <AssemblyName>ITAssetMgmtForms</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.EnterpriseManagement.Core, Version=7.0.5000.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\DLL References\2016\Microsoft.EnterpriseManagement.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.Packaging, Version=7.0.5000.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\DLL References\2016\Microsoft.EnterpriseManagement.Packaging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.ResourceAccessLayer">
+      <HintPath>..\..\..\..\DLL References\2016\Microsoft.EnterpriseManagement.ResourceAccessLayer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.ServiceManager">
+      <HintPath>..\..\..\..\DLL References\2016\Microsoft.EnterpriseManagement.ServiceManager.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.ServiceManager.Application.Common, Version=7.0.5000.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\DLL References\2016\Microsoft.EnterpriseManagement.ServiceManager.Application.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.ServiceManager.CommonResources">
+      <HintPath>..\..\..\..\DLL References\2016\Microsoft.EnterpriseManagement.ServiceManager.CommonResources.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.ServiceManager.SharedResources, Version=7.0.5000.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\DLL References\2016\Microsoft.EnterpriseManagement.ServiceManager.SharedResources.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.UI.ConsoleFramework">
+      <HintPath>..\..\..\..\DLL References\2016\Microsoft.EnterpriseManagement.UI.ConsoleFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.UI.Controls, Version=7.1.1000.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\DLL References\2016\Microsoft.EnterpriseManagement.UI.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.UI.Controls.resources">
+      <HintPath>..\..\..\..\DLL References\2016\Microsoft.EnterpriseManagement.UI.Controls.resources.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.UI.Core, Version=7.0.5000.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\DLL References\2016\Microsoft.EnterpriseManagement.UI.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.UI.Core.resources">
+      <HintPath>..\..\..\..\DLL References\2016\Microsoft.EnterpriseManagement.UI.Core.resources.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.UI.ExtendedControls">
+      <HintPath>..\..\..\..\DLL References\2016\Microsoft.EnterpriseManagement.UI.ExtendedControls.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.UI.Extensions, Version=7.0.5000.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\DLL References\2016\Microsoft.EnterpriseManagement.UI.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.UI.FormsInfra, Version=7.0.5000.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\DLL References\2016\Microsoft.EnterpriseManagement.UI.FormsInfra.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.UI.Foundation, Version=7.1.1000.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\DLL References\2016\Microsoft.EnterpriseManagement.UI.Foundation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.UI.SdkDataAccess, Version=7.0.5000.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\DLL References\2016\Microsoft.EnterpriseManagement.UI.SdkDataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.UI.SdkDataAccess.resources">
+      <HintPath>..\..\..\..\DLL References\2016\Microsoft.EnterpriseManagement.UI.SdkDataAccess.resources.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.UI.SMControls, Version=7.0.5000.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\DLL References\2016\Microsoft.EnterpriseManagement.UI.SMControls.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.UI.SMControls.resources">
+      <HintPath>..\..\..\..\DLL References\2016\Microsoft.EnterpriseManagement.UI.SMControls.resources.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.UI.SMCriteria">
+      <HintPath>..\..\..\..\DLL References\2016\Microsoft.EnterpriseManagement.UI.SMCriteria.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.UI.ViewFramework, Version=7.1.1000.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\DLL References\2016\Microsoft.EnterpriseManagement.UI.ViewFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.UI.ViewFramework.resources">
+      <HintPath>..\..\..\..\DLL References\2016\Microsoft.EnterpriseManagement.UI.ViewFramework.resources.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.UI.WpfViews, Version=7.1.1000.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\DLL References\2016\Microsoft.EnterpriseManagement.UI.WpfViews.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.UI.WpfViews.resources">
+      <HintPath>..\..\..\..\DLL References\2016\Microsoft.EnterpriseManagement.UI.WpfViews.resources.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.UI.WpfWizardFramework, Version=7.0.5000.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\DLL References\2016\Microsoft.EnterpriseManagement.UI.WpfWizardFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WPFToolKit, Version=7.0.5000.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\DLL References\2016\WPFToolKit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AdGroupSyncConnectorForm.xaml.cs">
+      <DependentUpon>AdGroupSyncConnectorForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AmazonConnectorForm.xaml.cs">
+      <DependentUpon>AmazonConnectorForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AzureConnectorForm.xaml.cs">
+      <DependentUpon>AzureConnectorForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BaseSettingsForm.xaml.cs">
+      <DependentUpon>BaseSettingsForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CompanyForm.xaml.cs">
+      <DependentUpon>CompanyForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ContactsForm.xaml.cs">
+      <DependentUpon>ContactsForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CostCenterForm.xaml.cs">
+      <DependentUpon>CostCenterForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CostForm.xaml.cs">
+      <DependentUpon>CostForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DeviceManufacturerForm.xaml.cs">
+      <DependentUpon>DeviceManufacturerForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HardwareAgreementForm.xaml.cs">
+      <DependentUpon>HardwareAgreementForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HardwareAssetForm.xaml.cs">
+      <DependentUpon>HardwareAssetForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HardwareConnectorForm.xaml.cs">
+      <DependentUpon>HardwareConnectorForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HardwareForm.xaml.cs">
+      <DependentUpon>HardwareForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InvoiceForm.xaml.cs">
+      <DependentUpon>InvoiceForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LeaseAgreementForm.xaml.cs">
+      <DependentUpon>LeaseAgreementForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LicenseConnectorForm.xaml.cs">
+      <DependentUpon>LicenseConnectorForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LicenseForm.xaml.cs">
+      <DependentUpon>LicenseForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LocationForm.xaml.cs">
+      <DependentUpon>LocationForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LogAnalyticsForm.xaml.cs">
+      <DependentUpon>LogAnalyticsForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MobileDeviceForm.xaml.cs">
+      <DependentUpon>MobileDeviceForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ModelForm.xaml.cs">
+      <DependentUpon>ModelForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MonitorForm.xaml.cs">
+      <DependentUpon>MonitorForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NetworkDeviceForm.xaml.cs">
+      <DependentUpon>NetworkDeviceForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OrganizationForm.xaml.cs">
+      <DependentUpon>OrganizationForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PrinterForm.xaml.cs">
+      <DependentUpon>PrinterForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProductKeyForm.xaml.cs">
+      <DependentUpon>ProductKeyForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="PurcaseOrderForm.xaml.cs">
+      <DependentUpon>PurcaseOrderForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Resources.xaml.cs">
+      <DependentUpon>Resources.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SKUForm.xaml.cs">
+      <DependentUpon>SKUForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SoftwareAgreementForm.xaml.cs">
+      <DependentUpon>SoftwareAgreementForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SoftwareAssetForm.xaml.cs">
+      <DependentUpon>SoftwareAssetForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SoftwareConnectorForm.xaml.cs">
+      <DependentUpon>SoftwareConnectorForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SoftwareForm.xaml.cs">
+      <DependentUpon>SoftwareForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SoftwarePublisherForm.xaml.cs">
+      <DependentUpon>SoftwarePublisherForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SoftwareVersionForm.xaml.cs">
+      <DependentUpon>SoftwareVersionForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="StorageDeviceForm.xaml.cs">
+      <DependentUpon>StorageDeviceForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SupportAgreementForm.xaml.cs">
+      <DependentUpon>SupportAgreementForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="System\Launcher.cs" />
+    <Compile Include="UserRoleForm.xaml.cs">
+      <DependentUpon>UserRoleForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserShortCutForm.xaml.cs">
+      <DependentUpon>UserShortCutForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WorkFlowForm.xaml.cs">
+      <DependentUpon>WorkFlowForm.xaml</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="AdGroupSyncConnectorForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AmazonConnectorForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AzureConnectorForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BaseSettingsForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CompanyForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ContactsForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CostCenterForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CostForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DeviceManufacturerForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HardwareAgreementForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HardwareAssetForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HardwareConnectorForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HardwareForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InvoiceForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LeaseAgreementForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LicenseConnectorForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LicenseForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LocationForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LogAnalyticsForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MobileDeviceForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ModelForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MonitorForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NetworkDeviceForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OrganizationForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PrinterForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProductKeyForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PurcaseOrderForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SKUForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SoftwareAgreementForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SoftwareAssetForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SoftwareConnectorForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SoftwareForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SoftwarePublisherForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SoftwareVersionForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StorageDeviceForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SupportAgreementForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserRoleForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserShortCutForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorkFlowForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\header-bg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\header-bg1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\hwm24x24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\ic_decision_support_system.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\ic_acquisition.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\ic_contacts.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\ic_atm_euro.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\ic_coinstack.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\ic_monitor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\ic_newspaper_gear.png" />
+    <Resource Include="Pictures\ic_newspaper_info.png" />
+    <Resource Include="Pictures\ic_newspaper_refresh.png" />
+    <Resource Include="Pictures\ic_newspaper_save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\ic_world.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\ic_company.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\ic_invoice_checkmark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\ic_payment.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\ic_active_rooms_gear.png" />
+    <Resource Include="Pictures\ic_administrator_gear.png" />
+    <Resource Include="Pictures\ic_check_gear.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\ic_clouds.png" />
+    <Resource Include="Pictures\ic_clouds_gear.png" />
+    <Resource Include="Pictures\ic_diskkete.png" />
+    <Resource Include="Pictures\ic_software_save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\ic_password.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\ic_company2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\ic_key.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\ic_random_refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\ic_layout_comment.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\ic_certificate2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\ic_brochure.png" />
+    <Resource Include="Pictures\ic_catalog.png" />
+    <Resource Include="Pictures\ic_channel_list.png" />
+    <Resource Include="Pictures\ic_negotiation.png" />
+    <Resource Include="Pictures\ic_print.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\mobildevice.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

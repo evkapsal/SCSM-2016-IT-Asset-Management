@@ -1,0 +1,127 @@
+﻿<ManagementPackFragment SchemaVersion="SM2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Warehouse>
+    <Extensions>
+      <SystemCenterCube ID="ITSMCube">
+        <MeasureGroups>
+            <MeasureGroup ID="HardwareAssetHasSupplierFactMG" Fact="ITSMDW!HardwareAssetHasSupplierFact" />
+			      <MeasureGroup ID="SupportAgreementHasSupplierFactMG" Fact="ITSMDW!SupportAgreementHasSupplierFact" />
+			      <MeasureGroup ID="SoftwareAgreementHasSupplierFactMG" Fact="ITSMDW!SoftwareAgreementHasSupplierFact" />
+			      <MeasureGroup ID="CostHasSupplierFactMG" Fact="ITSMDW!CostHasSupplierFact" />
+			      <MeasureGroup ID="HardwareAgreementHasSupplierFactMG" Fact="ITSMDW!HardwareAgreementHasSupplierFact" />
+			      <MeasureGroup ID="PurchaseOrderHasSupplierFactMG" Fact="ITSMDW!PurchaseOrderHasSupplierFact" />
+			      <MeasureGroup ID="SoftwareAssetHasSupplierFactMG" Fact="ITSMDW!SoftwareAssetHasSupplierFact" />
+			      <MeasureGroup ID="ContactHasCompanyFactMG" Fact="ITSMDW!ContactHasCompanyFact" />
+			      <MeasureGroup ID="LeaseAgreementHasSupplierFactMG" Fact="ITSMDW!LeaseAgreementHasSupplierFact" />
+			      <MeasureGroup ID="InvoiceHasSupplierFactMG" Fact="ITSMDW!InvoiceHasSupplierFact" />
+			      <MeasureGroup ID="SupportAgreementHasContactFactMG" Fact="ITSMDW!SupportAgreementHasContactFact" />
+			      <MeasureGroup ID="SoftwareAgreementHasContactFactMG" Fact="ITSMDW!SoftwareAgreementHasContactFact" />
+			      <MeasureGroup ID="HWAgreementHasConctFactMG" Fact="ITSMDW!HWAgreementHasConctFact" />
+			      <MeasureGroup ID="SoftwareAssetHasContactFactMG" Fact="ITSMDW!SoftwareAssetHasContactFact" />
+			      <MeasureGroup ID="LeaseAgreementHasContactFactMG" Fact="ITSMDW!LeaseAgreementHasContactFact" />
+			      <MeasureGroup ID="InvoiceHasContactFactMG" Fact="ITSMDW!InvoiceHasContactFact" />
+			      <MeasureGroup ID="CostHasOrganizationFactMG" Fact="ITSMDW!CostHasOrganizationFact" />
+			      <MeasureGroup ID="SoftwareAgreementHasOrganizationFactMG" Fact="ITSMDW!SoftwareAgreementHasOrganizationFact" />
+			      <MeasureGroup ID="HWAgreementHasOrganizationFactMG" Fact="ITSMDW!HWAgreementHasOrganizationFact" />
+			      <MeasureGroup ID="SupportAgreementHasOrganizationFactMG" Fact="ITSMDW!SupportAgreementHasOrganizationFact" />
+			      <MeasureGroup ID="SoftwareAssetHasOrganizationFactMG" Fact="ITSMDW!SoftwareAssetHasOrganizationFact" />
+			      <MeasureGroup ID="OrganizationHasCostCenterFactMG" Fact="ITSMDW!OrganizationHasCostCenterFact" />
+			      <MeasureGroup ID="OrganizationHasLocationFactMG" Fact="ITSMDW!OrganizationHasLocationFact" />
+			      <MeasureGroup ID="UserIsAffiliatedWithOrganizationFactMG" Fact="ITSMDW!UserIsAffiliatedWithOrganizationFact" />
+			      <MeasureGroup ID="PurchaseOrderHasOrganizationFactMG" Fact="ITSMDW!PurchaseOrderHasOrganizationFact" />
+			      <MeasureGroup ID="HardwareAssetHasOrganizationFactMG" Fact="ITSMDW!HardwareAssetHasOrganizationFact" />
+			      <MeasureGroup ID="LeaseAgreementHasOrganizationFactMG" Fact="ITSMDW!LeaseAgreementHasOrganizationFact" />
+			      <MeasureGroup ID="InvoiceIsForOrganizationFactMG" Fact="ITSMDW!InvoiceIsForOrganizationFact" />
+			      <MeasureGroup ID="SoftwareAgreementHasCostCenterFactMG" Fact="ITSMDW!SoftwareAgreementHasCostCenterFact" />
+			      <MeasureGroup ID="CostHasCostCenterFactMG" Fact="ITSMDW!CostHasCostCenterFact" />
+			      <MeasureGroup ID="HardwareAgreementHasCostCenterFactMG" Fact="ITSMDW!HardwareAgreementHasCostCenterFact" />
+			      <MeasureGroup ID="SupportAgreementHasCostCenterFactMG" Fact="ITSMDW!SupportAgreementHasCostCenterFact" />
+			      <MeasureGroup ID="SoftwareAssetHasCostCenterFactMG" Fact="ITSMDW!SoftwareAssetHasCostCenterFact" />
+			      <MeasureGroup ID="CostCenterHasLocationFactMG" Fact="ITSMDW!CostCenterHasLocationFact" />
+			      <MeasureGroup ID="UserIsAffiliatedWithCostCenterFactMG" Fact="ITSMDW!UserIsAffiliatedWithCostCenterFact" />
+			      <MeasureGroup ID="PurchaseOrderHasCostCenterFactMG" Fact="ITSMDW!PurchaseOrderHasCostCenterFact" />
+			      <MeasureGroup ID="HardwareAssetHasCostCenterFactMG" Fact="ITSMDW!HardwareAssetHasCostCenterFact" />
+			      <MeasureGroup ID="LeaseAgreementHasCostCenterFactMG" Fact="ITSMDW!LeaseAgreementHasCostCenterFact" />
+			      <MeasureGroup ID="InvoiceHasCostCenterFactMG" Fact="ITSMDW!InvoiceHasCostCenterFact" />
+			      <MeasureGroup ID="HardwareAssetHasLocationFactMG" Fact="ITSMDW!HardwareAssetHasLocationFact" />
+			      <MeasureGroup ID="SoftwareAgreementHasLocationFactMG" Fact="ITSMDW!SoftwareAgreementHasLocationFact" />
+			      <MeasureGroup ID="CostHasLocationFactMG" Fact="ITSMDW!CostHasLocationFact" />
+			      <MeasureGroup ID="SupportAgreementHasLocationFactMG" Fact="ITSMDW!SupportAgreementHasLocationFact" />
+			      <MeasureGroup ID="SoftwareAssetHasLocationFactMG" Fact="ITSMDW!SoftwareAssetHasLocationFact" />
+			      <MeasureGroup ID="UserIsAffiliatedWithLocationFactMG" Fact="ITSMDW!UserIsAffiliatedWithLocationFact" />
+			      <MeasureGroup ID="PurchaseOrderHasLocationFactMG" Fact="ITSMDW!PurchaseOrderHasLocationFact" />
+			      <MeasureGroup ID="LeaseAgreementHasLocationFactMG" Fact="ITSMDW!LeaseAgreementHasLocationFact" />
+			      <MeasureGroup ID="InvoiceHasLocationFactMG" Fact="ITSMDW!InvoiceHasLocationFact" />
+			      <MeasureGroup ID="HWAgreementHasPurchaseOrderFactMG" Fact="ITSMDW!HWAgreementHasPurchaseOrderFact" />
+			      <MeasureGroup ID="HWAgreementHasLocationFactMG" Fact="ITSMDW!HWAgreementHasLocationFact" />
+			      <MeasureGroup ID="HWAgreementHasInvoiceFactMG" Fact="ITSMDW!HWAgreementHasInvoiceFact" />
+			      <MeasureGroup ID="HWAgreementHasCostFactMG" Fact="ITSMDW!HWAgreementHasCostFact" />
+			      <MeasureGroup ID="HardwareAssetHasAgreementFactMG" Fact="ITSMDW!HardwareAssetHasAgreementFact" />
+			      <MeasureGroup ID="SoftwareAgreementHasInvoiceFactMG" Fact="ITSMDW!SoftwareAgreementHasInvoiceFact" />
+			      <MeasureGroup ID="SoftwareAgreementHasCostFactMG" Fact="ITSMDW!SoftwareAgreementHasCostFact" />
+			      <MeasureGroup ID="SoftwareAgreementHasPurchaseOrderFactMG" Fact="ITSMDW!SoftwareAgreementHasPurchaseOrderFact" />
+			      <MeasureGroup ID="LicStatusIsForSoftwareAgreementFactMG" Fact="ITSMDW!LicStatusIsForSoftwareAgreementFact" />
+			      <MeasureGroup ID="SoftwareAssetHasAgreementFactMG" Fact="ITSMDW!SoftwareAssetHasAgreementFact" />
+			      <MeasureGroup ID="HardwareAssetHasLeaseAgreementFactMG" Fact="ITSMDW!HardwareAssetHasLeaseAgreementFact" />
+			      <MeasureGroup ID="SoftwareAssetHasLeaseAgreementFactMG" Fact="ITSMDW!SoftwareAssetHasLeaseAgreementFact" />
+			      <MeasureGroup ID="LeaseAgreementHasCostFactMG" Fact="ITSMDW!LeaseAgreementHasCostFact" />
+			      <MeasureGroup ID="LeaseAgreementHasInvoiceFactMG" Fact="ITSMDW!LeaseAgreementHasInvoiceFact" />
+			      <MeasureGroup ID="LeaseAgreementHasPurchaseOrderFactMG" Fact="ITSMDW!LeaseAgreementHasPurchaseOrderFact" />
+			      <MeasureGroup ID="SupportAgreementHasCostFactMG" Fact="ITSMDW!SupportAgreementHasCostFact" />
+			      <MeasureGroup ID="SupportAgreementHasPurchaseOrderFactMG" Fact="ITSMDW!SupportAgreementHasPurchaseOrderFact" />
+			      <MeasureGroup ID="SupportAgreementHasInvoiceFactMG" Fact="ITSMDW!SupportAgreementHasInvoiceFact" />
+			      <MeasureGroup ID="SoftwareAssetHasSupportAgreementFactMG" Fact="ITSMDW!SoftwareAssetHasSupportAgreementFact" />
+			      <MeasureGroup ID="HardwareAssetHasSupportAgreementFactMG" Fact="ITSMDW!HardwareAssetHasSupportAgreementFact" />
+			      <MeasureGroup ID="CostHasUsrFactMG" Fact="ITSMDW!CostHasUsrFact" />
+			      <MeasureGroup ID="CostIsForInvoiceFactMG" Fact="ITSMDW!CostIsForInvoiceFact" />
+			      <MeasureGroup ID="CostIsForPurchaseOrderFactMG" Fact="ITSMDW!CostIsForPurchaseOrderFact" />
+			      <MeasureGroup ID="PurchaseOrderHasInvoiceFactMG" Fact="ITSMDW!PurchaseOrderHasInvoiceFact" />
+			      <MeasureGroup ID="SoftwareAssetHasInvoiceFactMG" Fact="ITSMDW!SoftwareAssetHasInvoiceFact" />
+			      <MeasureGroup ID="InvoiceHasUserFactMG" Fact="ITSMDW!InvoiceHasUserFact" />
+			      <MeasureGroup ID="HardwareAssetHasInvFactMG" Fact="ITSMDW!HardwareAssetHasInvFact" />
+			      <MeasureGroup ID="SoftwareAssetHasPurchaseOrderFactMG" Fact="ITSMDW!SoftwareAssetHasPurchaseOrderFact" />
+			      <MeasureGroup ID="SkuHasPurchaseOrderFactMG" Fact="ITSMDW!SkuHasPurchaseOrderFact" />
+			      <MeasureGroup ID="PurchaseOrderHasUserFactMG" Fact="ITSMDW!PurchaseOrderHasUserFact" />
+			      <MeasureGroup ID="PurchaseOrderHasSKUFactMG" Fact="ITSMDW!PurchaseOrderHasSKUFact" />
+			      <MeasureGroup ID="HardwareAssetHasPOFactMG" Fact="ITSMDW!HardwareAssetHasPOFact" />
+			      <MeasureGroup ID="HardwareHasModelFactMG" Fact="ITSMDW!HardwareHasModelFact" />
+			      <MeasureGroup ID="HardwareHasUserFactMG" Fact="ITSMDW!HardwareHasUserFact" />
+			      <MeasureGroup ID="HardwareHasManufacturerFactMG" Fact="ITSMDW!HardwareHasManufacturerFact" />
+			      <MeasureGroup ID="HardwareAssetReferencesHardwareFactMG" Fact="ITSMDW!HardwareAssetReferencesHardwareFact" />
+			      <MeasureGroup ID="HardwareAssetReferencesPrinterFactMG" Fact="ITSMDW!HardwareAssetReferencesPrinterFact" />
+			      <MeasureGroup ID="PrinterHasManufacturerFactMG" Fact="ITSMDW!PrinterHasManufacturerFact" />
+			      <MeasureGroup ID="PrinterHasUserFactMG" Fact="ITSMDW!PrinterHasUserFact" />
+			      <MeasureGroup ID="PrinterHasModelFactMG" Fact="ITSMDW!PrinterHasModelFact" />
+			      <MeasureGroup ID="HardwareAssetReferencesNetworkDeviceFactMG" Fact="ITSMDW!HardwareAssetReferencesNetworkDeviceFact" />
+			      <MeasureGroup ID="NetworkDeviceHasManufacturerFactMG" Fact="ITSMDW!NetworkDeviceHasManufacturerFact" />
+			      <MeasureGroup ID="NetworkDeviceHasModelFactMG" Fact="ITSMDW!NetworkDeviceHasModelFact" />
+			      <MeasureGroup ID="NetworkDeviceHasUserFactMG" Fact="ITSMDW!NetworkDeviceHasUserFact" />
+			      <MeasureGroup ID="HardwareAssetReferencesStorageDeviceFactMG" Fact="ITSMDW!HardwareAssetReferencesStorageDeviceFact" />
+			      <MeasureGroup ID="StorageDeviceHasManufacturerFactMG" Fact="ITSMDW!StorageDeviceHasManufacturerFact" />
+			      <MeasureGroup ID="StorageDeviceHasUserFactMG" Fact="ITSMDW!StorageDeviceHasUserFact" />
+			      <MeasureGroup ID="StorageDeviceHasModelFactMG" Fact="ITSMDW!StorageDeviceHasModelFact" />
+			      <MeasureGroup ID="MobileDeviceHasUserFactMG" Fact="ITSMDW!MobileDeviceHasUserFact" />
+			      <MeasureGroup ID="MobileDeviceHasModelFactMG" Fact="ITSMDW!MobileDeviceHasModelFact" />
+			      <MeasureGroup ID="MobileDeviceHasManufacturerFactMG" Fact="ITSMDW!MobileDeviceHasManufacturerFact" />
+			      <MeasureGroup ID="HardwareAssetReferencesMobileDeviceFactMG" Fact="ITSMDW!HardwareAssetReferencesMobileDeviceFact" />
+			      <MeasureGroup ID="HardwareAssetChangedByUserFactMG" Fact="ITSMDW!HardwareAssetChangedByUserFact" />
+			      <MeasureGroup ID="HardwareAssetHasUserFactMG" Fact="ITSMDW!HardwareAssetHasUserFact" />
+			      <MeasureGroup ID="SoftwareVersionInstalledOnAssetsFactMG" Fact="ITSMDW!SoftwareVersionInstalledOnAssetsFact" />
+			      <MeasureGroup ID="DeviceModelHasManufacturerFactMG" Fact="ITSMDW!DeviceModelHasManufacturerFact" />
+			      <MeasureGroup ID="SoftwareHasSKUFactMG" Fact="ITSMDW!SoftwareHasSKUFact" />
+			      <MeasureGroup ID="SoftwareIsInstalledOnHardwareAssetFactMG" Fact="ITSMDW!SoftwareIsInstalledOnHardwareAssetFact" />
+			      <MeasureGroup ID="SoftwareHasLicenseKeyFactMG" Fact="ITSMDW!SoftwareHasLicenseKeyFact" />
+			      <MeasureGroup ID="LicStatusHasSoftwareFactMG" Fact="ITSMDW!LicStatusHasSoftwareFact" />
+			      <MeasureGroup ID="SoftwareAssetHasSoftwareFactMG" Fact="ITSMDW!SoftwareAssetHasSoftwareFact" />
+			      <MeasureGroup ID="SoftwareHasVersionFactMG" Fact="ITSMDW!SoftwareHasVersionFact" />
+			      <MeasureGroup ID="SoftwareAssetHasUserFactMG" Fact="ITSMDW!SoftwareAssetHasUserFact" />
+			      <MeasureGroup ID="SkuIsForSoftwareAssetFactMG" Fact="ITSMDW!SkuIsForSoftwareAssetFact" />
+			      <MeasureGroup ID="SoftwareAssetChangedByUserFactMG" Fact="ITSMDW!SoftwareAssetChangedByUserFact" />
+			      <MeasureGroup ID="SkuHasSoftwareLicenseKeyFactMG" Fact="ITSMDW!SkuHasSoftwareLicenseKeyFact" />
+			      <MeasureGroup ID="SoftwareHasPublisherFactMG" Fact="ITSMDW!SoftwareHasPublisherFact" />
+			      <MeasureGroup ID="SoftwareLicenseKeyIsForSoftwareAssetFactMG" Fact="ITSMDW!SoftwareLicenseKeyIsForSoftwareAssetFact" />
+        </MeasureGroups>
+      </SystemCenterCube>
+    </Extensions>
+  </Warehouse>
+  
+</ManagementPackFragment>

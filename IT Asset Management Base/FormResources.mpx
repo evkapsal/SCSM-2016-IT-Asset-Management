@@ -1,0 +1,127 @@
+﻿<ManagementPackFragment SchemaVersion="SM2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<Presentation>
+  <Forms>
+    <Form ID="Form.HardwareAsset" Accessibility="Public" Target="Projection.HardwareAssetView" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.HardwareAssetForm">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.Company" Accessibility="Public" Target="Projection.Company" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.CompanyForm">
+      <Category>Form</Category>
+    </Form>
+      <Form ID="Form.Contact" Accessibility="Public" Target="Projection.Contact" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.ContactsForm">
+        <Category>Form</Category>
+      </Form>
+    <Form ID="Form.CostCenter" Accessibility="Public" Target="Projection.CostCenter" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.CostCenterForm">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.Cost" Accessibility="Public" Target="Projection.Cost" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.CostForm">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.HardwareAgreement" Accessibility="Public" Target="Projection.HardwareAgreement" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.HardwareAgreementForm">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.Hardware" Accessibility="Public" Target="Projection.Hardware" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.HardwareForm">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.Invoice" Accessibility="Public" Target="Projection.Invoice" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.InvoiceForm">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.Organization" Accessibility="Public" Target="Projection.Organization" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.OrganizationForm">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.Location" Accessibility="Public" Target="Projection.Location" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.LocationForm">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.PurchaseOrder" Accessibility="Public" Target="Projection.PurchaseOrder" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.PurcaseOrderForm">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.SoftwareAgreement" Accessibility="Public" Target="Projection.SoftwareAgreement" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.SoftwareAgreementForm">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.SupportAgreement" Accessibility="Public" Target="Projection.SupportAgreement" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.SupportAgreementForm">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.Software" Accessibility="Public" Target="Projection.Software" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.SoftwareForm">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.SoftwareAsset" Accessibility="Public" Target="Projection.SoftwareAsset" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.SoftwareAssetForm">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.SoftwareVersion" Accessibility="Public" Target="Projection.SoftwareVersion" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.SoftwareVersionForm">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.SoftwarePublisher" Accessibility="Public" Target="Projection.SoftwarePublisher" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.SoftwarePublisherForm">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.SoftwareLicenseKey" Accessibility="Public" Target="Projection.SoftwareLicenseKey" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.ProductKeyForm">
+    <Category>Form</Category>
+  </Form>
+    <Form ID="Form.SKU" Accessibility="Public" Target="Projection.SKU" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.SKUForm">
+      <Category>Form</Category>
+    </Form>
+	<!--
+    <Form ID="Form.UserRole" Accessibility="Public" Target="Projection.UserRole" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.UserRoleForm">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.Shortcut" Accessibility="Public" Target="Projection.Shortcut" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.UserShortCutForm">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.Setting" Accessibility="Public" Target="Projection.Setting" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.BaseSettingsForm">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.OtherSetting" Accessibility="Public" Target="Projection.OtherSetting" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.OtherSettingForm">
+      <Category>Form</Category>
+    </Form>
+	 <Form ID="Form.ADGroupSyncConnector" Accessibility="Public" Target="Projection.ADGroupSyncConnector" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.AdGroupSyncConnectorForm">
+      <Category>Form</Category>
+    </Form>
+	-->
+    <Form ID="Form.HardwareConnector" Accessibility="Public" Target="Projection.HardwareConnector" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.HardwareConnectorForm">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.SoftwareConnector" Accessibility="Public" Target="Projection.SoftwareConnector" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.SoftwareConnectorForm">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.AmazonConnector" Accessibility="Public" Target="Projection.AmazonConnector" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.AmazonConnectorForm">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.AzureConnector" Accessibility="Public" Target="Projection.AzureConnector" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.AzureConnectorForm">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.LicenseSyncConnector" Accessibility="Public" Target="Projection.LicenseSyncConnector" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.LicenseConnectorForm">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.OMSConnector" Accessibility="Public" Target="Projection.OMSConnector" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.LogAnalyticsForm">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.LeaseAgreement" Accessibility="Public" Target="Projection.LeaseAgreement" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.LeaseAgreementForm">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.LicenseStatus" Accessibility="Public" Target="Projection.LicenseStatus" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.LicenseForm">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.Printer" Accessibility="Public" Target="Projection.Printer" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.PrinterForm">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.NetworkDevice" Accessibility="Public" Target="Projection.NetworkDevice" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.NetworkDeviceForm">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.StorageDevice" Accessibility="Public" Target="Projection.StorageDevice" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.StorageDeviceForm">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.MobileDevice" Accessibility="Public" Target="Projection.MobileDevice" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.MobileDeviceForm">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.DeviceModel" Accessibility="Public" Target="Projection.DeviceModel" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.ModelForm">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.DeviceManufacturer" Accessibility="Public" Target="Projection.DeviceManufacturer" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.DeviceManufacturerForm">
+      <Category>Form</Category>
+    </Form>
+  </Forms>
+  </Presentation>
+
+  <Resources>
+    <Assembly ID="ITAssetMgmtForms" Accessibility="Public" FileName="ITAssetMgmtForms.dll" HasNullStream="false" QualifiedName="ITAssetMgmtForms, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+    <Assembly ID="ITAssetManagementTasks" Accessibility="Public" FileName="ITAssetManagementTasks.dll" HasNullStream="false" QualifiedName="ITAssetManagementTasks, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+  </Resources>
+</ManagementPackFragment>

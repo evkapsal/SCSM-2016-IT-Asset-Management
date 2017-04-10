@@ -1,0 +1,553 @@
+﻿<ManagementPackFragment SchemaVersion="SM2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TypeDefinitions>
+    <EntityTypes>
+      <TypeProjections>
+          <TypeProjection ID="Projection.HardwareAssetView" Accessibility="Public" Type="HardwareAsset">
+          <Component Path="$Context/Path[Relationship='Relationship.HardwareAssetReferencesHardware']$" Alias="Hardware" />
+          <Component Path="$Context/Path[Relationship='Relationship.HardwareAssetReferencesPrinter']$" Alias="Printer" />
+          <Component Path="$Context/Path[Relationship='Relationship.HardwareAssetReferencesMobileDevice']$" Alias="MobileDevice" />
+          <Component Path="$Context/Path[Relationship='Relationship.HardwareAssetReferencesNetworkDevice']$" Alias="NetworkDevice" />
+          <Component Path="$Context/Path[Relationship='Relationship.HardwareAssetReferencesStorageDevice']$" Alias="StorageDevice" />
+          <Component Path="$Context/Path[Relationship='Relationship.HardwareAssetHasSupplier']$" Alias="Supplier" />
+          <Component Path="$Context/Path[Relationship='Relationship.HardwareAssetChangedByUser']$" Alias="UserChangeLifecycle" />
+          <Component Path="$Context/Path[Relationship='Relationship.HardwareAssetHasPO']$" Alias="PurchaseOrder" />
+          <Component Path="$Context/Path[Relationship='Relationship.HardwareAssetHasUser']$" Alias="AssignedUser" />
+          <Component Path="$Context/Path[Relationship='Relationship.HardwareAssetHasCostCenter']$" Alias="CostCenter" />
+          <Component Path="$Context/Path[Relationship='Relationship.HardwareAssetHasLocation']$" Alias="Location" />
+          <Component Path="$Context/Path[Relationship='Relationship.HardwareAssetHasOrganization']$" Alias="Organization" />
+          <Component Path="$Context/Path[Relationship='Relationship.HardwareAssetHasSupportAgreement']$" Alias="SupportContract" />
+          <Component Path="$Context/Path[Relationship='Relationship.HardwareAssetHasAgreement']$" Alias="HardwareAgreement" />
+          <Component Path="$Context/Path[Relationship='Relationship.HardwareAssetHasInv']$" Alias="Invoice" />
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemRelatesToConfigItem' SeedRole='Target']$" Alias="ImpactedWorkItem" />
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemAboutConfigItem' SeedRole='Target']$" Alias="RelatedWorkItem" />
+          <Component Path="$Context/Path[Relationship='SupportingItem!System.ConfigItemHasFileAttachment']$" Alias="FileAttachment" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem']$" Alias="RelatedConfigItem" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem' SeedRole='Target']$" Alias="RelatedConfigItemSource" />
+          <Component Path="$Context/Path[Relationship='CoreKnowledge!System.EntityLinksToKnowledgeDocument']$" Alias="RelatedKnowledgeArticles" />
+        </TypeProjection>
+
+
+        <TypeProjection ID="Projection.SoftwareAsset" Accessibility="Public" Type="SoftwareAsset">
+          <Component Path="$Context/Path[Relationship='Relationship.SoftwareAssetHasSoftware']$" Alias="Software" />
+          <Component Path="$Context/Path[Relationship='Relationship.SoftwareAssetHasSupplier']$" Alias="Supplier" />
+          <Component Path="$Context/Path[Relationship='Relationship.SoftwareAssetHasPurchaseOrder']$" Alias="PurchaseOrder" />
+          <Component Path="$Context/Path[Relationship='Relationship.SoftwareAssetHasUser']$" Alias="AssignedUser" />
+          <Component Path="$Context/Path[Relationship='Relationship.SoftwareAssetChangedByUser']$" Alias="UserChangeLifecycle" />
+          <Component Path="$Context/Path[Relationship='Relationship.SoftwareAssetHasCostCenter']$" Alias="CostCenter" />
+          <Component Path="$Context/Path[Relationship='Relationship.SoftwareAssetHasLocation']$" Alias="Location" />
+          <Component Path="$Context/Path[Relationship='Relationship.SoftwareAssetHasOrganization']$" Alias="Organization" />
+          <Component Path="$Context/Path[Relationship='Relationship.SoftwareAssetHasAgreement']$" Alias="SoftwareAgreement" />
+          <Component Path="$Context/Path[Relationship='Relationship.SoftwareAssetHasSupportAgreement']$" Alias="SupportAgreement" />
+          <Component Path="$Context/Path[Relationship='Relationship.SoftwareAssetHasInvoice']$" Alias="Invoice" />
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemRelatesToConfigItem' SeedRole='Target']$" Alias="ImpactedWorkItem" />
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemAboutConfigItem' SeedRole='Target']$" Alias="RelatedWorkItem" />
+          <Component Path="$Context/Path[Relationship='SupportingItem!System.ConfigItemHasFileAttachment']$" Alias="FileAttachment" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem']$" Alias="RelatedConfigItem" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem' SeedRole='Target']$" Alias="RelatedConfigItemSource" />
+          <Component Path="$Context/Path[Relationship='CoreKnowledge!System.EntityLinksToKnowledgeDocument']$" Alias="RelatedKnowledgeArticles" />
+        </TypeProjection>
+
+        <TypeProjection ID="Projection.Company" Accessibility="Public" Type="Company">
+          <Component Path="$Context/Path[Relationship='Relationship.HardwareAgreementHasSupplier' SeedRole='Target']$" Alias="HardwareAgreement"/>
+          <Component Path="$Context/Path[Relationship='Relationship.SoftwareAgreementHasSupplier' SeedRole='Target']$" Alias="SoftwareAgreement"/>
+          <Component Path="$Context/Path[Relationship='Relationship.SupportAgreementHasSupplier' SeedRole='Target']$" Alias="SupportAgreement"/>
+          <Component Path="$Context/Path[Relationship='Relationship.ContactHasCompany' SeedRole='Target']$" Alias="Contact"/>
+          <Component Path="$Context/Path[Relationship='Relationship.PurchaseOrderHasSupplier' SeedRole='Target']$" Alias="PurchaseOrder"/>
+          <Component Path="$Context/Path[Relationship='Relationship.InvoiceHasSupplier' SeedRole='Target']$" Alias="Invoice"/>
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemRelatesToConfigItem' SeedRole='Target']$" Alias="ImpactedWorkItem" />
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemAboutConfigItem' SeedRole='Target']$" Alias="RelatedWorkItem" />
+          <Component Path="$Context/Path[Relationship='SupportingItem!System.ConfigItemHasFileAttachment']$" Alias="FileAttachment" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem']$" Alias="RelatedConfigItem" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem' SeedRole='Target']$" Alias="RelatedConfigItemSource" />
+          <Component Path="$Context/Path[Relationship='CoreKnowledge!System.EntityLinksToKnowledgeDocument']$" Alias="RelatedKnowledgeArticles" />
+        </TypeProjection>
+
+        <TypeProjection ID="Projection.Contact" Accessibility="Public" Type="Contact">
+          <Component Path="$Context/Path[Relationship='Relationship.ContactHasCompany']$" Alias="Company" />
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemRelatesToConfigItem' SeedRole='Target']$" Alias="ImpactedWorkItem" />
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemAboutConfigItem' SeedRole='Target']$" Alias="RelatedWorkItem" />
+          <Component Path="$Context/Path[Relationship='SupportingItem!System.ConfigItemHasFileAttachment']$" Alias="FileAttachment" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem']$" Alias="RelatedConfigItem" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem' SeedRole='Target']$" Alias="RelatedConfigItemSource" />
+          <Component Path="$Context/Path[Relationship='CoreKnowledge!System.EntityLinksToKnowledgeDocument']$" Alias="RelatedKnowledgeArticles" />         
+        </TypeProjection>
+
+        <TypeProjection ID="Projection.LicenseStatus" Accessibility="Public" Type="LicenseStatus">
+          <Component Path="$Context/Path[Relationship='Relationship.LicStatusIsForSoftwareAgreement']$" Alias="SoftwareAgreement" />
+          <Component Path="$Context/Path[Relationship='Relationship.LicStatusHasSoftware']$" Alias="Software" />
+        </TypeProjection>
+        
+		<!--
+		<TypeProjection ID="Projection.UserRole" Accessibility="Public" Type="Role">
+          <Component Path="$Context/Path[Relationship='Relationship.UserRoleHasMember']$" Alias="IsMember" />
+          <Component Path="$Context/Path[Relationship='Relationship.UserRoleHasSetting']$" Alias="Setting" />
+          <Component Path="$Context/Path[Relationship='Relationship.UserRoleHasOtherSetting']$" Alias="OtherSetting" />
+          <Component Path="$Context/Path[Relationship='Relationship.UserRoleHasShortcut']$" Alias="Shortcut" />      
+        </TypeProjection>
+
+        <TypeProjection ID="Projection.Shortcut" Accessibility="Public" Type="Shortcut">
+          <Component Path="$Context/Path[Relationship='Relationship.UserRoleHasShortcut' SeedRole='Target']$" Alias="Role" />
+        </TypeProjection>
+
+        <TypeProjection ID="Projection.Setting" Accessibility="Public" Type="Setting">
+          <Component Path="$Context/Path[Relationship='Relationship.UserRoleHasSetting' SeedRole='Target']$" Alias="Role" />
+        </TypeProjection>
+
+        <TypeProjection ID="Projection.OtherSetting" Accessibility="Public" Type="OtherSetting">
+          <Component Path="$Context/Path[Relationship='Relationship.UserRoleHasOtherSetting' SeedRole='Target']$" Alias="Role" />
+        </TypeProjection>
+		
+		<TypeProjection ID="Projection.ADGroupSyncConnector" Accessibility="Public" Type="ADGroupSyncConnector">
+        </TypeProjection>
+        -->
+        
+        <TypeProjection ID="Projection.CostCenter" Accessibility="Public" Type="CostCenter">
+          <Component Path="$Context/Path[Relationship='Relationship.CostHasCostCenter' SeedRole='Target']$" Alias="Cost"/>
+          <Component Path="$Context/Path[Relationship='Relationship.PurchaseOrderHasCostCenter' SeedRole='Target']$" Alias="PurchaseOrder"/>
+          <Component Path="$Context/Path[Relationship='Relationship.HardwareAssetHasCostCenter' SeedRole='Target']$" Alias="HardwareAsset"/>
+          <Component Path="$Context/Path[Relationship='Relationship.InvoiceHasCostCenter' SeedRole='Target']$" Alias="Invoice"/>
+          <Component Path="$Context/Path[Relationship='Relationship.SoftwareAssetHasCostCenter' SeedRole='Target']$" Alias="SoftwareAsset"/>
+          <Component Path="$Context/Path[Relationship='Relationship.OrganizationHasCostCenter' SeedRole='Target']$" Alias="Organization"/>
+          <Component Path="$Context/Path[Relationship='Relationship.HardwareAgreementHasCostCenter' SeedRole='Target']$" Alias="HardwareAgreement"/>
+          <Component Path="$Context/Path[Relationship='Relationship.SoftwareAgreementHasCostCenter' SeedRole='Target']$" Alias="SoftwareAgreement"/>
+          <Component Path="$Context/Path[Relationship='Relationship.SupportAgreementHasCostCenter' SeedRole='Target']$" Alias="SupportAgreement"/>
+        </TypeProjection>
+
+
+        <TypeProjection ID="Projection.Cost" Accessibility="Public" Type="Cost">
+          <Component Path="$Context/Path[Relationship='Relationship.CostHasCostCenter']$" Alias="CostCenter" />
+          <Component Path="$Context/Path[Relationship='Relationship.CostHasLocation']$" Alias="Location" />
+          <Component Path="$Context/Path[Relationship='Relationship.CostHasOrganization']$" Alias="Organization" />
+          <Component Path="$Context/Path[Relationship='Relationship.CostHasSupplier']$" Alias="Supplier" />
+          <Component Path="$Context/Path[Relationship='Relationship.CostIsForInvoice']$" Alias="Invoice" />
+          <Component Path="$Context/Path[Relationship='Relationship.CostIsForPurchaseOrder']$" Alias="PurchaseOrder" />
+          <Component Path="$Context/Path[Relationship='Relationship.CostHasUsr']$" Alias="HasUser" />   
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemRelatesToConfigItem' SeedRole='Target']$" Alias="ImpactedWorkItem" />
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemAboutConfigItem' SeedRole='Target']$" Alias="RelatedWorkItem" />
+          <Component Path="$Context/Path[Relationship='SupportingItem!System.ConfigItemHasFileAttachment']$" Alias="FileAttachment" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem']$" Alias="RelatedConfigItem" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem' SeedRole='Target']$" Alias="RelatedConfigItemSource" />
+          <Component Path="$Context/Path[Relationship='CoreKnowledge!System.EntityLinksToKnowledgeDocument']$" Alias="RelatedKnowledgeArticles" />
+        </TypeProjection>
+
+        <TypeProjection ID="Projection.HardwareAgreement" Accessibility="Public" Type="HardwareAgreement">
+          <Component Path="$Context/Path[Relationship='Relationship.HardwareAgreementHasCostCenter']$" Alias="CostCenter" />
+          <Component Path="$Context/Path[Relationship='Relationship.HardwareAgreementHasSupplier']$" Alias="Supplier" />
+          <Component Path="$Context/Path[Relationship='Relationship.HWAgreementHasPurchaseOrder']$" Alias="PurchaseOrder" />
+          <Component Path="$Context/Path[Relationship='Relationship.HWAgreementHasOrganization']$" Alias="Organization" />
+          <Component Path="$Context/Path[Relationship='Relationship.HWAgreementHasConct']$" Alias="Contact" />
+          <Component Path="$Context/Path[Relationship='Relationship.HWAgreementHasInvoice']$" Alias="Invoice" />
+          <Component Path="$Context/Path[Relationship='Relationship.HWAgreementHasCost']$" Alias="HCost" />
+          <Component Path="$Context/Path[Relationship='Relationship.HWAgreementHasLocation']$" Alias="Location" />
+          <Component Path="$Context/Path[Relationship='Relationship.HardwareAssetHasAgreement' SeedRole='Target']$" Alias="HardwareAsset" />
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemRelatesToConfigItem' SeedRole='Target']$" Alias="ImpactedWorkItem" />
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemAboutConfigItem' SeedRole='Target']$" Alias="RelatedWorkItem" />
+          <Component Path="$Context/Path[Relationship='SupportingItem!System.ConfigItemHasFileAttachment']$" Alias="FileAttachment" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem']$" Alias="RelatedConfigItem" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem' SeedRole='Target']$" Alias="RelatedConfigItemSource" />
+          <Component Path="$Context/Path[Relationship='CoreKnowledge!System.EntityLinksToKnowledgeDocument']$" Alias="RelatedKnowledgeArticles" />
+        </TypeProjection>
+
+
+        <TypeProjection ID="Projection.SoftwareAgreement" Accessibility="Public" Type="SoftwareAgreement">
+          <Component Path="$Context/Path[Relationship='Relationship.SoftwareAgreementHasCostCenter']$" Alias="CostCenter" />
+          <Component Path="$Context/Path[Relationship='Relationship.SoftwareAgreementHasSupplier']$" Alias="Supplier" />
+          <Component Path="$Context/Path[Relationship='Relationship.SoftwareAgreementHasPurchaseOrder']$" Alias="PurchaseOrder" />
+          <Component Path="$Context/Path[Relationship='Relationship.SoftwareAgreementHasOrganization']$" Alias="Organization" />
+          <Component Path="$Context/Path[Relationship='Relationship.SoftwareAgreementHasContact']$" Alias="Contact" />
+          <Component Path="$Context/Path[Relationship='Relationship.SoftwareAgreementHasInvoice']$" Alias="Invoice" />
+          <Component Path="$Context/Path[Relationship='Relationship.SoftwareAgreementHasCost']$" Alias="SCost" />
+          <Component Path="$Context/Path[Relationship='Relationship.SoftwareAgreementHasLocation']$" Alias="Location" />
+          <Component Path="$Context/Path[Relationship='Relationship.SoftwareAssetHasAgreement' SeedRole='Target']$" Alias="SoftwareAsset" />
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemRelatesToConfigItem' SeedRole='Target']$" Alias="ImpactedWorkItem" />
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemAboutConfigItem' SeedRole='Target']$" Alias="RelatedWorkItem" />
+          <Component Path="$Context/Path[Relationship='SupportingItem!System.ConfigItemHasFileAttachment']$" Alias="FileAttachment" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem']$" Alias="RelatedConfigItem" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem' SeedRole='Target']$" Alias="RelatedConfigItemSource" />
+          <Component Path="$Context/Path[Relationship='CoreKnowledge!System.EntityLinksToKnowledgeDocument']$" Alias="RelatedKnowledgeArticles" />
+        </TypeProjection>
+
+
+
+        <TypeProjection ID="Projection.SupportAgreement" Accessibility="Public" Type="SupportAgreement">
+          <Component Path="$Context/Path[Relationship='Relationship.SupportAgreementHasCostCenter']$" Alias="CostCenter" />
+          <Component Path="$Context/Path[Relationship='Relationship.SupportAgreementHasSupplier']$" Alias="Supplier" />
+          <Component Path="$Context/Path[Relationship='Relationship.SupportAgreementHasPurchaseOrder']$" Alias="PurchaseOrder" />
+          <Component Path="$Context/Path[Relationship='Relationship.SupportAgreementHasOrganization']$" Alias="Organization" />
+          <Component Path="$Context/Path[Relationship='Relationship.SupportAgreementHasContact']$" Alias="Contact" />
+          <Component Path="$Context/Path[Relationship='Relationship.SupportAgreementHasInvoice']$" Alias="Invoice" />
+          <Component Path="$Context/Path[Relationship='Relationship.SupportAgreementHasCost']$" Alias="UCost" />
+          <Component Path="$Context/Path[Relationship='Relationship.SupportAgreementHasLocation']$" Alias="Location" />
+          <Component Path="$Context/Path[Relationship='Relationship.SoftwareAssetHasSupportAgreement' SeedRole='Target']$" Alias="SoftwareAsset" />
+          <Component Path="$Context/Path[Relationship='Relationship.HardwareAssetHasSupportAgreement' SeedRole='Target']$" Alias="HardwareAsset" />
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemRelatesToConfigItem' SeedRole='Target']$" Alias="ImpactedWorkItem" />
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemAboutConfigItem' SeedRole='Target']$" Alias="RelatedWorkItem" />
+          <Component Path="$Context/Path[Relationship='SupportingItem!System.ConfigItemHasFileAttachment']$" Alias="FileAttachment" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem']$" Alias="RelatedConfigItem" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem' SeedRole='Target']$" Alias="RelatedConfigItemSource" />
+          <Component Path="$Context/Path[Relationship='CoreKnowledge!System.EntityLinksToKnowledgeDocument']$" Alias="RelatedKnowledgeArticles" />
+        </TypeProjection>
+
+        <TypeProjection ID="Projection.Printer" Accessibility="Public" Type="Printer">
+          <Component Path="$Context/Path[Relationship='Relationship.HardwareAssetReferencesPrinter' SeedRole='Target']$" Alias="HardwareAsset" />
+          <Component Path="$Context/Path[Relationship='Relationship.PrinterHasUser']$" Alias="HasUser" />
+          <Component Path="$Context/Path[Relationship='Relationship.PrinterHasManufacturer']$" Alias="Manufacturer" />
+          <Component Path="$Context/Path[Relationship='Relationship.PrinterHasModel']$" Alias="Model" />
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemRelatesToConfigItem' SeedRole='Target']$" Alias="ImpactedWorkItem" />
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemAboutConfigItem' SeedRole='Target']$" Alias="RelatedWorkItem" />
+          <Component Path="$Context/Path[Relationship='SupportingItem!System.ConfigItemHasFileAttachment']$" Alias="FileAttachment" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem']$" Alias="RelatedConfigItem" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem' SeedRole='Target']$" Alias="RelatedConfigItemSource" />
+          <Component Path="$Context/Path[Relationship='CoreKnowledge!System.EntityLinksToKnowledgeDocument']$" Alias="RelatedKnowledgeArticles" />
+        </TypeProjection>
+
+        <TypeProjection ID="Projection.NetworkDevice" Accessibility="Public" Type="NetworkDevice">
+          <Component Path="$Context/Path[Relationship='Relationship.HardwareAssetReferencesNetworkDevice' SeedRole='Target']$" Alias="HardwareAst" />
+          <Component Path="$Context/Path[Relationship='Relationship.NetworkDeviceHasUser']$" Alias="HasUser" />
+          <Component Path="$Context/Path[Relationship='Relationship.NetworkDeviceHasManufacturer']$" Alias="Manufacturer" />
+          <Component Path="$Context/Path[Relationship='Relationship.NetworkDeviceHasModel']$" Alias="Model" />
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemRelatesToConfigItem' SeedRole='Target']$" Alias="ImpactedWorkItem" />
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemAboutConfigItem' SeedRole='Target']$" Alias="RelatedWorkItem" />
+          <Component Path="$Context/Path[Relationship='SupportingItem!System.ConfigItemHasFileAttachment']$" Alias="FileAttachment" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem']$" Alias="RelatedConfigItem" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem' SeedRole='Target']$" Alias="RelatedConfigItemSource" />
+          <Component Path="$Context/Path[Relationship='CoreKnowledge!System.EntityLinksToKnowledgeDocument']$" Alias="RelatedKnowledgeArticles" />
+        </TypeProjection>
+        
+        <TypeProjection ID="Projection.StorageDevice" Accessibility="Public" Type="StorageDevice">
+          <Component Path="$Context/Path[Relationship='Relationship.HardwareAssetReferencesStorageDevice' SeedRole='Target']$" Alias="HardwareAsset" />
+          <Component Path="$Context/Path[Relationship='Relationship.StorageDeviceHasUser']$" Alias="HasUser" />
+          <Component Path="$Context/Path[Relationship='Relationship.StorageDeviceHasManufacturer']$" Alias="Manufacturer" />
+          <Component Path="$Context/Path[Relationship='Relationship.StorageDeviceHasModel']$" Alias="Model" />
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemRelatesToConfigItem' SeedRole='Target']$" Alias="ImpactedWorkItem" />
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemAboutConfigItem' SeedRole='Target']$" Alias="RelatedWorkItem" />
+          <Component Path="$Context/Path[Relationship='SupportingItem!System.ConfigItemHasFileAttachment']$" Alias="FileAttachment" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem']$" Alias="RelatedConfigItem" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem' SeedRole='Target']$" Alias="RelatedConfigItemSource" />
+          <Component Path="$Context/Path[Relationship='CoreKnowledge!System.EntityLinksToKnowledgeDocument']$" Alias="RelatedKnowledgeArticles" />
+        </TypeProjection>
+        
+        <TypeProjection ID="Projection.MobileDevice" Accessibility="Public" Type="MobileDevice">
+          <Component Path="$Context/Path[Relationship='Relationship.HardwareAssetReferencesMobileDevice' SeedRole='Target']$" Alias="HardwareAsset" />
+          <Component Path="$Context/Path[Relationship='Relationship.MobileDeviceHasUser']$" Alias="HasUser" />
+          <Component Path="$Context/Path[Relationship='Relationship.MobileDeviceHasManufacturer']$" Alias="Manufacturer" />
+          <Component Path="$Context/Path[Relationship='Relationship.MobileDeviceHasModel']$" Alias="Model" />
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemRelatesToConfigItem' SeedRole='Target']$" Alias="ImpactedWorkItem" />
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemAboutConfigItem' SeedRole='Target']$" Alias="RelatedWorkItem" />
+          <Component Path="$Context/Path[Relationship='SupportingItem!System.ConfigItemHasFileAttachment']$" Alias="FileAttachment" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem']$" Alias="RelatedConfigItem" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem' SeedRole='Target']$" Alias="RelatedConfigItemSource" />
+          <Component Path="$Context/Path[Relationship='CoreKnowledge!System.EntityLinksToKnowledgeDocument']$" Alias="RelatedKnowledgeArticles" />
+        </TypeProjection>
+        
+        
+         <TypeProjection ID="Projection.Hardware" Accessibility="Public" Type="Hardware">
+          <Component Path="$Context/Path[Relationship='Relationship.HardwareAssetReferencesHardware' SeedRole='Target']$" Alias="HardwareAT" />
+          <Component Path="$Context/Path[Relationship='Relationship.HardwareHasUser']$" Alias="HasUser" />
+          <Component Path="$Context/Path[Relationship='Relationship.HardwareHasManufacturer']$" Alias="Manufacturer" />
+          <Component Path="$Context/Path[Relationship='Relationship.HardwareHasModel']$" Alias="Model" />
+          <Component Path="$Context/Path[Relationship='Relationship.HardwareContainsDisks']$" Alias="ContainsDisk" />
+          <Component Path="$Context/Path[Relationship='Relationship.HardwareContainsVolumes']$" Alias="ContainsVolumes" />
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemRelatesToConfigItem' SeedRole='Target']$" Alias="ImpactedWorkItem" />
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemAboutConfigItem' SeedRole='Target']$" Alias="RelatedWorkItem" />
+          <Component Path="$Context/Path[Relationship='SupportingItem!System.ConfigItemHasFileAttachment']$" Alias="FileAttachment" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem']$" Alias="RelatedConfigItem" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem' SeedRole='Target']$" Alias="RelatedConfigItemSource" />
+          <Component Path="$Context/Path[Relationship='CoreKnowledge!System.EntityLinksToKnowledgeDocument']$" Alias="RelatedKnowledgeArticles" />
+        </TypeProjection>
+
+
+        <TypeProjection ID="Projection.Invoice" Accessibility="Public" Type="Invoice">
+          <Component Path="$Context/Path[Relationship='Relationship.InvoiceHasUser']$" Alias="InvoiceHasUser" />
+          <Component Path="$Context/Path[Relationship='Relationship.InvoiceHasContact']$" Alias="Contact" />
+          <Component Path="$Context/Path[Relationship='Relationship.InvoiceIsForOrganization']$" Alias="Organization" />
+          <Component Path="$Context/Path[Relationship='Relationship.InvoiceHasSupplier']$" Alias="Supplier" />
+          <Component Path="$Context/Path[Relationship='Relationship.InvoiceHasCostCenter']$" Alias="CostCenter" />
+          <Component Path="$Context/Path[Relationship='Relationship.HardwareAssetHasInv' SeedRole='Target']$" Alias="HardwareAsset"/>
+          <Component Path="$Context/Path[Relationship='Relationship.PurchaseOrderHasInvoice' SeedRole='Target']$" Alias="PurchaseOrder"/>
+          <Component Path="$Context/Path[Relationship='Relationship.SoftwareAssetHasInvoice' SeedRole='Target']$" Alias="SoftwareAsset"/>   
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemRelatesToConfigItem' SeedRole='Target']$" Alias="ImpactedWorkItem" />
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemAboutConfigItem' SeedRole='Target']$" Alias="RelatedWorkItem" />
+          <Component Path="$Context/Path[Relationship='SupportingItem!System.ConfigItemHasFileAttachment']$" Alias="FileAttachment" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem']$" Alias="RelatedConfigItem" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem' SeedRole='Target']$" Alias="RelatedConfigItemSource" />
+          <Component Path="$Context/Path[Relationship='CoreKnowledge!System.EntityLinksToKnowledgeDocument']$" Alias="RelatedKnowledgeArticles" />
+        </TypeProjection>
+
+        <TypeProjection ID="Projection.Organization" Accessibility="Public" Type="Organization">
+          <Component Path="$Context/Path[Relationship='Relationship.InvoiceIsForOrganization' SeedRole='Target']$" Alias="Invoice" />
+          <Component Path="$Context/Path[Relationship='Relationship.HWAgreementHasOrganization' SeedRole='Target']$" Alias="HardwareAgreement" />
+          <Component Path="$Context/Path[Relationship='Relationship.HardwareAssetHasOrganization' SeedRole='Target']$" Alias="HardwareAsset" />
+          <Component Path="$Context/Path[Relationship='Relationship.OrganizationHasCostCenter']$" Alias="CostCenter" />
+          <Component Path="$Context/Path[Relationship='Relationship.OrganizationHasLocation']$" Alias="Location" />
+          <Component Path="$Context/Path[Relationship='Relationship.CostHasOrganization' SeedRole='Target']$" Alias="Cost" />
+          <Component Path="$Context/Path[Relationship='Relationship.PurchaseOrderHasOrganization' SeedRole='Target']$" Alias="PurchaseOrder" />
+          <Component Path="$Context/Path[Relationship='Relationship.SoftwareAssetHasOrganization' SeedRole='Target']$" Alias="SoftwareAsset" />
+          <Component Path="$Context/Path[Relationship='Relationship.SoftwareAgreementHasOrganization' SeedRole='Target']$" Alias="SoftwareAgreement"/>
+          <Component Path="$Context/Path[Relationship='Relationship.SupportAgreementHasOrganization' SeedRole='Target']$" Alias="SupportAgreement"/>
+        </TypeProjection>
+        
+         <TypeProjection ID="Projection.Software" Accessibility="Public" Type="Software">
+          <Component Path="$Context/Path[Relationship='Relationship.SoftwareAssetHasSoftware' SeedRole='Target']$" Alias="SoftwareAsset" />
+          <Component Path="$Context/Path[Relationship='Relationship.SoftwareHasPublisher']$" Alias="Publisher" />
+          <Component Path="$Context/Path[Relationship='Relationship.SoftwareHasVersion' SeedRole='Target']$" Alias="Version" />
+          <Component Path="$Context/Path[Relationship='Relationship.SoftwareIsInstalledOnHardwareAsset']$" Alias="HardwareAsset" />
+          <Component Path="$Context/Path[Relationship='Relationship.SoftwareHasSKU']$" Alias="SKU" />
+          <Component Path="$Context/Path[Relationship='Relationship.SoftwareHasLicenseKey']$" Alias="SoftwareLicenseKey" />
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemRelatesToConfigItem' SeedRole='Target']$" Alias="ImpactedWorkItem" />
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemAboutConfigItem' SeedRole='Target']$" Alias="RelatedWorkItem" />
+          <Component Path="$Context/Path[Relationship='SupportingItem!System.ConfigItemHasFileAttachment']$" Alias="FileAttachment" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem']$" Alias="RelatedConfigItem" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem' SeedRole='Target']$" Alias="RelatedConfigItemSource" />
+          <Component Path="$Context/Path[Relationship='CoreKnowledge!System.EntityLinksToKnowledgeDocument']$" Alias="RelatedKnowledgeArticles" />
+        </TypeProjection>
+
+
+        <TypeProjection ID="Projection.Location" Accessibility="Public" Type="NLocation">
+          <Component Path="$Context/Path[Relationship='Relationship.CostHasLocation' SeedRole='Target']$" Alias="Cost" />
+          <Component Path="$Context/Path[Relationship='Relationship.PurchaseOrderHasLocation' SeedRole='Target']$" Alias="PurchaseOrder" />
+          <Component Path="$Context/Path[Relationship='Relationship.HardwareAssetHasLocation' SeedRole='Target']$" Alias="HardwareAsset" />
+          <Component Path="$Context/Path[Relationship='Relationship.SoftwareAssetHasLocation' SeedRole='Target']$" Alias="SoftwareAsset" />
+          <Component Path="$Context/Path[Relationship='Relationship.HWAgreementHasLocation' SeedRole='Target']$" Alias="HardwareAgreement" />
+          <Component Path="$Context/Path[Relationship='Relationship.SoftwareAgreementHasLocation' SeedRole='Target']$" Alias="SoftwareAgreement" />
+          <Component Path="$Context/Path[Relationship='Relationship.SupportAgreementHasLocation' SeedRole='Target']$" Alias="SupportAgreement" />
+          <Component Path="$Context/Path[Relationship='Relationship.CostCenterHasLocation' SeedRole='Target']$" Alias="CostCenter" />
+          <Component Path="$Context/Path[Relationship='Relationship.InvoiceHasLocation' SeedRole='Target']$" Alias="Invoice" />
+          <Component Path="$Context/Path[Relationship='Relationship.OrganizationHasLocation' SeedRole='Target']$" Alias="Organization" />
+        </TypeProjection>
+
+
+        <TypeProjection ID="Projection.SoftwareVersion" Accessibility="Public" Type="SoftwareVersion">
+          <Component Path="$Context/Path[Relationship='Relationship.SoftwareHasVersion']$" Alias="Software" />
+          <Component Path="$Context/Path[Relationship='Relationship.SoftwareVersionInstalledOnAssets']$" Alias="HardwareAsset" />
+        </TypeProjection>
+
+        <TypeProjection ID="Projection.DeviceManufacturer" Accessibility="Public" Type="DeviceManufacturer">
+          <Component Path="$Context/Path[Relationship='Relationship.DeviceModelHasManufacturer' SeedRole='Target']$" Alias="Model" />
+          <Component Path="$Context/Path[Relationship='Relationship.NetworkDeviceHasManufacturer' SeedRole='Target']$" Alias="NetworkDevice" />
+          <Component Path="$Context/Path[Relationship='Relationship.StorageDeviceHasManufacturer' SeedRole='Target']$" Alias="StorageDevice" />
+          <Component Path="$Context/Path[Relationship='Relationship.PrinterHasManufacturer' SeedRole='Target']$" Alias="Printer" />
+          <Component Path="$Context/Path[Relationship='Relationship.HardwareHasManufacturer' SeedRole='Target']$" Alias="Hardware" />
+        </TypeProjection>
+
+        <TypeProjection ID="Projection.DeviceModel" Accessibility="Public" Type="DeviceModel">
+          <Component Path="$Context/Path[Relationship='Relationship.DeviceModelHasManufacturer']$" Alias="Manufacturer" />
+          <Component Path="$Context/Path[Relationship='Relationship.NetworkDeviceHasModel' SeedRole='Target']$" Alias="NetworkDevice" />
+          <Component Path="$Context/Path[Relationship='Relationship.StorageDeviceHasModel' SeedRole='Target']$" Alias="StorageDevice" />
+          <Component Path="$Context/Path[Relationship='Relationship.MobileDeviceHasModel' SeedRole='Target']$" Alias="MobileDevice" />
+          <Component Path="$Context/Path[Relationship='Relationship.PrinterHasModel' SeedRole='Target']$" Alias="Printer" />
+          <Component Path="$Context/Path[Relationship='Relationship.HardwareHasModel' SeedRole='Target']$" Alias="Hardware" />
+        </TypeProjection>
+        
+         <TypeProjection ID="Projection.AzureConnector" Accessibility="Public" Type="AzureConnector">
+        </TypeProjection>
+
+        <TypeProjection ID="Projection.HardwareConnector" Accessibility="Public" Type="HardwareConnector">
+        </TypeProjection>
+
+        <TypeProjection ID="Projection.AmazonConnector" Accessibility="Public" Type="AmazonConnector">
+        </TypeProjection>
+        
+        <TypeProjection ID="Projection.SoftwareConnector" Accessibility="Public" Type="SoftwareConnector">
+        </TypeProjection>
+
+        <TypeProjection ID="Projection.OMSConnector" Accessibility="Public" Type="OMSConnector">
+        </TypeProjection>
+        
+        <TypeProjection ID="Projection.LicenseSyncConnector" Accessibility="Public" Type="LicenseSyncConnector">
+        </TypeProjection>
+
+        <TypeProjection ID="Projection.SoftwarePublisher" Accessibility="Public" Type="SoftwarePublisher">
+          <Component Path="$Context/Path[Relationship='Relationship.SoftwareHasPublisher' SeedRole='Target']$" Alias="Software" />
+        </TypeProjection>
+
+        <TypeProjection ID="Projection.SoftwareLicenseKey" Accessibility="Public" Type="SoftwareLicenseKey">
+          <Component Path="$Context/Path[Relationship='Relationship.SoftwareHasLicenseKey' SeedRole='Target']$" Alias="Software" />
+          <Component Path="$Context/Path[Relationship='Relationship.SoftwareLicenseKeyHasOwner']$" Alias="Owner" />
+        </TypeProjection>
+
+        <TypeProjection ID="Projection.SKU" Accessibility="Public" Type="SKU">
+          <Component Path="$Context/Path[Relationship='Relationship.SoftwareHasSKU' SeedRole='Target']$" Alias="Software" />
+          <Component Path="$Context/Path[Relationship='Relationship.SkuHasPurchaseOrder']$" Alias="PurchaseOrder" />
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemRelatesToConfigItem' SeedRole='Target']$" Alias="ImpactedWorkItem" />
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemAboutConfigItem' SeedRole='Target']$" Alias="RelatedWorkItem" />
+          <Component Path="$Context/Path[Relationship='SupportingItem!System.ConfigItemHasFileAttachment']$" Alias="FileAttachment" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem']$" Alias="RelatedConfigItem" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem' SeedRole='Target']$" Alias="RelatedConfigItemSource" />
+          <Component Path="$Context/Path[Relationship='CoreKnowledge!System.EntityLinksToKnowledgeDocument']$" Alias="RelatedKnowledgeArticles" />
+        </TypeProjection>
+
+
+        <TypeProjection ID="Projection.PurchaseOrder" Accessibility="Public" Type="PurchaseOrder">
+          <Component Path="$Context/Path[Relationship='Relationship.PurchaseOrderHasInvoice']$" Alias="Invoice" />         
+          <Component Path="$Context/Path[Relationship='Relationship.PurchaseOrderHasUser']$" Alias="User" />         
+          <Component Path="$Context/Path[Relationship='Relationship.CostIsForPurchaseOrder' SeedRole='Target']$" Alias="Cost" />
+          <Component Path="$Context/Path[Relationship='Relationship.PurchaseOrderHasCostCenter']$" Alias="CostCenter" />      
+          <Component Path="$Context/Path[Relationship='Relationship.PurchaseOrderHasLocation']$" Alias="Location" />
+          <Component Path="$Context/Path[Relationship='Relationship.PurchaseOrderHasOrganization']$" Alias="Organization"/>          
+          <Component Path="$Context/Path[Relationship='Relationship.PurchaseOrderHasSupplier']$" Alias="Supplier"/>         
+          <Component Path="$Context/Path[Relationship='Relationship.SoftwareAssetHasPurchaseOrder' SeedRole='Target']$" Alias="SoftwareAsset"/>
+          <Component Path="$Context/Path[Relationship='Relationship.HardwareAssetHasPO' SeedRole='Target']$" Alias="HardwareAsset"/> 
+          <Component Path="$Context/Path[Relationship='Relationship.HWAgreementHasPurchaseOrder' SeedRole='Target']$" Alias="HardwareAgreement"/>
+          <Component Path="$Context/Path[Relationship='Relationship.SupportAgreementHasPurchaseOrder' SeedRole='Target']$" Alias="SupportAgreement"/>
+          <Component Path="$Context/Path[Relationship='Relationship.SoftwareAgreementHasPurchaseOrder' SeedRole='Target']$" Alias="SoftwareAgreement"/>
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemRelatesToConfigItem' SeedRole='Target']$" Alias="ImpactedWorkItem" />
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemAboutConfigItem' SeedRole='Target']$" Alias="RelatedWorkItem" />
+          <Component Path="$Context/Path[Relationship='SupportingItem!System.ConfigItemHasFileAttachment']$" Alias="FileAttachment" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem']$" Alias="RelatedConfigItem" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem' SeedRole='Target']$" Alias="RelatedConfigItemSource" />
+          <Component Path="$Context/Path[Relationship='CoreKnowledge!System.EntityLinksToKnowledgeDocument']$" Alias="RelatedKnowledgeArticles" />
+        </TypeProjection>
+
+        <TypeProjection ID="Projection.LeaseAgreement" Accessibility="Public" Type="LeaseAgreement">
+          <Component Path="$Context/Path[Relationship='Relationship.LeaseAgreementHasCostCenter']$" Alias="CostCenter" />
+          <Component Path="$Context/Path[Relationship='Relationship.LeaseAgreementHasSupplier']$" Alias="Supplier" />
+          <Component Path="$Context/Path[Relationship='Relationship.LeaseAgreementHasPurchaseOrder']$" Alias="PurchaseOrder" />
+          <Component Path="$Context/Path[Relationship='Relationship.LeaseAgreementHasOrganization']$" Alias="Organization" />
+          <Component Path="$Context/Path[Relationship='Relationship.LeaseAgreementHasContact']$" Alias="Contact" />
+          <Component Path="$Context/Path[Relationship='Relationship.LeaseAgreementHasInvoice']$" Alias="Invoice" />
+          <Component Path="$Context/Path[Relationship='Relationship.LeaseAgreementHasCost']$" Alias="HCost" />
+          <Component Path="$Context/Path[Relationship='Relationship.LeaseAgreementHasLocation']$" Alias="Location" />
+          <Component Path="$Context/Path[Relationship='Relationship.HardwareAssetHasLeaseAgreement' SeedRole='Target']$" Alias="HardwareAsset" />
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemRelatesToConfigItem' SeedRole='Target']$" Alias="ImpactedWorkItem" />
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemAboutConfigItem' SeedRole='Target']$" Alias="RelatedWorkItem" />
+          <Component Path="$Context/Path[Relationship='SupportingItem!System.ConfigItemHasFileAttachment']$" Alias="FileAttachment" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem']$" Alias="RelatedConfigItem" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem' SeedRole='Target']$" Alias="RelatedConfigItemSource" />
+          <Component Path="$Context/Path[Relationship='CoreKnowledge!System.EntityLinksToKnowledgeDocument']$" Alias="RelatedKnowledgeArticles" />
+        </TypeProjection>
+        
+        </TypeProjections>
+    </EntityTypes>
+  </TypeDefinitions>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+        <DisplayString ElementID="Projection.HardwareAssetView">
+          <Name> Hardware Asset Projection </Name>
+          <Description> Hardware Asset Projection </Description>
+        </DisplayString>
+        <DisplayString ElementID="Projection.SoftwareAsset">
+          <Name> Software Asset Projection </Name>
+          <Description> Software Asset Projection </Description>
+        </DisplayString>
+        <DisplayString ElementID="Projection.SoftwarePublisher">
+          <Name> Software Publisher Projection </Name>
+          <Description> Software Publisher Projection </Description>
+        </DisplayString>
+        <DisplayString ElementID="Projection.Company">
+          <Name> Company Projection </Name>
+          <Description> Company Projection </Description>
+        </DisplayString>
+        <DisplayString ElementID="Projection.Contact">
+          <Name> Contact Projection </Name>
+          <Description> Contact Projection </Description>
+        </DisplayString>
+        <DisplayString ElementID="Projection.LeaseAgreement">
+          <Name> Lease Agreement Projection </Name>
+          <Description> Lease Agreement Projection</Description>
+        </DisplayString>
+        <DisplayString ElementID="Projection.Printer">
+          <Name> Printer Projection </Name>
+          <Description> Printer Projection</Description>
+        </DisplayString>
+        <DisplayString ElementID="Projection.OMSConnector">
+          <Name>OMS Connector Projection </Name>
+          <Description>OMS Connector Projection</Description>
+        </DisplayString>
+        <DisplayString ElementID="Projection.DeviceManufacturer">
+          <Name> Device Manufacturer Projection </Name>
+          <Description> Device Manufacturer Projection</Description>
+        </DisplayString>
+        <DisplayString ElementID="Projection.DeviceModel">
+          <Name> Device Model Projection </Name>
+          <Description> Device Model Projection</Description>
+        </DisplayString>
+        <DisplayString ElementID="Projection.NetworkDevice">
+          <Name> Network Device Projection </Name>
+          <Description> Network Device Projection</Description>
+        </DisplayString>
+        <DisplayString ElementID="Projection.MobileDevice">
+          <Name> Mobile Device Projection </Name>
+          <Description> Mobile Device Projection</Description>
+        </DisplayString>
+        <DisplayString ElementID="Projection.StorageDevice">
+          <Name> Storage Device Projection </Name>
+          <Description> Storage Device Projection</Description>
+        </DisplayString>
+        <DisplayString ElementID="Projection.CostCenter">
+          <Name> Cost Center Projection </Name>
+          <Description> Cost Center Projection</Description>
+        </DisplayString>
+        <DisplayString ElementID="Projection.Cost">
+          <Name> Cost Projection </Name>
+          <Description>Cost Projection </Description>
+        </DisplayString>
+        <DisplayString ElementID="Projection.HardwareAgreement">
+          <Name> Hardware Agreement Projection </Name>
+          <Description> Hardware Agreement Projection </Description>
+        </DisplayString>
+        <DisplayString ElementID="Projection.SoftwareAgreement">
+          <Name> Software Agreement Projection </Name>
+          <Description> Software Agreement Projection </Description>
+        </DisplayString>
+        <DisplayString ElementID="Projection.Software">
+          <Name> Software Projection </Name>
+          <Description> Software Projection </Description>
+        </DisplayString>
+		<!--
+        <DisplayString ElementID="Projection.UserRole">
+          <Name> User Role Projection </Name>
+          <Description> User Role Projection </Description>
+        </DisplayString>
+		        <DisplayString ElementID="Projection.Shortcut">
+          <Name> Shortcut Projection </Name>
+          <Description> Shortcut Projection</Description>
+        </DisplayString>
+		 <DisplayString ElementID="Projection.Setting">
+          <Name> Setting Projection </Name>
+          <Description> Setting Projection </Description>
+        </DisplayString>
+        <DisplayString ElementID="Projection.OtherSetting">
+          <Name> Other Setting Projection </Name>
+          <Description> Other Setting Projection </Description>
+        </DisplayString>
+		
+        <DisplayString ElementID="Projection.SoftwareVersion">
+          <Name> Software Version Projection </Name>
+          <Description> Software Version Projection </Description>
+        </DisplayString>
+       -->
+        <DisplayString ElementID="Projection.SupportAgreement">
+          <Name>Support Agreement Projection </Name>
+          <Description> Support Agreement Projection </Description>
+        </DisplayString>
+        <DisplayString ElementID="Projection.Hardware">
+          <Name> Hardware Projection </Name>
+          <Description> Hardware Projection </Description>
+        </DisplayString>
+         <DisplayString ElementID="Projection.Invoice">
+          <Name> Invoice Projection </Name>
+          <Description> Invoice Projection </Description>
+        </DisplayString>
+        <DisplayString ElementID="Projection.Organization">
+          <Name> Organization Projection </Name>
+          <Description> Organization  Projection </Description>
+        </DisplayString>
+        <DisplayString ElementID="Projection.LicenseStatus">
+          <Name> License Status Projection </Name>
+          <Description> License Status Projection</Description>
+        </DisplayString>
+        <DisplayString ElementID="Projection.Location">
+          <Name>Location Projection </Name>
+          <Description> Location Projection </Description>
+        </DisplayString>
+        <DisplayString ElementID="Projection.PurchaseOrder">
+          <Name> Purchase Order Projection </Name>
+          <Description>Purchase Order Projection </Description>
+        </DisplayString>
+      </DisplayStrings>
+    </LanguagePack>
+  </LanguagePacks>
+  
+</ManagementPackFragment>

@@ -1,0 +1,143 @@
+ <EnumerationValue ID="MonDeviceType" Accessibility="Public" />
+      <EnumerationValue ID="MonDeviceType.LCD" Parent="MonDeviceType" Accessibility="Public" Ordinal="5"/>
+      <EnumerationValue ID="MonDeviceType.CRT" Parent="MonDeviceType" Accessibility="Public" Ordinal="15"/>
+      <EnumerationValue ID="MonDeviceType.PLASMA" Parent="MonDeviceType" Accessibility="Public" Ordinal="25"/>
+      <EnumerationValue ID="MonDeviceType.OLED" Parent="MonDeviceType" Accessibility="Public" Ordinal="35"/>
+      <EnumerationValue ID="MonDeviceType.Other" Parent="MonDeviceType" Accessibility="Public" Ordinal="35"/>
+      <EnumerationValue ID="UseMDeviceType" Accessibility="Public" />
+      <EnumerationValue ID="UseMDeviceType.Computer" Parent="UseMDeviceType" Accessibility="Public" Ordinal="5"/>
+      <EnumerationValue ID="UseMDeviceType.Computer.Secondary" Parent="UseMDeviceType.Computer" Accessibility="Public" Ordinal="5"/>
+      <EnumerationValue ID="UseMDeviceType.Advertising" Parent="UseMDeviceType" Accessibility="Public" Ordinal="15"/>
+      <EnumerationValue ID="UseMDeviceType.Information" Parent="UseMDeviceType" Accessibility="Public" Ordinal="25"/>
+      <EnumerationValue ID="UseMDeviceType.Other" Parent="UseMDeviceType" Accessibility="Public" Ordinal="5"/>
+	  
+	  
+	   <ClassType ID="Monitor" Accessibility="Public" Abstract="false" Base="System!System.ConfigItem" Hosted="false" Singleton="false">
+          <Property ID="DeviceName" Type="string" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0"/>
+          <Property ID="MonDevKey" Type="string" AutoIncrement="true" Key="true" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" DefaultValue="MonDvId{0}"/>
+          <Property ID="Description" Type="string" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0"/>
+          <Property ID="SerialNumber" Type="string" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0"/>
+          <Property ID="Type" Type="enum" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" EnumType="MonDeviceType" />
+          <Property ID="UseType" Type="enum" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" EnumType="UseMDeviceType" />
+          <Property ID="Status" Type="enum" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" EnumType="DeviceStatus" />
+          <Property ID="AssetTag" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
+          <Property ID="Size" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
+          <Property ID="Resolution" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
+          <Property ID="TouchScreen" Type= "bool" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0"/>
+          <Property ID="3D" Type= "bool" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0
+		  
+		  
+		  
+		  
+		  
+		 <DisplayString ElementID="Monitor">
+          <Name>Monitor </Name>
+          <Description>Monitor </Description>
+         </DisplayString>
+		 <DisplayString ElementID="Monitor" SubElementID= "DeviceName">
+          <Name>Device Name </Name>
+          <Description>Device Name </Description>
+         </DisplayString>
+		 <DisplayString ElementID="Monitor" SubElementID="MonDevKey">
+          <Name>Monitor ID</Name>
+          <Description>Monitor ID</Description>
+         </DisplayString>
+		 <DisplayString ElementID="Monitor" SubElementID= "Description">
+          <Name>Description</Name>
+          <Description>Description</Description>
+         </DisplayString>
+		  <DisplayString ElementID="Monitor" SubElementID= "SerialNumber">
+          <Name>Serial Number</Name>
+          <Description>Serial Number</Description>
+         </DisplayString>
+		  <DisplayString ElementID="Monitor" SubElementID= "Type">
+          <Name>Monitor Type</Name>
+          <Description>Monitor Type</Description>
+         </DisplayString>
+		 <DisplayString ElementID="Monitor" SubElementID= "UseType">
+          <Name>Monitor Use Type</Name>
+          <Description>Monitor Use Type</Description>
+         </DisplayString>
+		 <DisplayString ElementID="Monitor" SubElementID= "Status">
+          <Name>Status</Name>
+          <Description>Status</Description>
+         </DisplayString>
+		 <DisplayString ElementID="Monitor" SubElementID= "AssetTag">
+          <Name>Asset Tag</Name>
+          <Description>Asset Tag</Description>
+         </DisplayString>
+		  <DisplayString ElementID="Monitor" SubElementID= "Size">
+          <Name>Size</Name>
+          <Description>Size</Description>
+         </DisplayString>
+		 <DisplayString ElementID="Monitor" SubElementID= "Resolution">
+          <Name>Resolution</Name>
+          <Description>Resolution</Description>
+         </DisplayString>
+		 <DisplayString ElementID="Monitor" SubElementID= "TouchScreen">
+          <Name>Touch Screen</Name>
+          <Description>Touch Screen</Description>
+         </DisplayString>
+		  <DisplayString ElementID="Monitor" SubElementID= "3D" > 
+          <Name>3D</Name>
+          <Description>3D</Description>
+         </DisplayString>
+		 
+		 
+		 
+		 
+		 Relationship.HardwareReferencesMonitor
+		 Relationship.HardwareAssetReferencesMonitorDevice
+		 Relationship.MonitorHasUser
+		 Relationship.MonitorHasManufacturer
+		 Relationship.MonitorHasModel
+		 
+		  <ClassType ID="Monitor" Accessibility="Public" Abstract="false" Base="System!System.ConfigItem" Hosted="false" Singleton="false">
+          <Property ID="DeviceName" Type="string" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0"/>
+          <Property ID="MonDevKey" Type="string" AutoIncrement="true" Key="true" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" DefaultValue="MonDvId{0}"/>
+          <Property ID="Description" Type="string" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0"/>
+          <Property ID="SerialNumber" Type="string" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0"/>
+          <Property ID="Type" Type="enum" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" EnumType="MonDeviceType" />
+          <Property ID="UseType" Type="enum" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" EnumType="UseMDeviceType" />
+          <Property ID="Status" Type="enum" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" EnumType="DeviceStatus" />
+          <Property ID="AssetTag" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
+          <Property ID="Size" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
+          <Property ID="Resolution" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
+          <Property ID="TouchScreen" Type= "bool" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0"/>
+          <Property ID="3D" Type= "bool" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0"/>
+        </ClassType>
+		 
+		 
+		 id
+		 487aa8c7-dbcf-645c-28b1-9da18ed47660
+		 type list id
+		 1692fd09-3149-31cd-6348-54e8d12e1100
+		 UseMDeviceType id
+		 ccec976e-0b83-eae9-90e6-788fa619cfca
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 

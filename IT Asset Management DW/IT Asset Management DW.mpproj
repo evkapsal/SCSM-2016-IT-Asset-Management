@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <ProjectGuid>{34f38fb6-413d-48e0-9b1d-d0195bbb9e4e}</ProjectGuid>
+    <RootNamespace>IT_Asset_Management_DW</RootNamespace>
+    <Name>IT Asset Management DW</Name>
+    <ManagementPackName>IT_Asset_Management_DW</ManagementPackName>
+    <Version>1.0.0.0</Version>
+    <MpFrameworkVersion>v7.0.2</MpFrameworkVersion>
+    <MpFrameworkProfile>SM</MpFrameworkProfile>
+    <ProductVersion>1.1.0.0</ProductVersion>
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <GenerateSealed>True</GenerateSealed>
+    <Company>Evangelos Kapsalakis</Company>
+    <Copyright>Evangelos Kapsalakis, Microsoft Hellas</Copyright>
+    <DelaySigning>False</DelaySigning>
+    <AssemblyOriginatorKeyFile>C:\Users\Vangelis\OneDrive - Microsoft\ITSM2016\IT Asset Management Management Pack\itsm.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>false</DebugSymbols>
+    <OutputPath>bin\Release\</OutputPath>
+    <DelaySigning>false</DelaySigning>
+    <Company>MyCompany</Company>
+    <Copyright>Copyright (c) MyCompany. All rights reserved.</Copyright>
+    <DelaySign>false</DelaySign>
+    <AssemblyOriginatorKeyFile />
+  </PropertyGroup>
+  <ItemGroup>
+    <ManagementPackReference Include="IT_Asset_Management_Base">
+      <HintPath>C:\Users\evkapsal.EUROPE\OneDrive - Microsoft\ITSM 2015\IT Asset Management Management Pack\IT Asset Management Base\IT Asset Management Base\bin\Debug\IT_Asset_Management_Base.mp</HintPath>
+      <Alias>ITSM</Alias>
+      <MinVersion>1.2.0.10</MinVersion>
+      <PackageToBundle>False</PackageToBundle>
+    </ManagementPackReference>
+    <ManagementPackReference Include="Microsoft.SystemCenter.Datawarehouse.Base">
+      <HintPath>C:\Program Files (x86)\Microsoft System Center 2012\Service Manager Authoring\Library\Microsoft.SystemCenter.Datawarehouse.Base.mp</HintPath>
+      <Alias>DWBase</Alias>
+      <MinVersion>7.5.3079.0</MinVersion>
+      <PackageToBundle>False</PackageToBundle>
+    </ManagementPackReference>
+    <ManagementPackReference Include="Microsoft.SystemCenter.Library">
+      <Alias>SC</Alias>
+      <PackageToBundle>False</PackageToBundle>
+    </ManagementPackReference>
+    <ManagementPackReference Include="System.Library">
+      <Alias>System</Alias>
+      <PackageToBundle>False</PackageToBundle>
+    </ManagementPackReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ITAssetMgmtDW.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ITAssetMgmtOutriggersDW.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ITSMRelationshipFacts.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VSAC\Microsoft.SystemCenter.OperationsManager.targets" />
+</Project>

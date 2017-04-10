@@ -1,0 +1,89 @@
+﻿  <ManagementPackFragment SchemaVersion="SM2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Categories>
+      <Category ID="Category.WorkSpace.Asset24x24.png" Target="itmain24x24.png" Value="System!System.Internal.ManagementPack.Images.u32x32Icon" />
+      <Category ID="Category.WorkSpace.Asset16x16.png" Target="itmain16x16.png" Value="System!System.Internal.ManagementPack.Images.u16x16Icon" />
+    </Categories>
+    <Presentation>
+      <Folders>
+        <Folder ID="AssetWorkSpace.ITAssetFolder" Accessibility="Public" ParentFolder="Console!ServiceManager.Console.RootFolder" />
+        <Folder ID="AssertWorkSpace.Administration" Accessibility="Public" ParentFolder="AssetWorkSpace.ITAssetFolder" />
+        <Folder ID="AssetWorkSpace.ContractManagement" Accessibility="Public" ParentFolder="AssetWorkSpace.ITAssetFolder" />
+        <Folder ID="AssetWorkSpace.HardwareManagement" Accessibility="Public" ParentFolder="AssetWorkSpace.ITAssetFolder" />
+        <Folder ID="AssetWorkSpace.SoftwareManagement" Accessibility="Public" ParentFolder="AssetWorkSpace.ITAssetFolder" />
+        <Folder ID="AssetWorkSpace.CloudManagement" Accessibility="Public" ParentFolder="AssetWorkSpace.ITAssetFolder" />
+      </Folders>
+      <FolderItems>
+        <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateFolder" ID="AssetWorkSpace.ITAssetFolder.folderitem.createfolder" Folder="AssetWorkSpace.ITAssetFolder" />
+        <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateGridView" ID="AssetWorkSpace.ITAssetFolder.folderitem.createview" Folder="AssetWorkSpace.ITAssetFolder" />
+        <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.CreateFolderAdvanced" ID="AssetWorkSpace.ITAssetFolder.createfolder.Advance" Folder="AssetWorkSpace.ITAssetFolder" />
+        <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.GroupViewTask" ID="AssetWorkSpace.ITAssetFolder.createview.Advance" Folder="AssetWorkSpace.ITAssetFolder" />
+        <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateFolder" ID="AssertWorkSpace.Administration.folderitem.createfolder" Folder="AssertWorkSpace.Administration" />
+        <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateGridView" ID="AssertWorkSpace.Administration.folderitem.createview" Folder="AssertWorkSpace.Administration" />
+        <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.CreateFolderAdvanced" ID="AssertWorkSpace.Administration.createfolder.Advance" Folder="AssertWorkSpace.Administration" />
+        <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.GroupViewTask" ID="AssertWorkSpace.Administration.createview.Advance" Folder="AssertWorkSpace.Administration" />
+        <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateFolder" ID="AssetWorkSpace.ContractManagement.folderitem.createfolder" Folder="AssetWorkSpace.ContractManagement" />
+        <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateGridView" ID="AssetWorkSpace.ContractManagement.folderitem.createview" Folder="AssetWorkSpace.ContractManagement" />
+        <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.CreateFolderAdvanced" ID="AssetWorkSpace.ContractManagement.createfolder.Advance" Folder="AssetWorkSpace.ContractManagement" />
+        <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.GroupViewTask" ID="AssetWorkSpace.ContractManagement.createview.Advance" Folder="AssetWorkSpace.ContractManagement" />
+        <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateFolder" ID="AssetWorkSpace.HardwareManagement.folderitem.createfolder" Folder="AssetWorkSpace.HardwareManagement" />
+        <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateGridView" ID="AssetWorkSpace.HardwareManagement.folderitem.createview" Folder="AssetWorkSpace.HardwareManagement" />
+        <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.CreateFolderAdvanced" ID="AssetWorkSpace.HardwareManagement.createfolder.Advance" Folder="AssetWorkSpace.HardwareManagement" />
+        <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.GroupViewTask" ID="AssetWorkSpace.HardwareManagement.createview.Advance" Folder="AssetWorkSpace.HardwareManagement" />
+        <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateFolder" ID="AssetWorkSpace.SoftwareManagement.folderitem.createfolder" Folder="AssetWorkSpace.SoftwareManagement" />
+        <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateGridView" ID="AssetWorkSpace.SoftwareManagement.folderitem.createview" Folder="AssetWorkSpace.SoftwareManagement" />
+        <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.CreateFolderAdvanced" ID="AssetWorkSpace.SoftwareManagement.createfolder.Advance" Folder="AssetWorkSpace.SoftwareManagement" />
+        <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.GroupViewTask" ID="AssetWorkSpace.SoftwareManagement.createview.Advance" Folder="AssetWorkSpace.SoftwareManagement" />        
+        <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateFolder" ID="AssetWorkSpace.CloudManagement.folderitem.createfolder" Folder="AssetWorkSpace.CloudManagement" />
+        <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateGridView" ID="AssetWorkSpace.CloudManagement.folderitem.createview" Folder="AssetWorkSpace.CloudManagement" />
+        <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.CreateFolderAdvanced" ID="AssetWorkSpace.SoftwareManagement.createfolder.Advance" Folder="AssetWorkSpace.CloudManagement" />
+        <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.GroupViewTask" ID="AssetWorkSpace.SoftwareManagement.createview.Advance" Folder="AssetWorkSpace.CloudManagement" />
+      
+      </FolderItems>
+      <ImageReferences>
+        <ImageReference ElementID="AssetWorkSpace.ITAssetFolder" ImageID="itmain16x16.png" />
+        <ImageReference ElementID="AssetWorkSpace.ITAssetFolder" ImageID="itmain24x24.png" />
+        <ImageReference ElementID="AssertWorkSpace.Administration" ImageID="itasset16x16.png" />
+        <ImageReference ElementID="AssertWorkSpace.Administration" ImageID="itasset24x24.png" />
+        <ImageReference ElementID="AssetWorkSpace.ContractManagement" ImageID="contrmgmt16x16.png" />
+        <ImageReference ElementID="AssetWorkSpace.ContractManagement" ImageID="contrmgmt24x24.png" />
+        <ImageReference ElementID="AssetWorkSpace.HardwareManagement" ImageID="hwm16x16.png" />
+        <ImageReference ElementID="AssetWorkSpace.HardwareManagement" ImageID="hwm24x24.png" />
+        <ImageReference ElementID="AssetWorkSpace.SoftwareManagement" ImageID="softmain16x16.png" />
+        <ImageReference ElementID="AssetWorkSpace.SoftwareManagement" ImageID="softmain24x24.png" />
+        <ImageReference ElementID="AssetWorkSpace.CloudManagement" ImageID="cloud16x16.png" />
+        <ImageReference ElementID="AssetWorkSpace.CloudManagement" ImageID="cloud24x24.png" />
+      </ImageReferences>
+    </Presentation>
+    <LanguagePacks>
+      <LanguagePack ID="ENU" IsDefault="true">
+        <DisplayStrings>
+          <DisplayString ElementID="AssetWorkSpace.ITAssetFolder">
+            <Name>IT Asset Management</Name>
+            <Description></Description>
+          </DisplayString>
+          <DisplayString ElementID="AssertWorkSpace.Administration">
+            <Name> Administration </Name>
+            <Description></Description>
+          </DisplayString>
+          <DisplayString ElementID="AssetWorkSpace.ContractManagement">
+            <Name> Contract Management</Name>
+            <Description></Description>
+          </DisplayString>
+          <DisplayString ElementID="AssetWorkSpace.HardwareManagement">
+            <Name> Hardware Asset Management</Name>
+            <Description></Description>
+          </DisplayString>
+          <DisplayString ElementID="AssetWorkSpace.SoftwareManagement">
+            <Name> Software Asset Management</Name>
+            <Description></Description>
+          </DisplayString>
+          <DisplayString ElementID="AssetWorkSpace.CloudManagement">
+            <Name>Cloud Management</Name>
+            <Description></Description>
+          </DisplayString>
+        </DisplayStrings>
+        <KnowledgeArticles></KnowledgeArticles>
+      </LanguagePack>
+    </LanguagePacks>
+  </ManagementPackFragment>
+

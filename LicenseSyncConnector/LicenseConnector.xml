@@ -1,0 +1,854 @@
+﻿<ManagementPack ContentReadable="true" SchemaVersion="2.0" OriginalSchemaVersion="1.1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+  <Manifest>
+    <Identity>
+      <ID>LicenseConnector</ID>
+      <Version>1.1.0.4</Version>
+    </Identity>
+    <Name>LicenseConnector</Name>
+    <References>
+      <Reference Alias="System">
+        <ID>System.Library</ID>
+        <Version>7.5.8501.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+      <Reference Alias="Console">
+        <ID>Microsoft.EnterpriseManagement.ServiceManager.UI.Console</ID>
+        <Version>7.5.3079.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+      <Reference Alias="EnterpriseManagement">
+        <ID>Microsoft.EnterpriseManagement.ServiceManager.UI.Administration</ID>
+        <Version>7.5.3079.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+      <Reference Alias="SystemCenter">
+        <ID>Microsoft.SystemCenter.Library</ID>
+        <Version>7.0.8433.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+      <Reference Alias="SystemCenter1">
+        <ID>Microsoft.SystemCenter.Subscriptions</ID>
+        <Version>7.5.3079.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+      <Reference Alias="CustomIT_Asset_Management_Base">
+        <ID>IT_Asset_Management_Base</ID>
+        <Version>1.1.2.69</Version>
+        <PublicKeyToken>7c7d90afe643c064</PublicKeyToken>
+      </Reference>
+      <Reference Alias="Core">
+        <ID>ServiceManager.Core.Library</ID>
+        <Version>7.5.3079.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+      <Reference Alias="Windows">
+        <ID>Microsoft.Windows.Library</ID>
+        <Version>7.5.8501.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+    </References>
+  </Manifest>
+  <TypeDefinitions>
+    <ModuleTypes>
+      <WriteActionModuleType ID="LicenseConnectorScheduleSync.WindowsPowerShellScript.238afa29_ec70_4f1e_bd92_9d377463a405.MT" Accessibility="Public" RunAs="Core!Microsoft.SystemCenter.ServiceManager.WorkflowAccount" Batching="false">
+        <Configuration>
+          <IncludeSchemaTypes>
+            <SchemaType>Windows!Microsoft.Windows.PowerShellSchema</SchemaType>
+          </IncludeSchemaTypes>
+        </Configuration>
+        <ModuleImplementation Isolation="Any">
+          <Composite>
+            <MemberModules>
+              <WriteAction ID="LicenseConnectorScheduleSync.WindowsPowerShellScript.238afa29_ec70_4f1e_bd92_9d377463a405.PSWA" TypeID="Windows!Microsoft.Windows.PowerShellWriteAction">
+                <ScriptName>DoWork.ps1</ScriptName>
+                <ScriptBody>
+&lt;# 
+ .NOTES
+ ===========================================================================
+  Created with:  SAPIEN Technologies, Inc., PowerShell Studio 2015
+  Created on:    29/5/2016 22:00 PM
+  Created by:    Evangelos Kapsalakis 
+  Organization:  Microsoft Hellas
+  Filename:  License Sync Connector    
+ ===========================================================================
+ .DESCRIPTION
+  A description of the file.
+#&gt;
+Import-Module SMLets
+
+$ITSMLicConnectorClass = Get-SCSMClass -Name LicenseSyncConnector$
+$Connector = Get-SCSMObject -Class $ITSMLicConnectorClass
+if ($Connector.IsActive -eq $true)
+{
+ 
+ Function Get-StringHash([String]$String)
+ {
+  $StringBuilder = New-Object System.Text.StringBuilder
+  [System.Security.Cryptography.HashAlgorithm]::Create('MD5').ComputeHash([System.Text.Encoding]::UTF8.GetBytes($String)) | %{
+   [Void]$StringBuilder.Append($_.ToString("x2"))
+  }
+  $StringBuilder.ToString()
+ }
+ 
+ 
+ Try
+ {
+  $ActiveId = (Get-SCSMEnumeration -Name ITSMConnectorStatus.Running$).id
+  Set-SCSMObject -SMObject $Connector -Property "Status" -Value $ActiveId
+  #Set-SCSMObject -SMObject $Connector -Property "SyncNow" -Value $false
+ }
+ Catch { }
+ 
+ 
+ Try
+ {
+  $events = [System.Diagnostics.EventLog]::SourceExists("License Connector");
+ }
+ catch { }
+ finally
+ {
+  if ($events -ne $true)
+  {
+   New-EventLog -LogName 'Operations Manager' -Source 'License Connector'
+   Write-EventLog -LogName 'Operations Manager' -Source 'License Connector' -EventId 10000 -Category 0 -EntryType Information -Message "License Connector Succesfully Create Event Log Source"
+  }
+  
+  Write-EventLog -LogName 'Operations Manager' -Source 'License Connector' -EventId 10000 -Category 0 -EntryType Information -Message "License Connector Start Processing Licensing Objects"
+ }
+ 
+ $ErrorID = 10101
+ $InfoID = 10100
+ $WarningId = 10102
+ 
+ 
+ #Classes
+ $ITSMSoftwareAgreementCl = Get-SCSMClass -Name SoftwareAgreement$
+ $ITSMSoftwareCl = Get-SCSMClass -Name Software$
+ $ITSMSoftwareAssetCl = Get-SCSMClass -Name SoftwareAsset$
+ $ITSMLicensingClassCl = Get-SCSMClass -Name LicenseStatus$
+ 
+ #RelationshipClasses
+ $ITSMSoftAssetHasSoftAgreementRelCl = Get-SCSMRelationshipClass -Name Relationship.SoftwareAssetHasAgreement$
+ $ITSMSoftAssetHasSoftRelCl = Get-SCSMRelationshipClass -Name Relationship.SoftwareAssetHasSoftware$
+ $ITSMLicStatusHasAgreement = Get-SCSMRelationshipClass -Name Relationship.LicStatusIsForSoftwareAgreement$
+ $ITSMLicStatusHaSoftware = Get-SCSMRelationshipClass -Name Relationship.LicStatusHasSoftware$
+ 
+ #EnumTypes
+ $BaseCalcEnumId = (Get-SCSMEnumeration -Name ManagementScope.BaseLicenseCalculation$).id
+ $LicStatusHealthy = (Get-SCSMEnumeration -Name LicStatus.Healthy$).id
+ $LicStatusWarning = (Get-SCSMEnumeration -Name LicStatus.Warning).id
+ $LicStatusError = (Get-SCSMEnumeration -Name LicStatus.Error$).id
+ $ObjectStatusPendingDeleteId= (Get-SCSMEnumeration -Name System.ConfigItem.ObjectStatusEnum.PendingDelete$).id
+ 
+ #Main Script
+ $AssetForCalc = $null
+ $AssetForCalc = Get-SCSMObject -Class $ITSMSoftwareAssetCl -Filter "ManagementScope -eq $BaseCalcEnumId"
+ if ($AssetForCalc)
+ {
+  foreach ($Assets in $AssetForCalc)
+  {
+   $RelatedAgreements = $null
+   $RelatedAgreements += (Get-SCSMRelationshipObject -BySource $Assets | ? { ($_.RelationshipId -eq $ITSMSoftAssetHasSoftAgreementRelCl.id) -and  ($_.ObjectStatus -ne $ObjectStatusPendingDeleteId ) })
+   if ($RelatedAgreements)
+   {
+    [int]$AgreementLicNumber = 0
+    [int]$ExpiredLics = 0
+    
+    foreach ($RelA in $RelatedAgreements)
+    {
+     $RelatedAgreement = $null
+     $RelatedAgreement = $RelA.TargetObject
+     
+     $RelAgreementObj = $null
+     $RelAgreementObj = Get-SCSMObject -Id $RelatedAgreement.Id
+     
+     [int]$AgreementLicNumber = $AgreementLicNumber + $RelAgreementObj.Quantity
+     [DateTime]$AgreementExpirationDate = $RelAgreementObj.ExpirationDate
+     [Datetime]$Today = (Get-Date)
+     if ($AgreementExpirationDate -lt $Today)
+     {
+      $ExpiredLics = $ExpiredLics + $RelAgreementObj.Quantity
+     }
+    }
+    
+    $RelatedSoft = $null
+    $RelatedSoft = (Get-SCSMRelationshipObject -BySource $Assets | ?{ ($_.RelationshipId -eq $ITSMSoftAssetHasSoftRelCl.id) -and ($_.ObjectStatus -ne $ObjectStatusPendingDeleteId ) }).TargetObject
+    $RelatedSoftObj = $null
+    $RelatedSoftObj = Get-SCSMObject -Id $RelatedSoft.id
+    [Int]$InstalledLicNumber = $RelatedSoftObj.Installed
+    
+    $HashString = $null
+    $ObjectHash = $null
+    $AvailableLic = $null
+    [int]$AvailableLic = $AgreementLicNumber - $InstalledLicNumber
+    if ($ExpiredLics)
+    {
+     $AvailableLic = $AvailableLic - $ExpiredLics
+    }
+    $HashString = ($AvailableLic.ToString() + $AgreementLicNumber.ToString() + $InstalledLicNumber.ToString() + $($RelatedSoft.DisplayName))
+    $ObjectHash = Get-StringHash -String $HashString
+    
+    $HasAlreadyLicStatusObjs = $null
+    $HasAlreadyLicStatusObjs = (Get-SCSMRelationshipObject -ByTarget $RelatedSoft | ?{ ($_.RelationshipId -eq $ITSMLicStatusHaSoftware.id)}).SourceObject
+    foreach ($HasAlreadyLicStatusObj in $HasAlreadyLicStatusObjs)
+    {
+     
+     $LicObjectStatus = $null
+     $LicObjectStatus = Get-SCSMObject -Id $HasAlreadyLicStatusObj.id
+    
+     if($LicObjectStatus.ObjectStatus.Id -eq $ObjectStatusPendingDeleteId)
+      {$HasAlreadyLicStatus = $null}
+     else
+      {$HasAlreadyLicStatus = $LicObjectStatus }
+    
+    }
+    
+     
+    if (!$HasAlreadyLicStatus)
+    {
+     try
+     {
+      [decimal]$PError= '99.99'
+      [decimal]$PWarning = '90.00'
+      #calcs
+      $PercentageInstalled = $null
+      [decimal]$PercentageInstalled = "{0:N2}" -f (($InstalledLicNumber/$AgreementLicNumber) * 100)
+      
+      if 
+      ($PercentageInstalled -gt $PError)
+      {
+       $LicStatus = $null
+       $Status = $null
+       [int]$LicStatus = 1
+       $Status = $LicStatusError
+      }
+      
+      elseif
+      ($PercentageInstalled -lt $PError -and $PercentageInstalled -ge $PWarning)
+      {
+       $LicStatus = $null
+       $Status = $null
+       [int]$LicStatus = 2
+       $Status = $LicStatusWarning
+      }
+      else
+      {
+       $LicStatus = $null
+       $Status = $null
+       [int]$LicStatus = 3
+       $Status = $LicStatusHealthy
+       
+      }
+      
+      
+      
+      #NewLicObject
+      $LicHashTable = $null
+      $LicHashTable = @{
+       "DisplayName" = $($RelatedSoft.DisplayName) + " License";
+       "Used" = $InstalledLicNumber;
+       "Installed" = $AgreementLicNumber;
+       "Available" = $AvailableLic;
+       "LastUpdate" = (Get-Date);
+       "GridStat" = $LicStatus;
+       "Status" = $Status;
+       "LicObjectHash" = $ObjectHash;
+       "Expired" = $ExpiredLics;
+      }
+      
+      #create Object
+      $LicObj = $null
+      $LicObj = New-SCSMObject -Class $ITSMLicensingClassCl -PropertyHashtable $LicHashTable -PassThru
+      #create Relationships
+      if ($RelatedAgreements)
+      {
+       foreach ($RelAgg in $RelatedAgreements)
+       {
+        New-SCSMRelationshipObject -Source $LicObj -Target $RelAgg.TargetObject -Relationship $ITSMLicStatusHasAgreement -Bulk
+       }
+      }
+      
+      New-SCSMRelationshipObject -Source $LicObj -Target $RelatedSoftObj -Relationship $ITSMLicStatusHaSoftware -Bulk
+      
+     }
+     catch
+     {
+      Write-EventLog -LogName 'Operations Manager' -Source 'License Connector' -EventId $WarningId -Category 0 -EntryType Warning -Message "Something Wrong Happened with License Connector while Processing New License Object: $($LicObj.DisplayName) with Exception Message: $($_.Exception.Message) and Exception: $($_.Exception.InnerException)"
+     }
+     
+     
+    }
+    
+    else
+    {
+     try
+     {
+      $HasAlreadyLicStatusobj = $null
+      $HasAlreadyLicStatusobj = Get-SCSMObject -Id $HasAlreadyLicStatus.id
+      
+      if ($HasAlreadyLicStatusobj.LicObjectHash -ne $ObjectHash)
+      {
+       #calcs
+       [decimal]$PError= '99.99'
+       [decimal]$PWarning = '90.00'
+       $PercentageInstalled = $null
+       [decimal]$PercentageInstalled = "{0:N2}" -f (($InstalledLicNumber/$AgreementLicNumber) * 100)
+       
+       if 
+       
+       ($PercentageInstalled -gt $PError)
+       {
+        $LicStatus = $null
+        $Status = $null
+        [int]$LicStatus = 1
+        $Status = $LicStatusError 
+       }
+       
+       elseif ($PercentageInstalled -lt $PError -and $PercentageInstalled -ge $PWarning)
+       {
+        $LicStatus = $null
+        $Status = $null
+        [int]$LicStatus = 2
+        $Status = $LicStatusWarning
+       }
+       else
+       {
+        $LicStatus = $null
+        $Status = $null
+        [int]$LicStatus = 3
+        $Status = $LicStatusHealthy
+        
+       }
+       
+       
+       $UpDLicHashTable = @{
+        "Used" = $InstalledLicNumber;
+        "Installed" = $AgreementLicNumber;
+        "Available" = $AvailableLic;
+        "LastUpdate" = (Get-Date);
+        "GridStat" = $LicStatus;
+        "Status" = $Status;
+        "LicObjectHash" = $ObjectHash;
+        "Expired" = $ExpiredLics;
+       }
+       
+       Set-SCSMObject -SMObject $HasAlreadyLicStatusobj -PropertyHashtable $UpDLicHashTable
+       
+       #Check Relationships
+       if ($RelatedAgreements)
+       {
+        foreach ($ARelAgg in $RelatedAgreements)
+        {
+         $HasAgreementAlreadyAssigned = $null
+         $HasAgreementAlreadyAssigned = Get-SCSMRelationshipObject -BySource $HasAlreadyLicStatusobj | ? { ($_.RelationshipId -eq $ITSMLicStatusHasAgreement.id) -and ($_.SourceObject.id -eq $ARelAgg.id) }
+         if (!$HasAgreementAlreadyAssigned)
+         {
+          New-SCSMRelationshipObject -Source $HasAlreadyLicStatusobj -Target $ARelAgg -Relationship $ITSMLicStatusHasAgreement -Bulk
+          
+         }
+        }
+        
+       }
+       
+      }
+      
+     }
+     catch
+     {
+      Write-EventLog -LogName 'Operations Manager' -Source 'License Connector' -EventId $WarningId -Category 0 -EntryType Warning -Message "Something Wrong Happened with License Connector while Processing Already Exists License Object: $($HasAlreadyLicStatus.DisplayName) with Exception Message: $($_.Exception.Message) and Exception: $($_.Exception.InnerException)"
+     }
+     
+    }
+   }
+   
+  }
+  
+  
+ }
+ 
+ Set-SCSMObject -SMObject $Connector -Property "Status" -Value $InactiveId
+ Set-SCSMObject -SMObject $Connector -Property "LastSynced" -Value (Get-Date)
+ Write-EventLog -LogName 'Operations Manager' -Source 'License Connector' -EventId 10000 -Category 0 -EntryType Information -Message "License Connector Finished Processing Software Assets and Agreements Objects"
+}
+</ScriptBody>
+                <SnapIns></SnapIns>
+                <Parameters></Parameters>
+                <TimeoutSeconds>3600</TimeoutSeconds>
+                <StrictErrorHandling>true</StrictErrorHandling>
+                <SerializationDepth>3</SerializationDepth>
+              </WriteAction>
+            </MemberModules>
+            <Composition>
+              <Node ID="LicenseConnectorScheduleSync.WindowsPowerShellScript.238afa29_ec70_4f1e_bd92_9d377463a405.PSWA" />
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <InputType>System!System.BaseData</InputType>
+      </WriteActionModuleType>
+      <WriteActionModuleType ID="LicenseConnectorSyncNow.WindowsPowerShellScript.562d81b9_29c6_4e93_b917_72d8ebe01530.MT" Accessibility="Public" RunAs="Core!Microsoft.SystemCenter.ServiceManager.WorkflowAccount" Batching="false">
+        <Configuration>
+          <IncludeSchemaTypes>
+            <SchemaType>Windows!Microsoft.Windows.PowerShellSchema</SchemaType>
+          </IncludeSchemaTypes>
+        </Configuration>
+        <ModuleImplementation Isolation="Any">
+          <Composite>
+            <MemberModules>
+              <WriteAction ID="LicenseConnectorSyncNow.WindowsPowerShellScript.562d81b9_29c6_4e93_b917_72d8ebe01530.PSWA" TypeID="Windows!Microsoft.Windows.PowerShellWriteAction">
+                <ScriptName>DoWork.ps1</ScriptName>
+                <ScriptBody>
+&lt;# 
+ .NOTES
+ ===========================================================================
+  Created with:  SAPIEN Technologies, Inc., PowerShell Studio 2015
+  Created on:    29/5/2016 22:00 PM
+  Created by:    Evangelos Kapsalakis 
+  Organization:  Microsoft Hellas
+  Filename:  License Sync Connector    
+ ===========================================================================
+ .DESCRIPTION
+  A description of the file.
+#&gt;
+Import-Module SMLets
+
+$ITSMLicConnectorClass = Get-SCSMClass -Name LicenseSyncConnector$
+$Connector = Get-SCSMObject -Class $ITSMLicConnectorClass
+if ($Connector.IsActive -eq $true)
+{
+ 
+ Function Get-StringHash([String]$String)
+ {
+  $StringBuilder = New-Object System.Text.StringBuilder
+  [System.Security.Cryptography.HashAlgorithm]::Create('MD5').ComputeHash([System.Text.Encoding]::UTF8.GetBytes($String)) | %{
+   [Void]$StringBuilder.Append($_.ToString("x2"))
+  }
+  $StringBuilder.ToString()
+ }
+ 
+ 
+ Try
+ {
+  $ActiveId = (Get-SCSMEnumeration -Name ITSMConnectorStatus.Running$).id
+  Set-SCSMObject -SMObject $Connector -Property "Status" -Value $ActiveId
+  Set-SCSMObject -SMObject $Connector -Property "SyncNow" -Value $false
+ }
+ Catch { }
+ 
+ 
+ Try
+ {
+  $events = [System.Diagnostics.EventLog]::SourceExists("License Connector");
+ }
+ catch { }
+ finally
+ {
+  if ($events -ne $true)
+  {
+   New-EventLog -LogName 'Operations Manager' -Source 'License Connector'
+   Write-EventLog -LogName 'Operations Manager' -Source 'License Connector' -EventId 10000 -Category 0 -EntryType Information -Message "License Connector Succesfully Create Event Log Source"
+  }
+  
+  Write-EventLog -LogName 'Operations Manager' -Source 'License Connector' -EventId 10000 -Category 0 -EntryType Information -Message "License Connector Start Processing Licensing Objects"
+ }
+ 
+ $ErrorID = 10101
+ $InfoID = 10100
+ $WarningId = 10102
+ 
+ 
+ #Classes
+ $ITSMSoftwareAgreementCl = Get-SCSMClass -Name SoftwareAgreement$
+ $ITSMSoftwareCl = Get-SCSMClass -Name Software$
+ $ITSMSoftwareAssetCl = Get-SCSMClass -Name SoftwareAsset$
+ $ITSMLicensingClassCl = Get-SCSMClass -Name LicenseStatus$
+ 
+ #RelationshipClasses
+ $ITSMSoftAssetHasSoftAgreementRelCl = Get-SCSMRelationshipClass -Name Relationship.SoftwareAssetHasAgreement$
+ $ITSMSoftAssetHasSoftRelCl = Get-SCSMRelationshipClass -Name Relationship.SoftwareAssetHasSoftware$
+ $ITSMLicStatusHasAgreement = Get-SCSMRelationshipClass -Name Relationship.LicStatusIsForSoftwareAgreement$
+ $ITSMLicStatusHaSoftware = Get-SCSMRelationshipClass -Name Relationship.LicStatusHasSoftware$
+ 
+ #EnumTypes
+ $BaseCalcEnumId = (Get-SCSMEnumeration -Name ManagementScope.BaseLicenseCalculation$).id
+ $LicStatusHealthy = (Get-SCSMEnumeration -Name LicStatus.Healthy$).id
+ $LicStatusWarning = (Get-SCSMEnumeration -Name LicStatus.Warning).id
+ $LicStatusError = (Get-SCSMEnumeration -Name LicStatus.Error$).id
+ $ObjectStatusPendingDeleteId= (Get-SCSMEnumeration -Name System.ConfigItem.ObjectStatusEnum.PendingDelete$).id
+ 
+ #Main Script
+ $AssetForCalc = $null
+ $AssetForCalc = Get-SCSMObject -Class $ITSMSoftwareAssetCl -Filter "ManagementScope -eq $BaseCalcEnumId"
+ if ($AssetForCalc)
+ {
+  foreach ($Assets in $AssetForCalc)
+  {
+   $RelatedAgreements = $null
+   $RelatedAgreements += (Get-SCSMRelationshipObject -BySource $Assets | ? { ($_.RelationshipId -eq $ITSMSoftAssetHasSoftAgreementRelCl.id) -and  ($_.ObjectStatus -ne $ObjectStatusPendingDeleteId ) })
+   if ($RelatedAgreements)
+   {
+    [int]$AgreementLicNumber = 0
+    [int]$ExpiredLics = 0
+    
+    foreach ($RelA in $RelatedAgreements)
+    {
+     $RelatedAgreement = $null
+     $RelatedAgreement = $RelA.TargetObject
+     
+     $RelAgreementObj = $null
+     $RelAgreementObj = Get-SCSMObject -Id $RelatedAgreement.Id
+     
+     [int]$AgreementLicNumber = $AgreementLicNumber + $RelAgreementObj.Quantity
+     [DateTime]$AgreementExpirationDate = $RelAgreementObj.ExpirationDate
+     [Datetime]$Today = (Get-Date)
+     if ($AgreementExpirationDate -lt $Today)
+     {
+      $ExpiredLics = $ExpiredLics + $RelAgreementObj.Quantity
+     }
+    }
+    
+    $RelatedSoft = $null
+    $RelatedSoft = (Get-SCSMRelationshipObject -BySource $Assets | ?{ ($_.RelationshipId -eq $ITSMSoftAssetHasSoftRelCl.id) -and ($_.ObjectStatus -ne $ObjectStatusPendingDeleteId ) }).TargetObject
+    $RelatedSoftObj = $null
+    $RelatedSoftObj = Get-SCSMObject -Id $RelatedSoft.id
+    [Int]$InstalledLicNumber = $RelatedSoftObj.Installed
+    
+    $HashString = $null
+    $ObjectHash = $null
+    $AvailableLic = $null
+    [int]$AvailableLic = $AgreementLicNumber - $InstalledLicNumber
+    if ($ExpiredLics)
+    {
+     $AvailableLic = $AvailableLic - $ExpiredLics
+    }
+    $HashString = ($AvailableLic.ToString() + $AgreementLicNumber.ToString() + $InstalledLicNumber.ToString() + $($RelatedSoft.DisplayName))
+    $ObjectHash = Get-StringHash -String $HashString
+    
+    $HasAlreadyLicStatusObjs = $null
+    $HasAlreadyLicStatusObjs = (Get-SCSMRelationshipObject -ByTarget $RelatedSoft | ?{ ($_.RelationshipId -eq $ITSMLicStatusHaSoftware.id)}).SourceObject
+    foreach ($HasAlreadyLicStatusObj in $HasAlreadyLicStatusObjs)
+    {
+     
+     $LicObjectStatus = $null
+     $LicObjectStatus = Get-SCSMObject -Id $HasAlreadyLicStatusObj.id
+    
+     if($LicObjectStatus.ObjectStatus.Id -eq $ObjectStatusPendingDeleteId)
+      {$HasAlreadyLicStatus = $null}
+     else
+      {$HasAlreadyLicStatus = $LicObjectStatus }
+    
+    }
+    
+     
+    if (!$HasAlreadyLicStatus)
+    {
+     try
+     {
+      [decimal]$PError= '99.99'
+      [decimal]$PWarning = '90.00'
+      #calcs
+      $PercentageInstalled = $null
+      [decimal]$PercentageInstalled = "{0:N2}" -f (($InstalledLicNumber/$AgreementLicNumber) * 100)
+      
+      if 
+      ($PercentageInstalled -gt $PError)
+      {
+       $LicStatus = $null
+       $Status = $null
+       [int]$LicStatus = 1
+       $Status = $LicStatusError
+      }
+      
+      elseif
+      ($PercentageInstalled -lt $PError -and $PercentageInstalled -ge $PWarning)
+      {
+       $LicStatus = $null
+       $Status = $null
+       [int]$LicStatus = 2
+       $Status = $LicStatusWarning
+      }
+      else
+      {
+       $LicStatus = $null
+       $Status = $null
+       [int]$LicStatus = 3
+       $Status = $LicStatusHealthy
+       
+      }
+      
+      
+      
+      #NewLicObject
+      $LicHashTable = $null
+      $LicHashTable = @{
+       "DisplayName" = $($RelatedSoft.DisplayName) + " License";
+       "Used" = $InstalledLicNumber;
+       "Installed" = $AgreementLicNumber;
+       "Available" = $AvailableLic;
+       "LastUpdate" = (Get-Date);
+       "GridStat" = $LicStatus;
+       "Status" = $Status;
+       "LicObjectHash" = $ObjectHash;
+       "Expired" = $ExpiredLics;
+      }
+      
+      #create Object
+      $LicObj = $null
+      $LicObj = New-SCSMObject -Class $ITSMLicensingClassCl -PropertyHashtable $LicHashTable -PassThru
+      #create Relationships
+      if ($RelatedAgreements)
+      {
+       foreach ($RelAgg in $RelatedAgreements)
+       {
+        New-SCSMRelationshipObject -Source $LicObj -Target $RelAgg.TargetObject -Relationship $ITSMLicStatusHasAgreement -Bulk
+       }
+      }
+      
+      New-SCSMRelationshipObject -Source $LicObj -Target $RelatedSoftObj -Relationship $ITSMLicStatusHaSoftware -Bulk
+      
+     }
+     catch
+     {
+      Write-EventLog -LogName 'Operations Manager' -Source 'License Connector' -EventId $WarningId -Category 0 -EntryType Warning -Message "Something Wrong Happened with License Connector while Processing New License Object: $($LicObj.DisplayName) with Exception Message: $($_.Exception.Message) and Exception: $($_.Exception.InnerException)"
+     }
+     
+     
+    }
+    
+    else
+    {
+     try
+     {
+      $HasAlreadyLicStatusobj = $null
+      $HasAlreadyLicStatusobj = Get-SCSMObject -Id $HasAlreadyLicStatus.id
+      
+      if ($HasAlreadyLicStatusobj.LicObjectHash -ne $ObjectHash)
+      {
+       #calcs
+       [decimal]$PError= '99.99'
+       [decimal]$PWarning = '90.00'
+       $PercentageInstalled = $null
+       [decimal]$PercentageInstalled = "{0:N2}" -f (($InstalledLicNumber/$AgreementLicNumber) * 100)
+       
+       if 
+       
+       ($PercentageInstalled -gt $PError)
+       {
+        $LicStatus = $null
+        $Status = $null
+        [int]$LicStatus = 1
+        $Status = $LicStatusError 
+       }
+       
+       elseif ($PercentageInstalled -lt $PError -and $PercentageInstalled -ge $PWarning)
+       {
+        $LicStatus = $null
+        $Status = $null
+        [int]$LicStatus = 2
+        $Status = $LicStatusWarning
+       }
+       else
+       {
+        $LicStatus = $null
+        $Status = $null
+        [int]$LicStatus = 3
+        $Status = $LicStatusHealthy
+        
+       }
+       
+       
+       $UpDLicHashTable = @{
+        "Used" = $InstalledLicNumber;
+        "Installed" = $AgreementLicNumber;
+        "Available" = $AvailableLic;
+        "LastUpdate" = (Get-Date);
+        "GridStat" = $LicStatus;
+        "Status" = $Status;
+        "LicObjectHash" = $ObjectHash;
+        "Expired" = $ExpiredLics;
+       }
+       
+       Set-SCSMObject -SMObject $HasAlreadyLicStatusobj -PropertyHashtable $UpDLicHashTable
+       
+       #Check Relationships
+       if ($RelatedAgreements)
+       {
+        foreach ($ARelAgg in $RelatedAgreements)
+        {
+         $HasAgreementAlreadyAssigned = $null
+         $HasAgreementAlreadyAssigned = Get-SCSMRelationshipObject -BySource $HasAlreadyLicStatusobj | ? { ($_.RelationshipId -eq $ITSMLicStatusHasAgreement.id) -and ($_.SourceObject.id -eq $ARelAgg.id) }
+         if (!$HasAgreementAlreadyAssigned)
+         {
+          New-SCSMRelationshipObject -Source $HasAlreadyLicStatusobj -Target $ARelAgg -Relationship $ITSMLicStatusHasAgreement -Bulk
+          
+         }
+        }
+        
+       }
+       
+      }
+      
+     }
+     catch
+     {
+      Write-EventLog -LogName 'Operations Manager' -Source 'License Connector' -EventId $WarningId -Category 0 -EntryType Warning -Message "Something Wrong Happened with License Connector while Processing Already Exists License Object: $($HasAlreadyLicStatus.DisplayName) with Exception Message: $($_.Exception.Message) and Exception: $($_.Exception.InnerException)"
+     }
+     
+    }
+   }
+   
+  }
+  
+  
+ }
+ 
+ Set-SCSMObject -SMObject $Connector -Property "Status" -Value $InactiveId
+ Set-SCSMObject -SMObject $Connector -Property "LastSynced" -Value (Get-Date)
+ Write-EventLog -LogName 'Operations Manager' -Source 'License Connector' -EventId 10000 -Category 0 -EntryType Information -Message "License Connector Finished Processing Software Assets and Agreements Objects"
+}
+</ScriptBody>
+                <SnapIns></SnapIns>
+                <Parameters></Parameters>
+                <TimeoutSeconds>3600</TimeoutSeconds>
+                <StrictErrorHandling>true</StrictErrorHandling>
+                <SerializationDepth>3</SerializationDepth>
+              </WriteAction>
+            </MemberModules>
+            <Composition>
+              <Node ID="LicenseConnectorSyncNow.WindowsPowerShellScript.562d81b9_29c6_4e93_b917_72d8ebe01530.PSWA" />
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <InputType>System!System.BaseData</InputType>
+      </WriteActionModuleType>
+    </ModuleTypes>
+  </TypeDefinitions>
+  <Categories>
+    <Category ID="LicenseConnector.Category" Value="Console!Microsoft.EnterpriseManagement.ServiceManager.ManagementPack">
+      <ManagementPackName>LicenseConnector</ManagementPackName>
+      <ManagementPackVersion>1.0.0.0</ManagementPackVersion>
+    </Category>
+    <Category ID="LicenseConnectorScheduleSyncCategory" Target="LicenseConnectorScheduleSync" Value="EnterpriseManagement!Microsoft.EnterpriseManagement.ServiceManager.Rules.WorkflowSubscriptions" />
+    <Category ID="LicenseConnectorSyncNowCategory" Target="LicenseConnectorSyncNow" Value="EnterpriseManagement!Microsoft.EnterpriseManagement.ServiceManager.Rules.WorkflowSubscriptions" />
+  </Categories>
+  <Monitoring>
+    <Rules>
+      <Rule ID="LicenseConnectorScheduleSync" Enabled="true" Target="SystemCenter!Microsoft.SystemCenter.SubscriptionWorkflowTarget" ConfirmDelivery="false" Remotable="true" Priority="Normal" DiscardLevel="100">
+        <Category>Notification</Category>
+        <DataSources>
+          <DataSource ID="SchedulerDS" RunAs="SystemCenter!Microsoft.SystemCenter.DatabaseWriteActionAccount" TypeID="System!System.Scheduler">
+            <Scheduler>
+              <WeeklySchedule>
+                <Windows>
+                  <Daily>
+                    <Start>4:0</Start>
+                    <End>4:0</End>
+                    <DaysOfWeekMask>127</DaysOfWeekMask>
+                  </Daily>
+                </Windows>
+              </WeeklySchedule>
+              <ExcludeDates />
+            </Scheduler>
+          </DataSource>
+        </DataSources>
+        <WriteActions>
+          <WriteAction ID="WA" TypeID="SystemCenter1!Microsoft.EnterpriseManagement.SystemCenter.Subscription.WindowsWorkflowTaskWriteAction">
+            <Subscription>
+              <WindowsWorkflowConfiguration>
+                <AssemblyName>LicenseConnectorScheduleSync</AssemblyName>
+                <WorkflowTypeName>WorkflowAuthoring.LicenseConnectorScheduleSync</WorkflowTypeName>
+                <WorkflowParameters></WorkflowParameters>
+                <RetryExceptions></RetryExceptions>
+                <RetryDelaySeconds>60</RetryDelaySeconds>
+                <MaximumRunningTimeSeconds>7200</MaximumRunningTimeSeconds>
+              </WindowsWorkflowConfiguration>
+            </Subscription>
+          </WriteAction>
+        </WriteActions>
+      </Rule>
+      <Rule ID="LicenseConnectorSyncNow" Enabled="true" Target="SystemCenter!Microsoft.SystemCenter.SubscriptionWorkflowTarget" ConfirmDelivery="true" Remotable="true" Priority="Normal" DiscardLevel="100">
+        <Category>Notification</Category>
+        <DataSources>
+          <DataSource ID="DS" TypeID="SystemCenter1!Microsoft.SystemCenter.CmdbInstanceSubscription.DataSourceModule">
+            <Subscription>
+              <InstanceSubscription Type="$MPElement[Name='CustomIT_Asset_Management_Base!LicenseSyncConnector']$">
+                <UpdateInstance>
+                  <Criteria>
+                    <Expression>
+                      <SimpleExpression>
+                        <ValueExpression>
+                          <Property State="Post">$Context/Property[Type='CustomIT_Asset_Management_Base!LicenseSyncConnector']/SyncNow$</Property>
+                        </ValueExpression>
+                        <Operator>Equal</Operator>
+                        <ValueExpression>
+                          <Value>True</Value>
+                        </ValueExpression>
+                      </SimpleExpression>
+                    </Expression>
+                  </Criteria>
+                </UpdateInstance>
+              </InstanceSubscription>
+              <PollingIntervalInSeconds>60</PollingIntervalInSeconds>
+              <BatchSize>100</BatchSize>
+            </Subscription>
+          </DataSource>
+        </DataSources>
+        <WriteActions>
+          <WriteAction ID="WA" TypeID="SystemCenter1!Microsoft.EnterpriseManagement.SystemCenter.Subscription.WindowsWorkflowTaskWriteAction">
+            <Subscription>
+              <WindowsWorkflowConfiguration>
+                <AssemblyName>LicenseConnectorSyncNow</AssemblyName>
+                <WorkflowTypeName>WorkflowAuthoring.LicenseConnectorSyncNow</WorkflowTypeName>
+                <WorkflowParameters></WorkflowParameters>
+                <RetryExceptions></RetryExceptions>
+                <RetryDelaySeconds>60</RetryDelaySeconds>
+                <MaximumRunningTimeSeconds>7200</MaximumRunningTimeSeconds>
+              </WindowsWorkflowConfiguration>
+            </Subscription>
+          </WriteAction>
+        </WriteActions>
+      </Rule>
+    </Rules>
+    <Tasks>
+      <Task ID="LicenseConnectorScheduleSync.WindowsPowerShellScript.238afa29_ec70_4f1e_bd92_9d377463a405" Accessibility="Public" Enabled="true" Target="Windows!Microsoft.Windows.Computer" Timeout="3600" Remotable="true">
+        <Category>Notification</Category>
+        <WriteAction ID="LicenseConnectorScheduleSync.WindowsPowerShellScript.238afa29_ec70_4f1e_bd92_9d377463a405.WA" TypeID="LicenseConnectorScheduleSync.WindowsPowerShellScript.238afa29_ec70_4f1e_bd92_9d377463a405.MT" />
+      </Task>
+      <Task ID="LicenseConnectorSyncNow.WindowsPowerShellScript.562d81b9_29c6_4e93_b917_72d8ebe01530" Accessibility="Public" Enabled="true" Target="Windows!Microsoft.Windows.Computer" Timeout="3600" Remotable="true">
+        <Category>Notification</Category>
+        <WriteAction ID="LicenseConnectorSyncNow.WindowsPowerShellScript.562d81b9_29c6_4e93_b917_72d8ebe01530.WA" TypeID="LicenseConnectorSyncNow.WindowsPowerShellScript.562d81b9_29c6_4e93_b917_72d8ebe01530.MT" />
+      </Task>
+    </Tasks>
+  </Monitoring>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+        <DisplayString ElementID="LicenseConnector">
+          <Name>License Connector Management Pack</Name>
+          <Description>License Connector Management Pack</Description>
+        </DisplayString>
+        <DisplayString ElementID="LicenseConnectorScheduleSync">
+          <Name>License Connector Schedule Sync</Name>
+          <Description>License Connector Schedule Sync</Description>
+        </DisplayString>
+        <DisplayString ElementID="LicenseConnectorScheduleSync" SubElementID="WA">
+          <Name>License Connector Schedule Sync</Name>
+          <Description>License Connector Schedule Sync</Description>
+        </DisplayString>
+        <DisplayString ElementID="LicenseConnectorScheduleSync.WindowsPowerShellScript.238afa29_ec70_4f1e_bd92_9d377463a405">
+          <Name>LicenseConnectorScheduleSync.WindowsPowerShellScript.238afa29_ec70_4f1e_bd92_9d377463a405</Name>
+        </DisplayString>
+        <DisplayString ElementID="LicenseConnectorSyncNow">
+          <Name>License Connector Sync Now</Name>
+          <Description>License Connector Sync Now</Description>
+        </DisplayString>
+        <DisplayString ElementID="LicenseConnectorSyncNow" SubElementID="WA">
+          <Name>License Connector Sync Now</Name>
+          <Description>License Connector Sync Now</Description>
+        </DisplayString>
+        <DisplayString ElementID="LicenseConnectorSyncNow.WindowsPowerShellScript.562d81b9_29c6_4e93_b917_72d8ebe01530">
+          <Name>LicenseConnectorSyncNow.WindowsPowerShellScript.562d81b9_29c6_4e93_b917_72d8ebe01530</Name>
+        </DisplayString>
+      </DisplayStrings>
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPack>

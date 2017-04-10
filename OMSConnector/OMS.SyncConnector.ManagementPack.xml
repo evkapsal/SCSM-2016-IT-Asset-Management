@@ -1,0 +1,898 @@
+﻿<ManagementPack ContentReadable="true" SchemaVersion="2.0" OriginalSchemaVersion="1.1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+  <Manifest>
+    <Identity>
+      <ID>OMS.SyncConnector.ManagementPack</ID>
+      <Version>1.0.0.7</Version>
+    </Identity>
+    <Name>OMS.SyncConnector.ManagementPack</Name>
+    <References>
+      <Reference Alias="System">
+        <ID>System.Library</ID>
+        <Version>7.5.8501.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+      <Reference Alias="Console">
+        <ID>Microsoft.EnterpriseManagement.ServiceManager.UI.Console</ID>
+        <Version>7.5.3079.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+      <Reference Alias="CustomSystem_WorkItem_Incident_Library">
+        <ID>System.WorkItem.Incident.Library</ID>
+        <Version>7.5.3079.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+      <Reference Alias="EnterpriseManagement">
+        <ID>Microsoft.EnterpriseManagement.ServiceManager.UI.Administration</ID>
+        <Version>7.5.3079.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+      <Reference Alias="SystemCenter">
+        <ID>Microsoft.SystemCenter.Library</ID>
+        <Version>7.0.8433.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+      <Reference Alias="SystemCenter1">
+        <ID>Microsoft.SystemCenter.Subscriptions</ID>
+        <Version>7.5.3079.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+      <Reference Alias="System_WorkItem_Library">
+        <ID>System.WorkItem.Library</ID>
+        <Version>7.5.3079.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+      <Reference Alias="Core">
+        <ID>ServiceManager.Core.Library</ID>
+        <Version>7.5.3079.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+      <Reference Alias="Windows">
+        <ID>Microsoft.Windows.Library</ID>
+        <Version>7.5.8501.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+      <Reference Alias="CustomIT_Asset_Management_Base">
+        <ID>IT_Asset_Management_Base</ID>
+        <Version>1.2.0.49</Version>
+        <PublicKeyToken>7c7d90afe643c064</PublicKeyToken>
+      </Reference>
+    </References>
+  </Manifest>
+  <TypeDefinitions>
+    <ModuleTypes>
+      <WriteActionModuleType ID="OMSWorkItemInciden_Wflow.WindowsPowerShellScript.ae4f3dfd_2634_4fd5_b7c1_9dd4d11ab749.MT" Accessibility="Public" RunAs="Core!Microsoft.SystemCenter.ServiceManager.WorkflowAccount" Batching="false">
+        <Configuration>
+          <IncludeSchemaTypes>
+            <SchemaType>Windows!Microsoft.Windows.PowerShellSchema</SchemaType>
+          </IncludeSchemaTypes>
+          <xsd:element name="ID" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+        </Configuration>
+        <OverrideableParameters>
+          <OverrideableParameter ID="ID" Selector="$Config/ID$" ParameterType="string" />
+        </OverrideableParameters>
+        <ModuleImplementation Isolation="Any">
+          <Composite>
+            <MemberModules>
+              <WriteAction ID="OMSWorkItemInciden_Wflow.WindowsPowerShellScript.ae4f3dfd_2634_4fd5_b7c1_9dd4d11ab749.PSWA" TypeID="Windows!Microsoft.Windows.PowerShellWriteAction">
+                <ScriptName>DoWork.ps1</ScriptName>
+                <ScriptBody>param ( [string]$ID )
+&lt;# 
+ .NOTES
+ ===========================================================================
+  Created with:  SAPIEN Technologies, Inc., PowerShell Studio 2016 v5.2.117
+  Created on:    12/1/2016 21:45
+  Created by:   Evangelos Kapsalakis  
+  Organization: MSHellas
+  Filename: SCSMOMS.ps1     
+ ===========================================================================
+ .DESCRIPTION
+  A description of the file.
+#&gt;
+
+param
+(
+ [parameter(Mandatory = $true)]
+ $ID
+)
+
+Import-Module SMLets
+$OMSConnectorClass = Get-SCSMClass -Name OMSConnector$
+$Connector = Get-SCSMObject -Class $OMSConnectorClass
+if ($Connector.IsActive -eq $true)
+{
+ Try
+ {
+  $events = [System.Diagnostics.EventLog]::SourceExists("OMS Connector");
+ }
+ finally
+ {
+  if ($events -ne $true)
+  {
+   New-EventLog -LogName 'Operations Manager' -Source 'OMS Connector'
+   Write-EventLog -LogName 'Operations Manager' -Source 'OMS Connector' -EventId 10000 -Category 0 -EntryType Information -Message "OMS Connector Succesfully Create Event Log Source"
+  }
+  
+  Write-EventLog -LogName 'Operations Manager' -Source 'OMS Connector' -EventId 10000 -Category 0 -EntryType Information -Message "OMS Connector Start Processing Incidents Objects"
+ }
+ 
+ # Replace with your Workspace ID
+ $CustomerId = $($Connector.CustomerId)
+ 
+ # Replace with your Primary Key
+ $SharedKey = $($Connector.Key)
+ 
+ # Specify the name of the record type that you'll be creating
+ $LogType = "SCSMLog"
+ 
+ # Specify a field with the created time for the records
+ $TimeStampField = "DateValue"
+ 
+ 
+ # Create the function to create the authorization signature
+ Function Build-Signature ($customerId, $sharedKey, $date, $contentLength, $method, $contentType, $resource)
+ {
+  $xHeaders = "x-ms-date:" + $date
+  $stringToHash = $method + "`n" + $contentLength + "`n" + $contentType + "`n" + $xHeaders + "`n" + $resource
+  
+  $bytesToHash = [Text.Encoding]::UTF8.GetBytes($stringToHash)
+  $keyBytes = [Convert]::FromBase64String($sharedKey)
+  
+  $sha256 = New-Object System.Security.Cryptography.HMACSHA256
+  $sha256.Key = $keyBytes
+  $calculatedHash = $sha256.ComputeHash($bytesToHash)
+  $encodedHash = [Convert]::ToBase64String($calculatedHash)
+  $authorization = 'SharedKey {0}:{1}' -f $customerId, $encodedHash
+  return $authorization
+ }
+ 
+ 
+ # Create the function to create and post the request
+ Function Post-OMSData($customerId, $sharedKey, $body, $logType)
+ {
+  $method = "POST"
+  $contentType = "application/json"
+  $resource = "/api/logs"
+  $rfc1123date = [DateTime]::UtcNow.ToString("r")
+  $contentLength = $body.Length
+  $signature = Build-Signature `
+  -customerId $customerId `
+  -sharedKey $sharedKey `
+  -date $rfc1123date `
+  -contentLength $contentLength `
+  -fileName $fileName `
+  -method $method `
+  -contentType $contentType `
+  -resource $resource
+  $uri = "https://" + $customerId + ".ods.opinsights.azure.com" + $resource + "?api-version=2016-04-01"
+  
+  $headers = @{
+   "Authorization" = $signature;
+   "Log-Type" = $logType;
+   "x-ms-date" = $rfc1123date;
+   "time-generated-field" = $TimeStampField;
+  }
+  
+  $response = Invoke-WebRequest -Uri $uri -Method $method -ContentType $contentType -Headers $headers -Body $body -UseBasicParsing -ErrorAction Stop
+  return $response.StatusCode
+  
+ }
+ 
+ $IR = Get-SCSMObject -id $ID
+ if ($IR)
+ {
+  $dt = [DateTime]::UtcNow.ToString("s")
+  $sd = Get-Date ($IR.CreatedDate) -Format r
+  
+  Try
+  {
+   $UserAssigned = $null
+   $UserAffected = $null
+   $IRguid = $null
+   $json = $null
+   
+   $UserAssigned = (Get-SCSMRelationshipObject -BySource $IR | ? { $_.RelationshipID -eq "15e577a3-6bf9-6713-4eac-ba5a5b7c4722" }).TargetObject.DisplayName
+   $UserAffected = (Get-SCSMRelationshipObject -BySource $IR | ? { $_.RelationshipID -eq "dff9be66-38b0-b6d6-6144-a412a3ebd4ce" }).TargetObject.DisplayName
+   
+  }
+  catch
+  {
+   if (!$UserAssigned)
+   {
+    $UserAssigned = "Not Assigned"
+   }
+  }
+  finally
+  {
+   switch ($IR.Status.displayname)
+   {
+    Resolved { $DateC = Get-Date ($IR.ResolvedDate) -Format r }
+    Closed { $DateC = Get-Date ($IR.ClosedDate) -Format r }
+    
+   }
+   [guid]$IRguid = $IR.get_id().Guid
+   
+  }
+  
+  $json = @" 
+  [{  
+   "WorkItemTitle":"$($IR.Title)",
+      "ItemType":"Incident",
+      "IDValue":"$($IR.id)",
+   "CreatedDate":"$($sd)",
+   "RDate":"$($DateC)",
+   "Analyst":"$($UserAssigned)",
+   "User":"$($UserAffected)",
+   "Status":"$($IR.Status.displayname)",
+   "Classification":"$($IR.Classification.displayname)",
+   "guid":"$($IRguid)",
+   "Urgency":"$($IR.Urgency.displayname)",
+   "Impact":"$($IR.Impact.displayname)",
+   "Tier":"$($IR.TierQueue.displayname)",
+   "DateValue":"$($dt)",
+   "WorkItem":true
+  }]
+"@
+  
+  # Submit the data to the API endpoint
+  $completed = $false
+  $retrycount = 0
+  $retries = 5
+  
+  While (!$completed)
+  {
+   
+   try
+   {
+    $PostRequest = Post-OMSData -customerId $customerId -sharedKey $sharedKey -body ([System.Text.Encoding]::UTF8.GetBytes($json)) -logType $logType
+   }
+   Catch
+   {
+    if ($retrycount -ge $retries)
+    {
+     Write-EventLog -LogName 'Operations Manager' -Source 'OMS Connector' -EventId 11000 -Category 0 -EntryType Error -Message "OMS Connector Cannot Upload to OMS, Incident with ID: $($IR.id)"
+    }
+    else
+    {
+     Write-EventLog -LogName 'Operations Manager' -Source 'OMS Connector' -EventId 11000 -Category 0 -EntryType Warning -Message "OMS Connector trying  to Upload to OMS with count:$retrycount,Incident with ID: $($IR.id) "
+     Start-Sleep -Seconds 5
+     $retrycount++
+    }
+   }
+   finally
+   {
+    $completed = $true
+    Write-EventLog -LogName 'Operations Manager' -Source 'OMS Connector' -EventId 10001 -Category 0 -EntryType Information -Message "OMS Connector Succesfully Upload to OMS, Incident with ID: $($IR.id)"
+   }
+  }
+  
+ }
+}
+# SIG # Begin signature block
+# MIIUAAYJKoZIhvcNAQcCoIIT8TCCE+0CAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
+# gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUfuq4Y0NfYUNrdZdXbiUooYe/
+# wVmggg60MIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
+# BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
+# MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
+# ExBHbG9iYWxTaWduIG52LXNhMSgwJgYDVQQDEx9HbG9iYWxTaWduIFRpbWVzdGFt
+# cGluZyBDQSAtIEcyMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlO9l
+# +LVXn6BTDTQG6wkft0cYasvwW+T/J6U00feJGr+esc0SQW5m1IGghYtkWkYvmaCN
+# d7HivFzdItdqZ9C76Mp03otPDbBS5ZBb60cO8eefnAuQZT4XljBFcm05oRc2yrmg
+# jBtPCBn2gTGtYRakYua0QJ7D/PuV9vu1LpWBmODvxevYAll4d/eq41JrUJEpxfz3
+# zZNl0mBhIvIG+zLdFlH6Dv2KMPAXCae78wSuq5DnbN96qfTvxGInX2+ZbTh0qhGL
+# 2t/HFEzphbLswn1KJo/nVrqm4M+SU4B09APsaLJgvIQgAIMboe60dAXBKY5i0Eex
+# +vBTzBj5Ljv5cH60JQIDAQABo4HlMIHiMA4GA1UdDwEB/wQEAwIBBjASBgNVHRMB
+# Af8ECDAGAQH/AgEAMB0GA1UdDgQWBBRG2D7/3OO+/4Pm9IWbsN1q1hSpwTBHBgNV
+# HSAEQDA+MDwGBFUdIAAwNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93d3cuZ2xvYmFs
+# c2lnbi5jb20vcmVwb3NpdG9yeS8wMwYDVR0fBCwwKjAooCagJIYiaHR0cDovL2Ny
+# bC5nbG9iYWxzaWduLm5ldC9yb290LmNybDAfBgNVHSMEGDAWgBRge2YaRQ2XyolQ
+# L30EzTSo//z9SzANBgkqhkiG9w0BAQUFAAOCAQEATl5WkB5GtNlJMfO7FzkoG8IW
+# 3f1B3AkFBJtvsqKa1pkuQJkAVbXqP6UgdtOGNNQXzFU6x4Lu76i6vNgGnxVQ380W
+# e1I6AtcZGv2v8Hhc4EvFGN86JB7arLipWAQCBzDbsBJe/jG+8ARI9PBw+DpeVoPP
+# PfsNvPTF7ZedudTbpSeE4zibi6c1hkQgpDttpGoLoYP9KOva7yj2zIhd+wo7AKvg
+# IeviLzVsD440RZfroveZMzV+y5qKu0VN5z+fwtmK+mWybsd+Zf/okuEsMaL3sCc2
+# SI8mbzvuTXYfecPlf5Y1vC0OzAGwjn//UYCAp5LUs0RGZIyHTxZjBzFLY7Df8zCC
+# BJ8wggOHoAMCAQICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkqhkiG9w0BAQUFADBS
+# MQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEoMCYGA1UE
+# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNjA1MjQwMDAw
+# MDBaFw0yNzA2MjQwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
+# R2xvYmFsU2lnbiBQdGUgTHRkMTAwLgYDVQQDEydHbG9iYWxTaWduIFRTQSBmb3Ig
+# TVMgQXV0aGVudGljb2RlIC0gRzIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
+# AoIBAQCwF66i07YEMFYeWA+x7VWk1lTL2PZzOuxdXqsl/Tal+oTDYUDFRrVZUjtC
+# oi5fE2IQqVvmc9aSJbF9I+MGs4c6DkPw1wCJU6IRMVIobl1AcjzyCXenSZKX1GyQ
+# oHan/bjcs53yB2AsT1iYAGvTFVTg+t3/gCxfGKaY/9Sr7KFFWbIub2Jd4NkZrItX
+# nKgmK9kXpRDSRwgacCwzi39ogCq1oV1r3Y0CAikDqnw3u7spTj1Tk7Om+o/SWJMV
+# TLktq4CjoyX7r/cIZLB6RA9cENdfYTeqTmvT0lMlnYJz+iz5crCpGTkqUPqp0Dw6
+# yuhb7/VfUfT5CtmXNd5qheYjBEKvAgMBAAGjggFfMIIBWzAOBgNVHQ8BAf8EBAMC
+# B4AwTAYDVR0gBEUwQzBBBgkrBgEEAaAyAR4wNDAyBggrBgEFBQcCARYmaHR0cHM6
+# Ly93d3cuZ2xvYmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADAWBgNV
+# HSUBAf8EDDAKBggrBgEFBQcDCDBCBgNVHR8EOzA5MDegNaAzhjFodHRwOi8vY3Js
+# Lmdsb2JhbHNpZ24uY29tL2dzL2dzdGltZXN0YW1waW5nZzIuY3JsMFQGCCsGAQUF
+# BwEBBEgwRjBEBggrBgEFBQcwAoY4aHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNv
+# bS9jYWNlcnQvZ3N0aW1lc3RhbXBpbmdnMi5jcnQwHQYDVR0OBBYEFNSihEo4Whh/
+# uk8wUL2d1XqH1gn3MB8GA1UdIwQYMBaAFEbYPv/c477/g+b0hZuw3WrWFKnBMA0G
+# CSqGSIb3DQEBBQUAA4IBAQCPqRqRbQSmNyAOg5beI9Nrbh9u3WQ9aCEitfhHNmmO
+# 4aVFxySiIrcpCcxUWq7GvM1jjrM9UEjltMyuzZKNniiLE0oRqr2j79OyNvy0oXK/
+# bZdjeYxEvHAvfvO83YJTqxr26/ocl7y2N5ykHDC8q7wtRzbfkiAD6HHGWPZ1BZo0
+# 8AtZWoJENKqA5C+E9kddlsm2ysqdt6a65FDT1De4uiAO0NOSKlvEWbuhbds8zkSd
+# wTgqreONvc0JdxoQvmcKAjZkiLmzGybu555gxEaovGEzbM9OuZy5avCfN/61PU+a
+# 003/3iCOTpem/Z8JvE3KGHbJsE2FUPKA0h0G9VgEB7EYMIIF9TCCBN2gAwIBAgIQ
+# KkVe0MLlP86cwi4qAhN8pjANBgkqhkiG9w0BAQsFADB4MQswCQYDVQQGEwJJTDEW
+# MBQGA1UEChMNU3RhcnRDb20gTHRkLjEpMCcGA1UECxMgU3RhcnRDb20gQ2VydGlm
+# aWNhdGlvbiBBdXRob3JpdHkxJjAkBgNVBAMTHVN0YXJ0Q29tIENsYXNzIDEgRFYg
+# U2VydmVyIENBMB4XDTE2MDgyMDEyMDkzNloXDTE3MDgyMDEyMDkzNlowKTELMAkG
+# A1UEBhMCR1IxGjAYBgNVBAMMEXNpZ24ubXNoZWxsYXMuY29tMIIBIjANBgkqhkiG
+# 9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlhTZTQAyYBBLvnzT2hpfFY0vS/X6CcYDHNR2
+# lvwFJQBvpX2eM5k2jqiBDiDX4gY9YiwWukq+MiGGblNQiYa7d2Qgjs5TjoS/lMNJ
+# lZI/WIYj3H5e77qT7VwRS5KCmydId8Zud8avSa95l5sK45cnrFiT+flN0fe7b7nw
+# gv+4n7++1AlwvgzAfPdO/pY5RrTzQ+vOkhPF+jCFJ0gfG981DOWlISkorMnVwv2h
+# dXVN9bEzQ2THs+QQFeu1rzOlUEaTaaRm6kDlNZzz4XKU9U1gNxsT5Z52xD2sgZno
+# PAo6g/0Cm7jGuD8IAG32yrDACI2EtIAPDxCQajmivMx1ojivgwIDAQABo4ICyDCC
+# AsQwDgYDVR0PAQH/BAQDAgWgMB0GA1UdJQQWMBQGCCsGAQUFBwMCBggrBgEFBQcD
+# ATAJBgNVHRMEAjAAMB0GA1UdDgQWBBQNOShOI1UPPhQjPuSYSAnfVeTifTAfBgNV
+# HSMEGDAWgBTXkU4BxLC/+Mhnk0Sc5zP6rZMMrzBvBggrBgEFBQcBAQRjMGEwJAYI
+# KwYBBQUHMAGGGGh0dHA6Ly9vY3NwLnN0YXJ0c3NsLmNvbTA5BggrBgEFBQcwAoYt
+# aHR0cDovL2FpYS5zdGFydHNzbC5jb20vY2VydHMvc2NhLnNlcnZlcjEuY3J0MDgG
+# A1UdHwQxMC8wLaAroCmGJ2h0dHA6Ly9jcmwuc3RhcnRzc2wuY29tL3NjYS1zZXJ2
+# ZXIxLmNybDAcBgNVHREEFTATghFzaWduLm1zaGVsbGFzLmNvbTAjBgNVHRIEHDAa
+# hhhodHRwOi8vd3d3LnN0YXJ0c3NsLmNvbS8wUQYDVR0gBEowSDAIBgZngQwBAgEw
+# PAYLKwYBBAGBtTcBAgUwLTArBggrBgEFBQcCARYfaHR0cHM6Ly93d3cuc3RhcnRz
+# c2wuY29tL3BvbGljeTCCAQUGCisGAQQB1nkCBAIEgfYEgfMA8QB2AGj2mPgfZIK+
+# OozuuSgdTPxxUV1nk9RE0QpnrLtPT/vEAAABVqgDmKcAAAQDAEcwRQIgJLiVb+Ja
+# a6BunnPE5hXdwenireOqMnkM24O7C6oTupUCIQDN0bYMsAwYmQVqO6EVxeQ+VbYd
+# iWfbnPrw79AZeM68YAB3AKS5CZC0GFgUh7sTosxncAo8NZgE+RvfuON3zQ7IDdwQ
+# AAABVqgDmcMAAAQDAEgwRgIhAPrLozUMYEWEdyPT0wBhuz9cUeGuWw4YluLGMO25
+# xAxwAiEAhKlyExSyer/qcuThyqGQEYR7YcuaHp7nVAnS8ffNsXQwDQYJKoZIhvcN
+# AQELBQADggEBACe6BNqcaS4N6cBHguRXo1XBottsPHUEqk+WaFsKvBndjzr01BkI
+# NhymaC64eMtnHRIybThGNhSQ+JLmGijM+Su414IJu0R1hkDUVo0hsNdCyL+1aBL1
+# pjqDvy/iqgP5wN9PU/5DAIvz8vAFJQC62Ci9x4whhtkiHjFsPwevgPU3om4rjaTb
+# 4wzAoDn49nXcEQO6WPuQJTgyzJoUL3+isk2PFW1XLS3IvXsbUNQ7V56woOCiPEyh
+# zGSpn/dhKYgfCgVlHvA2V3fzOBjlXq3PsKC38/gIc9HTcjcXN3oHsAGUI0jfjeSD
+# TS39FyssETg4QlSXrf4QZmjpf5v2ZJ+EvloxggS2MIIEsgIBATCBjDB4MQswCQYD
+# VQQGEwJJTDEWMBQGA1UEChMNU3RhcnRDb20gTHRkLjEpMCcGA1UECxMgU3RhcnRD
+# b20gQ2VydGlmaWNhdGlvbiBBdXRob3JpdHkxJjAkBgNVBAMTHVN0YXJ0Q29tIENs
+# YXNzIDEgRFYgU2VydmVyIENBAhAqRV7QwuU/zpzCLioCE3ymMAkGBSsOAwIaBQCg
+# WjAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3DQEJAzEMBgorBgEE
+# AYI3AgEEMCMGCSqGSIb3DQEJBDEWBBSdZ9fUHVNaRoCJMizzYa7CDKJzSzANBgkq
+# hkiG9w0BAQEFAASCAQB0T26yQX3r5dKeDHDAg7PEe10ECZBsFUmpJIoB51crDzS4
+# 34cAsJytvBHS77efkxZmf646PWT3vkGgTbbAALjVymIao5sAVtiMfHFBHzDnaRMK
+# iq16xUG4frxvKda32IBOSMxeuEKWHIUS3NTY53asTEbty4X5h8UrYjtvwXBYdQ4Z
+# s2Z7gSezCnJlNxLxYuJmBiWHawtHO5YE9x37HOW8l4aU4THX6vExHGFMMrbYy5We
+# pq+3e1+I/tirWKGqe/fUAitRX8vFHdhLkJPaQmJINFFDd1dNx9AH45VegD66Z9Ym
+# SDVX20ss/AQNcFWnqVGskZjYJE7LX4oXMnKMgi42oYICojCCAp4GCSqGSIb3DQEJ
+# BjGCAo8wggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNp
+# Z24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0g
+# RzICEhEh1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJ
+# AzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MTEyNjIzMTgxNVowIwYJ
+# KoZIhvcNAQkEMRYEFFMGnqCudpkCLYg7c5pLKfjsCHHDMIGdBgsqhkiG9w0BCRAC
+# DDGBjTCBijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkG
+# A1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0ds
+# b2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNB
+# FDANBgkqhkiG9w0BAQEFAASCAQB0+wctk+05wQb1hAKdk6J9/c9RnlO/geBSBX8v
+# 3ITlx77vDV8RKFVpv3DCLrF03vUg2fYlKWWnSAN0eZhuCGfpgWh0Aosi9wfDGHZr
+# NzSsaI+XFuQUBor7HJmMwDTbi0OACEa1zDhYtXvaNUH4pUPM1cpYF5nFr3s9mmdJ
+# 7+ljulkDZH/NL3WQW2s10XZ3V2rx2XQSNu69BojqOWgbF9veJ5vc5M+Kvg5Ct/gF
+# vClj6Lhq8J0sY3a5lB6X6IFQKQ3x0bQ97B5nVKCBjrg61bjW1LuLSVuE04gYupMb
+# DwlX56t5S9ZZXy5R4WkSbqqBG8u3AuPV2fq60EgBrHx4q1Gs
+# SIG # End signature block
+</ScriptBody>
+                <SnapIns></SnapIns>
+                <Parameters>
+                  <Parameter>
+                    <Name>ID</Name>
+                    <Value>$Config/ID$</Value>
+                  </Parameter>
+                </Parameters>
+                <TimeoutSeconds>300</TimeoutSeconds>
+                <StrictErrorHandling>true</StrictErrorHandling>
+                <SerializationDepth>3</SerializationDepth>
+              </WriteAction>
+            </MemberModules>
+            <Composition>
+              <Node ID="OMSWorkItemInciden_Wflow.WindowsPowerShellScript.ae4f3dfd_2634_4fd5_b7c1_9dd4d11ab749.PSWA" />
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <InputType>System!System.BaseData</InputType>
+      </WriteActionModuleType>
+      <WriteActionModuleType ID="OMSWorkItemIncident_WflowSync.WindowsPowerShellScript.60a26f0f_75ae_48a7_9262_add5d1bbae08.MT" Accessibility="Public" RunAs="Core!Microsoft.SystemCenter.ServiceManager.WorkflowAccount" Batching="false">
+        <Configuration>
+          <IncludeSchemaTypes>
+            <SchemaType>Windows!Microsoft.Windows.PowerShellSchema</SchemaType>
+          </IncludeSchemaTypes>
+        </Configuration>
+        <ModuleImplementation Isolation="Any">
+          <Composite>
+            <MemberModules>
+              <WriteAction ID="OMSWorkItemIncident_WflowSync.WindowsPowerShellScript.60a26f0f_75ae_48a7_9262_add5d1bbae08.PSWA" TypeID="Windows!Microsoft.Windows.PowerShellWriteAction">
+                <ScriptName>DoWork.ps1</ScriptName>
+                <ScriptBody>
+&lt;# 
+ .NOTES
+ ===========================================================================
+  Created with:  SAPIEN Technologies, Inc., PowerShell Studio 2016 v5.2.117
+  Created on:    12/1/2016 23:45
+  Created by:   Evangelos Kapsalakis  
+  Organization: MSHellas
+  Filename: SCSMOMSync.ps1     
+ ===========================================================================
+ .DESCRIPTION
+  A description of the file.
+#&gt;
+
+
+Import-Module SMLets
+$OMSConnectorClass = Get-SCSMClass -Name OMSConnector$
+$Connector = Get-SCSMObject -Class $OMSConnectorClass
+if ($Connector.IsActive -eq $true)
+{
+ if ($Connector.SyncNow -eq $true)
+ {
+  Set-SCSMObject -SMObject $Connector -Property "SyncNow" -Value $false
+  
+  Try
+  {
+   $events = [System.Diagnostics.EventLog]::SourceExists("OMS Connector");
+  }
+  finally
+  {
+   if ($events -ne $true)
+   {
+    New-EventLog -LogName 'Operations Manager' -Source 'OMS Connector'
+    Write-EventLog -LogName 'Operations Manager' -Source 'OMS Connector' -EventId 10000 -Category 0 -EntryType Information -Message "OMS Connector Succesfully Create Event Log Source"
+   }
+   
+   Write-EventLog -LogName 'Operations Manager' -Source 'OMS Connector' -EventId 10000 -Category 0 -EntryType Information -Message "OMS Connector Start Processing Incident Objects"
+  }
+  
+  
+  # Replace with your Workspace ID
+  $CustomerId = $($Connector.CustomerId)
+  
+  # Replace with your Primary Key
+  $SharedKey = $($Connector.Key)
+  
+  # Specify the name of the record type that you'll be creating
+  $LogType = "SCSMLog"
+  
+  # Specify a field with the created time for the records
+  $TimeStampField = "DateValue"
+  
+  
+  # Create the function to create the authorization signature
+  Function Build-Signature ($customerId, $sharedKey, $date, $contentLength, $method, $contentType, $resource)
+  {
+   $xHeaders = "x-ms-date:" + $date
+   $stringToHash = $method + "`n" + $contentLength + "`n" + $contentType + "`n" + $xHeaders + "`n" + $resource
+   
+   $bytesToHash = [Text.Encoding]::UTF8.GetBytes($stringToHash)
+   $keyBytes = [Convert]::FromBase64String($sharedKey)
+   
+   $sha256 = New-Object System.Security.Cryptography.HMACSHA256
+   $sha256.Key = $keyBytes
+   $calculatedHash = $sha256.ComputeHash($bytesToHash)
+   $encodedHash = [Convert]::ToBase64String($calculatedHash)
+   $authorization = 'SharedKey {0}:{1}' -f $customerId, $encodedHash
+   return $authorization
+  }
+  
+  
+  # Create the function to create and post the request
+  Function Post-OMSData($customerId, $sharedKey, $body, $logType)
+  {
+   $method = "POST"
+   $contentType = "application/json"
+   $resource = "/api/logs"
+   $rfc1123date = [DateTime]::UtcNow.ToString("r")
+   $contentLength = $body.Length
+   $signature = Build-Signature `
+   -customerId $customerId `
+   -sharedKey $sharedKey `
+   -date $rfc1123date `
+   -contentLength $contentLength `
+   -fileName $fileName `
+   -method $method `
+   -contentType $contentType `
+   -resource $resource
+   $uri = "https://" + $customerId + ".ods.opinsights.azure.com" + $resource + "?api-version=2016-04-01"
+   
+   $headers = @{
+    "Authorization" = $signature;
+    "Log-Type" = $logType;
+    "x-ms-date" = $rfc1123date;
+    "time-generated-field" = $TimeStampField;
+   }
+   
+   $response = Invoke-WebRequest -Uri $uri -Method $method -ContentType $contentType -Headers $headers -Body $body -UseBasicParsing -ErrorAction Stop
+   return $response.StatusCode
+   
+  }
+  
+  $IRCL = Get-SCSMClass -Name System.WorkItem.Incident$
+  $ActiveIRStatusId = (Get-SCSMEnumeration -Name IncidentStatusEnum.Active$).id
+  $IRs = Get-SCSMObject -class $IRCL -Filter "Status -eq $ActiveIRStatusId"
+  if ($IRs)
+  {
+   foreach ($IR in $IRs)
+   {
+    $dt = [DateTime]::UtcNow.ToString("s")
+    $sd = Get-Date ($IR.CreatedDate) -Format r
+    
+    Try
+    {
+     $UserAssigned = $null
+     $UserAffected = $null
+     $IRguid = $null
+     $json = $null
+     
+     $UserAssigned = (Get-SCSMRelationshipObject -BySource $IR | ? { $_.RelationshipID -eq "15e577a3-6bf9-6713-4eac-ba5a5b7c4722" }).TargetObject.DisplayName
+     $UserAffected = (Get-SCSMRelationshipObject -BySource $IR | ? { $_.RelationshipID -eq "dff9be66-38b0-b6d6-6144-a412a3ebd4ce" }).TargetObject.DisplayName
+     
+    }
+    catch
+    {
+     if (!$UserAssigned)
+     {
+      $UserAssigned = "Not Assigned"
+     }
+    }
+    finally
+    {
+     
+     [guid]$IRguid = $IR.get_id().Guid
+     
+    }
+    
+    $json = @" 
+  [{  
+   "WorkItemTitle":"$($IR.Title)",
+      "ItemType":"Incident",
+      "IDValue":"$($IR.id)",
+   "CreatedDate":"$($sd)",
+   "RDate":"$($DateC)",
+   "Analyst":"$($UserAssigned)",
+   "User":"$($UserAffected)",
+   "Status":"$($IR.Status.displayname)",
+   "Classification":"$($IR.Classification.displayname)",
+   "guid":"$($IRguid)",
+   "Urgency":"$($IR.Urgency.displayname)",
+   "Impact":"$($IR.Impact.displayname)",
+   "Tier":"$($IR.TierQueue.displayname)",
+   "DateValue":"$($dt)",
+   "WorkItem":true
+  }]
+"@
+    
+    # Submit the data to the API endpoint
+    $completed = $false
+    $retrycount = 0
+    $retries = 5
+    
+    While (!$completed)
+    {
+     
+     try
+     {
+      $PostRequest = Post-OMSData -customerId $customerId -sharedKey $sharedKey -body ([System.Text.Encoding]::UTF8.GetBytes($json)) -logType $logType
+     }
+     Catch
+     {
+      if ($retrycount -ge $retries)
+      {
+       Write-EventLog -LogName 'Operations Manager' -Source 'OMS Connector' -EventId 11000 -Category 0 -EntryType Error -Message "OMS Connector Cannot Upload to OMS, Incident with ID: $($IR.id)"
+      }
+      else
+      {
+       Write-EventLog -LogName 'Operations Manager' -Source 'OMS Connector' -EventId 11000 -Category 0 -EntryType Warning -Message "OMS Connector trying  to Upload to OMS with count:$retrycount,Incident with ID: $($IR.id) "
+       Start-Sleep -Seconds 5
+       $retrycount++
+      }
+     }
+     finally
+     {
+      $completed = $true
+      Write-EventLog -LogName 'Operations Manager' -Source 'OMS Connector' -EventId 10001 -Category 0 -EntryType Information -Message "OMS Connector Succesfully Upload to OMS, Incident with ID: $($IR.id)"
+     }
+    }
+    
+   }
+  }
+ }
+}
+# SIG # Begin signature block
+# MIIUAAYJKoZIhvcNAQcCoIIT8TCCE+0CAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
+# gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUfuq4Y0NfYUNrdZdXbiUooYe/
+# wVmggg60MIIEFDCCAvygAwIBAgILBAAAAAABL07hUtcwDQYJKoZIhvcNAQEFBQAw
+# VzELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNV
+# BAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkdsb2JhbFNpZ24gUm9vdCBDQTAeFw0xMTA0
+# MTMxMDAwMDBaFw0yODAxMjgxMjAwMDBaMFIxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
+# ExBHbG9iYWxTaWduIG52LXNhMSgwJgYDVQQDEx9HbG9iYWxTaWduIFRpbWVzdGFt
+# cGluZyBDQSAtIEcyMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlO9l
+# +LVXn6BTDTQG6wkft0cYasvwW+T/J6U00feJGr+esc0SQW5m1IGghYtkWkYvmaCN
+# d7HivFzdItdqZ9C76Mp03otPDbBS5ZBb60cO8eefnAuQZT4XljBFcm05oRc2yrmg
+# jBtPCBn2gTGtYRakYua0QJ7D/PuV9vu1LpWBmODvxevYAll4d/eq41JrUJEpxfz3
+# zZNl0mBhIvIG+zLdFlH6Dv2KMPAXCae78wSuq5DnbN96qfTvxGInX2+ZbTh0qhGL
+# 2t/HFEzphbLswn1KJo/nVrqm4M+SU4B09APsaLJgvIQgAIMboe60dAXBKY5i0Eex
+# +vBTzBj5Ljv5cH60JQIDAQABo4HlMIHiMA4GA1UdDwEB/wQEAwIBBjASBgNVHRMB
+# Af8ECDAGAQH/AgEAMB0GA1UdDgQWBBRG2D7/3OO+/4Pm9IWbsN1q1hSpwTBHBgNV
+# HSAEQDA+MDwGBFUdIAAwNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93d3cuZ2xvYmFs
+# c2lnbi5jb20vcmVwb3NpdG9yeS8wMwYDVR0fBCwwKjAooCagJIYiaHR0cDovL2Ny
+# bC5nbG9iYWxzaWduLm5ldC9yb290LmNybDAfBgNVHSMEGDAWgBRge2YaRQ2XyolQ
+# L30EzTSo//z9SzANBgkqhkiG9w0BAQUFAAOCAQEATl5WkB5GtNlJMfO7FzkoG8IW
+# 3f1B3AkFBJtvsqKa1pkuQJkAVbXqP6UgdtOGNNQXzFU6x4Lu76i6vNgGnxVQ380W
+# e1I6AtcZGv2v8Hhc4EvFGN86JB7arLipWAQCBzDbsBJe/jG+8ARI9PBw+DpeVoPP
+# PfsNvPTF7ZedudTbpSeE4zibi6c1hkQgpDttpGoLoYP9KOva7yj2zIhd+wo7AKvg
+# IeviLzVsD440RZfroveZMzV+y5qKu0VN5z+fwtmK+mWybsd+Zf/okuEsMaL3sCc2
+# SI8mbzvuTXYfecPlf5Y1vC0OzAGwjn//UYCAp5LUs0RGZIyHTxZjBzFLY7Df8zCC
+# BJ8wggOHoAMCAQICEhEh1pmnZJc+8fhCfukZzFNBFDANBgkqhkiG9w0BAQUFADBS
+# MQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEoMCYGA1UE
+# AxMfR2xvYmFsU2lnbiBUaW1lc3RhbXBpbmcgQ0EgLSBHMjAeFw0xNjA1MjQwMDAw
+# MDBaFw0yNzA2MjQwMDAwMDBaMGAxCzAJBgNVBAYTAlNHMR8wHQYDVQQKExZHTU8g
+# R2xvYmFsU2lnbiBQdGUgTHRkMTAwLgYDVQQDEydHbG9iYWxTaWduIFRTQSBmb3Ig
+# TVMgQXV0aGVudGljb2RlIC0gRzIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
+# AoIBAQCwF66i07YEMFYeWA+x7VWk1lTL2PZzOuxdXqsl/Tal+oTDYUDFRrVZUjtC
+# oi5fE2IQqVvmc9aSJbF9I+MGs4c6DkPw1wCJU6IRMVIobl1AcjzyCXenSZKX1GyQ
+# oHan/bjcs53yB2AsT1iYAGvTFVTg+t3/gCxfGKaY/9Sr7KFFWbIub2Jd4NkZrItX
+# nKgmK9kXpRDSRwgacCwzi39ogCq1oV1r3Y0CAikDqnw3u7spTj1Tk7Om+o/SWJMV
+# TLktq4CjoyX7r/cIZLB6RA9cENdfYTeqTmvT0lMlnYJz+iz5crCpGTkqUPqp0Dw6
+# yuhb7/VfUfT5CtmXNd5qheYjBEKvAgMBAAGjggFfMIIBWzAOBgNVHQ8BAf8EBAMC
+# B4AwTAYDVR0gBEUwQzBBBgkrBgEEAaAyAR4wNDAyBggrBgEFBQcCARYmaHR0cHM6
+# Ly93d3cuZ2xvYmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADAWBgNV
+# HSUBAf8EDDAKBggrBgEFBQcDCDBCBgNVHR8EOzA5MDegNaAzhjFodHRwOi8vY3Js
+# Lmdsb2JhbHNpZ24uY29tL2dzL2dzdGltZXN0YW1waW5nZzIuY3JsMFQGCCsGAQUF
+# BwEBBEgwRjBEBggrBgEFBQcwAoY4aHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNv
+# bS9jYWNlcnQvZ3N0aW1lc3RhbXBpbmdnMi5jcnQwHQYDVR0OBBYEFNSihEo4Whh/
+# uk8wUL2d1XqH1gn3MB8GA1UdIwQYMBaAFEbYPv/c477/g+b0hZuw3WrWFKnBMA0G
+# CSqGSIb3DQEBBQUAA4IBAQCPqRqRbQSmNyAOg5beI9Nrbh9u3WQ9aCEitfhHNmmO
+# 4aVFxySiIrcpCcxUWq7GvM1jjrM9UEjltMyuzZKNniiLE0oRqr2j79OyNvy0oXK/
+# bZdjeYxEvHAvfvO83YJTqxr26/ocl7y2N5ykHDC8q7wtRzbfkiAD6HHGWPZ1BZo0
+# 8AtZWoJENKqA5C+E9kddlsm2ysqdt6a65FDT1De4uiAO0NOSKlvEWbuhbds8zkSd
+# wTgqreONvc0JdxoQvmcKAjZkiLmzGybu555gxEaovGEzbM9OuZy5avCfN/61PU+a
+# 003/3iCOTpem/Z8JvE3KGHbJsE2FUPKA0h0G9VgEB7EYMIIF9TCCBN2gAwIBAgIQ
+# KkVe0MLlP86cwi4qAhN8pjANBgkqhkiG9w0BAQsFADB4MQswCQYDVQQGEwJJTDEW
+# MBQGA1UEChMNU3RhcnRDb20gTHRkLjEpMCcGA1UECxMgU3RhcnRDb20gQ2VydGlm
+# aWNhdGlvbiBBdXRob3JpdHkxJjAkBgNVBAMTHVN0YXJ0Q29tIENsYXNzIDEgRFYg
+# U2VydmVyIENBMB4XDTE2MDgyMDEyMDkzNloXDTE3MDgyMDEyMDkzNlowKTELMAkG
+# A1UEBhMCR1IxGjAYBgNVBAMMEXNpZ24ubXNoZWxsYXMuY29tMIIBIjANBgkqhkiG
+# 9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlhTZTQAyYBBLvnzT2hpfFY0vS/X6CcYDHNR2
+# lvwFJQBvpX2eM5k2jqiBDiDX4gY9YiwWukq+MiGGblNQiYa7d2Qgjs5TjoS/lMNJ
+# lZI/WIYj3H5e77qT7VwRS5KCmydId8Zud8avSa95l5sK45cnrFiT+flN0fe7b7nw
+# gv+4n7++1AlwvgzAfPdO/pY5RrTzQ+vOkhPF+jCFJ0gfG981DOWlISkorMnVwv2h
+# dXVN9bEzQ2THs+QQFeu1rzOlUEaTaaRm6kDlNZzz4XKU9U1gNxsT5Z52xD2sgZno
+# PAo6g/0Cm7jGuD8IAG32yrDACI2EtIAPDxCQajmivMx1ojivgwIDAQABo4ICyDCC
+# AsQwDgYDVR0PAQH/BAQDAgWgMB0GA1UdJQQWMBQGCCsGAQUFBwMCBggrBgEFBQcD
+# ATAJBgNVHRMEAjAAMB0GA1UdDgQWBBQNOShOI1UPPhQjPuSYSAnfVeTifTAfBgNV
+# HSMEGDAWgBTXkU4BxLC/+Mhnk0Sc5zP6rZMMrzBvBggrBgEFBQcBAQRjMGEwJAYI
+# KwYBBQUHMAGGGGh0dHA6Ly9vY3NwLnN0YXJ0c3NsLmNvbTA5BggrBgEFBQcwAoYt
+# aHR0cDovL2FpYS5zdGFydHNzbC5jb20vY2VydHMvc2NhLnNlcnZlcjEuY3J0MDgG
+# A1UdHwQxMC8wLaAroCmGJ2h0dHA6Ly9jcmwuc3RhcnRzc2wuY29tL3NjYS1zZXJ2
+# ZXIxLmNybDAcBgNVHREEFTATghFzaWduLm1zaGVsbGFzLmNvbTAjBgNVHRIEHDAa
+# hhhodHRwOi8vd3d3LnN0YXJ0c3NsLmNvbS8wUQYDVR0gBEowSDAIBgZngQwBAgEw
+# PAYLKwYBBAGBtTcBAgUwLTArBggrBgEFBQcCARYfaHR0cHM6Ly93d3cuc3RhcnRz
+# c2wuY29tL3BvbGljeTCCAQUGCisGAQQB1nkCBAIEgfYEgfMA8QB2AGj2mPgfZIK+
+# OozuuSgdTPxxUV1nk9RE0QpnrLtPT/vEAAABVqgDmKcAAAQDAEcwRQIgJLiVb+Ja
+# a6BunnPE5hXdwenireOqMnkM24O7C6oTupUCIQDN0bYMsAwYmQVqO6EVxeQ+VbYd
+# iWfbnPrw79AZeM68YAB3AKS5CZC0GFgUh7sTosxncAo8NZgE+RvfuON3zQ7IDdwQ
+# AAABVqgDmcMAAAQDAEgwRgIhAPrLozUMYEWEdyPT0wBhuz9cUeGuWw4YluLGMO25
+# xAxwAiEAhKlyExSyer/qcuThyqGQEYR7YcuaHp7nVAnS8ffNsXQwDQYJKoZIhvcN
+# AQELBQADggEBACe6BNqcaS4N6cBHguRXo1XBottsPHUEqk+WaFsKvBndjzr01BkI
+# NhymaC64eMtnHRIybThGNhSQ+JLmGijM+Su414IJu0R1hkDUVo0hsNdCyL+1aBL1
+# pjqDvy/iqgP5wN9PU/5DAIvz8vAFJQC62Ci9x4whhtkiHjFsPwevgPU3om4rjaTb
+# 4wzAoDn49nXcEQO6WPuQJTgyzJoUL3+isk2PFW1XLS3IvXsbUNQ7V56woOCiPEyh
+# zGSpn/dhKYgfCgVlHvA2V3fzOBjlXq3PsKC38/gIc9HTcjcXN3oHsAGUI0jfjeSD
+# TS39FyssETg4QlSXrf4QZmjpf5v2ZJ+EvloxggS2MIIEsgIBATCBjDB4MQswCQYD
+# VQQGEwJJTDEWMBQGA1UEChMNU3RhcnRDb20gTHRkLjEpMCcGA1UECxMgU3RhcnRD
+# b20gQ2VydGlmaWNhdGlvbiBBdXRob3JpdHkxJjAkBgNVBAMTHVN0YXJ0Q29tIENs
+# YXNzIDEgRFYgU2VydmVyIENBAhAqRV7QwuU/zpzCLioCE3ymMAkGBSsOAwIaBQCg
+# WjAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3DQEJAzEMBgorBgEE
+# AYI3AgEEMCMGCSqGSIb3DQEJBDEWBBSdZ9fUHVNaRoCJMizzYa7CDKJzSzANBgkq
+# hkiG9w0BAQEFAASCAQB0T26yQX3r5dKeDHDAg7PEe10ECZBsFUmpJIoB51crDzS4
+# 34cAsJytvBHS77efkxZmf646PWT3vkGgTbbAALjVymIao5sAVtiMfHFBHzDnaRMK
+# iq16xUG4frxvKda32IBOSMxeuEKWHIUS3NTY53asTEbty4X5h8UrYjtvwXBYdQ4Z
+# s2Z7gSezCnJlNxLxYuJmBiWHawtHO5YE9x37HOW8l4aU4THX6vExHGFMMrbYy5We
+# pq+3e1+I/tirWKGqe/fUAitRX8vFHdhLkJPaQmJINFFDd1dNx9AH45VegD66Z9Ym
+# SDVX20ss/AQNcFWnqVGskZjYJE7LX4oXMnKMgi42oYICojCCAp4GCSqGSIb3DQEJ
+# BjGCAo8wggKLAgEBMGgwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNp
+# Z24gbnYtc2ExKDAmBgNVBAMTH0dsb2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0g
+# RzICEhEh1pmnZJc+8fhCfukZzFNBFDAJBgUrDgMCGgUAoIH9MBgGCSqGSIb3DQEJ
+# AzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MTEyNjIzMTgxNVowIwYJ
+# KoZIhvcNAQkEMRYEFFMGnqCudpkCLYg7c5pLKfjsCHHDMIGdBgsqhkiG9w0BCRAC
+# DDGBjTCBijCBhzCBhAQUY7gvq2H1g5CWlQULACScUCkz7HkwbDBWpFQwUjELMAkG
+# A1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKDAmBgNVBAMTH0ds
+# b2JhbFNpZ24gVGltZXN0YW1waW5nIENBIC0gRzICEhEh1pmnZJc+8fhCfukZzFNB
+# FDANBgkqhkiG9w0BAQEFAASCAQB0+wctk+05wQb1hAKdk6J9/c9RnlO/geBSBX8v
+# 3ITlx77vDV8RKFVpv3DCLrF03vUg2fYlKWWnSAN0eZhuCGfpgWh0Aosi9wfDGHZr
+# NzSsaI+XFuQUBor7HJmMwDTbi0OACEa1zDhYtXvaNUH4pUPM1cpYF5nFr3s9mmdJ
+# 7+ljulkDZH/NL3WQW2s10XZ3V2rx2XQSNu69BojqOWgbF9veJ5vc5M+Kvg5Ct/gF
+# vClj6Lhq8J0sY3a5lB6X6IFQKQ3x0bQ97B5nVKCBjrg61bjW1LuLSVuE04gYupMb
+# DwlX56t5S9ZZXy5R4WkSbqqBG8u3AuPV2fq60EgBrHx4q1Gs
+# SIG # End signature block
+</ScriptBody>
+                <SnapIns></SnapIns>
+                <Parameters></Parameters>
+                <TimeoutSeconds>300</TimeoutSeconds>
+                <StrictErrorHandling>true</StrictErrorHandling>
+                <SerializationDepth>3</SerializationDepth>
+              </WriteAction>
+            </MemberModules>
+            <Composition>
+              <Node ID="OMSWorkItemIncident_WflowSync.WindowsPowerShellScript.60a26f0f_75ae_48a7_9262_add5d1bbae08.PSWA" />
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <InputType>System!System.BaseData</InputType>
+      </WriteActionModuleType>
+    </ModuleTypes>
+  </TypeDefinitions>
+  <Categories>
+    <Category ID="OMS.SyncConnector.ManagementPack.Category" Value="Console!Microsoft.EnterpriseManagement.ServiceManager.ManagementPack">
+      <ManagementPackName>OMS.SyncConnector.ManagementPack</ManagementPackName>
+      <ManagementPackVersion>1.0.0.0</ManagementPackVersion>
+    </Category>
+    <Category ID="OMSWorkItemInciden_WflowCategory" Target="OMSWorkItemInciden_Wflow" Value="EnterpriseManagement!Microsoft.EnterpriseManagement.ServiceManager.Rules.WorkflowSubscriptions" />
+    <Category ID="OMSWorkItemIncident_WflowSyncCategory" Target="OMSWorkItemIncident_WflowSync" Value="EnterpriseManagement!Microsoft.EnterpriseManagement.ServiceManager.Rules.WorkflowSubscriptions" />
+  </Categories>
+  <Monitoring>
+    <Rules>
+      <Rule ID="OMSWorkItemInciden_Wflow" Enabled="true" Target="SystemCenter!Microsoft.SystemCenter.SubscriptionWorkflowTarget" ConfirmDelivery="true" Remotable="true" Priority="Normal" DiscardLevel="100">
+        <Category>Notification</Category>
+        <DataSources>
+          <DataSource ID="DS" TypeID="SystemCenter1!Microsoft.SystemCenter.CmdbInstanceSubscription.DataSourceModule">
+            <Subscription>
+              <InstanceSubscription Type="$MPElement[Name='CustomSystem_WorkItem_Incident_Library!System.WorkItem.Incident']$">
+                <UpdateInstance>
+                  <Criteria>
+                    <Expression>
+                      <Or>
+                        <Expression>
+                          <SimpleExpression>
+                            <ValueExpression>
+                              <Property State="Pre">$Context/Property[Type='CustomSystem_WorkItem_Incident_Library!System.WorkItem.Incident']/Status$</Property>
+                            </ValueExpression>
+                            <Operator>Equal</Operator>
+                            <ValueExpression>
+                              <Value>{5e2d3932-ca6d-1515-7310-6f58584df73e}</Value>
+                            </ValueExpression>
+                          </SimpleExpression>
+                        </Expression>
+                        <Expression>
+                          <SimpleExpression>
+                            <ValueExpression>
+                              <Property State="Pre">$Context/Property[Type='CustomSystem_WorkItem_Incident_Library!System.WorkItem.Incident']/Status$</Property>
+                            </ValueExpression>
+                            <Operator>Equal</Operator>
+                            <ValueExpression>
+                              <Value>{bd0ae7c4-3315-2eb3-7933-82dfc482dbaf}</Value>
+                            </ValueExpression>
+                          </SimpleExpression>
+                        </Expression>
+                        <Expression>
+                          <SimpleExpression>
+                            <ValueExpression>
+                              <Property State="Pre">$Context/Property[Type='CustomSystem_WorkItem_Incident_Library!System.WorkItem.Incident']/Status$</Property>
+                            </ValueExpression>
+                            <Operator>Equal</Operator>
+                            <ValueExpression>
+                              <Value>{2b8830b6-59f0-f574-9c2a-f4b4682f1681}</Value>
+                            </ValueExpression>
+                          </SimpleExpression>
+                        </Expression>
+                      </Or>
+                    </Expression>
+                  </Criteria>
+                </UpdateInstance>
+              </InstanceSubscription>
+              <PollingIntervalInSeconds>60</PollingIntervalInSeconds>
+              <BatchSize>100</BatchSize>
+            </Subscription>
+          </DataSource>
+        </DataSources>
+        <WriteActions>
+          <WriteAction ID="WA" TypeID="SystemCenter1!Microsoft.EnterpriseManagement.SystemCenter.Subscription.WindowsWorkflowTaskWriteAction">
+            <Subscription>
+              <WindowsWorkflowConfiguration>
+                <AssemblyName>OMSWorkItemInciden_Wflow</AssemblyName>
+                <WorkflowTypeName>WorkflowAuthoring.OMSWorkItemInciden_Wflow</WorkflowTypeName>
+                <WorkflowParameters>
+                  <WorkflowParameter Name="windowsPowerShellScript1_ID" Type="string">$Data/Property[@ID='$MPElement[Name="System_WorkItem_Library!System.WorkItem"]/Id$' and @State='Post']$</WorkflowParameter>
+                  <WorkflowParameter Name="windowsPowerShellScript1_iID" Type="string">$Data/BaseManagedEntityId$</WorkflowParameter>
+                </WorkflowParameters>
+                <RetryExceptions></RetryExceptions>
+                <RetryDelaySeconds>60</RetryDelaySeconds>
+                <MaximumRunningTimeSeconds>300</MaximumRunningTimeSeconds>
+              </WindowsWorkflowConfiguration>
+            </Subscription>
+          </WriteAction>
+        </WriteActions>
+      </Rule>
+      <Rule ID="OMSWorkItemIncident_WflowSync" Enabled="true" Target="SystemCenter!Microsoft.SystemCenter.SubscriptionWorkflowTarget" ConfirmDelivery="true" Remotable="true" Priority="Normal" DiscardLevel="100">
+        <Category>Notification</Category>
+        <DataSources>
+          <DataSource ID="DS" TypeID="SystemCenter1!Microsoft.SystemCenter.CmdbInstanceSubscription.DataSourceModule">
+            <Subscription>
+              <InstanceSubscription Type="$MPElement[Name='CustomIT_Asset_Management_Base!OMSConnector']$">
+                <UpdateInstance>
+                  <Criteria>
+                    <Expression>
+                      <SimpleExpression>
+                        <ValueExpression>
+                          <Property State="Post">$Context/Property[Type='CustomIT_Asset_Management_Base!OMSConnector']/SyncNow$</Property>
+                        </ValueExpression>
+                        <Operator>Equal</Operator>
+                        <ValueExpression>
+                          <Value>True</Value>
+                        </ValueExpression>
+                      </SimpleExpression>
+                    </Expression>
+                  </Criteria>
+                </UpdateInstance>
+              </InstanceSubscription>
+              <PollingIntervalInSeconds>60</PollingIntervalInSeconds>
+              <BatchSize>100</BatchSize>
+            </Subscription>
+          </DataSource>
+        </DataSources>
+        <WriteActions>
+          <WriteAction ID="WA" TypeID="SystemCenter1!Microsoft.EnterpriseManagement.SystemCenter.Subscription.WindowsWorkflowTaskWriteAction">
+            <Subscription>
+              <WindowsWorkflowConfiguration>
+                <AssemblyName>OMSWorkItemIncident_WflowSync</AssemblyName>
+                <WorkflowTypeName>WorkflowAuthoring.OMSWorkItemIncident_WflowSync</WorkflowTypeName>
+                <WorkflowParameters></WorkflowParameters>
+                <RetryExceptions></RetryExceptions>
+                <RetryDelaySeconds>60</RetryDelaySeconds>
+                <MaximumRunningTimeSeconds>3600</MaximumRunningTimeSeconds>
+              </WindowsWorkflowConfiguration>
+            </Subscription>
+          </WriteAction>
+        </WriteActions>
+      </Rule>
+    </Rules>
+    <Tasks>
+      <Task ID="OMSWorkItemInciden_Wflow.WindowsPowerShellScript.ae4f3dfd_2634_4fd5_b7c1_9dd4d11ab749" Accessibility="Public" Enabled="true" Target="Windows!Microsoft.Windows.Computer" Timeout="300" Remotable="true">
+        <Category>Notification</Category>
+        <WriteAction ID="OMSWorkItemInciden_Wflow.WindowsPowerShellScript.ae4f3dfd_2634_4fd5_b7c1_9dd4d11ab749.WA" TypeID="OMSWorkItemInciden_Wflow.WindowsPowerShellScript.ae4f3dfd_2634_4fd5_b7c1_9dd4d11ab749.MT">
+          <ID></ID>
+        </WriteAction>
+      </Task>
+      <Task ID="OMSWorkItemIncident_WflowSync.WindowsPowerShellScript.60a26f0f_75ae_48a7_9262_add5d1bbae08" Accessibility="Public" Enabled="true" Target="Windows!Microsoft.Windows.Computer" Timeout="300" Remotable="true">
+        <Category>Notification</Category>
+        <WriteAction ID="OMSWorkItemIncident_WflowSync.WindowsPowerShellScript.60a26f0f_75ae_48a7_9262_add5d1bbae08.WA" TypeID="OMSWorkItemIncident_WflowSync.WindowsPowerShellScript.60a26f0f_75ae_48a7_9262_add5d1bbae08.MT" />
+      </Task>
+    </Tasks>
+  </Monitoring>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+        <DisplayString ElementID="OMS.SyncConnector.ManagementPack">
+          <Name>OMS Sync Connector Management Pack</Name>
+          <Description>OMS Sync Connector Management Pack</Description>
+        </DisplayString>
+        <DisplayString ElementID="OMSWorkItemInciden_Wflow">
+          <Name>OMSWorkItemInciden_Wflow</Name>
+          <Description>OMS WorkItem Incident Workflow</Description>
+        </DisplayString>
+        <DisplayString ElementID="OMSWorkItemInciden_Wflow" SubElementID="WA">
+          <Name>OMS WorkItem Incident Workflow</Name>
+          <Description>OMS WorkItem Incident Workflow</Description>
+        </DisplayString>
+        <DisplayString ElementID="OMSWorkItemInciden_Wflow.WindowsPowerShellScript.ae4f3dfd_2634_4fd5_b7c1_9dd4d11ab749">
+          <Name>OMSWorkItemInciden_Wflow.WindowsPowerShellScript.ae4f3dfd_2634_4fd5_b7c1_9dd4d11ab749</Name>
+        </DisplayString>
+        <DisplayString ElementID="OMSWorkItemIncident_WflowSync">
+          <Name>OMSWorkItemIncident_WflowSync</Name>
+          <Description>OMS Work Item Incident Workflow Sync</Description>
+        </DisplayString>
+        <DisplayString ElementID="OMSWorkItemIncident_WflowSync" SubElementID="WA">
+          <Name>OMS Work Item Incident Workflow Sync</Name>
+          <Description>OMS Work Item Incident Workflow Sync</Description>
+        </DisplayString>
+        <DisplayString ElementID="OMSWorkItemIncident_WflowSync.WindowsPowerShellScript.60a26f0f_75ae_48a7_9262_add5d1bbae08">
+          <Name>OMSWorkItemIncident_WflowSync.WindowsPowerShellScript.60a26f0f_75ae_48a7_9262_add5d1bbae08</Name>
+        </DisplayString>
+      </DisplayStrings>
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPack>

@@ -1,0 +1,693 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <ProjectGuid>{cbbbd079-1577-40c1-b5e7-8f4f2cf45b83}</ProjectGuid>
+    <RootNamespace>IT_Asset_Management_Base</RootNamespace>
+    <Name>IT Asset Management Base</Name>
+    <ManagementPackName>IT_Asset_Management_Base</ManagementPackName>
+    <Version>1.2.1.0</Version>
+    <MpFrameworkVersion>v7.0.2</MpFrameworkVersion>
+    <MpFrameworkProfile>SM</MpFrameworkProfile>
+    <ProductVersion>1.1.0.0</ProductVersion>
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <GenerateSealed>True</GenerateSealed>
+    <Company>Microsoft Hellas</Company>
+    <Copyright>Copyright (c) Microsoft Hellas. evkapsal@ microsoft.com All rights reserved.</Copyright>
+    <DelaySigning>False</DelaySigning>
+    <AssemblyOriginatorKeyFile>C:\Users\evkapsal\OneDrive for Business\ITSM 2016\IT Asset Management Management Pack\itsm.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>false</DebugSymbols>
+    <OutputPath>bin\Release\</OutputPath>
+    <DelaySigning>false</DelaySigning>
+    <Company>MyCompany</Company>
+    <Copyright>Copyright (c) MyCompany. All rights reserved.</Copyright>
+    <DelaySign>false</DelaySign>
+    <AssemblyOriginatorKeyFile />
+  </PropertyGroup>
+  <ItemGroup>
+    <ManagementPackReference Include="FreemanRU.SCSMAdvancedViewEditor">
+      <HintPath>C:\Users\evkapsal\OneDrive for Business\ITSM 2016\DLL References\FreemanRU.SCSMAdvancedViewEditor.mp</HintPath>
+      <Alias>ViewEditor</Alias>
+      <MinVersion>2.0.1561.34</MinVersion>
+      <PackageToBundle>False</PackageToBundle>
+    </ManagementPackReference>
+    <ManagementPackReference Include="Microsoft.EnterpriseManagement.ServiceManager.UI.Administration">
+      <HintPath>C:\Program Files (x86)\Microsoft System Center 2012\Service Manager Authoring\Library\Microsoft.EnterpriseManagement.ServiceManager.UI.Administration.mp</HintPath>
+      <Alias>AdminUI</Alias>
+      <MinVersion>7.5.3079.0</MinVersion>
+      <PackageToBundle>False</PackageToBundle>
+    </ManagementPackReference>
+    <ManagementPackReference Include="Microsoft.EnterpriseManagement.ServiceManager.UI.Authoring">
+      <HintPath>C:\Program Files (x86)\Microsoft System Center 2012\Service Manager Authoring\Library\Microsoft.EnterpriseManagement.ServiceManager.UI.Authoring.mp</HintPath>
+      <Alias>SCSMUIAuth</Alias>
+      <MinVersion>7.5.3079.0</MinVersion>
+      <PackageToBundle>False</PackageToBundle>
+    </ManagementPackReference>
+    <ManagementPackReference Include="Microsoft.EnterpriseManagement.ServiceManager.UI.Console">
+      <HintPath>C:\Program Files (x86)\Microsoft System Center 2012\Service Manager Authoring\Library\Microsoft.EnterpriseManagement.ServiceManager.UI.Console.mp</HintPath>
+      <Alias>Console</Alias>
+      <MinVersion>7.5.3079.0</MinVersion>
+      <PackageToBundle>False</PackageToBundle>
+    </ManagementPackReference>
+    <ManagementPackReference Include="Microsoft.SystemCenter.Library">
+      <Alias>SC</Alias>
+      <PackageToBundle>False</PackageToBundle>
+    </ManagementPackReference>
+    <ManagementPackReference Include="Microsoft.SystemCenter.Subscriptions">
+      <HintPath>C:\Program Files (x86)\Microsoft System Center 2012\Service Manager Authoring\Library\Microsoft.SystemCenter.Subscriptions.mp</HintPath>
+      <Alias>Subscription</Alias>
+      <MinVersion>7.5.3079.0</MinVersion>
+      <PackageToBundle>False</PackageToBundle>
+    </ManagementPackReference>
+    <ManagementPackReference Include="Microsoft.Windows.Library">
+      <HintPath>C:\Program Files (x86)\Microsoft System Center 2012\Service Manager Authoring\Library\Microsoft.Windows.Library.mp</HintPath>
+      <Alias>Windows</Alias>
+      <MinVersion>7.5.8501.0</MinVersion>
+      <PackageToBundle>False</PackageToBundle>
+    </ManagementPackReference>
+    <ManagementPackReference Include="ServiceManager.ConfigurationManagement.Library">
+      <HintPath>C:\Program Files (x86)\Microsoft System Center 2012\Service Manager Authoring\Library\ServiceManager.ConfigurationManagement.Library.mp</HintPath>
+      <Alias>SCL</Alias>
+      <MinVersion>7.5.3079.0</MinVersion>
+      <PackageToBundle>False</PackageToBundle>
+    </ManagementPackReference>
+    <ManagementPackReference Include="ServiceManager.Core.Library">
+      <HintPath>C:\Program Files (x86)\Microsoft System Center 2012\Service Manager Authoring\Library\ServiceManager.Core.Library.mp</HintPath>
+      <Alias>Core</Alias>
+      <MinVersion>7.5.3079.0</MinVersion>
+      <PackageToBundle>False</PackageToBundle>
+    </ManagementPackReference>
+    <ManagementPackReference Include="System.AdminItem.Library">
+      <HintPath>C:\Program Files (x86)\Microsoft System Center 2012\Service Manager Authoring\Library\System.AdminItem.Library.mp</HintPath>
+      <Alias>AdminItem</Alias>
+      <MinVersion>7.5.8501.0</MinVersion>
+      <PackageToBundle>False</PackageToBundle>
+    </ManagementPackReference>
+    <ManagementPackReference Include="System.Knowledge.Library">
+      <HintPath>C:\Program Files (x86)\Microsoft System Center 2012\Service Manager Authoring\Library\System.Knowledge.Library.mp</HintPath>
+      <Alias>CoreKnowledge</Alias>
+      <MinVersion>7.5.3079.0</MinVersion>
+      <PackageToBundle>False</PackageToBundle>
+    </ManagementPackReference>
+    <ManagementPackReference Include="System.Library">
+      <Alias>System</Alias>
+      <PackageToBundle>False</PackageToBundle>
+    </ManagementPackReference>
+    <ManagementPackReference Include="System.Software.Library">
+      <HintPath>C:\Program Files (x86)\Microsoft System Center 2012\Service Manager Authoring\Library\System.Software.Library.mp</HintPath>
+      <Alias>Software</Alias>
+      <MinVersion>7.5.8501.0</MinVersion>
+      <PackageToBundle>False</PackageToBundle>
+    </ManagementPackReference>
+    <ManagementPackReference Include="System.SupportingItem.Library">
+      <HintPath>C:\Program Files (x86)\Microsoft System Center 2012\Service Manager Authoring\Library\System.SupportingItem.Library.mp</HintPath>
+      <Alias>SupportingItem</Alias>
+      <MinVersion>7.5.3079.0</MinVersion>
+      <PackageToBundle>False</PackageToBundle>
+    </ManagementPackReference>
+    <ManagementPackReference Include="System.WorkItem.Library">
+      <HintPath>C:\Program Files (x86)\Microsoft System Center 2012\Service Manager Authoring\Library\System.WorkItem.Library.mp</HintPath>
+      <Alias>WorkItem</Alias>
+      <MinVersion>7.5.3079.0</MinVersion>
+      <PackageToBundle>False</PackageToBundle>
+    </ManagementPackReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FormResources.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ITAssetManagementProjections.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ITAssetManagementRelationships.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ITAssetMgmtClass.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ITAssetMgmtPresentation.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ITAssetMgmtResources.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ITAssetTask.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ITAssetWorkSpace.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ManagementPack.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Forms" />
+    <Folder Include="Management Packs" />
+    <Folder Include="Tasks" />
+    <Folder Include="Pictures" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pictures\activeagreement16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\activeagreement24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\buil16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\buil24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\buildok16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\buildok24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\buildpau16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\buildpau24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\bulinf16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\bulinf24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\bulwarning16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\bulwarning24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\cc16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\cc24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\ccac16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\ccac24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\ccclo16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\ccclo24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\ccinfo16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\ccinfo24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\ccpen16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\ccpen24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\companyother16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\companyother24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\connectormain16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\connectormain24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\contact16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\contact24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\contactother16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\contactother24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\cost16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\cost24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\hardwareagreement16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\hardwareagreement24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\hw16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\hw24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\hwact16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\hwact24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\hwconn16x16png.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\hwconn24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\hwinfo16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\hwinfo24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\hwpen16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\hwpen24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\hwret16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\hwret24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\hwserv16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\hwserv24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\hwwarning16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\hwwarning24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\invoiceactive16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\invoiceactive24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\invoicecancelled16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\invoicecancelled24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\invoicemain16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\invoicemain24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\invoicepaid16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\invoicepaid24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\invoicesuspended16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\invoicesuspended24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\keyinfo16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\keyinfo24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\lic16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\lic24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\liccael16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\liccael24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\liccan16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\liccan24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\licinfo16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\licinfo24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\lickey16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\lickey24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\lickeyactive16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\lickeyactive24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\licok16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\licok24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\liconn16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\liconn24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\licwarn16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\licwarn24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\Location16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\Location24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\Org16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\Org24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\OrganizationActive16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\OrganizationActive24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\OrganizationExpired16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\OrganizationExpired24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\OrganizationInactive16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\OrganizationInactive24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\OrganizationMain16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\OrganizationMain24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\OrganizationRetired16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\OrganizationRetired24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\Po16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\Po24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\poactive16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\poactive24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\pocalcelled16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\pocalcelled24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\pono16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\pono24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\popendeing16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\popendeing24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\soft16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\soft24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\softac16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\softac24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\softconn16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\softconn24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\software16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\software24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\SoftwareAgreement16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\SoftwareAgreement24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\softwareinfo16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\softwareinfo24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\softwarer16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\softwarer24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\softwareser16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\softwareser24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\softwarewar16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\softwarewar24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\softwarewarning16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\softwarewarning24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\sofwareactive16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\sofwareactive24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\sofwaremain16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\sofwaremain24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\sofwareretired16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\sofwareretired24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\supportagreement16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\supportagreement24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\warrantyagreement16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\warrantyagreement24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pictures\contrmgmt16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\contrmgmt24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\hwm16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\hwm24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\itasset16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\itasset24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\itmain16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\itmain24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\softmain16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\softmain24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\workf16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\workf24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Forms\ITAssetMgmtForms.dll">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pictures\mobiledevice16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\mobiledevice24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\VirtualMachine16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\VirtualMachine24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\server16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\server24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\Manufacturer16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\Manufacturer24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\model16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\model24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\networkdev16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\networkdev24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\printer16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\printer24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\Storage16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\Storage24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\LeaseAgreement16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\LeaseAgreement24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tasks\ITAssetManagementTasks.dll">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\cloud16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\cloud24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <Content Include="Pictures\ic_administrator_gear.png">
+      <SubType>Content</SubType>
+    </Content>
+    <EmbeddedResource Include="Pictures\Orgset16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\Orgset24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\Oset16x16png.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\Oset24x24png.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\Sset16cx16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\Sset24cx24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VSAC\Microsoft.SystemCenter.OperationsManager.targets" />
+</Project>

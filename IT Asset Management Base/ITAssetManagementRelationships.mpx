@@ -1,0 +1,977 @@
+﻿<ManagementPackFragment SchemaVersion="SM2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TypeDefinitions>
+    <EntityTypes>
+      <RelationshipTypes>
+        <RelationshipType ID="Relationship.HWAgreementHasConct" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="HardwareAgreement" Type="HardwareAgreement" />
+          <Target ID="Contact" Type="Contact" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.HWAgreementHasCost" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="HardwareAgreement" Type="HardwareAgreement" />
+          <Target ID="Cost" Type="Cost" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.HWAgreementHasLocation" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="HardwareAgreement" Type="HardwareAgreement" />
+          <Target ID="NLocation" Type="NLocation" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+		<!--
+       <RelationshipType ID="Relationship.UserRoleHasMember" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="Role" Type="Role" />
+          <Target ID="IsMember" Type="System!System.Domain.User" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.UserRoleHasSetting" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="Role" Type="Role" />
+          <Target ID="Setting" Type="Setting"/>
+        </RelationshipType>
+        <RelationshipType ID="Relationship.UserRoleHasOtherSetting" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="Role" Type="Role" />
+          <Target ID="OtherSetting" Type="OtherSetting"/>
+        </RelationshipType>
+        <RelationshipType ID="Relationship.UserRoleHasShortcut" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="Role" Type="Role" />
+          <Target ID="Shortcut" Type="Shortcut" />
+        </RelationshipType>
+		  <RelationshipType ID="Relationship.ADGroupHasUser" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="ADGroupMembership" Type="ADGroupMembership" />
+          <Target ID="User" Type="System!System.Domain.User" MinCardinality="0" MaxCardinality="2147483647" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.ADGroupAssignJobRole" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="ADGroupMembership" Type="ADGroupMembership" />
+          <Target ID="Role" Type="Role" MinCardinality="0" MaxCardinality="2147483647" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.ADGroupHasSettings" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="ADGroupMembership" Type="ADGroupMembership" />
+          <Target ID="Setting" Type="Setting" MinCardinality="0" MaxCardinality="2147483647" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.SettingHasShortcut" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="Setting" Type="Setting" />
+          <Target ID="Shortcut" Type="Shortcut" MinCardinality="0" MaxCardinality="2147483647" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.SettingHasOtherSetting" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="Setting" Type="Setting" />
+          <Target ID="OtherSetting" Type="OtherSetting" MinCardinality="0" MaxCardinality="2147483647" />
+        </RelationshipType>
+		-->
+        <RelationshipType ID="Relationship.HWAgreementHasPurchaseOrder" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="HardwareAgreement" Type="HardwareAgreement" />
+          <Target ID="PurchaseOrder" Type="PurchaseOrder" />
+        </RelationshipType>        
+        <RelationshipType ID="Relationship.SoftwareAssetHasInvoice" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="SoftwareAsset" Type="SoftwareAsset" />
+          <Target ID="Invoice" Type="Invoice" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+         <RelationshipType ID="Relationship.SoftwareAgreementHasPurchaseOrder" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="SoftwareAgreement" Type="SoftwareAgreement" />
+          <Target ID="PurchaseOrder" Type="PurchaseOrder" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.SupportAgreementHasPurchaseOrder" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="SupportAgreement" Type="SupportAgreement" />
+          <Target ID="PurchaseOrder" Type="PurchaseOrder" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.SupportAgreementHasInvoice" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="SupportAgreement" Type="SupportAgreement" />
+          <Target ID="Invoice" Type="Invoice" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.InvoiceHasContact" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="Invoice" Type="Invoice" />
+          <Target ID="Contact" Type="Contact" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.InvoiceIsForOrganization" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="Invoice" Type="Invoice" />
+          <Target ID="Organization" Type="Organization" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.InvoiceHasUser" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="Invoice" Type="Invoice" />
+          <Target ID="User" Type="System!System.Domain.User" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.HWAgreementHasInvoice" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="HardwareAgreement" Type="HardwareAgreement" />
+          <Target ID="Invoice" Type="Invoice" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.HWAgreementHasOrganization" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="HardwareAgreement" Type="HardwareAgreement" />
+          <Target ID="Organization" Type="Organization" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.HardwareAgreementHasSupplier" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="HardwareAgreement" Type="HardwareAgreement" />
+          <Target ID="Supplier" Type="Company" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.SoftwareAgreementHasSupplier" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="SoftwareAgreement" Type="SoftwareAgreement" />
+          <Target ID="Supplier" Type="Company" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.SoftwareAgreementHasLocation" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="SoftwareAgreement" Type="SoftwareAgreement" />
+          <Target ID="NLocation" Type="NLocation" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.SupportAgreementHasSupplier" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="SupportAgreement" Type="SupportAgreement" />
+          <Target ID="Supplier" Type="Company" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.SupportAgreementHasLocation" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="SupportAgreement" Type="SupportAgreement" />
+          <Target ID="NLocation" Type="NLocation" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.SupportAgreementHasOrganization" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="SupportAgreement" Type="SupportAgreement" />
+          <Target ID="Organization" Type="Organization" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.SupportAgreementHasContact" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="SupportAgreement" Type="SupportAgreement" />
+          <Target ID="Contact" Type="Contact" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.ContactHasCompany" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="Contact" Type="Contact" />
+          <Target ID="Company" Type="Company" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.CostHasCostCenter" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="Cost" Type="Cost" />
+          <Target ID="CostCenter" Type="CostCenter" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.CostHasLocation" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="Cost" Type="Cost" />
+          <Target ID="NLocation" Type="NLocation" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.CostHasOrganization" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="Cost" Type="Cost" />
+          <Target ID="Organization" Type="Organization" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.OrganizationHasLocation" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="Organization" Type="Organization" />
+          <Target ID="NLocation" Type="NLocation" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.CostHasSupplier" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="Cost" Type="Cost" />
+          <Target ID="Supplier" Type="Company" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+          <RelationshipType ID="Relationship.CostHasUsr" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="Cost" Type="Cost" />
+          <Target ID="User" Type="System!System.Domain.User" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.CostIsForInvoice" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="Cost" Type="Cost" />
+          <Target ID="Invoice" Type="Invoice" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.CostIsForPurchaseOrder" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="Cost" Type="Cost" />
+          <Target ID="PurchaseOrder" Type="PurchaseOrder" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.InvoiceHasSupplier" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="Invoice" Type="Invoice" />
+          <Target ID="Supplier" Type="Company" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+          <RelationshipType ID="Relationship.InvoiceHasCostCenter" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+            <Source ID="Invoice" Type="Invoice" />
+            <Target ID="CostCenter" Type="CostCenter" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.OrganizationHasCostCenter" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+         <Source ID="Organization" Type="Organization" />
+          <Target ID="CostCenter" Type="CostCenter" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.PurchaseOrderHasCostCenter" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="PurchaseOrder" Type="PurchaseOrder" />
+          <Target ID="CostCenter" Type="CostCenter" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.PurchaseOrderHasInvoice" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="PurchaseOrder" Type="PurchaseOrder" />
+          <Target ID="Invoice" Type="Invoice" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+         <RelationshipType ID="Relationship.PurchaseOrderHasUser" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="PurchaseOrder" Type="PurchaseOrder" />
+          <Target ID="User" Type="System!System.Domain.User" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.PurchaseOrderHasLocation" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="PurchaseOrder" Type="PurchaseOrder" />
+          <Target ID="NLocation" Type="NLocation" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.PurchaseOrderHasSKU" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="PurchaseOrder" Type="PurchaseOrder" />
+          <Target ID="SKU" Type="SKU" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.PurchaseOrderHasOrganization" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="PurchaseOrder" Type="PurchaseOrder" />
+          <Target ID="Organization" Type="Organization" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.PurchaseOrderHasSupplier" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="PurchaseOrder" Type="PurchaseOrder" />
+          <Target ID="Supplier" Type="Company" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.UserIsAffiliatedWithCostCenter" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="User" Type="System!System.Domain.User" />
+          <Target ID="CostCenter" Type="CostCenter" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.UserIsAffiliatedWithLocation" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="User" Type="System!System.Domain.User" />
+          <Target ID="NLocation" Type="NLocation" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.UserIsAffiliatedWithOrganization" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="User" Type="System!System.Domain.User" />
+          <Target ID="Organization" Type="Organization" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.HardwareAssetReferencesHardware" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="HardwareAsset" Type="HardwareAsset" MinCardinality="0" MaxCardinality="1" />
+          <Target ID="Hardware" Type="Hardware" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+         <RelationshipType ID="Relationship.HardwareReferencesMonitor" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="Hardware" Type="Hardware" MinCardinality="0" MaxCardinality="1" />
+          <Target ID="Monitor" Type="Monitor" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.HardwareAssetReferencesPrinter" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="HardwareAsset" Type="HardwareAsset" MinCardinality="0" MaxCardinality="1" />
+          <Target ID="Printer" Type="Printer" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.HardwareAssetReferencesNetworkDevice" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="HardwareAsset" Type="HardwareAsset" MinCardinality="0" MaxCardinality="1" />
+          <Target ID="NetworkDevice" Type="NetworkDevice" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.HardwareAssetReferencesMonitorDevice" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="HardwareAsset" Type="HardwareAsset" MinCardinality="0" MaxCardinality="1" />
+          <Target ID="Monitor" Type="Monitor" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.HardwareAssetReferencesStorageDevice" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="HardwareAsset" Type="HardwareAsset" MinCardinality="0" MaxCardinality="1" />
+          <Target ID="StorageDevice" Type="StorageDevice" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.HardwareAssetReferencesMobileDevice" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+        <Source ID="HardwareAsset" Type="HardwareAsset" MinCardinality="0" MaxCardinality="1" />
+        <Target ID="MobileDevice" Type="MobileDevice" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.HardwareAssetHasSupportAgreement" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="HardwareAsset" Type="HardwareAsset" />
+          <Target ID="SupportAgreement" Type="SupportAgreement" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.HardwareAssetHasAgreement" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+           <Source ID="HardwareAsset" Type="HardwareAsset" />
+          <Target ID="HardwareAgreement" Type="HardwareAgreement" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.SoftwareAssetHasAgreement" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="SoftwareAsset" Type="SoftwareAsset" />
+          <Target ID="SoftwareAgreement" Type="SoftwareAgreement" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.SoftwareAssetHasLeaseAgreement" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="SoftwareAsset" Type="SoftwareAsset" />
+          <Target ID="LeaseAgreement" Type="LeaseAgreement" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.SoftwareAssetHasSupportAgreement" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="SoftwareAsset" Type="SoftwareAsset" />
+          <Target ID="SupportAgreement" Type="SupportAgreement" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.HardwareAgreementHasCostCenter" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="HardwareAgreement" Type="HardwareAgreement" />
+          <Target ID="CostCenter" Type="CostCenter" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.SoftwareAgreementHasCostCenter" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="SoftwareAgreement" Type="SoftwareAgreement" />
+          <Target ID="CostCenter" Type="CostCenter" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.SoftwareAgreementHasCost" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="SoftwareAgreement" Type="SoftwareAgreement" />
+          <Target ID="Cost" Type="Cost"  MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.SoftwareAgreementHasContact" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="SoftwareAgreement" Type="SoftwareAgreement" />
+          <Target ID="Contact" Type="Contact" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.SoftwareAgreementHasOrganization" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="SoftwareAgreement" Type="SoftwareAgreement" />
+          <Target ID="Organization" Type="Organization" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.SoftwareAgreementHasInvoice" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="SoftwareAgreement" Type="SoftwareAgreement" />
+          <Target ID="Invoice" Type="Invoice" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.SupportAgreementHasCostCenter" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="SupportAgreement" Type="SupportAgreement" />
+          <Target ID="CostCenter" Type="CostCenter" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.SupportAgreementHasCost" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="SupportAgreement" Type="SupportAgreement" />
+          <Target ID="Cost" Type="Cost" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.CostCenterHasLocation" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="CostCenter" Type="CostCenter" />
+          <Target ID="NLocation" Type="NLocation" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.InvoiceHasLocation" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="Invoice" Type="Invoice" />
+          <Target ID="NLocation" Type="NLocation" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.HardwareAssetHasInv" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="HardwareAsset" Type="HardwareAsset" />
+          <Target ID="Invoice" Type="Invoice" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.HardwareAssetHasLocation" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="HardwareAsset" Type="HardwareAsset" />
+          <Target ID="NLocation" Type="NLocation" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.HardwareAssetHasCostCenter" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="HardwareAsset" Type="HardwareAsset" />
+          <Target ID="CostCenter" Type="CostCenter" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.HardwareAssetHasUser" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="HardwareAsset" Type="HardwareAsset" />
+          <Target ID="User" Type="System!System.Domain.User" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.HardwareAssetHasOrganization" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="HardwareAsset" Type="HardwareAsset" />
+          <Target ID="Organization" Type="Organization" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+         <RelationshipType ID="Relationship.HardwareAssetHasPO" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+         <Source ID="HardwareAsset" Type="HardwareAsset" />
+          <Target ID="PurchaseOrder" Type="PurchaseOrder" MinCardinality="0" MaxCardinality="1" />
+         </RelationshipType>
+        <RelationshipType ID="Relationship.HardwareAssetHasSupplier" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="HardwareAsset" Type="HardwareAsset" />
+          <Target ID="Supplier" Type="Company" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.HardwareHasUser" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="Hardware" Type="Hardware" />
+          <Target ID="User" Type="System!System.Domain.User" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.MonitorHasUser" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="Monitor" Type="Monitor" />
+          <Target ID="User" Type="System!System.Domain.User" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        
+        <RelationshipType ID="Relationship.HardwareContainsDisks" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="Hardware" Type="Hardware" />
+          <Target ID="Disk" Type="WindowsPeripheral!Microsoft.Windows.Peripheral.PhysicalDisk" />
+          </RelationshipType>
+        <RelationshipType ID="Relationship.HardwareContainsVolumes" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="Hardware" Type="Hardware" />
+          <Target ID="Volume" Type="WindowsPeripheral!Microsoft.Windows.Peripheral.LogicalDisk" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.PrinterHasUser" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="Printer" Type="Printer" />
+          <Target ID="User" Type="System!System.Domain.User" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.NetworkDeviceHasUser" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="NetworkDevice" Type="NetworkDevice" />
+          <Target ID="User" Type="System!System.Domain.User" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.StorageDeviceHasUser" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="StorageDevice" Type="StorageDevice" />
+          <Target ID="User" Type="System!System.Domain.User" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.MobileDeviceHasUser" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="MobileDevice" Type="MobileDevice" />
+          <Target ID="User" Type="System!System.Domain.User" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.SoftwareAssetHasContact" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="SoftwareAsset" Type="SoftwareAsset" />
+          <Target ID="Contact" Type="Contact" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.SoftwareAssetHasLocation" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="SoftwareAsset" Type="SoftwareAsset" />
+          <Target ID="NLocation" Type="NLocation" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.SoftwareAssetHasOrganization" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="SoftwareAsset" Type="SoftwareAsset" />
+          <Target ID="Organization" Type="Organization" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.SoftwareAssetHasSupplier" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="SoftwareAsset" Type="SoftwareAsset" />
+          <Target ID="Supplier" Type="Company" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.SoftwareAssetHasPurchaseOrder" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="SoftwareAsset" Type="SoftwareAsset" />
+          <Target ID="PurchaseOrder" Type="PurchaseOrder"  MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.SoftwareAssetHasCostCenter" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="SoftwareAsset" Type="SoftwareAsset" />
+          <Target ID="CostCenter" Type="CostCenter"  MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>      
+        <RelationshipType ID="Relationship.SoftwareAssetHasSoftware" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="SoftwareAsset" Type="SoftwareAsset" MinCardinality="0" MaxCardinality="1" />
+          <Target ID="Software" Type="Software"  MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.SoftwareAssetHasUser" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="SoftwareAsset" Type="SoftwareAsset" />
+          <Target ID="User" Type="System!System.Domain.User"  MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+         <RelationshipType ID="Relationship.SoftwareAssetChangedByUser" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="SoftwareAsset" Type="SoftwareAsset" />
+          <Target ID="User" Type="System!System.Domain.User"  MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.HardwareAssetChangedByUser" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="HardwareAsset" Type="HardwareAsset" />
+          <Target ID="User" Type="System!System.Domain.User"  MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.SoftwareHasPublisher" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="Software" Type="Software" />
+          <Target ID="SoftwarePublisher" Type="SoftwarePublisher"  MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.SoftwareHasVersion" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="SoftwareVersion" Type="SoftwareVersion"  />
+          <Target ID="Software" Type="Software" MinCardinality="0" MaxCardinality="1"/>
+        </RelationshipType>
+        <RelationshipType ID="Relationship.SoftwareVersionInstalledOnAssets" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="SoftwareVersion" Type="SoftwareVersion"  />
+          <Target ID="HardwareAsset" Type="HardwareAsset" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.SoftwareIsInstalledOnHardwareAsset" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="Software" Type="Software" />
+          <Target ID="HardwareAsset" Type="HardwareAsset" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.LicStatusIsForSoftwareAgreement" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="LicenseStatus" Type="LicenseStatus" />
+          <Target ID="SoftwareAgreement" Type="SoftwareAgreement"/>
+        </RelationshipType>
+        <RelationshipType ID="Relationship.LicStatusHasSoftware" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="LicenseStatus" Type="LicenseStatus" />
+          <Target ID="Software" Type="Software" MinCardinality="0" MaxCardinality="1"/>
+        </RelationshipType>
+        <RelationshipType ID="Relationship.HardwareHasManufacturer" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="Hardware" Type="Hardware" />
+          <Target ID="DeviceManufacturer" Type="DeviceManufacturer" MinCardinality="0" MaxCardinality="1"/>
+        </RelationshipType>
+        <RelationshipType ID="Relationship.HardwareHasModel" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="Hardware" Type="Hardware" />
+          <Target ID="DeviceModel" Type="DeviceModel" MinCardinality="0" MaxCardinality="1"/>
+        </RelationshipType>
+        
+        <RelationshipType ID="Relationship.MonitorHasManufacturer" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="Monitor" Type="Monitor" />
+          <Target ID="DeviceManufacturer" Type="DeviceManufacturer" MinCardinality="0" MaxCardinality="1"/>
+        </RelationshipType>
+        <RelationshipType ID="Relationship.MonitorHasModel" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="Monitor" Type="Monitor" />
+          <Target ID="DeviceModel" Type="DeviceModel" MinCardinality="0" MaxCardinality="1"/>
+        </RelationshipType>
+        <RelationshipType ID="Relationship.DeviceModelHasManufacturer" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="DeviceModel" Type="DeviceModel" />
+          <Target ID="DeviceManufacturer" Type="DeviceManufacturer" MinCardinality="0" MaxCardinality="1"/>
+        </RelationshipType>
+        <RelationshipType ID="Relationship.NetworkDeviceHasManufacturer" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="NetworkDevice" Type="NetworkDevice" />
+          <Target ID="DeviceManufacturer" Type="DeviceManufacturer" MinCardinality="0" MaxCardinality="1"/>
+        </RelationshipType>
+        <RelationshipType ID="Relationship.NetworkDeviceHasModel" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="NetworkDevice" Type="NetworkDevice" />
+          <Target ID="DeviceModel" Type="DeviceModel" MinCardinality="0" MaxCardinality="1"/>
+        </RelationshipType>
+        <RelationshipType ID="Relationship.StorageDeviceHasManufacturer" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="StorageDevice" Type="StorageDevice" />
+          <Target ID="DeviceManufacturer" Type="DeviceManufacturer" MinCardinality="0" MaxCardinality="1"/>
+        </RelationshipType>
+        <RelationshipType ID="Relationship.StorageDeviceHasModel" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="StorageDevice" Type="StorageDevice" />
+          <Target ID="DeviceModel" Type="DeviceModel" MinCardinality="0" MaxCardinality="1"/>
+        </RelationshipType>
+        <RelationshipType ID="Relationship.MobileDeviceHasManufacturer" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="MobileDevice" Type="MobileDevice" />
+          <Target ID="DeviceManufacturer" Type="DeviceManufacturer" MinCardinality="0" MaxCardinality="1"/>
+        </RelationshipType>
+        <RelationshipType ID="Relationship.MobileDeviceHasModel" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="MobileDevice" Type="MobileDevice" />
+          <Target ID="DeviceModel" Type="DeviceModel" MinCardinality="0" MaxCardinality="1"/>
+        </RelationshipType>
+         <RelationshipType ID="Relationship.PrinterHasManufacturer" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="Printer" Type="Printer" />
+          <Target ID="DeviceManufacturer" Type="DeviceManufacturer" MinCardinality="0" MaxCardinality="1"/>
+        </RelationshipType>
+        <RelationshipType ID="Relationship.PrinterHasModel" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="Printer" Type="Printer" />
+          <Target ID="DeviceModel" Type="DeviceModel" MinCardinality="0" MaxCardinality="1"/>
+        </RelationshipType>
+        <RelationshipType ID="Relationship.SoftwareHasSKU" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="Software" Type="Software" MinCardinality="0" MaxCardinality="1" />
+          <Target ID="SKU" Type="SKU"  MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.SoftwareHasLicenseKey" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="Software" Type="Software" />
+          <Target ID="SoftwareLicenseKey" Type="SoftwareLicenseKey"  MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.SoftwareLicenseKeyHasOwner" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="SoftwareLicenseKey" Type="SoftwareLicenseKey" />
+          <Target ID="User" Type="System!System.Domain.User" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.SkuIsForSoftwareAsset" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="SKU" Type="SKU" />
+          <Target ID="SoftwareAsset" Type="SoftwareAsset" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.SkuHasPurchaseOrder" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="SKU" Type="SKU" />
+          <Target ID="PurchaseOrder" Type="PurchaseOrder" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.SkuHasSoftwareLicenseKey" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="SKU" Type="SKU" />
+          <Target ID="SoftwareLicenseKey" Type="SoftwareLicenseKey" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.SoftwareLicenseKeyIsForSoftwareAsset" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="SoftwareLicenseKey" Type="SoftwareLicenseKey" />
+          <Target ID="SoftwareAsset" Type="SoftwareAsset" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.LeaseAgreementHasContact" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="LeaseAgreement" Type="LeaseAgreement" />
+          <Target ID="Contact" Type="Contact" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.LeaseAgreementHasCost" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="LeaseAgreement" Type="LeaseAgreement" />
+          <Target ID="Cost" Type="Cost" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.LeaseAgreementHasLocation" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="LeaseAgreement" Type="LeaseAgreement" />
+          <Target ID="NLocation" Type="NLocation" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+		  <RelationshipType ID="Relationship.LeaseAgreementHasInvoice" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="LeaseAgreement" Type="LeaseAgreement" />
+          <Target ID="Invoice" Type="Invoice" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.LeaseAgreementHasOrganization" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="LeaseAgreement" Type="LeaseAgreement" />
+          <Target ID="Organization" Type="Organization" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.LeaseAgreementHasSupplier" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="LeaseAgreement" Type="LeaseAgreement" />
+          <Target ID="Supplier" Type="Company" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+		 <RelationshipType ID="Relationship.LeaseAgreementHasPurchaseOrder" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="LeaseAgreement" Type="LeaseAgreement" />
+          <Target ID="PurchaseOrder" Type="PurchaseOrder" />
+        </RelationshipType>
+		<RelationshipType ID="Relationship.HardwareAssetHasLeaseAgreement" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+           <Source ID="HardwareAsset" Type="HardwareAsset" />
+          <Target ID="LeaseAgreement" Type="LeaseAgreement" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+		<RelationshipType ID="Relationship.LeaseAgreementHasCostCenter" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="LeaseAgreement" Type="LeaseAgreement" />
+          <Target ID="CostCenter" Type="CostCenter" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>	
+        <!--
+		#For Delete
+		<RelationshipType ID="Relationship.HardwareAssetHasTag" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Property ID="AssetTag" Type="string" />
+          <Source ID="HardwareAsset" Type="HardwareAsset" />
+          <Target ID="Hardware" Type="Hardware" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.HardwareAssetHasEffDate" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Property ID="EffectiveDate" Type="datetime" />
+          <Source ID="HardwareAsset" Type="HardwareAsset" />
+          <Target ID="Agreement" Type="Agreement" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.HardwareAssethasExpDate" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Property ID="ExpirationDate" Type="datetime" />
+          <Source ID="HardwareAsset" Type="HardwareAsset" />
+          <Target ID="Agreement" Type="Agreement" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.HardwareAssetHasSerial" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Property ID="SerialNumber" Type="string" />
+          <Source ID="HardwareAsset" Type="HardwareAsset" />
+          <Target ID="Hardware" Type="Hardware" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.HardwareAssetHasAssetTag" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Property ID="AssetTag" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
+          <Source ID="Hardware" Type="Hardware" />
+          <Target ID="HardwareAsset" Type="HardwareAsset" />
+        </RelationshipType>
+		For Delete#
+		-->
+      </RelationshipTypes>
+    </EntityTypes>
+  </TypeDefinitions>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+        <DisplayString ElementID="Relationship.SoftwareHasLicenseKey">
+          <Name>Software Has License Key Relationship </Name>
+          <Description>Software Has License Key Relationship</Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.SoftwareLicenseKeyHasOwner">
+          <Name>Software License Key  Has Owner Relationship </Name>
+          <Description>Software License Key Has Owner  Relationship</Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.SoftwareHasSKU">
+          <Name>Software Has SKU Relationship </Name>
+          <Description>Software Has SKU Relationship</Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.SupportAgreementHasLocation">
+          <Name>Support Agreement Has Location</Name>
+          <Description>Support Agreement Has Location </Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.SupportAgreementHasCost">
+          <Name>Support Agreement Has Cost</Name>
+          <Description>Support Agreement Has Cost </Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.SupportAgreementHasCostCenter">
+          <Name>Support Agreement Has Cost Center</Name>
+          <Description>Support Agreement Has Cost Center </Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.SoftwareAgreementHasLocation">
+          <Name>Software Agreement Has Location</Name>
+          <Description>Software Agreement Has Location </Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.SoftwareAgreementHasInvoice">
+          <Name>Software Agreement Has Location</Name>
+          <Description>Software Agreement Has Location </Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.LeaseAgreementHasContact">
+          <Name>Lease Agreement Has Contact </Name>
+          <Description>Lease Agreement Has Contact</Description>
+        </DisplayString>
+		<DisplayString ElementID="Relationship.LeaseAgreementHasCost">
+          <Name>Lease Agreement Has Cost </Name>
+          <Description>Lease Agreement Has Cost</Description>
+        </DisplayString>
+		<DisplayString ElementID="Relationship.LeaseAgreementHasLocation">
+          <Name>Lease Agreement Has Location </Name>
+          <Description>Lease Agreement Has Location</Description>
+        </DisplayString>
+		<DisplayString ElementID="Relationship.LeaseAgreementHasInvoice">
+          <Name>Lease Agreement Has Invoice </Name>
+          <Description>Lease Agreement Has Invoice</Description>
+        </DisplayString>
+		<DisplayString ElementID="Relationship.LeaseAgreementHasOrganization">
+          <Name>Lease Agreement Has Organization </Name>
+          <Description>Lease Agreement Has Organization</Description>
+        </DisplayString>
+		<DisplayString ElementID="Relationship.LeaseAgreementHasSupplier">
+          <Name>Lease Agreement Has Supplier </Name>
+          <Description>Lease Agreement Has Supplier</Description>
+        </DisplayString>
+		<DisplayString ElementID="Relationship.LeaseAgreementHasPurchaseOrder">
+          <Name>Lease Agreement Has Purchase Order </Name>
+          <Description>Lease Agreement Has Purchase Order</Description>
+        </DisplayString>
+		<DisplayString ElementID="Relationship.HardwareAssetHasLeaseAgreement">
+          <Name>Lease Agreement Is For Hardware Asset</Name>
+          <Description>Lease Agreement Is For Hardware Asset</Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.SoftwareAssetHasLeaseAgreement">
+          <Name>Lease Agreement Is For Software Asset</Name>
+          <Description>Lease Agreement Is For Software Asset</Description>
+        </DisplayString>
+		<DisplayString ElementID="Relationship.LeaseAgreementHasCostCenter">
+          <Name>Lease Agreement Has Cost Center</Name>
+          <Description>Lease Agreement Has Cost Center</Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.SoftwareAgreementHasCost">
+          <Name>Software Agreement Has Cost</Name>
+          <Description>Software Agreement Has Cost</Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.CostCenterHasLocation">
+          <Name>Cost Center Has Invoice</Name>
+          <Description>Cost Center Has Invoice </Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.InvoiceHasLocation">
+          <Name>Invoice Has Location</Name>
+          <Description>Invoice Has Location </Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.SupportAgreementHasPurchaseOrder">
+          <Name>Support Agreement Has Purchase Order</Name>
+          <Description>Support Agreement Has Purchase Order</Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.SoftwareAgreementHasPurchaseOrder">
+          <Name>Software Agreement Has Purchase Order</Name>
+          <Description>Software Agreement Has Purchase Order</Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.SoftwareAgreementHasContact">
+          <Name>Software Agreement Has Contact</Name>
+          <Description>Software Agreement Has Contact</Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.SupportAgreementHasContact">
+          <Name>Support Agreement Has Contact</Name>
+          <Description>Support Agreement Has Contact</Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.SupportAgreementHasInvoice">
+          <Name>Support Agreement Has Invoice</Name>
+          <Description>Support Agreement Has Invoice</Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.CostHasCostCenter">
+          <Name>Cost Has Cost Center Relationship </Name>
+          <Description>Cost Has Cost Center Relationship</Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.CostHasLocation">
+          <Name>Cost Has Location Relationship </Name>
+          <Description>Cost Has Location Relationship </Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.CostHasOrganization">
+          <Name>Cost Has Organization Relationship </Name>
+          <Description>Cost Has Organization Relationship </Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.CostHasSupplier">
+          <Name>Cost Has Supplier Relationship </Name>
+          <Description>Cost Has Supplier Relationship </Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.SoftwareAssetHasInvoice">
+          <Name>Software Asset Has Invoice Relationship </Name>
+          <Description>Software Asset Has Invoice Relationship</Description>
+        </DisplayString>
+		<!--
+        <DisplayString ElementID="Relationship.UserRoleHasMember">
+          <Name>User Role Has Member Relationship </Name>
+          <Description>User Role Has Member Relationship</Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.UserRoleHasSetting">
+          <Name>User Role Has Setting Relationship </Name>
+          <Description>User Role Has Setting Relationship</Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.UserRoleHasOtherSetting">
+          <Name>User Role Has Other Setting Relationship </Name>
+          <Description>User Role Has Other Setting Relationship</Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.UserRoleHasShortcut">
+          <Name>User Role Has Shortcut Relationship </Name>
+          <Description>User Role Has Shortcut Relationship</Description>
+        </DisplayString>
+		
+		-->
+        <DisplayString ElementID="Relationship.SoftwareAssetHasUser">
+          <Name>Software Asset Has Assigned User </Name>
+          <Description>Software Asset Has Assigned User</Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.SoftwareAssetChangedByUser">
+        <Name>Software Asset Changed By User </Name>
+        <Description>Software Asset Changed By User</Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.HardwareAssetChangedByUser">
+        <Name>Hardware Asset Changed By User </Name>
+        <Description>Hardware Asset Changed By User</Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.SoftwareAssetHasAgreement">
+          <Name>Software Asset Has Agreement</Name>
+          <Description>Software Asset Has Agreement</Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.SoftwareAssetHasSupportAgreement">
+          <Name>Software Asset Has Support Agreement</Name>
+          <Description>Software Asset Has Support Agreement</Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.HardwareAssetHasSupportAgreement">
+          <Name>Hardware Asset Has Support Agreement</Name>
+          <Description>Hardware Asset Has Support Agreement</Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.PurchaseOrderHasInvoice">
+          <Name>Purchase Order Has Invoice </Name>
+          <Description>Purchase Order Has Invoice </Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.PurchaseOrderHasUser">
+          <Name>Purchase Order Has User </Name>
+          <Description>Purchase Order Has User </Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.SoftwareAgreementHasOrganization">
+          <Name>Software Agreement Has Organization</Name>
+          <Description>Software Agreement Has Organization </Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.SupportAgreementHasOrganization">
+          <Name>Support Agreement Has Organization</Name>
+          <Description>Support Agreement Has Organization </Description>
+        </DisplayString>     
+        <DisplayString ElementID="Relationship.CostIsForInvoice">
+          <Name>Cost Is For Invoice Relationship </Name>
+          <Description>Cost Is For Invoice Relationship </Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.CostIsForPurchaseOrder">
+          <Name>Cost Is For Purchase Order Relationship </Name>
+          <Description>Cost Is For Purchase Order Relationship</Description>
+        </DisplayString>     
+        <DisplayString ElementID="Relationship.InvoiceHasSupplier">
+          <Name>Invoice Has Supplier Relationship </Name>
+          <Description>Invoice Has Supplier Relationship </Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.PurchaseOrderHasCostCenter">
+          <Name>Purchase Order Has Cost Center Relationship </Name>
+          <Description>Purchase Order Has Cost Center Relationship </Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.PurchaseOrderHasLocation">
+          <Name>Purchase Order Has Location Relationship </Name>
+          <Description>Purchase Order Has Location Relationship </Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.PurchaseOrderHasSKU">
+          <Name>Purchase Order Has SKU Relationship </Name>
+          <Description>Purchase Order Has SKU Relationship </Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.PurchaseOrderHasOrganization">
+          <Name>Purchase Order Has Organization Relationship </Name>
+          <Description>Purchase Order Has Organization Relationship </Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.PurchaseOrderHasSupplier">
+          <Name>Purchase Order Has Supplier Relationship </Name>
+          <Description>Purchase Order Has Supplier Relationship </Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.UserIsAffiliatedWithCostCenter">
+          <Name>User Is Affiliated With Cost Center Relationship </Name>
+          <Description>User Is Affiliated With Cost Center Relationship </Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.UserIsAffiliatedWithLocation">
+          <Name>User Is Affiliated With Location Relationship </Name>
+          <Description>User Is Affiliated With Location Relationship</Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.UserIsAffiliatedWithOrganization">
+          <Name>User Is Affiliated With Organization Relationship </Name>
+          <Description>User Is Affiliated With Organization Relationship </Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.HardwareAssetReferencesHardware">
+          <Name>Hardware Asset References Hardware Relationship </Name>
+          <Description>Hardware Asset References Hardware Relationship </Description>
+        </DisplayString>
+
+        <DisplayString ElementID="Relationship.HardwareAssetReferencesPrinter">
+          <Name>Hardware Asset References Printer Relationship </Name>
+          <Description>Hardware Asset References Printer Relationship </Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.HardwareAssetReferencesNetworkDevice">
+          <Name>Hardware Asset References Network Device Relationship </Name>
+          <Description>Hardware Asset References Network Device Relationship </Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.HardwareAssetReferencesStorageDevice">
+          <Name>Hardware Asset References Storage Device Relationship </Name>
+          <Description>Hardware Asset References Storage Device Relationship </Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.HardwareAssetReferencesMobileDevice">
+          <Name>Hardware Asset References Mobile Device Relationship </Name>
+          <Description>Hardware Asset References Mobile Device Relationship </Description>
+        </DisplayString>
+         <DisplayString ElementID="Relationship.NetworkDeviceHasManufacturer">
+          <Name>Network Device Has Manufacturer Relationship </Name>
+          <Description>Network Device Has Manufacturer Relationship</Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.MobileDeviceHasManufacturer">
+          <Name>Mobile Device Has Manufacturer Relationship </Name>
+          <Description>Mobile Device Has Manufacturer Relationship </Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.StorageDeviceHasManufacturer">
+          <Name>Storage Device Has Manufacturer Relationship </Name>
+          <Description>Storage Device Has Manufacturer Relationship </Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.PrinterHasManufacturer">
+          <Name>Printer Has Manufacturer Relationship </Name>
+          <Description>Printer Has Manufacturer Relationship </Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.DeviceModelHasManufacturer">
+          <Name>Device Model Has Manufacturer Relationship </Name>
+          <Description>Device Model Has Manufacturer Relationship </Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.HardwareHasManufacturer">
+          <Name>Hardware Has Manufacturer Relationship </Name>
+          <Description>Hardware Has Manufacturer Relationship</Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.NetworkDeviceHasModel">
+          <Name>Network Device Has Model Relationship </Name>
+          <Description>Network Device Has Model Relationship</Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.StorageDeviceHasModel">
+          <Name>Storage Device Has Model Relationship </Name>
+          <Description>Storage Device Has Model Relationship</Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.MobileDeviceHasModel">
+          <Name>Mobile Device Has Model Relationship </Name>
+          <Description>Mobile Device Has Model Relationship</Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.PrinterHasModel">
+          <Name>Printer Has Model Relationship </Name>
+          <Description>Printer Has Model Relationship</Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.HardwareHasModel">
+          <Name>Hardware Has Model Relationship </Name>
+          <Description>Hardware Has Model Relationship</Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.NetworkDeviceHasUser">
+          <Name>Network Device Has User Relationship </Name>
+          <Description>Network Device Has User Relationship</Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.MobileDeviceHasUser">
+          <Name>Mobile Device Has User Relationship </Name>
+          <Description>Mobile Device Has User Relationship</Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.StorageDeviceHasUser">
+          <Name>Storage Device Has User Relationship </Name>
+          <Description>Storage Device Has User Relationship</Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.PrinterHasUser">
+          <Name>Printer Has User Relationship </Name>
+          <Description>Printer Has User Relationship</Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.HardwareContainsDisks">
+          <Name>Hardware Contains Disks Relationship</Name>
+          <Description>Hardware Contains Disks Relationship</Description>
+        </DisplayString>
+         <DisplayString ElementID="Relationship.HardwareContainsVolumes">
+          <Name>Hardware Contains Volumes Relationship</Name>
+          <Description>Hardware Contains Volumes Relationship</Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.HardwareAssetHasLocation">
+          <Name>Hardware Asset Has Location Relationship </Name>
+          <Description>Hardware Asset Has Location Relationship </Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.HardwareAssetHasOrganization">
+          <Name>Hardware Asset Has Organization Relationship </Name>
+          <Description>Hardware Asset Has Organization Relationship </Description>
+        </DisplayString>       
+        <DisplayString ElementID="Relationship.HardwareAssetHasSupplier">
+          <Name>Hardware Asset Has Supplier Relationship </Name>
+          <Description>Hardware Asset Has Supplier Relationship</Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.SoftwareAssetHasContact">
+          <Name>Software Asset Has Contact Relationship </Name>
+          <Description>Software Asset Has Contact Relationship </Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.LicStatusIsForSoftwareAgreement">
+          <Name>License Is For Software Agreement Relationship </Name>
+          <Description>License Is For Software Agreement Relationship </Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.LicStatusHasSoftware">
+          <Name>License Is About Software Relationship </Name>
+          <Description>License Is About Software Relationship </Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.SoftwareAssetHasLocation">
+          <Name>Software Asset Has Location Relationship </Name>
+          <Description>Software Asset Has Location Relationship</Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.SoftwareAssetHasOrganization">
+          <Name>Software Asset Has Organization Relationship </Name>
+          <Description>Software Asset Has Organization Relationship</Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.SoftwareAssetHasSupplier">
+          <Name>Software Asset Has Supplier Relationship </Name>
+          <Description>Software Asset Has Supplier Relationship </Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.InvoiceIsForOrganization">
+          <Name>Invoice Is For Organization</Name>
+          <Description>Invoice Is For Organization</Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.HardwareAssetHasAgreement">
+          <Name>Hardware Asset Has Lease Agreement</Name>
+          <Description>Hardware Asset Has Lease Agreement</Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.SoftwareAssetHasPurchaseOrder">
+          <Name>Software Asset Has Purchase Order Relationship </Name>
+          <Description>Software Asset Has Purchase Order Relationship </Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.SkuIsForSoftwareAsset">
+          <Name>Sku Is For Software Asset Relationship </Name>
+          <Description>Sku Is For Software Asset Relationship </Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.SkuHasSoftwareLicenseKey">
+          <Name>Sku Has Software License Key Relationship </Name>
+          <Description>Sku Has Software License Key Relationship </Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.SoftwareLicenseKeyIsForSoftwareAsset">
+          <Name>Software License Key Is For Software Asset Relationship </Name>
+          <Description>Software License Key Is For Software Asset Relationship </Description>
+        </DisplayString>
+          <DisplayString ElementID="Relationship.SoftwareAssetHasSoftware">
+            <Name>Software Asset Has Software Relationship </Name>
+            <Description>Software Asset Has Software Relationship </Description>
+          </DisplayString>
+           <DisplayString ElementID="Relationship.SoftwareHasPublisher">
+             <Name>Software Has Publisher Relationship </Name>
+            <Description>Software Has Publisher Relationship </Description>
+           </DisplayString>
+           <DisplayString ElementID="Relationship.SoftwareHasVersion">
+             <Name>Software Has Version Relationship </Name>
+           <Description>Software Has Version Relationship </Description>
+           </DisplayString>
+        <DisplayString ElementID="Relationship.SoftwareIsInstalledOnHardwareAsset">
+          <Name>Software Is Installed On Hardware Assets </Name>
+          <Description>Software Is Installed On Hardware Assets</Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.SoftwareVersionInstalledOnAssets">
+          <Name>Software Version Is Installed On Hardware Assets </Name>
+          <Description>Software Version Is Installed On Hardware Assets</Description>
+        </DisplayString>
+      </DisplayStrings>
+      </LanguagePack>
+    </LanguagePacks>
+ 
+  
+</ManagementPackFragment>

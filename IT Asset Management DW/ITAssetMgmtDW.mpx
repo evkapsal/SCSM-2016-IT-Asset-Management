@@ -1,0 +1,429 @@
+﻿<ManagementPackFragment SchemaVersion="SM2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Warehouse>
+    <Dimensions>
+      <Dimension ID="CompanyDim" Accessibility="Public" InferredDimension="true" Target="ITSM!Company" HierarchySupport="IncludeDerivedClassProperties" Reconcile="true" />
+      <Dimension ID="ContactDim" Accessibility="Public" InferredDimension="true" Target="ITSM!Contact" HierarchySupport="IncludeDerivedClassProperties" Reconcile="true" />
+      <Dimension ID="OrganizationDim" Accessibility="Public" InferredDimension="true" Target="ITSM!Organization" HierarchySupport="IncludeDerivedClassProperties" Reconcile="true" />
+      <Dimension ID="CostCenterDim" Accessibility="Public" InferredDimension="true" Target="ITSM!CostCenter" HierarchySupport="IncludeDerivedClassProperties" Reconcile="true" />
+      <Dimension ID="LocationDim" Accessibility="Public" InferredDimension="true" Target="ITSM!NLocation" HierarchySupport="IncludeDerivedClassProperties" Reconcile="true" />
+      <Dimension ID="HardwareAgreementDim" Accessibility="Public" InferredDimension="true" Target="ITSM!HardwareAgreement" HierarchySupport="IncludeDerivedClassProperties" Reconcile="true" />
+      <Dimension ID="SoftwareAgreementDim" Accessibility="Public" InferredDimension="true" Target="ITSM!SoftwareAgreement" HierarchySupport="IncludeDerivedClassProperties" Reconcile="true" />
+      <Dimension ID="LeaseAgreementDim" Accessibility="Public" InferredDimension="true" Target="ITSM!LeaseAgreement" HierarchySupport="IncludeDerivedClassProperties" Reconcile="true" />
+      <Dimension ID="SupportAgreementDim" Accessibility="Public" InferredDimension="true" Target="ITSM!SupportAgreement" HierarchySupport="IncludeDerivedClassProperties" Reconcile="true" />
+      <Dimension ID="CostDim" Accessibility="Public" InferredDimension="true" Target="ITSM!Cost" HierarchySupport="IncludeDerivedClassProperties" Reconcile="true" />
+      <Dimension ID="InvoiceDim" Accessibility="Public" InferredDimension="true" Target="ITSM!Invoice" HierarchySupport="IncludeDerivedClassProperties" Reconcile="true" />
+      <Dimension ID="PurchaseOrderDim" Accessibility="Public" InferredDimension="true" Target="ITSM!PurchaseOrder" HierarchySupport="IncludeDerivedClassProperties" Reconcile="true" />
+      <Dimension ID="HardwareDim" Accessibility="Public" InferredDimension="true" Target="ITSM!Hardware" HierarchySupport="IncludeDerivedClassProperties" Reconcile="true" />
+      <Dimension ID="PrinterDim" Accessibility="Public" InferredDimension="true" Target="ITSM!Printer" HierarchySupport="IncludeDerivedClassProperties" Reconcile="true" />
+      <Dimension ID="NetworkDeviceDim" Accessibility="Public" InferredDimension="true" Target="ITSM!NetworkDevice" HierarchySupport="IncludeDerivedClassProperties" Reconcile="true" />
+      <Dimension ID="StorageDeviceDim" Accessibility="Public" InferredDimension="true" Target="ITSM!StorageDevice" HierarchySupport="IncludeDerivedClassProperties" Reconcile="true" />
+      <Dimension ID="MobileDeviceDim" Accessibility="Public" InferredDimension="true" Target="ITSM!MobileDevice" HierarchySupport="IncludeDerivedClassProperties" Reconcile="true" />
+      <Dimension ID="HardwareAssetDim" Accessibility="Public" InferredDimension="true" Target="ITSM!HardwareAsset" HierarchySupport="IncludeDerivedClassProperties" Reconcile="true" />
+      <Dimension ID="DeviceModelDim" Accessibility="Public" InferredDimension="true" Target="ITSM!DeviceModel" HierarchySupport="IncludeDerivedClassProperties" Reconcile="true" />
+      <Dimension ID="DeviceManufacturerDim" Accessibility="Public" InferredDimension="true" Target="ITSM!DeviceManufacturer" HierarchySupport="IncludeDerivedClassProperties" Reconcile="true" />
+      <Dimension ID="SoftwareDim" Accessibility="Public" InferredDimension="true" Target="ITSM!Software" HierarchySupport="IncludeDerivedClassProperties" Reconcile="true" />
+      <Dimension ID="SoftwareAssetDim" Accessibility="Public" InferredDimension="true" Target="ITSM!SoftwareAsset" HierarchySupport="IncludeDerivedClassProperties" Reconcile="true" />
+      <Dimension ID="SKUDim" Accessibility="Public" InferredDimension="true" Target="ITSM!SKU" HierarchySupport="IncludeDerivedClassProperties" Reconcile="true" />
+      <Dimension ID="SoftwareVersionDim" Accessibility="Public" InferredDimension="true" Target="ITSM!SoftwareVersion" HierarchySupport="IncludeDerivedClassProperties" Reconcile="true" />
+      <Dimension ID="SoftwarePublisherDim" Accessibility="Public" InferredDimension="true" Target="ITSM!SoftwarePublisher" HierarchySupport="IncludeDerivedClassProperties" Reconcile="true" />
+      <Dimension ID="SoftwareLicenseKeyDim" Accessibility="Public" InferredDimension="true" Target="ITSM!SoftwareLicenseKey" HierarchySupport="IncludeDerivedClassProperties" Reconcile="true" />
+      <Dimension ID="LicenseStatusDim" Accessibility="Public" InferredDimension="true" Target="ITSM!LicenseStatus" HierarchySupport="IncludeDerivedClassProperties" Reconcile="true" />   
+      <!--
+      <Dimension ID="CompanyDim" Accessibility="Public" Target="ITSM!Company" HierarchySupport="Exact" Reconcile="true" InferredDimension="true" >
+        <InclusionAttribute ID="DisplayName" PropertyPath="$Context/Property[Type='System!System.ConfigItem']/DisplayName$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="ObjectStatus" PropertyPath="$Context/Property[Type='System!System.ConfigItem']/ObjectStatus$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="CompanyName" PropertyPath="$Context/Property[Type='ITSM!Company']/CompanyName$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="Status" PropertyPath="$Context/Property[Type='ITSM!Company']/Status$" SlowlyChangingAttribute="false" />
+      </Dimension>
+      <Dimension ID="CostCenterDim" Accessibility="Public" Target="ITSM!CostCenter" HierarchySupport="Exact" Reconcile="true" InferredDimension="true">
+        <InclusionAttribute ID="DisplayName" PropertyPath="$Context/Property[Type='System!System.ConfigItem']/DisplayName$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="ObjectStatus" PropertyPath="$Context/Property[Type='System!System.ConfigItem']/ObjectStatus$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="CostCenterName" PropertyPath="$Context/Property[Type='ITSM!CostCenter']/CostCenterName$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="CostCenterNumber" PropertyPath="$Context/Property[Type='ITSM!CostCenter']/CostCenterNumber$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="Status" PropertyPath="$Context/Property[Type='ITSM!CostCenter']/Status$" SlowlyChangingAttribute="false" />
+      </Dimension>
+      <Dimension ID="DeviceManufacturerDim" Accessibility="Public" Target="ITSM!DeviceManufacturer" HierarchySupport="Exact" Reconcile="true" InferredDimension="true">
+        <InclusionAttribute ID="DisplayName" PropertyPath="$Context/Property[Type='System!System.ConfigItem']/DisplayName$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="ManufacturerName" PropertyPath="$Context/Property[Type='ITSM!DeviceManufacturer']/ManufacturerName$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="DeviceCount" PropertyPath="$Context/Property[Type='ITSM!DeviceManufacturer']/DeviceCount$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="ObjectStatus" PropertyPath="$Context/Property[Type='System!System.ConfigItem']/ObjectStatus$" SlowlyChangingAttribute="false" />
+      </Dimension>
+      <Dimension ID="DeviceModelDim" Accessibility="Public" Target="ITSM!DeviceModel" HierarchySupport="Exact" Reconcile="true" InferredDimension="true">
+        <InclusionAttribute ID="DisplayName" PropertyPath="$Context/Property[Type='System!System.ConfigItem']/DisplayName$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="ModelName" PropertyPath="$Context/Property[Type='ITSM!DeviceModel']/ModelName$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="ModelCount" PropertyPath="$Context/Property[Type='ITSM!DeviceModel']/ModelCount$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="ObjectStatus" PropertyPath="$Context/Property[Type='System!System.ConfigItem']/ObjectStatus$" SlowlyChangingAttribute="false" />
+      </Dimension>
+      <Dimension ID="PrinterDim" Accessibility="Public" Target="ITSM!Printer" HierarchySupport="Exact" Reconcile="true" InferredDimension="true">
+        <InclusionAttribute ID="DisplayName" PropertyPath="$Context/Property[Type='System!System.ConfigItem']/DisplayName$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="PrinterName" PropertyPath="$Context/Property[Type='ITSM!Printer']/PrinterName$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="Status" PropertyPath="$Context/Property[Type='ITSM!Printer']/Status$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="IPAddress" PropertyPath="$Context/Property[Type='ITSM!Printer']/IPAddress$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="Type" PropertyPath="$Context/Property[Type='ITSM!Printer']/Type$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="ColorType" PropertyPath="$Context/Property[Type='ITSM!Printer']/ColorType$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="Connectivity" PropertyPath="$Context/Property[Type='ITSM!Printer']/Connectivity$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="SerialNumber" PropertyPath="$Context/Property[Type='ITSM!Printer']/SerialNumber$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="ObjectStatus" PropertyPath="$Context/Property[Type='System!System.ConfigItem']/ObjectStatus$" SlowlyChangingAttribute="false" />
+      </Dimension>
+      <Dimension ID="NetworkDeviceDim" Accessibility="Public" Target="ITSM!NetworkDevice" HierarchySupport="Exact" Reconcile="true" InferredDimension="true">
+        <InclusionAttribute ID="DisplayName" PropertyPath="$Context/Property[Type='System!System.ConfigItem']/DisplayName$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="DeviceName" PropertyPath="$Context/Property[Type='ITSM!NetworkDevice']/DeviceName$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="SNMPAddress" PropertyPath="$Context/Property[Type='ITSM!NetworkDevice']/SNMPAddress$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="IPAddress" PropertyPath="$Context/Property[Type='ITSM!NetworkDevice']/IPAddress$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="Type" PropertyPath="$Context/Property[Type='ITSM!NetworkDevice']/Type$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="Status" PropertyPath="$Context/Property[Type='ITSM!NetworkDevice']/Status$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="Bandwidth" PropertyPath="$Context/Property[Type='ITSM!NetworkDevice']/Bandwidth$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="Ports" PropertyPath="$Context/Property[Type='ITSM!NetworkDevice']/Ports$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="Firmware" PropertyPath="$Context/Property[Type='ITSM!NetworkDevice']/Firmware$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="SerialNumber" PropertyPath="$Context/Property[Type='ITSM!NetworkDevice']/SerialNumber$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="ObjectStatus" PropertyPath="$Context/Property[Type='System!System.ConfigItem']/ObjectStatus$" SlowlyChangingAttribute="false" />
+      </Dimension>
+      <Dimension ID="StorageDeviceDim" Accessibility="Public" Target="ITSM!StorageDevice" HierarchySupport="Exact" Reconcile="true" InferredDimension="true">
+        <InclusionAttribute ID="DisplayName" PropertyPath="$Context/Property[Type='System!System.ConfigItem']/DisplayName$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="DeviceName" PropertyPath="$Context/Property[Type='ITSM!StorageDevice']/DeviceName$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="SNMPAddress" PropertyPath="$Context/Property[Type='ITSM!StorageDevice']/SNMPAddress$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="Connectivity" PropertyPath="$Context/Property[Type='ITSM!StorageDevice']/Connectivity$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="Type" PropertyPath="$Context/Property[Type='ITSM!StorageDevice']/Type$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="Status" PropertyPath="$Context/Property[Type='ITSM!StorageDevice']/Status$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="TotalCapacity" PropertyPath="$Context/Property[Type='ITSM!StorageDevice']/TotalCapacity$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="UsedCapacity" PropertyPath="$Context/Property[Type='ITSM!StorageDevice']/UsedCapacity$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="Firmware" PropertyPath="$Context/Property[Type='ITSM!StorageDevice']/Firmware$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="SerialNumber" PropertyPath="$Context/Property[Type='ITSM!StorageDevice']/SerialNumber$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="ObjectStatus" PropertyPath="$Context/Property[Type='System!System.ConfigItem']/ObjectStatus$" SlowlyChangingAttribute="false" />
+      </Dimension>
+      <Dimension ID="ContactDim" Accessibility="Public" Target="ITSM!Contact" HierarchySupport="Exact" Reconcile="true" InferredDimension="true">
+        <InclusionAttribute ID="DisplayName" PropertyPath="$Context/Property[Type='System!System.ConfigItem']/DisplayName$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="ObjectStatus" PropertyPath="$Context/Property[Type='System!System.ConfigItem']/ObjectStatus$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="FirstName" PropertyPath="$Context/Property[Type='ITSM!Contact']/FirstName$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="LastName" PropertyPath="$Context/Property[Type='ITSM!Contact']/LastName$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="Status" PropertyPath="$Context/Property[Type='ITSM!Contact']/Status$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="Title" PropertyPath="$Context/Property[Type='ITSM!Contact']/Title$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="Role" PropertyPath="$Context/Property[Type='ITSM!Contact']/Role$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="Email" PropertyPath="$Context/Property[Type='ITSM!Contact']/Email$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="Address" PropertyPath="$Context/Property[Type='ITSM!Contact']/Address$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="City" PropertyPath="$Context/Property[Type='ITSM!Contact']/City$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="Country" PropertyPath="$Context/Property[Type='ITSM!Contact']/Country$" SlowlyChangingAttribute="false" />
+      </Dimension>
+      <Dimension ID="LocationDim" Accessibility="Public" Target="ITSM!NLocation" HierarchySupport="Exact" Reconcile="true" InferredDimension="true">
+        <InclusionAttribute ID="DisplayName" PropertyPath="$Context/Property[Type='System!System.ConfigItem']/DisplayName$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="ObjectStatus" PropertyPath="$Context/Property[Type='System!System.ConfigItem']/ObjectStatus$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="Type" PropertyPath="$Context/Property[Type='ITSM!NLocation']/Type$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="Longtitude" PropertyPath="$Context/Property[Type='ITSM!NLocation']/Longtitude$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="Latitude" PropertyPath="$Context/Property[Type='ITSM!NLocation']/Latitude$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="Floor" PropertyPath="$Context/Property[Type='ITSM!NLocation']/Floor$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="Office" PropertyPath="$Context/Property[Type='ITSM!NLocation']/Office$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="Address" PropertyPath="$Context/Property[Type='ITSM!NLocation']/Address$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="City" PropertyPath="$Context/Property[Type='ITSM!NLocation']/City$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="Country" PropertyPath="$Context/Property[Type='ITSM!NLocation']/Country$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="State" PropertyPath="$Context/Property[Type='ITSM!NLocation']/State$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="Zip" PropertyPath="$Context/Property[Type='ITSM!NLocation']/Zip$" SlowlyChangingAttribute="false" />
+      </Dimension>
+      <Dimension ID="InvoiceDim" Accessibility="Public" Target="ITSM!Invoice" HierarchySupport="Exact" Reconcile="true" InferredDimension="true">
+        <InclusionAttribute ID="DisplayName" PropertyPath="$Context/Property[Type='System!System.ConfigItem']/DisplayName$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="ObjectStatus" PropertyPath="$Context/Property[Type='System!System.ConfigItem']/ObjectStatus$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="Alias" PropertyPath="$Context/Property[Type='ITSM!Invoice']/Alias$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="InvoiceNumber" PropertyPath="$Context/Property[Type='ITSM!Invoice']/InvoiceNumber$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="InvoiceDate" PropertyPath="$Context/Property[Type='ITSM!Invoice']/InvoiceDate$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="LifeCycle" PropertyPath="$Context/Property[Type='ITSM!Invoice']/LifeCycle$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="PaidDate" PropertyPath="$Context/Property[Type='ITSM!Invoice']/PaidDate$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="RequiredDate" PropertyPath="$Context/Property[Type='ITSM!Invoice']/RequiredDate$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="ShippingAmount" PropertyPath="$Context/Property[Type='ITSM!Invoice']/ShippingAmount$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="ShippingAmountCurrency" PropertyPath="$Context/Property[Type='ITSM!Invoice']/ShippingAmountCurrency$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="Type" PropertyPath="$Context/Property[Type='ITSM!Invoice']/Type$" SlowlyChangingAttribute="false" />
+      </Dimension>
+      <Dimension ID="OrganizationDim" Accessibility="Public" Target="ITSM!Organization" HierarchySupport="Exact" Reconcile="true" InferredDimension="true" >
+        <InclusionAttribute ID="DisplayName" PropertyPath="$Context/Property[Type='System!System.ConfigItem']/DisplayName$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="ObjectStatus" PropertyPath="$Context/Property[Type='System!System.ConfigItem']/ObjectStatus$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="OrganizationName" PropertyPath="$Context/Property[Type='ITSM!Organization']/OrganizationName$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="OrganizationStatus" PropertyPath="$Context/Property[Type='ITSM!Organization']/OrganizationStatus$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="OrganizationType" PropertyPath="$Context/Property[Type='ITSM!Organization']/OrganizationType$" SlowlyChangingAttribute="false" />
+      </Dimension>
+      <Dimension ID="CostDim" Accessibility="Public" Target="ITSM!Cost" HierarchySupport="Exact" Reconcile="true" InferredDimension="true" >
+        <InclusionAttribute ID="DisplayName" PropertyPath="$Context/Property[Type='System!System.ConfigItem']/DisplayName$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="ObjectStatus" PropertyPath="$Context/Property[Type='System!System.ConfigItem']/ObjectStatus$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="Amount" PropertyPath="$Context/Property[Type='ITSM!Cost']/Amount$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="AmountCurrency" PropertyPath="$Context/Property[Type='ITSM!Cost']/AmountCurrency$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="EffectiveDate" PropertyPath="$Context/Property[Type='ITSM!Cost']/EffectiveDate$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="LifeCycle" PropertyPath="$Context/Property[Type='ITSM!Cost']/LifeCycle$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="Reference" PropertyPath="$Context/Property[Type='ITSM!Cost']/Reference$" SlowlyChangingAttribute="false" />
+      </Dimension>
+      <Dimension ID="SKUDim" Accessibility="Public" Target="ITSM!SKU" HierarchySupport="Exact" Reconcile="true" InferredDimension="true" >
+        <InclusionAttribute ID="DisplayName" PropertyPath="$Context/Property[Type='System!System.ConfigItem']/DisplayName$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="ObjectStatus" PropertyPath="$Context/Property[Type='System!System.ConfigItem']/ObjectStatus$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="DesignatedUse" PropertyPath="$Context/Property[Type='ITSM!SKU']/DesignatedUse$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="LicenseType" PropertyPath="$Context/Property[Type='ITSM!SKU']/LicenseType$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="LicensingChannel" PropertyPath="$Context/Property[Type='ITSM!SKU']/LicensingChannel$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="LicensingModel" PropertyPath="$Context/Property[Type='ITSM!SKU']/LicensingModel$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="LicensingProgram" PropertyPath="$Context/Property[Type='ITSM!SKU']/LicensingProgram$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="LicensingUnit" PropertyPath="$Context/Property[Type='ITSM!SKU']/LicensingUnit$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="IsMultiUseKey" PropertyPath="$Context/Property[Type='ITSM!SKU']/IsMultiUseKey$" SlowlyChangingAttribute="false" />
+      </Dimension>
+      <Dimension ID="PurchaseOrderDim" Accessibility="Public" Target="ITSM!PurchaseOrder" HierarchySupport="Exact" Reconcile="true" InferredDimension="true">
+        <InclusionAttribute ID="DisplayName" PropertyPath="$Context/Property[Type='System!System.ConfigItem']/DisplayName$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="ObjectStatus" PropertyPath="$Context/Property[Type='System!System.ConfigItem']/ObjectStatus$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="Alias" PropertyPath="$Context/Property[Type='ITSM!PurchaseOrder']/Alias$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="PONumber" PropertyPath="$Context/Property[Type='ITSM!PurchaseOrder']/PONumber$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="PODate" PropertyPath="$Context/Property[Type='ITSM!PurchaseOrder']/PODate$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="LifeCycle" PropertyPath="$Context/Property[Type='ITSM!PurchaseOrder']/LifeCycle$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="RequiredDate" PropertyPath="$Context/Property[Type='ITSM!PurchaseOrder']/RequiredDate$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="ShippingAmount" PropertyPath="$Context/Property[Type='ITSM!PurchaseOrder']/ShippingAmount$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="ApprovedDate" PropertyPath="$Context/Property[Type='ITSM!PurchaseOrder']/ApprovedDate$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="Type" PropertyPath="$Context/Property[Type='ITSM!PurchaseOrder']/Type$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="TaxRate" PropertyPath="$Context/Property[Type='ITSM!PurchaseOrder']/TaxRate$" SlowlyChangingAttribute="false" />  
+      </Dimension>
+      <Dimension ID="SoftwareAssetDim" Accessibility="Public" Target="ITSM!SoftwareAsset" HierarchySupport="Exact" Reconcile="true" InferredDimension="true">
+        <InclusionAttribute ID="DisplayName" PropertyPath="$Context/Property[Type='System!System.ConfigItem']/DisplayName$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="ObjectStatus" PropertyPath="$Context/Property[Type='System!System.ConfigItem']/ObjectStatus$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="Cost" PropertyPath="$Context/Property[Type='ITSM!SoftwareAsset']/Cost$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="CostCurrency" PropertyPath="$Context/Property[Type='ITSM!SoftwareAsset']/CostCurrency$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="LicensingCategory" PropertyPath="$Context/Property[Type='ITSM!SoftwareAsset']/LicensingCategory$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="ManagementScope" PropertyPath="$Context/Property[Type='ITSM!SoftwareAsset']/ManagementScope$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="SerialNumber" PropertyPath="$Context/Property[Type='ITSM!SoftwareAsset']/SerialNumber$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="AssetName" PropertyPath="$Context/Property[Type='ITSM!SoftwareAsset']/AssetName$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="AssetTag" PropertyPath="$Context/Property[Type='ITSM!SoftwareAsset']/AssetTag$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="ReadinessStatus" PropertyPath="$Context/Property[Type='ITSM!SoftwareAsset']/ReadinessStatus$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="LifeCycleChangeDate" PropertyPath="$Context/Property[Type='ITSM!SoftwareAsset']/LifeCycleChangeDate$" SlowlyChangingAttribute="false" />
+      </Dimension>
+      <Dimension ID="SoftwareDim" Accessibility="Public" Target="ITSM!Software" HierarchySupport="Exact" Reconcile="true" InferredDimension="true">
+        <InclusionAttribute ID="DisplayName" PropertyPath="$Context/Property[Type='System!System.ConfigItem']/DisplayName$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="ObjectStatus" PropertyPath="$Context/Property[Type='System!System.ConfigItem']/ObjectStatus$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="SoftwareName" PropertyPath="$Context/Property[Type='ITSM!Software']/SoftwareName$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="Installed" PropertyPath="$Context/Property[Type='ITSM!Software']/Installed$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="LastDiscoveredDate" PropertyPath="$Context/Property[Type='ITSM!Software']/LastDiscoveredDate$" SlowlyChangingAttribute="false" />
+       </Dimension>
+      <Dimension ID="SoftwareVersionDim" Accessibility="Public" Target="ITSM!SoftwareVersion" HierarchySupport="Exact" Reconcile="true" InferredDimension="true">
+        <InclusionAttribute ID="DisplayName" PropertyPath="$Context/Property[Type='System!System.ConfigItem']/DisplayName$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="ObjectStatus" PropertyPath="$Context/Property[Type='System!System.ConfigItem']/ObjectStatus$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="SoftwareVersionMaj" PropertyPath="$Context/Property[Type='ITSM!SoftwareVersion']/SoftwareVersionMaj$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="Installed" PropertyPath="$Context/Property[Type='ITSM!SoftwareVersion']/Installed$" SlowlyChangingAttribute="false" />
+      </Dimension>
+      <Dimension ID="SoftwarePublisherDim" Accessibility="Public" Target="ITSM!SoftwarePublisher" HierarchySupport="Exact" Reconcile="true" InferredDimension="true">
+        <InclusionAttribute ID="DisplayName" PropertyPath="$Context/Property[Type='System!System.ConfigItem']/DisplayName$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="ObjectStatus" PropertyPath="$Context/Property[Type='System!System.ConfigItem']/ObjectStatus$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="PublisherName" PropertyPath="$Context/Property[Type='ITSM!SoftwarePublisher']/PublisherName$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="SoftwareCount" PropertyPath="$Context/Property[Type='ITSM!SoftwarePublisher']/SoftwareCount$" SlowlyChangingAttribute="false" />
+      </Dimension>
+      <Dimension ID="HardwareAssetDim" Accessibility="Public" Target="ITSM!HardwareAsset" HierarchySupport="Exact" Reconcile="true" InferredDimension="true">
+        <InclusionAttribute ID="DisplayName" PropertyPath="$Context/Property[Type='System!System.ConfigItem']/DisplayName$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="ObjectStatus" PropertyPath="$Context/Property[Type='System!System.ConfigItem']/ObjectStatus$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="Cost" PropertyPath="$Context/Property[Type='ITSM!HardwareAsset']/Cost$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="CostCurrency" PropertyPath="$Context/Property[Type='ITSM!HardwareAsset']/CostCurrency$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="DesignatedUse" PropertyPath="$Context/Property[Type='ITSM!HardwareAsset']/DesignatedUse$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="Type" PropertyPath="$Context/Property[Type='ITSM!HardwareAsset']/Type$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="SerialNumber" PropertyPath="$Context/Property[Type='ITSM!HardwareAsset']/SerialNumber$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="AssetName" PropertyPath="$Context/Property[Type='ITSM!HardwareAsset']/AssetName$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="AssetTag" PropertyPath="$Context/Property[Type='ITSM!HardwareAsset']/AssetTag$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="ReadinessStatus" PropertyPath="$Context/Property[Type='ITSM!HardwareAsset']/ReadinessStatus$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="LifeCycleChangeDate" PropertyPath="$Context/Property[Type='ITSM!HardwareAsset']/LifeCycleChangeDate$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="OwnershipType" PropertyPath="$Context/Property[Type='ITSM!HardwareAsset']/OwnershipType$" SlowlyChangingAttribute="false" />
+      </Dimension>
+      <Dimension ID="HardwareDim" Accessibility="Public" Target="ITSM!Hardware" HierarchySupport="Exact" Reconcile="true" InferredDimension="true">
+        <InclusionAttribute ID="DisplayName" PropertyPath="$Context/Property[Type='System!System.ConfigItem']/DisplayName$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="ObjectStatus" PropertyPath="$Context/Property[Type='System!System.ConfigItem']/ObjectStatus$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="AssetClass" PropertyPath="$Context/Property[Type='ITSM!Hardware']/AssetClass$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="DeviceName" PropertyPath="$Context/Property[Type='ITSM!Hardware']/DeviceName$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="DeviceType" PropertyPath="$Context/Property[Type='ITSM!Hardware']/DeviceType$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="IPAddress" PropertyPath="$Context/Property[Type='ITSM!Hardware']/IPAddress$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="SerialNumber" PropertyPath="$Context/Property[Type='ITSM!Hardware']/SerialNumber$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="AssetTag" PropertyPath="$Context/Property[Type='ITSM!Hardware']/AssetTag$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="MACAddress" PropertyPath="$Context/Property[Type='ITSM!Hardware']/MACAddress$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="OSFoundation" PropertyPath="$Context/Property[Type='ITSM!Hardware']/OSFoundation$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="OSName" PropertyPath="$Context/Property[Type='ITSM!Hardware']/OSName$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="OSType" PropertyPath="$Context/Property[Type='ITSM!Hardware']/OSType$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="OSVersion" PropertyPath="$Context/Property[Type='ITSM!Hardware']/OSVersion$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="PhysicalCores" PropertyPath="$Context/Property[Type='ITSM!Hardware']/PhysicalCores$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="Memory" PropertyPath="$Context/Property[Type='ITSM!Hardware']/Memory$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="PhysicalSockets" PropertyPath="$Context/Property[Type='ITSM!Hardware']/PhysicalSockets$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="ProcessorFamily" PropertyPath="$Context/Property[Type='ITSM!Hardware']/ProcessorFamily$" SlowlyChangingAttribute="false" />
+      </Dimension>
+      <Dimension ID="SoftwareAgreementDim" Accessibility="Public" Target="ITSM!SoftwareAgreement" HierarchySupport="Exact" Reconcile="true" InferredDimension="true" >
+        <InclusionAttribute ID="DisplayName" PropertyPath="$Context/Property[Type='System!System.ConfigItem']/DisplayName$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="ObjectStatus" PropertyPath="$Context/Property[Type='System!System.ConfigItem']/ObjectStatus$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="Type" PropertyPath="$Context/Property[Type='ITSM!SoftwareAgreement']/Type$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="Cost" PropertyPath="$Context/Property[Type='ITSM!SoftwareAgreement']/Cost$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="CostCurrency" PropertyPath="$Context/Property[Type='ITSM!SoftwareAgreement']/CostCurrency$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="Quantity" PropertyPath="$Context/Property[Type='ITSM!SoftwareAgreement']/Quantity$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="AgreementNumber" PropertyPath="$Context/Property[Type='ITSM!SoftwareAgreement']/AgreementNumber$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="Status" PropertyPath="$Context/Property[Type='ITSM!SoftwareAgreement']/Status$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="EffectiveDate" PropertyPath="$Context/Property[Type='ITSM!SoftwareAgreement']/EffectiveDate$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="ExpirationDate" PropertyPath="$Context/Property[Type='ITSM!SoftwareAgreement']/ExpirationDate$" SlowlyChangingAttribute="false" />
+      </Dimension>
+      <Dimension ID="HardwareAgreementDim" Accessibility="Public" Target="ITSM!HardwareAgreement" HierarchySupport="Exact" Reconcile="true" InferredDimension="true" >
+        <InclusionAttribute ID="DisplayName" PropertyPath="$Context/Property[Type='System!System.ConfigItem']/DisplayName$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="ObjectStatus" PropertyPath="$Context/Property[Type='System!System.ConfigItem']/ObjectStatus$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="Type" PropertyPath="$Context/Property[Type='ITSM!HardwareAgreement']/Type$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="Cost" PropertyPath="$Context/Property[Type='ITSM!HardwareAgreement']/Cost$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="CostCurrency" PropertyPath="$Context/Property[Type='ITSM!HardwareAgreement']/CostCurrency$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="Quantity" PropertyPath="$Context/Property[Type='ITSM!HardwareAgreement']/Quantity$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="AgreementNumber" PropertyPath="$Context/Property[Type='ITSM!HardwareAgreement']/AgreementNumber$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="Status" PropertyPath="$Context/Property[Type='ITSM!HardwareAgreement']/Status$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="EffectiveDate" PropertyPath="$Context/Property[Type='ITSM!HardwareAgreement']/EffectiveDate$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="ExpirationDate" PropertyPath="$Context/Property[Type='ITSM!HardwareAgreement']/ExpirationDate$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="SupportType" PropertyPath="$Context/Property[Type='ITSM!HardwareAgreement']/SupportType$" SlowlyChangingAttribute="false" />
+      </Dimension>
+      <Dimension ID="SupportAgreementDim" Accessibility="Public" Target="ITSM!SupportAgreement" HierarchySupport="Exact" Reconcile="true" InferredDimension="true" >
+        <InclusionAttribute ID="DisplayName" PropertyPath="$Context/Property[Type='System!System.ConfigItem']/DisplayName$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="ObjectStatus" PropertyPath="$Context/Property[Type='System!System.ConfigItem']/ObjectStatus$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="Type" PropertyPath="$Context/Property[Type='ITSM!SupportAgreement']/Type$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="Cost" PropertyPath="$Context/Property[Type='ITSM!SupportAgreement']/Cost$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="CostCurrency" PropertyPath="$Context/Property[Type='ITSM!SupportAgreement']/CostCurrency$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="Quantity" PropertyPath="$Context/Property[Type='ITSM!SupportAgreement']/Quantity$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="AgreementNumber" PropertyPath="$Context/Property[Type='ITSM!SupportAgreement']/AgreementNumber$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="Status" PropertyPath="$Context/Property[Type='ITSM!SupportAgreement']/Status$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="EffectiveDate" PropertyPath="$Context/Property[Type='ITSM!SupportAgreement']/EffectiveDate$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="ExpirationDate" PropertyPath="$Context/Property[Type='ITSM!SupportAgreement']/ExpirationDate$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="Duration" PropertyPath="$Context/Property[Type='ITSM!SupportAgreement']/Duration$" SlowlyChangingAttribute="false" />
+      </Dimension>
+      <Dimension ID="LeaseAgreementDim" Accessibility="Public" Target="ITSM!LeaseAgreement" HierarchySupport="Exact" Reconcile="true" InferredDimension="true" >
+        <InclusionAttribute ID="DisplayName" PropertyPath="$Context/Property[Type='System!System.ConfigItem']/DisplayName$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="ObjectStatus" PropertyPath="$Context/Property[Type='System!System.ConfigItem']/ObjectStatus$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="Type" PropertyPath="$Context/Property[Type='ITSM!LeaseAgreement']/Type$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="Cost" PropertyPath="$Context/Property[Type='ITSM!LeaseAgreement']/Cost$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="CostCurrency" PropertyPath="$Context/Property[Type='ITSM!LeaseAgreement']/CostCurrency$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="Quantity" PropertyPath="$Context/Property[Type='ITSM!LeaseAgreement']/Quantity$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="AgreementNumber" PropertyPath="$Context/Property[Type='ITSM!LeaseAgreement']/AgreementNumber$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="Status" PropertyPath="$Context/Property[Type='ITSM!LeaseAgreement']/Status$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="EffectiveDate" PropertyPath="$Context/Property[Type='ITSM!LeaseAgreement']/EffectiveDate$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="ExpirationDate" PropertyPath="$Context/Property[Type='ITSM!LeaseAgreement']/ExpirationDate$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="Duration" PropertyPath="$Context/Property[Type='ITSM!LeaseAgreement']/Duration$" SlowlyChangingAttribute="false" />
+      </Dimension>
+      <Dimension ID="MobileDeviceDim" Accessibility="Public" Target="ITSM!MobileDevice" HierarchySupport="Exact" Reconcile="true" InferredDimension="true" >
+        <InclusionAttribute ID="DisplayName" PropertyPath="$Context/Property[Type='System!System.ConfigItem']/DisplayName$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="ObjectStatus" PropertyPath="$Context/Property[Type='System!System.ConfigItem']/ObjectStatus$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="Type" PropertyPath="$Context/Property[Type='ITSM!MobileDevice']/Type$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="DeviceName" PropertyPath="$Context/Property[Type='ITSM!MobileDevice']/DeviceName$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="AssetTag" PropertyPath="$Context/Property[Type='ITSM!MobileDevice']/AssetTag$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="DeviceImei" PropertyPath="$Context/Property[Type='ITSM!MobileDevice']/DeviceImei$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="SerialNumber" PropertyPath="$Context/Property[Type='ITSM!MobileDevice']/SerialNumber$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="DeviceOS" PropertyPath="$Context/Property[Type='ITSM!MobileDevice']/DeviceOS$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="DevicePhoneNumber" PropertyPath="$Context/Property[Type='ITSM!MobileDevice']/DevicePhoneNumber$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="DeviceMobileOperator" PropertyPath="$Context/Property[Type='ITSM!MobileDevice']/DeviceMobileOperator$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="ExchangeServer" PropertyPath="$Context/Property[Type='ITSM!MobileDevice']/ExchangeServer$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="FirmwareVersion" PropertyPath="$Context/Property[Type='ITSM!MobileDevice']/FirmwareVersion$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="HardwareVersion" PropertyPath="$Context/Property[Type='ITSM!MobileDevice']/HardwareVersion$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="OEM" PropertyPath="$Context/Property[Type='ITSM!MobileDevice']/OEM$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="ProcessorType" PropertyPath="$Context/Property[Type='ITSM!MobileDevice']/ProcessorType$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="OSType" PropertyPath="$Context/Property[Type='ITSM!MobileDevice']/OSType$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="Status" PropertyPath="$Context/Property[Type='ITSM!MobileDevice']/Status$" SlowlyChangingAttribute="false" />
+      </Dimension>
+      <Dimension ID="SoftwareLicenseKeyDim" Accessibility="Public" Target="ITSM!SoftwareLicenseKey" HierarchySupport="Exact" Reconcile="true" InferredDimension="true" >
+        <InclusionAttribute ID="DisplayName" PropertyPath="$Context/Property[Type='System!System.ConfigItem']/DisplayName$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="ObjectStatus" PropertyPath="$Context/Property[Type='System!System.ConfigItem']/ObjectStatus$" SlowlyChangingAttribute="false" />
+        <InclusionAttribute ID="KeyValue" PropertyPath="$Context/Property[Type='ITSM!SoftwareLicenseKey']/KeyValue$" SlowlyChangingAttribute="false" />
+      </Dimension>
+      -->
+    </Dimensions>
+  </Warehouse>
+  <!--
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+        <DisplayString ElementID="CompanyDim">
+          <Name> Company Dimension</Name>
+          <Description> Company Dimension</Description>
+        </DisplayString>
+        <DisplayString ElementID="SoftwareLicenseKeyDim">
+          <Name> Software License Key Dimension</Name>
+          <Description> Software License Key Dimension</Description>
+        </DisplayString>
+        <DisplayString ElementID="CostCenterDim">
+          <Name>Cost Center Dimension</Name>
+          <Description>Cost Center Dimension</Description>
+        </DisplayString>
+        <DisplayString ElementID="DeviceManufacturerDim">
+          <Name> Device Manufacturer Dimension</Name>
+          <Description> Device Manufacturer Dimension</Description>
+        </DisplayString>
+        <DisplayString ElementID="DeviceModelDim">
+          <Name>Device Model Dimension</Name>
+          <Description>Device Model Dimension</Description>
+        </DisplayString>
+        <DisplayString ElementID="PrinterDim">
+          <Name> Printer Dimension</Name>
+          <Description> Printer Dimension</Description>
+        </DisplayString>
+        <DisplayString ElementID="NetworkDeviceDim">
+          <Name> Network Device Dimension</Name>
+          <Description> Network Device Dimension</Description>
+        </DisplayString>
+        <DisplayString ElementID="StorageDeviceDim">
+          <Name> Storage Device Dimension</Name>
+          <Description> Storage Device Dimension</Description>
+        </DisplayString>
+        <DisplayString ElementID="ContactDim">
+          <Name> Contact Dimension</Name>
+          <Description> Contact Dimension</Description>
+        </DisplayString>
+        <DisplayString ElementID="LocationDim">
+          <Name> Location Dimension</Name>
+          <Description> Location Dimension</Description>
+        </DisplayString>
+        <DisplayString ElementID="InvoiceDim">
+          <Name> Invoice Dimension</Name>
+          <Description> Invoice Dimension</Description>
+        </DisplayString>
+        <DisplayString ElementID="OrganizationDim">
+          <Name> Organization Dimension</Name>
+          <Description> Organization Dimension</Description>
+        </DisplayString>
+        <DisplayString ElementID="CostDim">
+          <Name> Cost Dimension</Name>
+          <Description> Cost Dimension</Description>
+        </DisplayString>
+        <DisplayString ElementID="SKUDim">
+          <Name> SKU Dimension</Name>
+          <Description> SKU Dimension</Description>
+        </DisplayString>
+        <DisplayString ElementID="PurchaseOrderDim">
+          <Name> Purchase Order Dimension</Name>
+          <Description> Purchase Order Dimension</Description>
+        </DisplayString>
+        <DisplayString ElementID="SoftwareAssetDim">
+          <Name> Software Asset Dimension</Name>
+          <Description> Software Asset Dimension</Description>
+        </DisplayString>
+        <DisplayString ElementID="SoftwareDim">
+          <Name> Software Dimension</Name>
+          <Description> Software Dimension</Description>
+        </DisplayString>
+        <DisplayString ElementID="SoftwareVersionDim">
+          <Name> Software Version Dimension</Name>
+          <Description> Software Version Dimension</Description>
+        </DisplayString>
+        <DisplayString ElementID="SoftwarePublisherDim">
+          <Name> Software Publisher Dimension</Name>
+          <Description> Software Publisher Dimension</Description>
+        </DisplayString>
+        <DisplayString ElementID="HardwareAssetDim">
+          <Name> Hardware Asset Dimension</Name>
+          <Description> Hardware Asset Dimension</Description>
+        </DisplayString>
+        <DisplayString ElementID="HardwareDim">
+          <Name> Hardware Dimension</Name>
+          <Description> Hardware Dimension</Description>
+        </DisplayString>
+        <DisplayString ElementID="SoftwareAgreementDim">
+          <Name> Software Agreement Dimension</Name>
+          <Description> Software Agreement Dimension</Description>
+        </DisplayString>
+        <DisplayString ElementID="HardwareAgreementDim">
+          <Name> Hardware Agreement Dimension</Name>
+          <Description> Hardware Agreement Dimension</Description>
+        </DisplayString>
+        <DisplayString ElementID="SupportAgreementDim">
+          <Name> Support Agreement Dimension</Name>
+          <Description> Support Agreement Dimension</Description>
+        </DisplayString>
+        <DisplayString ElementID="LeaseAgreementDim">
+          <Name> Lease Agreement Dimension</Name>
+          <Description> Lease Agreement Dimension</Description>
+        </DisplayString>
+        <DisplayString ElementID="MobileDeviceDim">
+          <Name> Mobile Device Dimension</Name>
+          <Description> Mobile Device Dimension</Description>
+        </DisplayString>
+      </DisplayStrings>
+    </LanguagePack>
+  </LanguagePacks>
+  -->
+</ManagementPackFragment>
