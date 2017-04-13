@@ -153,7 +153,10 @@
                                     <Label Content="Storage Device"/>
                                     <smcontrols:SingleInstancePicker Style="{StaticResource sipStyle}" BaseClassId="{Binding Source={x:Static local:Resources.guidNetworkDeviceClass},Mode=OneWay}"
                                                                  Instance="{Binding Path=StorageDevice, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="InstancePicker_MouseDoubleClick"/>
-                                 
+                                    <Label Content="Monitor Device"/>
+                                    <smcontrols:SingleInstancePicker Style="{StaticResource sipStyle}" BaseClassId="{Binding Source={x:Static local:Resources.guidMonitorClass},Mode=OneWay}"
+                                                                 Instance="{Binding Path=Monitor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="InstancePicker_MouseDoubleClick"/>
+
                                 </StackPanel>
 
                                 <StackPanel Style="{StaticResource stackPanelStyle}" Grid.Row="2"  Grid.ColumnSpan="4">

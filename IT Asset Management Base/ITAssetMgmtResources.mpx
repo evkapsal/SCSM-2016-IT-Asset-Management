@@ -162,6 +162,8 @@
     <Image ID="VirtualMachine24x24.png" Accessibility="Public" FileName="VirtualMachine24x24.png" HasNullStream="false" />
     <Image ID="mobiledevice16x16.png" Accessibility="Public" FileName="mobiledevice16x16.png" HasNullStream="false" />
     <Image ID="mobiledevice24x24.png" Accessibility="Public" FileName="mobiledevice24x24.png" HasNullStream="false" />
+    <Image ID="icmon16x16.png" Accessibility="Public" FileName="icmon16x16.png" HasNullStream="false" />
+    <Image ID="icmon24x24.png" Accessibility="Public" FileName="icmon24x24.png" HasNullStream="false" />
   </Resources>
   
 </ManagementPackFragment>

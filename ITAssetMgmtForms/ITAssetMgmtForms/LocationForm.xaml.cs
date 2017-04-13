@@ -53,12 +53,45 @@ namespace ITAssetMgmtForms
             String strDisplayName;
             strDisplayName = DisplayName["DisplayName"].ToString();
             DisplayName["DisplayName"] = strDisplayName;
+
+            BindMap();
         }
+
+        private void BindMap()
+        {
+            if (DataContext == null) return;
+
+            IDataItem data = this.DataContext as IDataItem;
+
+            if (data == null) return;
+
+            if (!data.HasProperty("Longtitude") || !data.HasProperty("Latitude")) return;
+
+            String strLong = data["Longtitude"].ToString();
+            String strLat = data["Latitude"].ToString();
+
+            double iLo = 0;
+            double iLa = 0; //TODO Put default coordinates here
+
+            double.TryParse(strLong, out iLo);
+            double.TryParse(strLat, out iLa);
+
+
+            myMap.Center = new Microsoft.Maps.MapControl.WPF.Location(iLa, iLo);
+            myPin.Location = new Microsoft.Maps.MapControl.WPF.Location(iLa, iLo);
+        }
+
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             this.AddHandler(FormEvents.PreviewSubmitEvent, new EventHandler<PreviewFormCommandEventArgs>(this.OnPreviewSubmit));
+
+            BindMap();
         }
 
+        private void UserControl_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            BindMap();
+        }
 
         private void expMain_Loaded(object sender, RoutedEventArgs e)
         {

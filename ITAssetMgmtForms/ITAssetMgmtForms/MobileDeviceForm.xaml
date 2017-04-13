@@ -81,7 +81,7 @@
         <TextBlock Grid.ColumnSpan="4" VerticalAlignment="Center" Text="{Binding Path= DisplayName}" Margin="60,0,0,30" FontSize="16" Foreground="White" />
         <TextBlock Grid.ColumnSpan="4" VerticalAlignment="Center" Text="{Binding $Class$.DisplayName}" Margin="60,30,0,0" FontSize="16" Foreground="White"/>
         <Image HorizontalAlignment="Left" VerticalAlignment="Stretch" Height="84" Margin="0,0,0,0" Grid.ColumnSpan="5" Source="Pictures/header-bg1.png" Stretch="Fill" Focusable="True"/>
-        <Image HorizontalAlignment="Left" VerticalAlignment="Center" Height="50" Margin="5,0,0,15" Grid.Row="0" Source="Pictures/mobildevice.png" Stretch="Fill" Width="50" RenderTransformOrigin="0.18,0.468" Focusable="True"/>
+        <Image HorizontalAlignment="Left" VerticalAlignment="Center" Height="50" Margin="5,0,0,15" Grid.Row="0" Source="Pictures/ic_phone.png" Stretch="Fill" Width="50" RenderTransformOrigin="0.18,0.468" Focusable="True"/>
         <TabControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" Grid.ColumnSpan="6" Grid.Column="0">
             <TabItem Header="General" x:Name="tabItemGeneral">
                 <Grid>

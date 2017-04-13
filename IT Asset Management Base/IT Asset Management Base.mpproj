@@ -673,6 +673,12 @@
     <EmbeddedResource Include="Pictures\cloud24x24.png">
       <SubType>Content</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\icmon16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\icmon24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
     <Content Include="Pictures\ic_administrator_gear.png">
       <SubType>Content</SubType>
     </Content>

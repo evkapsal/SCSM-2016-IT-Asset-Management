@@ -131,6 +131,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\DLL References\2016\Microsoft.EnterpriseManagement.UI.WpfWizardFramework.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Maps.MapControl.WPF">
+      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Bing Maps WPF Control\V1\Libraries\Microsoft.Maps.MapControl.WPF.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -146,6 +149,7 @@
     <Reference Include="WPFToolKit, Version=7.0.5000.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\DLL References\2016\WPFToolKit.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -539,6 +543,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Pictures\mobildevice.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\ic_billboard_comment.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\ic_phone.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

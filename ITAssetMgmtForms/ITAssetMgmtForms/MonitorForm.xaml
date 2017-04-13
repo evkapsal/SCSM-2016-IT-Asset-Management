@@ -13,7 +13,7 @@
              xmlns:local="clr-namespace:ITAssetMgmtForms"
              mc:Ignorable="d" 
              Loaded="UserControl_Loaded"
-             d:DesignHeight="800" d:DesignWidth="600">
+             d:DesignHeight="600" d:DesignWidth="600">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -81,7 +81,7 @@
         <TextBlock Grid.ColumnSpan="4" VerticalAlignment="Center" Text="{Binding Path= DisplayName}" Margin="60,0,0,30" FontSize="16" Foreground="White" />
         <TextBlock Grid.ColumnSpan="4" VerticalAlignment="Center" Text="{Binding $Class$.DisplayName}" Margin="60,30,0,0" FontSize="16" Foreground="White"/>
         <Image HorizontalAlignment="Left" VerticalAlignment="Stretch" Height="84" Margin="0,0,0,0" Grid.ColumnSpan="5" Source="Pictures/header-bg1.png" Stretch="Fill" Focusable="True"/>
-        <Image HorizontalAlignment="Left" VerticalAlignment="Center" Height="50" Margin="5,0,0,15" Grid.Row="0" Source="Pictures/ic_print.png" Stretch="Fill" Width="50" RenderTransformOrigin="0.18,0.468" Focusable="True"/>
+        <Image HorizontalAlignment="Left" VerticalAlignment="Center" Height="50" Margin="5,0,0,15" Grid.Row="0" Source="Pictures/ic_billboard_comment.png" Stretch="Fill" Width="50" RenderTransformOrigin="0.18,0.468" Focusable="True"/>
         <TabControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" Grid.ColumnSpan="6" Grid.Column="0">
             <TabItem Header="General" x:Name="tabItemGeneral">
                 <Grid>
@@ -117,7 +117,7 @@
                             </Grid.ColumnDefinitions>
                             <StackPanel Style="{StaticResource stackPanelStyle}" Grid.Row="0" Grid.ColumnSpan="5">
                                 <Label Content="Display Name"/>
-                                <TextBox Style="{StaticResource textBoxStyle}"  Text="{Binding Path=DeviceName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                <TextBox Style="{StaticResource textBoxStyle}"  Text="{Binding Path=DisplayName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                                 <Label Content="Manufacturer"/>
                                 <smcontrols:SingleInstancePicker Style="{StaticResource sipStyle}" BaseClassId="{Binding Source={x:Static local:Resources.guidDeviceManufacturerClass},Mode=OneWay}"
                                                                  Instance="{Binding Path=Manufacturer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="InstancePicker_MouseDoubleClick"/>
@@ -129,38 +129,32 @@
                                 <Label Content="Monitor Status"/>
                                 <scwpf:ListPicker Style="{StaticResource listPickerStyle}" ParentCategoryId="{Binding Mode=OneWay, Source={x:Static local:Resources.guidNetDeviceStatusEnumRoot}}" 
                                 	SelectedItem="{Binding Path=Status, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="23" />
-                                <Label Content="IP Address"/>
-                                <TextBox Style="{StaticResource textBoxStyle}"  Text="{Binding Path=IPAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                <Label Content="Counter B/W Prints"/>
-                                <TextBox Style="{StaticResource textBoxStyle}"  Text="{Binding Path=Counterbw, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                <Label Content="Cost B/W Per Page"/>
-                                <TextBox Style="{StaticResource textBoxStyle}"  Text="{Binding Path=bwperPage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                <Label Content="Counter Sync Date"/>
-                                <wpfToolKit:DatePicker Style="{StaticResource datePickerStyle}" SelectedDate="{Binding Path=CounterDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                <CheckBox Content="3D Capable" IsChecked="{Binding 3D, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                <Label Content="Monitor Size"/>
+                                <TextBox Style="{StaticResource textBoxStyle}"  Text="{Binding Path=Size, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                <CheckBox Content="Touchscreen" IsChecked="{Binding TouchScreen, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                               
+                               
 
                             </StackPanel>
                             <StackPanel Style="{StaticResource stackPanelStyle}" Grid.Column="5"   Grid.Row="0" Grid.ColumnSpan="8">
-                                <Label Content="Printer Name"/>
-                                <TextBox Style="{StaticResource textBoxStyle}"  Text="{Binding Path=PrinterName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                <Label Content="Monitor Name"/>
+                                <TextBox Style="{StaticResource textBoxStyle}"  Text="{Binding Path=DeviceName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                                 <Label Content="Model"/>
                                 <smcontrols:SingleInstancePicker Style="{StaticResource sipStyle}" BaseClassId="{Binding Source={x:Static local:Resources.guidDeviceModelClass},Mode=OneWay}"
                                                                  Instance="{Binding Path=Model, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="InstancePicker_MouseDoubleClick"/>
                                 <Label Content="Asset Tag"/>
                                 <TextBox Style="{StaticResource textBoxStyle}"  Text="{Binding Path=AssetTag, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                <Label Content="Connectivity"/>
-                                <scwpf:ListPicker Style="{StaticResource listPickerStyle}" ParentCategoryId="{Binding Mode=OneWay, Source={x:Static local:Resources.guidPrinterConnEnumRoot}}" 
-                                	SelectedItem="{Binding Path=Connectivity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="23" />
-                                <Label Content="Color Type"/>
-                                <scwpf:ListPicker Style="{StaticResource listPickerStyle}" ParentCategoryId="{Binding Mode=OneWay, Source={x:Static local:Resources.guidColorTypeEnumRoot}}" 
-                                	SelectedItem="{Binding Path=ColorType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="23" />
-                                <Label Content="Pages Per Sec"/>
-                                <TextBox Style="{StaticResource textBoxStyle}"  Text="{Binding Path=SpeedPPS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                <Label Content="Counter Color Prints"/>
-                                <TextBox Style="{StaticResource textBoxStyle}"  Text="{Binding Path=CounterColor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                <Label Content="Cost Color Per Page"/>
-                                <TextBox Style="{StaticResource textBoxStyle}"  Text="{Binding Path=Colorperpage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                <Label Content="Last Discover Date"/>
-                                <wpfToolKit:DatePicker Style="{StaticResource datePickerStyle}" SelectedDate="{Binding Path=LastDiscoveredDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                <Label Content="Monitor Use Type"/>
+                                <scwpf:ListPicker Style="{StaticResource listPickerStyle}" ParentCategoryId="{Binding Mode=OneWay, Source={x:Static local:Resources.guidMonUseTypeTypeEnum}}" 
+                                	SelectedItem="{Binding Path=UseType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="23" />
+                                <Label Content="Resolution"/>
+                                <TextBox Style="{StaticResource textBoxStyle}"  Text="{Binding Path=Resolution, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                
+                                
+                              
+                               
+                              
 
                             </StackPanel>
                             <StackPanel Style="{StaticResource stackPanelStyle}" Grid.Row="1"  Grid.ColumnSpan="8">

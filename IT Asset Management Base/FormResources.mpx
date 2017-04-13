@@ -102,6 +102,11 @@
     <Form ID="Form.Printer" Accessibility="Public" Target="Projection.Printer" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.PrinterForm">
       <Category>Form</Category>
     </Form>
+    <Form ID="Form.Monitor" Accessibility="Public" Target="Projection.Monitor" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.MonitorForm">
+      <Category>Form</Category>
+    </Form>
+    
+    
     <Form ID="Form.NetworkDevice" Accessibility="Public" Target="Projection.NetworkDevice" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.NetworkDeviceForm">
       <Category>Form</Category>
     </Form>

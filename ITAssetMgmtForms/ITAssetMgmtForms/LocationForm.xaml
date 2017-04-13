@@ -8,11 +8,13 @@
              xmlns:wpfToolKit="clr-namespace:Microsoft.Windows.Controls;assembly=wpfToolKit"
              xmlns:toolbox="clr-namespace:Microsoft.EnterpriseManagement.UI.WpfToolbox;assembly=Microsoft.EnterpriseManagement.UI.FormsInfra"
              xmlns:scwpf="http://schemas.microsoft.com/SystemCenter/Common/UI/Wpf"
+             xmlns:map="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
              xmlns:views="clr-namespace:Microsoft.EnterpriseManagement.UI.FormsInfra;assembly=Microsoft.EnterpriseManagement.UI.FormsInfra"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:local="clr-namespace:ITAssetMgmtForms"
              mc:Ignorable="d" 
              Loaded="UserControl_Loaded"
+             DataContextChanged="UserControl_DataContextChanged"
              d:DesignHeight="800" d:DesignWidth="600">
     <UserControl.Resources>
         <ResourceDictionary>
@@ -159,8 +161,8 @@
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <StackPanel Style="{StaticResource stackPanelStyle}" Grid.Column="0"  Grid.Row="0" Grid.ColumnSpan="3">
-                                <Label Content="Longitude"/>
-                                <TextBox Style="{StaticResource textBoxStyle}"  Text="{Binding Path=Longitude, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                <Label Content="Longtitude"/>
+                                <TextBox Style="{StaticResource textBoxStyle}"  Text="{Binding Path=Longtitude, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                             </StackPanel>
                             <StackPanel Style="{StaticResource stackPanelStyle}" Grid.Column="3"  Grid.Row="0" Grid.ColumnSpan="3">
                                 <Label Content="Latitude"/>
@@ -469,6 +471,15 @@
             </TabItem>
             <TabItem Header="History" x:Name="tabItemHistory">
                 <smcontrols:HistoryTab></smcontrols:HistoryTab>
+            </TabItem>
+            <TabItem Header="Map" x:Name="MapTab">
+
+                <map:Map x:Name="myMap" CredentialsProvider="AvAtShBibUJzhrWKGf4-j7HLHkumXYbKq-tJqY_BAkvjqpNf8ASd4w64j8_V0oV_"
+                         ZoomLevel="18">
+                    <map:Pushpin x:Name="myPin" />
+                </map:Map>
+               <!-- <StackPanel Style="{StaticResource stackPanelStyle}" Grid.Row="2" Grid.Column="8" Grid.ColumnSpan="6" Margin="10,10,10,10" Grid.RowSpan="4">
+                </StackPanel> -->
             </TabItem>
         </TabControl>
 

@@ -97,7 +97,7 @@
                     </StackPanel>
                     <StackPanel Style="{StaticResource stackPanelStyle}" Grid.Row="1"  Grid.ColumnSpan="8">
                         <Label Content="Credentials Path"/>
-                        <TextBox Style="{StaticResource textBoxStyle}" Text="{Binding Path=CredentialsPath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBox Style="{StaticResource textBoxStyle}" Text="{Binding Path=CredentialsPath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                         <Label Content="Description"/>
                         <TextBox Style="{StaticResource textBoxMediumStyle}" Text="{Binding Path=Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>

@@ -5,6 +5,7 @@
           <TypeProjection ID="Projection.HardwareAssetView" Accessibility="Public" Type="HardwareAsset">
           <Component Path="$Context/Path[Relationship='Relationship.HardwareAssetReferencesHardware']$" Alias="Hardware" />
           <Component Path="$Context/Path[Relationship='Relationship.HardwareAssetReferencesPrinter']$" Alias="Printer" />
+          <Component Path="$Context/Path[Relationship='Relationship.HardwareAssetReferencesMonitorDevice']$" Alias="Monitor" />
           <Component Path="$Context/Path[Relationship='Relationship.HardwareAssetReferencesMobileDevice']$" Alias="MobileDevice" />
           <Component Path="$Context/Path[Relationship='Relationship.HardwareAssetReferencesNetworkDevice']$" Alias="NetworkDevice" />
           <Component Path="$Context/Path[Relationship='Relationship.HardwareAssetReferencesStorageDevice']$" Alias="StorageDevice" />
@@ -200,6 +201,24 @@
           <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem' SeedRole='Target']$" Alias="RelatedConfigItemSource" />
           <Component Path="$Context/Path[Relationship='CoreKnowledge!System.EntityLinksToKnowledgeDocument']$" Alias="RelatedKnowledgeArticles" />
         </TypeProjection>
+
+
+        <TypeProjection ID="Projection.Monitor" Accessibility="Public" Type="Monitor">
+          <Component Path="$Context/Path[Relationship='Relationship.HardwareAssetReferencesMonitorDevice' SeedRole='Target']$" Alias="HardwareAsset" />
+          <Component Path="$Context/Path[Relationship='Relationship.MonitorHasUser']$" Alias="HasUser" />
+          <Component Path="$Context/Path[Relationship='Relationship.MonitorHasManufacturer']$" Alias="Manufacturer" />
+          <Component Path="$Context/Path[Relationship='Relationship.MonitorHasModel']$" Alias="Model" />
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemRelatesToConfigItem' SeedRole='Target']$" Alias="ImpactedWorkItem" />
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemAboutConfigItem' SeedRole='Target']$" Alias="RelatedWorkItem" />
+          <Component Path="$Context/Path[Relationship='SupportingItem!System.ConfigItemHasFileAttachment']$" Alias="FileAttachment" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem']$" Alias="RelatedConfigItem" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem' SeedRole='Target']$" Alias="RelatedConfigItemSource" />
+          <Component Path="$Context/Path[Relationship='CoreKnowledge!System.EntityLinksToKnowledgeDocument']$" Alias="RelatedKnowledgeArticles" />
+        </TypeProjection>
+        
+        
+        
+        
 
         <TypeProjection ID="Projection.NetworkDevice" Accessibility="Public" Type="NetworkDevice">
           <Component Path="$Context/Path[Relationship='Relationship.HardwareAssetReferencesNetworkDevice' SeedRole='Target']$" Alias="HardwareAst" />

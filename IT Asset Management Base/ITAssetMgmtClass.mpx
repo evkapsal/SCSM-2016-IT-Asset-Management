@@ -77,15 +77,6 @@
           <Property ID="Type" Type="enum" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" EnumType="ITSMConnectorType" DefaultValue="ITSMConnectorType.ADGroupSyncronization" />
           <Property ID="ConnectorName" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" DefaultValue="AD Group AD Connector" />
           <Property ID="IsActive" Type="bool" DefaultValue="0" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0"/>
-        </ClassType>
-		   <ClassType ID="Location" Accessibility="Public" Abstract="false" Base="System!System.GeoLocation" Hosted="false" Singleton="false" Extension="false">
-          <Property ID="Address" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
-          <Property ID="City" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
-          <Property ID="Country" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
-          <Property ID="State" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
-          <Property ID="Type" Type="enum" EnumType="LocationType" />
-          <Property ID="Zip" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
-        </ClassType>
 		   <ClassType ID="ADGroupMembership" Accessibility="Public" Abstract="false" Base="Windows!Microsoft.AD.Group" Hosted="false" Singleton="false" Extension="true">
 		   </ClassType>
         <ClassType ID="Setting" Accessibility="Public" Abstract="false" Base="System!System.ConfigItem" Hosted="false" Singleton="false" Extension="false">
@@ -853,7 +844,8 @@
       <EnumerationValue ID="HardwareAssetType.Scanner" Accessibility="Public" Parent="HardwareAssetType" Ordinal="25" />
       <EnumerationValue ID="HardwareAssetType.Server" Accessibility="Public" Parent="HardwareAssetType" Ordinal="5" />
       <EnumerationValue ID="HardwareAssetType.StorageDevice" Accessibility="Public" Parent="HardwareAssetType" Ordinal="65" />
-      <EnumerationValue ID="HardwareAssetType.Tablet" Accessibility="Public" Parent="HardwareAssetType" Ordinal="30" />
+      <EnumerationValue ID="HardwareAssetType.Tablet" Accessibility="Public" Parent="HardwareAssetType" Ordinal="85" />
+      <EnumerationValue ID="HardwareAssetType.Monitor" Accessibility="Public" Parent="HardwareAssetType" Ordinal="30" />
       <EnumerationValue ID="HardwareAssetType.VirtualMachine" Accessibility="Internal" Parent="HardwareAssetType" Ordinal="50" />
     <EnumerationValue ID="HardwareAssetClass" Accessibility="Internal" />
       <EnumerationValue ID="HardwareAssetClass.Computer" Accessibility="Internal" Parent="HardwareAssetClass" Ordinal="5" />
@@ -1011,7 +1003,14 @@
     <Category ID="List.Duration.Visible" Target="Duration" Value="System!VisibleToUser" />   
     <Category ID="List.ContactRole" Target="ContactRole" Value="SCSMUIAuth!Microsoft.EnterpriseManagement.ServiceManager.UI.Authoring.EnumerationViewTasks" />
     <Category ID="List.ContactRole.Visible" Target="ContactRole" Value="System!VisibleToUser" />
-   <!-- 
+    <Category ID="List.MonDeviceType" Target="MonDeviceType" Value="SCSMUIAuth!Microsoft.EnterpriseManagement.ServiceManager.UI.Authoring.EnumerationViewTasks" />
+    <Category ID="List.MonDeviceType.Visible" Target="MonDeviceType" Value="System!VisibleToUser" />
+    <Category ID="List.UseMDeviceType" Target="UseMDeviceType" Value="SCSMUIAuth!Microsoft.EnterpriseManagement.ServiceManager.UI.Authoring.EnumerationViewTasks" />
+    <Category ID="List.UseMDeviceType.Visible" Target="UseMDeviceType" Value="System!VisibleToUser" />
+
+
+    
+    <!-- 
     <Category ID="List.UserRole" Target="UserRole" Value="SCSMUIAuth!Microsoft.EnterpriseManagement.ServiceManager.UI.Authoring.EnumerationViewTasks" />
     <Category ID="List.UserRole.Visible" Target="UserRole" Value="System!VisibleToUser" />
     -->
@@ -2905,6 +2904,9 @@
         </DisplayString>
         <DisplayString ElementID="HardwareAssetType.Cable" >
           <Name>Cable</Name>
+        </DisplayString>
+        <DisplayString ElementID="HardwareAssetType.Monitor" >
+          <Name>Monitor</Name>
         </DisplayString>
         <DisplayString ElementID="HardwareAssetType.Consumables" >
           <Name>Consumables</Name>
