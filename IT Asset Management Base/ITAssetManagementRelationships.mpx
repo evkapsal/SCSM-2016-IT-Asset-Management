@@ -429,7 +429,38 @@
           <Source ID="Hardware" Type="Hardware" />
           <Target ID="DeviceModel" Type="DeviceModel" MinCardinality="0" MaxCardinality="1"/>
         </RelationshipType>
-        
+        <RelationshipType ID="Relationship.HardwareAssetReferencesScannerDevice" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="HardwareAsset" Type="HardwareAsset" MinCardinality="0" MaxCardinality="1" />
+          <Target ID="Scanner" Type="Scanner" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.ScannerHasUser" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="Scanner" Type="Scanner" />
+          <Target ID="User" Type="System!System.Domain.User" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.ScannerHasManufacturer" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="Scanner" Type="Scanner" />
+          <Target ID="DeviceManufacturer" Type="DeviceManufacturer" MinCardinality="0" MaxCardinality="1"/>
+        </RelationshipType>
+        <RelationshipType ID="Relationship.ScannerHasModel" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="Scanner" Type="Scanner" />
+          <Target ID="DeviceModel" Type="DeviceModel" MinCardinality="0" MaxCardinality="1"/>
+        </RelationshipType>
+        <RelationshipType ID="Relationship.HardwareAssetReferencesOtherDevice" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="HardwareAsset" Type="HardwareAsset" MinCardinality="0" MaxCardinality="1" />
+          <Target ID="OtherDevice" Type="OtherDevice" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.OtherDeviceHasUser" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="OtherDevice" Type="OtherDevice" />
+          <Target ID="User" Type="System!System.Domain.User" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.OtherDeviceHasManufacturer" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="OtherDevice" Type="OtherDevice" />
+          <Target ID="DeviceManufacturer" Type="DeviceManufacturer" MinCardinality="0" MaxCardinality="1"/>
+        </RelationshipType>
+        <RelationshipType ID="Relationship.OtherDeviceHasModel" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="OtherDevice" Type="OtherDevice" />
+          <Target ID="DeviceModel" Type="DeviceModel" MinCardinality="0" MaxCardinality="1"/>
+        </RelationshipType>
         <RelationshipType ID="Relationship.MonitorHasManufacturer" Accessibility="Public" Abstract="false" Base="System!System.Reference">
           <Source ID="Monitor" Type="Monitor" />
           <Target ID="DeviceManufacturer" Type="DeviceManufacturer" MinCardinality="0" MaxCardinality="1"/>

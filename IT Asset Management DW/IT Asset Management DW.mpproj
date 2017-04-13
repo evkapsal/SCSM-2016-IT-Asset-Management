@@ -35,7 +35,7 @@
   </PropertyGroup>
   <ItemGroup>
     <ManagementPackReference Include="IT_Asset_Management_Base">
-      <HintPath>C:\Users\evkapsal.EUROPE\OneDrive - Microsoft\ITSM 2015\IT Asset Management Management Pack\IT Asset Management Base\IT Asset Management Base\bin\Debug\IT_Asset_Management_Base.mp</HintPath>
+      <HintPath>C:\Users\Vangelis\OneDrive - Microsoft\ITSM2016\IT Asset Management Management Pack\IT Asset Management Base\IT Asset Management Base\bin\Debug\IT_Asset_Management_Base.mp</HintPath>
       <Alias>ITSM</Alias>
       <MinVersion>1.2.0.10</MinVersion>
       <PackageToBundle>False</PackageToBundle>

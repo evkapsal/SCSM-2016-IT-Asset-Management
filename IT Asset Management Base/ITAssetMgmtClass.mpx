@@ -194,6 +194,34 @@
           <Property ID="TouchScreen" Type= "bool" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0"/>
           <Property ID="3D" Type= "bool" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0"/>
         </ClassType>
+        <ClassType ID="Scanner" Accessibility="Public" Abstract="false" Base="System!System.ConfigItem" Hosted="false" Singleton="false">
+          <Property ID="DeviceName" Type="string" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0"/>
+          <Property ID="ScanDevKey" Type="string" AutoIncrement="true" Key="true" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" DefaultValue="ScanDvId{0}"/>
+          <Property ID="Description" Type="string" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0"/>
+          <Property ID="SerialNumber" Type="string" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0"/>
+          <Property ID="Type" Type="enum" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" EnumType="ScanDeviceType" />
+          <Property ID="Interface" Type="enum" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" EnumType="ScanConnectivityType" />
+          <Property ID="DocumentFeed" Type="enum" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" EnumType="DocumentFeedType" />
+          <Property ID="Status" Type="enum" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" EnumType="DeviceStatus" />
+          <Property ID="AssetTag" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
+          <Property ID="Dimensions" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
+          <Property ID="Resolution" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
+          <Property ID="ScanSpeed" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
+          <Property ID="IPAddress" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
+          <Property ID="HasExpansion" Type= "bool" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0"/>
+        </ClassType>
+        <ClassType ID="OtherDevice" Accessibility="Public" Abstract="false" Base="System!System.ConfigItem" Hosted="false" Singleton="false">
+          <Property ID="DeviceName" Type="string" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0"/>
+          <Property ID="ODevKey" Type="string" AutoIncrement="true" Key="true" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" DefaultValue="OTDvId{0}"/>
+          <Property ID="Description" Type="string" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0"/>
+          <Property ID="SerialNumber" Type="string" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0"/>
+          <Property ID="Type" Type="enum" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" EnumType="ODeviceType" />
+          <Property ID="Interface" Type="enum" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" EnumType="OConnectivityType" />
+          <Property ID="Status" Type="enum" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" EnumType="DeviceStatus" />
+          <Property ID="AssetTag" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
+          <Property ID="Size" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
+          <Property ID="IPAddress" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
+        </ClassType>                
         <ClassType ID="StorageDevice" Accessibility="Public" Abstract="false" Base="System!System.ConfigItem" Hosted="false" Singleton="false">
           <Property ID="DeviceName" Type="string" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0"/>
           <Property ID="Description" Type="string" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0"/>
@@ -529,6 +557,47 @@
         </ClassType>
       </ClassTypes>
     <EnumerationTypes>
+      <EnumerationValue ID="ScanDeviceType" Accessibility="Public" />
+      <EnumerationValue ID="ScanDeviceType.Flatbed" Parent="ScanDeviceType" Accessibility="Public" Ordinal="5"/>
+      <EnumerationValue ID="ScanDeviceType.Photo" Parent="ScanDeviceType" Accessibility="Public" Ordinal="10"/>
+      <EnumerationValue ID="ScanDeviceType.Sheetfed" Parent="ScanDeviceType" Accessibility="Public" Ordinal="15"/>
+      <EnumerationValue ID="ScanDeviceType.Portable " Parent="ScanDeviceType" Accessibility="Public" Ordinal="20"/>
+      <EnumerationValue ID="ScanDeviceType.Other " Parent="ScanDeviceType" Accessibility="Public" Ordinal="30"/>
+      <EnumerationValue ID="ScanDeviceType.Multifunction " Parent="ScanDeviceType" Accessibility="Public" Ordinal="25"/>
+      <EnumerationValue ID="ScanConnectivityType" Accessibility="Public" />
+      <EnumerationValue ID="ScanConnectivityType.USB" Parent="ScanConnectivityType" Accessibility="Public" Ordinal="5"/>
+      <EnumerationValue ID="ScanConnectivityType.Parallel" Parent="ScanConnectivityType" Accessibility="Public" Ordinal="10"/>
+      <EnumerationValue ID="ScanConnectivityType.Bluetooth" Parent="ScanConnectivityType" Accessibility="Public" Ordinal="15"/>
+      <EnumerationValue ID="ScanConnectivityType.LAN" Parent="ScanConnectivityType" Accessibility="Public" Ordinal="20"/>
+      <EnumerationValue ID="ScanConnectivityType.Serial" Parent="ScanConnectivityType" Accessibility="Public" Ordinal="25"/>
+      <EnumerationValue ID="ScanConnectivityType.Other" Parent="ScanConnectivityType" Accessibility="Public" Ordinal="30"/>
+      <EnumerationValue ID="DocumentFeedType" Accessibility="Public" />
+      <EnumerationValue ID="DocumentFeedType.Automatic" Parent="DocumentFeedType" Accessibility="Public" Ordinal="5"/>
+      <EnumerationValue ID="DocumentFeedType.Reversing" Parent="DocumentFeedType" Accessibility="Public" Ordinal="10"/>
+      <EnumerationValue ID="DocumentFeedType.Dublexing" Parent="DocumentFeedType" Accessibility="Public" Ordinal="15"/>
+      <EnumerationValue ID="DocumentFeedType.Other" Parent="DocumentFeedType" Accessibility="Public" Ordinal="20"/>
+      <EnumerationValue ID="ODeviceType" Accessibility="Public" />
+      <EnumerationValue ID="ODeviceType.Telephone" Parent="ODeviceType" Accessibility="Public" Ordinal="5"/>
+      <EnumerationValue ID="ODeviceType.PMR" Parent="ODeviceType" Accessibility="Public" Ordinal="10"/>
+      <EnumerationValue ID="ODeviceType.HardDisk" Parent="ODeviceType" Accessibility="Public" Ordinal="15"/>
+      <EnumerationValue ID="ODeviceType.Sensor" Parent="ODeviceType" Accessibility="Public" Ordinal="20"/>
+      <EnumerationValue ID="ODeviceType.UPS" Parent="ODeviceType" Accessibility="Public" Ordinal="25"/>
+      <EnumerationValue ID="ODeviceType.Speakers" Parent="ODeviceType" Accessibility="Public" Ordinal="30"/>
+      <EnumerationValue ID="ODeviceType.Amplifier" Parent="ODeviceType" Accessibility="Public" Ordinal="35"/>
+      <EnumerationValue ID="ODeviceType.Microphone" Parent="ODeviceType" Accessibility="Public" Ordinal="40"/>
+      <EnumerationValue ID="ODeviceType.Satellite" Parent="ODeviceType" Accessibility="Public" Ordinal="45"/>
+      <EnumerationValue ID="ODeviceType.Antenna" Parent="ODeviceType" Accessibility="Public" Ordinal="50"/>
+      <EnumerationValue ID="ODeviceType.Cable" Parent="ODeviceType" Accessibility="Public" Ordinal="55"/>
+      <EnumerationValue ID="ODeviceType.Fiber" Parent="ODeviceType" Accessibility="Public" Ordinal="60"/>
+      <EnumerationValue ID="ODeviceType.Projector" Parent="ODeviceType" Accessibility="Public" Ordinal="65"/>
+      <EnumerationValue ID="ODeviceType.Screen" Parent="ODeviceType" Accessibility="Public" Ordinal="70"/>
+      <EnumerationValue ID="OConnectivityType" Accessibility="Public" />
+      <EnumerationValue ID="OConnectivityType.USB" Parent="OConnectivityType" Accessibility="Public" Ordinal="5"/>
+      <EnumerationValue ID="OConnectivityType.Parallel" Parent="OConnectivityType" Accessibility="Public" Ordinal="10"/>
+      <EnumerationValue ID="OConnectivityType.Bluetooth" Parent="OConnectivityType" Accessibility="Public" Ordinal="15"/>
+      <EnumerationValue ID="OConnectivityType.LAN" Parent="OConnectivityType" Accessibility="Public" Ordinal="20"/>
+      <EnumerationValue ID="OConnectivityType.Serial" Parent="OConnectivityType" Accessibility="Public" Ordinal="25"/>
+      <EnumerationValue ID="OConnectivityType.Other" Parent="OConnectivityType" Accessibility="Public" Ordinal="30"/>    
       <EnumerationValue ID="MonDeviceType" Accessibility="Public" />
       <EnumerationValue ID="MonDeviceType.LCD" Parent="MonDeviceType" Accessibility="Public" Ordinal="5"/>
       <EnumerationValue ID="MonDeviceType.CRT" Parent="MonDeviceType" Accessibility="Public" Ordinal="15"/>
@@ -1007,14 +1076,20 @@
     <Category ID="List.MonDeviceType.Visible" Target="MonDeviceType" Value="System!VisibleToUser" />
     <Category ID="List.UseMDeviceType" Target="UseMDeviceType" Value="SCSMUIAuth!Microsoft.EnterpriseManagement.ServiceManager.UI.Authoring.EnumerationViewTasks" />
     <Category ID="List.UseMDeviceType.Visible" Target="UseMDeviceType" Value="System!VisibleToUser" />
-
-
-    
+    <Category ID="List.ScanDeviceType" Target="ScanDeviceType" Value="SCSMUIAuth!Microsoft.EnterpriseManagement.ServiceManager.UI.Authoring.EnumerationViewTasks" />
+    <Category ID="List.ScanDeviceType.Visible" Target="ScanDeviceType" Value="System!VisibleToUser" />
+    <Category ID="List.ScanConnectivityType" Target="ScanConnectivityType" Value="SCSMUIAuth!Microsoft.EnterpriseManagement.ServiceManager.UI.Authoring.EnumerationViewTasks" />
+    <Category ID="List.ScanConnectivityType.Visible" Target="ScanConnectivityType" Value="System!VisibleToUser" />
+    <Category ID="List.DocumentFeedType" Target="DocumentFeedType" Value="SCSMUIAuth!Microsoft.EnterpriseManagement.ServiceManager.UI.Authoring.EnumerationViewTasks" />
+    <Category ID="List.DocumentFeedType.Visible" Target="DocumentFeedType" Value="System!VisibleToUser" />
+    <Category ID="List.ODeviceType" Target="ODeviceType" Value="SCSMUIAuth!Microsoft.EnterpriseManagement.ServiceManager.UI.Authoring.EnumerationViewTasks" />
+    <Category ID="List.ODeviceType.Visible" Target="ODeviceType" Value="System!VisibleToUser" />
+    <Category ID="List.OConnectivityType" Target="OConnectivityType" Value="SCSMUIAuth!Microsoft.EnterpriseManagement.ServiceManager.UI.Authoring.EnumerationViewTasks" />
+    <Category ID="List.OConnectivityType.Visible" Target="OConnectivityType" Value="System!VisibleToUser" />
     <!-- 
     <Category ID="List.UserRole" Target="UserRole" Value="SCSMUIAuth!Microsoft.EnterpriseManagement.ServiceManager.UI.Authoring.EnumerationViewTasks" />
     <Category ID="List.UserRole.Visible" Target="UserRole" Value="System!VisibleToUser" />
     -->
-        
   </Categories>
   <LanguagePacks>
     <LanguagePack ID="ENU" IsDefault="true">
@@ -2344,6 +2419,234 @@
           <Name>Software</Name>
         </DisplayString>
         -->
+        <DisplayString ElementID="Scanner">
+          <Name>Scanner</Name>
+          <Description>Scanner</Description>
+        </DisplayString>
+        <DisplayString ElementID="Scanner" SubElementID="DeviceName">
+          <Name>Scanner Name</Name>
+          <Description>Scanner Name</Description>
+        </DisplayString>
+        <DisplayString ElementID="Scanner" SubElementID="ScanDevKey">
+          <Name>Scanner Key ID</Name>
+          <Description>Scanner Kay ID</Description>
+        </DisplayString>
+        <DisplayString ElementID="Scanner" SubElementID="Description">
+          <Name>Description</Name>
+          <Description>Description</Description>
+        </DisplayString>
+        <DisplayString ElementID="Scanner" SubElementID="SerialNumber">
+          <Name>Serial Number</Name>
+          <Description>Serial Number</Description>
+        </DisplayString>
+        <DisplayString ElementID="Scanner" SubElementID="Type" >
+          <Name>Scanner Type</Name>
+          <Description>Scanner Type</Description>
+        </DisplayString>
+        <DisplayString ElementID="Scanner" SubElementID="Interface">
+          <Name>Scanner Interface</Name>
+          <Description>Scanner Interface</Description>
+        </DisplayString>
+        <DisplayString ElementID="Scanner" SubElementID="DocumentFeed">
+          <Name>Scanner Document Feed</Name>
+          <Description>Scanner Document Feed</Description>
+        </DisplayString>
+        <DisplayString ElementID="Scanner" SubElementID="Status" >
+          <Name>Status</Name>
+          <Description>Status</Description>
+        </DisplayString>
+        <DisplayString ElementID="Scanner" SubElementID="AssetTag">
+          <Name>Asset Tag</Name>
+          <Description>Asset Tag</Description>
+        </DisplayString>
+        <DisplayString ElementID="Scanner" SubElementID="Dimensions" >
+          <Name>Scanner Dimensions</Name>
+          <Description>Scanner Dimensions</Description>
+        </DisplayString>
+        <DisplayString ElementID="Scanner" SubElementID="Resolution" >
+          <Name>Scanner Resolution</Name>
+          <Description>Scanner Resolution</Description>
+        </DisplayString>
+        <DisplayString ElementID="Scanner" SubElementID="ScanSpeed" >
+          <Name>Scanner Scan Speed</Name>
+          <Description>Scanner Scan Speed</Description>
+        </DisplayString>
+        <DisplayString ElementID="Scanner" SubElementID="IPAddress" >
+          <Name>IP Address</Name>
+          <Description>IP Address</Description>
+        </DisplayString>
+        <DisplayString ElementID="Scanner" SubElementID="HasExpansion">
+          <Name>Has Expansion</Name>
+          <Description>Has Expansion</Description>
+        </DisplayString>
+        <DisplayString ElementID="OtherDevice" >
+          <Name>Other Device</Name>
+          <Description>Other Device</Description>
+        </DisplayString>
+        <DisplayString ElementID="OtherDevice" SubElementID="DeviceName" >
+          <Name> Device Name</Name>
+          <Description> Device Name</Description>
+        </DisplayString>
+        <DisplayString ElementID="OtherDevice" SubElementID="ODevKey" >
+          <Name> Device Key</Name>
+          <Description> Device Key</Description>
+        </DisplayString>
+        <DisplayString ElementID="OtherDevice" SubElementID="Description" >
+          <Name> Description </Name>
+          <Description> Description</Description>
+        </DisplayString>
+        <DisplayString ElementID="OtherDevice" SubElementID="SerialNumber" >
+          <Name> Serial Number </Name>
+          <Description> Serial Number</Description>
+        </DisplayString>
+        <DisplayString ElementID="OtherDevice" SubElementID="Type" >
+          <Name> Device Type </Name>
+          <Description> Device Type</Description>
+        </DisplayString>
+        <DisplayString ElementID="OtherDevice" SubElementID="Interface" >
+          <Name> Device Interface </Name>
+          <Description> Device Interface</Description>
+        </DisplayString>
+        <DisplayString ElementID="OtherDevice" SubElementID="Status" >
+          <Name> Device Status </Name>
+          <Description> Device Status</Description>
+        </DisplayString>
+        <DisplayString ElementID="OtherDevice" SubElementID="AssetTag" >
+          <Name> Asset Tag  </Name>
+          <Description> Asset Tag </Description>
+        </DisplayString>
+        <DisplayString ElementID="OtherDevice" SubElementID="Size" >
+          <Name> Size </Name>
+          <Description> Size</Description>
+        </DisplayString>
+        <DisplayString ElementID="OtherDevice" SubElementID="IPAddress" >
+          <Name> IP Address </Name>
+          <Description> IP Address</Description>
+        </DisplayString>
+
+        <DisplayString ElementID="ScanDeviceType">
+          <Name> Scanner Device Type </Name>
+        </DisplayString>
+        <DisplayString ElementID="ScanDeviceType.Flatbed">
+          <Name> Flatbed </Name>
+        </DisplayString>
+        <DisplayString ElementID="ScanDeviceType.Photo" >
+          <Name>  Photo </Name>
+        </DisplayString>
+        <DisplayString ElementID="ScanDeviceType.Sheetfed">
+          <Name> Sheetfed </Name>
+        </DisplayString>
+        <DisplayString ElementID="ScanDeviceType.Portable">
+          <Name>  Portable  </Name>
+        </DisplayString>
+        <DisplayString ElementID="ScanDeviceType.Other" >
+          <Name>  Other </Name>
+        </DisplayString>
+        <DisplayString ElementID="ScanDeviceType.Multifunction">
+          <Name>  Multi function </Name>
+        </DisplayString>
+        <DisplayString ElementID="ScanConnectivityType" >
+          <Name>  Scanner Connectivity Type </Name>
+        </DisplayString>
+        <DisplayString ElementID="ScanConnectivityType.USB">
+          <Name>  USB </Name>
+        </DisplayString>
+        <DisplayString ElementID="ScanConnectivityType.Parallel">
+          <Name>  Parallel </Name>
+        </DisplayString>
+        <DisplayString ElementID="ScanConnectivityType.Bluetooth">
+          <Name>  Bluetooth </Name>
+        </DisplayString>
+        <DisplayString ElementID="ScanConnectivityType.LAN" >
+          <Name>  LAN </Name>
+        </DisplayString>
+        <DisplayString ElementID="ScanConnectivityType.Serial">
+          <Name>  Serial </Name>
+        </DisplayString>
+        <DisplayString ElementID="ScanConnectivityType.Other">
+          <Name>  Other </Name>
+        </DisplayString>
+        <DisplayString ElementID="DocumentFeedType" >
+          <Name>  Document Feed Type </Name>
+        </DisplayString>
+        <DisplayString ElementID="DocumentFeedType.Automatic" >
+          <Name>  Automatic </Name>
+        </DisplayString>
+        <DisplayString ElementID="DocumentFeedType.Reversing" >
+          <Name>  Reversing </Name>
+        </DisplayString>
+        <DisplayString ElementID="DocumentFeedType.Dublexing" >
+          <Name>  Dublexing </Name>
+        </DisplayString>
+        <DisplayString ElementID="DocumentFeedType.Other" >
+          <Name>  Other </Name>
+        </DisplayString>
+        <DisplayString ElementID="ODeviceType" >
+          <Name>  Device Type </Name>
+        </DisplayString>
+        <DisplayString ElementID="ODeviceType.Telephone" >
+          <Name>  Telephone </Name>
+        </DisplayString>
+        <DisplayString ElementID="ODeviceType.PMR" >
+          <Name>  PMR </Name>
+        </DisplayString>
+        <DisplayString ElementID="ODeviceType.HardDisk">
+          <Name>  HardDisk </Name>
+        </DisplayString>
+        <DisplayString ElementID="ODeviceType.Sensor">
+          <Name>  Sensor </Name>
+        </DisplayString>
+        <DisplayString ElementID="ODeviceType.UPS" >
+          <Name>  UPS </Name>
+        </DisplayString>
+        <DisplayString ElementID="ODeviceType.Speakers">
+          <Name>  Speakers </Name>
+        </DisplayString>
+        <DisplayString ElementID="ODeviceType.Amplifier" >
+          <Name>  Amplifier </Name>
+        </DisplayString>
+        <DisplayString ElementID="ODeviceType.Microphone" >
+          <Name>  Microphone </Name>
+        </DisplayString>
+        <DisplayString ElementID="ODeviceType.Satellite" >
+          <Name>  Satellite </Name>
+        </DisplayString>
+        <DisplayString ElementID="ODeviceType.Antenna">
+          <Name>  Antenna </Name>
+        </DisplayString>
+        <DisplayString ElementID="ODeviceType.Cable" >
+          <Name>  Cable </Name>
+        </DisplayString>
+        <DisplayString ElementID="ODeviceType.Fiber" >
+          <Name>  Fiber </Name>
+        </DisplayString>
+        <DisplayString ElementID="ODeviceType.Projector" >
+          <Name>  Projector </Name>
+        </DisplayString>
+        <DisplayString ElementID="ODeviceType.Screen" >
+          <Name>  Screen </Name>
+        </DisplayString>
+        <DisplayString ElementID="OConnectivityType" >
+          <Name>  Connectivity Type </Name>
+        </DisplayString>
+        <DisplayString ElementID="OConnectivityType.USB">
+          <Name>  USB </Name>
+        </DisplayString>
+        <DisplayString ElementID="OConnectivityType.Parallel">
+          <Name>  Parallel </Name>
+        </DisplayString>
+        <DisplayString ElementID="OConnectivityType.Bluetooth" >
+          <Name>  Bluetooth </Name>
+        </DisplayString>
+        <DisplayString ElementID="OConnectivityType.LAN" >
+          <Name>  LAN </Name>
+        </DisplayString>
+        <DisplayString ElementID="OConnectivityType.Serial">
+          <Name>  Serial </Name>
+        </DisplayString>
+        <DisplayString ElementID="OConnectivityType.Other" >
+          <Name>  Other </Name>
+        </DisplayString>
         <DisplayString ElementID="CostCenterStatus">
           <Name>Cost Center Status</Name>
         </DisplayString>

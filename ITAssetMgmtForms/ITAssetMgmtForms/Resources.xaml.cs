@@ -75,11 +75,18 @@ namespace ITAssetMgmtForms
         public static Guid guidOSMobDevTypeEnum = new Guid("a96dc1af-2ff7-7fbb-b148-a82d9ae89287");
         public static Guid guidMonTypeTypeEnum = new Guid("1692fd09-3149-31cd-6348-54e8d12e1100");
         public static Guid guidMonUseTypeTypeEnum = new Guid("ccec976e-0b83-eae9-90e6-788fa619cfca");
+        public static Guid guidScanDevTypeEnum = new Guid("244b92b3-21b3-efca-ebd8-3e0530cd0eef");
+        public static Guid guidScanConnTypeEnum = new Guid("7b4398de-48c7-41f3-8825-381572df6a33");
+        public static Guid guidDocFdTypeEnum = new Guid("770fc68a-91ea-e1f3-acab-5876577f8ec3");
+        public static Guid guidODevTypeEnum = new Guid("e9543c0d-5a7f-db40-b12b-628dc6c52142");
+        public static Guid guidOConnTypeEnum = new Guid("0fdc8a41-6062-5a7e-fc53-bd19a936ed49");
 
 
 
         //Class
         public static Guid guidHardwareClass = new Guid("2e3768dc-30bb-acd6-6877-077e3806efdf");
+        public static Guid guidScannerClass = new Guid("9f8b1a6b-70f9-f117-29e8-3e9ab02bbcb5");
+        public static Guid guidOtherHWClass = new Guid("53fe3561-e7cd-2514-cab9-87f04fc39586");
         public static Guid guidCostCenterClass = new Guid("a85061f2-e0df-5d2b-9d08-639e3b511b04");
         public static Guid guidOrganizationClass = new Guid("6a01dc05-c370-3bae-d6aa-23c1397a3b4c");
         public static Guid guidHardwareAgreementClass = new Guid("bebd8a97-1874-58a8-68d6-8eff4210c1a0");

@@ -26,8 +26,6 @@
           <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem' SeedRole='Target']$" Alias="RelatedConfigItemSource" />
           <Component Path="$Context/Path[Relationship='CoreKnowledge!System.EntityLinksToKnowledgeDocument']$" Alias="RelatedKnowledgeArticles" />
         </TypeProjection>
-
-
         <TypeProjection ID="Projection.SoftwareAsset" Accessibility="Public" Type="SoftwareAsset">
           <Component Path="$Context/Path[Relationship='Relationship.SoftwareAssetHasSoftware']$" Alias="Software" />
           <Component Path="$Context/Path[Relationship='Relationship.SoftwareAssetHasSupplier']$" Alias="Supplier" />
@@ -47,7 +45,6 @@
           <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem' SeedRole='Target']$" Alias="RelatedConfigItemSource" />
           <Component Path="$Context/Path[Relationship='CoreKnowledge!System.EntityLinksToKnowledgeDocument']$" Alias="RelatedKnowledgeArticles" />
         </TypeProjection>
-
         <TypeProjection ID="Projection.Company" Accessibility="Public" Type="Company">
           <Component Path="$Context/Path[Relationship='Relationship.HardwareAgreementHasSupplier' SeedRole='Target']$" Alias="HardwareAgreement"/>
           <Component Path="$Context/Path[Relationship='Relationship.SoftwareAgreementHasSupplier' SeedRole='Target']$" Alias="SoftwareAgreement"/>
@@ -72,12 +69,10 @@
           <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem' SeedRole='Target']$" Alias="RelatedConfigItemSource" />
           <Component Path="$Context/Path[Relationship='CoreKnowledge!System.EntityLinksToKnowledgeDocument']$" Alias="RelatedKnowledgeArticles" />         
         </TypeProjection>
-
         <TypeProjection ID="Projection.LicenseStatus" Accessibility="Public" Type="LicenseStatus">
           <Component Path="$Context/Path[Relationship='Relationship.LicStatusIsForSoftwareAgreement']$" Alias="SoftwareAgreement" />
           <Component Path="$Context/Path[Relationship='Relationship.LicStatusHasSoftware']$" Alias="Software" />
-        </TypeProjection>
-        
+        </TypeProjection>    
 		<!--
 		<TypeProjection ID="Projection.UserRole" Accessibility="Public" Type="Role">
           <Component Path="$Context/Path[Relationship='Relationship.UserRoleHasMember']$" Alias="IsMember" />
@@ -113,8 +108,6 @@
           <Component Path="$Context/Path[Relationship='Relationship.SoftwareAgreementHasCostCenter' SeedRole='Target']$" Alias="SoftwareAgreement"/>
           <Component Path="$Context/Path[Relationship='Relationship.SupportAgreementHasCostCenter' SeedRole='Target']$" Alias="SupportAgreement"/>
         </TypeProjection>
-
-
         <TypeProjection ID="Projection.Cost" Accessibility="Public" Type="Cost">
           <Component Path="$Context/Path[Relationship='Relationship.CostHasCostCenter']$" Alias="CostCenter" />
           <Component Path="$Context/Path[Relationship='Relationship.CostHasLocation']$" Alias="Location" />
@@ -130,7 +123,6 @@
           <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem' SeedRole='Target']$" Alias="RelatedConfigItemSource" />
           <Component Path="$Context/Path[Relationship='CoreKnowledge!System.EntityLinksToKnowledgeDocument']$" Alias="RelatedKnowledgeArticles" />
         </TypeProjection>
-
         <TypeProjection ID="Projection.HardwareAgreement" Accessibility="Public" Type="HardwareAgreement">
           <Component Path="$Context/Path[Relationship='Relationship.HardwareAgreementHasCostCenter']$" Alias="CostCenter" />
           <Component Path="$Context/Path[Relationship='Relationship.HardwareAgreementHasSupplier']$" Alias="Supplier" />
@@ -148,8 +140,6 @@
           <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem' SeedRole='Target']$" Alias="RelatedConfigItemSource" />
           <Component Path="$Context/Path[Relationship='CoreKnowledge!System.EntityLinksToKnowledgeDocument']$" Alias="RelatedKnowledgeArticles" />
         </TypeProjection>
-
-
         <TypeProjection ID="Projection.SoftwareAgreement" Accessibility="Public" Type="SoftwareAgreement">
           <Component Path="$Context/Path[Relationship='Relationship.SoftwareAgreementHasCostCenter']$" Alias="CostCenter" />
           <Component Path="$Context/Path[Relationship='Relationship.SoftwareAgreementHasSupplier']$" Alias="Supplier" />
@@ -167,9 +157,6 @@
           <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem' SeedRole='Target']$" Alias="RelatedConfigItemSource" />
           <Component Path="$Context/Path[Relationship='CoreKnowledge!System.EntityLinksToKnowledgeDocument']$" Alias="RelatedKnowledgeArticles" />
         </TypeProjection>
-
-
-
         <TypeProjection ID="Projection.SupportAgreement" Accessibility="Public" Type="SupportAgreement">
           <Component Path="$Context/Path[Relationship='Relationship.SupportAgreementHasCostCenter']$" Alias="CostCenter" />
           <Component Path="$Context/Path[Relationship='Relationship.SupportAgreementHasSupplier']$" Alias="Supplier" />
@@ -188,7 +175,6 @@
           <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem' SeedRole='Target']$" Alias="RelatedConfigItemSource" />
           <Component Path="$Context/Path[Relationship='CoreKnowledge!System.EntityLinksToKnowledgeDocument']$" Alias="RelatedKnowledgeArticles" />
         </TypeProjection>
-
         <TypeProjection ID="Projection.Printer" Accessibility="Public" Type="Printer">
           <Component Path="$Context/Path[Relationship='Relationship.HardwareAssetReferencesPrinter' SeedRole='Target']$" Alias="HardwareAsset" />
           <Component Path="$Context/Path[Relationship='Relationship.PrinterHasUser']$" Alias="HasUser" />
@@ -201,8 +187,6 @@
           <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem' SeedRole='Target']$" Alias="RelatedConfigItemSource" />
           <Component Path="$Context/Path[Relationship='CoreKnowledge!System.EntityLinksToKnowledgeDocument']$" Alias="RelatedKnowledgeArticles" />
         </TypeProjection>
-
-
         <TypeProjection ID="Projection.Monitor" Accessibility="Public" Type="Monitor">
           <Component Path="$Context/Path[Relationship='Relationship.HardwareAssetReferencesMonitorDevice' SeedRole='Target']$" Alias="HardwareAsset" />
           <Component Path="$Context/Path[Relationship='Relationship.MonitorHasUser']$" Alias="HasUser" />
@@ -215,11 +199,30 @@
           <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem' SeedRole='Target']$" Alias="RelatedConfigItemSource" />
           <Component Path="$Context/Path[Relationship='CoreKnowledge!System.EntityLinksToKnowledgeDocument']$" Alias="RelatedKnowledgeArticles" />
         </TypeProjection>
-        
-        
-        
-        
-
+        <TypeProjection ID="Projection.Scanner" Accessibility="Public" Type="Scanner">
+          <Component Path="$Context/Path[Relationship='Relationship.HardwareAssetReferencesScannerDevice' SeedRole='Target']$" Alias="HardwareAsset" />
+          <Component Path="$Context/Path[Relationship='Relationship.ScannerHasUser']$" Alias="HasUser" />
+          <Component Path="$Context/Path[Relationship='Relationship.ScannerHasManufacturer']$" Alias="Manufacturer" />
+          <Component Path="$Context/Path[Relationship='Relationship.ScannerHasModel']$" Alias="Model" />
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemRelatesToConfigItem' SeedRole='Target']$" Alias="ImpactedWorkItem" />
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemAboutConfigItem' SeedRole='Target']$" Alias="RelatedWorkItem" />
+          <Component Path="$Context/Path[Relationship='SupportingItem!System.ConfigItemHasFileAttachment']$" Alias="FileAttachment" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem']$" Alias="RelatedConfigItem" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem' SeedRole='Target']$" Alias="RelatedConfigItemSource" />
+          <Component Path="$Context/Path[Relationship='CoreKnowledge!System.EntityLinksToKnowledgeDocument']$" Alias="RelatedKnowledgeArticles" />
+        </TypeProjection>
+        <TypeProjection ID="Projection.OtherDevice" Accessibility="Public" Type="OtherDevice">
+          <Component Path="$Context/Path[Relationship='Relationship.HardwareAssetReferencesOtherDevice' SeedRole='Target']$" Alias="HardwareAsset" />
+          <Component Path="$Context/Path[Relationship='Relationship.OtherDeviceHasUser']$" Alias="HasUser" />
+          <Component Path="$Context/Path[Relationship='Relationship.OtherDeviceHasManufacturer']$" Alias="Manufacturer" />
+          <Component Path="$Context/Path[Relationship='Relationship.OtherDeviceHasModel']$" Alias="Model" />
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemRelatesToConfigItem' SeedRole='Target']$" Alias="ImpactedWorkItem" />
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemAboutConfigItem' SeedRole='Target']$" Alias="RelatedWorkItem" />
+          <Component Path="$Context/Path[Relationship='SupportingItem!System.ConfigItemHasFileAttachment']$" Alias="FileAttachment" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem']$" Alias="RelatedConfigItem" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem' SeedRole='Target']$" Alias="RelatedConfigItemSource" />
+          <Component Path="$Context/Path[Relationship='CoreKnowledge!System.EntityLinksToKnowledgeDocument']$" Alias="RelatedKnowledgeArticles" />
+        </TypeProjection>
         <TypeProjection ID="Projection.NetworkDevice" Accessibility="Public" Type="NetworkDevice">
           <Component Path="$Context/Path[Relationship='Relationship.HardwareAssetReferencesNetworkDevice' SeedRole='Target']$" Alias="HardwareAst" />
           <Component Path="$Context/Path[Relationship='Relationship.NetworkDeviceHasUser']$" Alias="HasUser" />
@@ -232,7 +235,6 @@
           <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem' SeedRole='Target']$" Alias="RelatedConfigItemSource" />
           <Component Path="$Context/Path[Relationship='CoreKnowledge!System.EntityLinksToKnowledgeDocument']$" Alias="RelatedKnowledgeArticles" />
         </TypeProjection>
-        
         <TypeProjection ID="Projection.StorageDevice" Accessibility="Public" Type="StorageDevice">
           <Component Path="$Context/Path[Relationship='Relationship.HardwareAssetReferencesStorageDevice' SeedRole='Target']$" Alias="HardwareAsset" />
           <Component Path="$Context/Path[Relationship='Relationship.StorageDeviceHasUser']$" Alias="HasUser" />
@@ -245,7 +247,6 @@
           <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem' SeedRole='Target']$" Alias="RelatedConfigItemSource" />
           <Component Path="$Context/Path[Relationship='CoreKnowledge!System.EntityLinksToKnowledgeDocument']$" Alias="RelatedKnowledgeArticles" />
         </TypeProjection>
-        
         <TypeProjection ID="Projection.MobileDevice" Accessibility="Public" Type="MobileDevice">
           <Component Path="$Context/Path[Relationship='Relationship.HardwareAssetReferencesMobileDevice' SeedRole='Target']$" Alias="HardwareAsset" />
           <Component Path="$Context/Path[Relationship='Relationship.MobileDeviceHasUser']$" Alias="HasUser" />
@@ -257,9 +258,7 @@
           <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem']$" Alias="RelatedConfigItem" />
           <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem' SeedRole='Target']$" Alias="RelatedConfigItemSource" />
           <Component Path="$Context/Path[Relationship='CoreKnowledge!System.EntityLinksToKnowledgeDocument']$" Alias="RelatedKnowledgeArticles" />
-        </TypeProjection>
-        
-        
+        </TypeProjection>       
          <TypeProjection ID="Projection.Hardware" Accessibility="Public" Type="Hardware">
           <Component Path="$Context/Path[Relationship='Relationship.HardwareAssetReferencesHardware' SeedRole='Target']$" Alias="HardwareAT" />
           <Component Path="$Context/Path[Relationship='Relationship.HardwareHasUser']$" Alias="HasUser" />
@@ -274,8 +273,6 @@
           <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem' SeedRole='Target']$" Alias="RelatedConfigItemSource" />
           <Component Path="$Context/Path[Relationship='CoreKnowledge!System.EntityLinksToKnowledgeDocument']$" Alias="RelatedKnowledgeArticles" />
         </TypeProjection>
-
-
         <TypeProjection ID="Projection.Invoice" Accessibility="Public" Type="Invoice">
           <Component Path="$Context/Path[Relationship='Relationship.InvoiceHasUser']$" Alias="InvoiceHasUser" />
           <Component Path="$Context/Path[Relationship='Relationship.InvoiceHasContact']$" Alias="Contact" />
@@ -292,7 +289,6 @@
           <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem' SeedRole='Target']$" Alias="RelatedConfigItemSource" />
           <Component Path="$Context/Path[Relationship='CoreKnowledge!System.EntityLinksToKnowledgeDocument']$" Alias="RelatedKnowledgeArticles" />
         </TypeProjection>
-
         <TypeProjection ID="Projection.Organization" Accessibility="Public" Type="Organization">
           <Component Path="$Context/Path[Relationship='Relationship.InvoiceIsForOrganization' SeedRole='Target']$" Alias="Invoice" />
           <Component Path="$Context/Path[Relationship='Relationship.HWAgreementHasOrganization' SeedRole='Target']$" Alias="HardwareAgreement" />
@@ -305,8 +301,7 @@
           <Component Path="$Context/Path[Relationship='Relationship.SoftwareAgreementHasOrganization' SeedRole='Target']$" Alias="SoftwareAgreement"/>
           <Component Path="$Context/Path[Relationship='Relationship.SupportAgreementHasOrganization' SeedRole='Target']$" Alias="SupportAgreement"/>
         </TypeProjection>
-        
-         <TypeProjection ID="Projection.Software" Accessibility="Public" Type="Software">
+        <TypeProjection ID="Projection.Software" Accessibility="Public" Type="Software">
           <Component Path="$Context/Path[Relationship='Relationship.SoftwareAssetHasSoftware' SeedRole='Target']$" Alias="SoftwareAsset" />
           <Component Path="$Context/Path[Relationship='Relationship.SoftwareHasPublisher']$" Alias="Publisher" />
           <Component Path="$Context/Path[Relationship='Relationship.SoftwareHasVersion' SeedRole='Target']$" Alias="Version" />
@@ -320,8 +315,6 @@
           <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem' SeedRole='Target']$" Alias="RelatedConfigItemSource" />
           <Component Path="$Context/Path[Relationship='CoreKnowledge!System.EntityLinksToKnowledgeDocument']$" Alias="RelatedKnowledgeArticles" />
         </TypeProjection>
-
-
         <TypeProjection ID="Projection.Location" Accessibility="Public" Type="NLocation">
           <Component Path="$Context/Path[Relationship='Relationship.CostHasLocation' SeedRole='Target']$" Alias="Cost" />
           <Component Path="$Context/Path[Relationship='Relationship.PurchaseOrderHasLocation' SeedRole='Target']$" Alias="PurchaseOrder" />
@@ -334,13 +327,10 @@
           <Component Path="$Context/Path[Relationship='Relationship.InvoiceHasLocation' SeedRole='Target']$" Alias="Invoice" />
           <Component Path="$Context/Path[Relationship='Relationship.OrganizationHasLocation' SeedRole='Target']$" Alias="Organization" />
         </TypeProjection>
-
-
         <TypeProjection ID="Projection.SoftwareVersion" Accessibility="Public" Type="SoftwareVersion">
           <Component Path="$Context/Path[Relationship='Relationship.SoftwareHasVersion']$" Alias="Software" />
           <Component Path="$Context/Path[Relationship='Relationship.SoftwareVersionInstalledOnAssets']$" Alias="HardwareAsset" />
         </TypeProjection>
-
         <TypeProjection ID="Projection.DeviceManufacturer" Accessibility="Public" Type="DeviceManufacturer">
           <Component Path="$Context/Path[Relationship='Relationship.DeviceModelHasManufacturer' SeedRole='Target']$" Alias="Model" />
           <Component Path="$Context/Path[Relationship='Relationship.NetworkDeviceHasManufacturer' SeedRole='Target']$" Alias="NetworkDevice" />
@@ -348,7 +338,6 @@
           <Component Path="$Context/Path[Relationship='Relationship.PrinterHasManufacturer' SeedRole='Target']$" Alias="Printer" />
           <Component Path="$Context/Path[Relationship='Relationship.HardwareHasManufacturer' SeedRole='Target']$" Alias="Hardware" />
         </TypeProjection>
-
         <TypeProjection ID="Projection.DeviceModel" Accessibility="Public" Type="DeviceModel">
           <Component Path="$Context/Path[Relationship='Relationship.DeviceModelHasManufacturer']$" Alias="Manufacturer" />
           <Component Path="$Context/Path[Relationship='Relationship.NetworkDeviceHasModel' SeedRole='Target']$" Alias="NetworkDevice" />
@@ -357,34 +346,25 @@
           <Component Path="$Context/Path[Relationship='Relationship.PrinterHasModel' SeedRole='Target']$" Alias="Printer" />
           <Component Path="$Context/Path[Relationship='Relationship.HardwareHasModel' SeedRole='Target']$" Alias="Hardware" />
         </TypeProjection>
-        
          <TypeProjection ID="Projection.AzureConnector" Accessibility="Public" Type="AzureConnector">
         </TypeProjection>
-
         <TypeProjection ID="Projection.HardwareConnector" Accessibility="Public" Type="HardwareConnector">
         </TypeProjection>
-
         <TypeProjection ID="Projection.AmazonConnector" Accessibility="Public" Type="AmazonConnector">
         </TypeProjection>
-        
         <TypeProjection ID="Projection.SoftwareConnector" Accessibility="Public" Type="SoftwareConnector">
         </TypeProjection>
-
         <TypeProjection ID="Projection.OMSConnector" Accessibility="Public" Type="OMSConnector">
         </TypeProjection>
-        
         <TypeProjection ID="Projection.LicenseSyncConnector" Accessibility="Public" Type="LicenseSyncConnector">
         </TypeProjection>
-
         <TypeProjection ID="Projection.SoftwarePublisher" Accessibility="Public" Type="SoftwarePublisher">
           <Component Path="$Context/Path[Relationship='Relationship.SoftwareHasPublisher' SeedRole='Target']$" Alias="Software" />
         </TypeProjection>
-
         <TypeProjection ID="Projection.SoftwareLicenseKey" Accessibility="Public" Type="SoftwareLicenseKey">
           <Component Path="$Context/Path[Relationship='Relationship.SoftwareHasLicenseKey' SeedRole='Target']$" Alias="Software" />
           <Component Path="$Context/Path[Relationship='Relationship.SoftwareLicenseKeyHasOwner']$" Alias="Owner" />
         </TypeProjection>
-
         <TypeProjection ID="Projection.SKU" Accessibility="Public" Type="SKU">
           <Component Path="$Context/Path[Relationship='Relationship.SoftwareHasSKU' SeedRole='Target']$" Alias="Software" />
           <Component Path="$Context/Path[Relationship='Relationship.SkuHasPurchaseOrder']$" Alias="PurchaseOrder" />
@@ -395,8 +375,6 @@
           <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem' SeedRole='Target']$" Alias="RelatedConfigItemSource" />
           <Component Path="$Context/Path[Relationship='CoreKnowledge!System.EntityLinksToKnowledgeDocument']$" Alias="RelatedKnowledgeArticles" />
         </TypeProjection>
-
-
         <TypeProjection ID="Projection.PurchaseOrder" Accessibility="Public" Type="PurchaseOrder">
           <Component Path="$Context/Path[Relationship='Relationship.PurchaseOrderHasInvoice']$" Alias="Invoice" />         
           <Component Path="$Context/Path[Relationship='Relationship.PurchaseOrderHasUser']$" Alias="User" />         
@@ -417,7 +395,6 @@
           <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem' SeedRole='Target']$" Alias="RelatedConfigItemSource" />
           <Component Path="$Context/Path[Relationship='CoreKnowledge!System.EntityLinksToKnowledgeDocument']$" Alias="RelatedKnowledgeArticles" />
         </TypeProjection>
-
         <TypeProjection ID="Projection.LeaseAgreement" Accessibility="Public" Type="LeaseAgreement">
           <Component Path="$Context/Path[Relationship='Relationship.LeaseAgreementHasCostCenter']$" Alias="CostCenter" />
           <Component Path="$Context/Path[Relationship='Relationship.LeaseAgreementHasSupplier']$" Alias="Supplier" />
@@ -435,7 +412,6 @@
           <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem' SeedRole='Target']$" Alias="RelatedConfigItemSource" />
           <Component Path="$Context/Path[Relationship='CoreKnowledge!System.EntityLinksToKnowledgeDocument']$" Alias="RelatedKnowledgeArticles" />
         </TypeProjection>
-        
         </TypeProjections>
     </EntityTypes>
   </TypeDefinitions>
