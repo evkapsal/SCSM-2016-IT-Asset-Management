@@ -80,10 +80,13 @@ namespace ITAssetMgmtForms
         public static Guid guidDocFdTypeEnum = new Guid("770fc68a-91ea-e1f3-acab-5876577f8ec3");
         public static Guid guidODevTypeEnum = new Guid("e9543c0d-5a7f-db40-b12b-628dc6c52142");
         public static Guid guidOConnTypeEnum = new Guid("0fdc8a41-6062-5a7e-fc53-bd19a936ed49");
+        public static Guid guidODeskTypeEnum = new Guid("a4a6521e-04ae-fedf-0ac5-86171cbea7c2");
+        public static Guid guidconfitemassetstatusEnum = new Guid("df83475d-d6d1-7236-fc6d-ec8fe52022b0");
 
 
 
         //Class
+        public static Guid guidODeskClass = new Guid("189d74fe-03ad-a8ed-1c0b-2b57c3562a8c");
         public static Guid guidHardwareClass = new Guid("2e3768dc-30bb-acd6-6877-077e3806efdf");
         public static Guid guidScannerClass = new Guid("9f8b1a6b-70f9-f117-29e8-3e9ab02bbcb5");
         public static Guid guidOtherHWClass = new Guid("53fe3561-e7cd-2514-cab9-87f04fc39586");

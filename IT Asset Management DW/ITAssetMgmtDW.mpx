@@ -28,6 +28,7 @@
       <Dimension ID="SoftwarePublisherDim" Accessibility="Public" InferredDimension="true" Target="ITSM!SoftwarePublisher" HierarchySupport="IncludeDerivedClassProperties" Reconcile="true" />
       <Dimension ID="SoftwareLicenseKeyDim" Accessibility="Public" InferredDimension="true" Target="ITSM!SoftwareLicenseKey" HierarchySupport="IncludeDerivedClassProperties" Reconcile="true" />
       <Dimension ID="LicenseStatusDim" Accessibility="Public" InferredDimension="true" Target="ITSM!LicenseStatus" HierarchySupport="IncludeDerivedClassProperties" Reconcile="true" />   
+  
       <!--
       <Dimension ID="CompanyDim" Accessibility="Public" Target="ITSM!Company" HierarchySupport="Exact" Reconcile="true" InferredDimension="true" >
         <InclusionAttribute ID="DisplayName" PropertyPath="$Context/Property[Type='System!System.ConfigItem']/DisplayName$" SlowlyChangingAttribute="false" />
@@ -314,7 +315,6 @@
       -->
     </Dimensions>
   </Warehouse>
-  <!--
   <LanguagePacks>
     <LanguagePack ID="ENU" IsDefault="true">
       <DisplayStrings>
@@ -425,5 +425,4 @@
       </DisplayStrings>
     </LanguagePack>
   </LanguagePacks>
-  -->
 </ManagementPackFragment>

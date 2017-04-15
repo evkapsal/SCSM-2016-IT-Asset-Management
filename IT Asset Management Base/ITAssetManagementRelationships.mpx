@@ -14,7 +14,23 @@
           <Source ID="HardwareAgreement" Type="HardwareAgreement" />
           <Target ID="NLocation" Type="NLocation" MinCardinality="0" MaxCardinality="1" />
         </RelationshipType>
-		<!--
+        <RelationshipType ID="Relationship.OfficeDeskHasLocation" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="OfficeDesk" Type="OfficeDesk" />
+          <Target ID="NLocation" Type="NLocation" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.OfficeDeskHasUser" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="OfficeDesk" Type="OfficeDesk" />
+          <Target ID="User" Type="System!System.Domain.User" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.OfficeDeskHasOrganization" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="OfficeDesk" Type="OfficeDesk" />
+          <Target ID="Organization" Type="Organization" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.OfficeDeskHasHardwareAssets" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="OfficeDesk" Type="OfficeDesk" />
+          <Target ID="HardwareAsset" Type="HardwareAsset" />
+        </RelationshipType>
+        <!--
        <RelationshipType ID="Relationship.UserRoleHasMember" Accessibility="Public" Abstract="false" Base="System!System.Reference">
           <Source ID="Role" Type="Role" />
           <Target ID="IsMember" Type="System!System.Domain.User" />
@@ -728,7 +744,23 @@
           <Name>Software Asset Has Invoice Relationship </Name>
           <Description>Software Asset Has Invoice Relationship</Description>
         </DisplayString>
-		<!--
+        <DisplayString ElementID="Relationship.OfficeDeskHasLocation">
+          <Name>Office Desk Has Location Relationship </Name>
+          <Description>Office Desk Has Location Relationship</Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.OfficeDeskHasUser">
+          <Name>Office Desk Has User Relationship </Name>
+          <Description>Office Desk Has User Relationship</Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.OfficeDeskHasOrganization">
+          <Name>Office Desk Has Organization Relationship </Name>
+          <Description>Office Desk Has Organization Relationship</Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.OfficeDeskHasHardwareAssets">
+          <Name>Office Desk Has Hardware Asset Relationship </Name>
+          <Description>Office Desk Has Hardware Asset Relationship</Description>
+        </DisplayString>
+        <!--
         <DisplayString ElementID="Relationship.UserRoleHasMember">
           <Name>User Role Has Member Relationship </Name>
           <Description>User Role Has Member Relationship</Description>
@@ -835,7 +867,6 @@
           <Name>Hardware Asset References Hardware Relationship </Name>
           <Description>Hardware Asset References Hardware Relationship </Description>
         </DisplayString>
-
         <DisplayString ElementID="Relationship.HardwareAssetReferencesPrinter">
           <Name>Hardware Asset References Printer Relationship </Name>
           <Description>Hardware Asset References Printer Relationship </Description>

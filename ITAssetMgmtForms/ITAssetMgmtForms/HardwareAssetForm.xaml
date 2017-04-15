@@ -13,7 +13,7 @@
              xmlns:local="clr-namespace:ITAssetMgmtForms"
              mc:Ignorable="d" 
              Loaded="UserControl_Loaded"
-             d:DesignHeight="1000" d:DesignWidth="600">
+             d:DesignHeight="1100" d:DesignWidth="600">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -143,6 +143,9 @@
                                     <Label Content="Mobile Device"/>
                                     <smcontrols:SingleInstancePicker Style="{StaticResource sipStyle}" BaseClassId="{Binding Source={x:Static local:Resources.guidMobileDeviceClass},Mode=OneWay}"
                                                                  Instance="{Binding Path=MobileDevice, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="InstancePicker_MouseDoubleClick"/>
+                                    <Label Content="Scanner Device"/>
+                                    <smcontrols:SingleInstancePicker Style="{StaticResource sipStyle}" BaseClassId="{Binding Source={x:Static local:Resources.guidScannerClass},Mode=OneWay}"
+                                                                 Instance="{Binding Path=ScannerDevice, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="InstancePicker_MouseDoubleClick"/>
                                 </StackPanel>
                                 <StackPanel Style="{StaticResource stackPanelStyle}" Grid.Column="5"   Grid.Row="1" Grid.ColumnSpan="8">
                                     <Label Content="Asset Tag"/>
@@ -151,12 +154,14 @@
                                     <smcontrols:SingleInstancePicker Style="{StaticResource sipStyle}" BaseClassId="{Binding Source={x:Static local:Resources.guidNetworkDeviceClass},Mode=OneWay}"
                                                                  Instance="{Binding Path=NetworkDevice, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="InstancePicker_MouseDoubleClick"/>
                                     <Label Content="Storage Device"/>
-                                    <smcontrols:SingleInstancePicker Style="{StaticResource sipStyle}" BaseClassId="{Binding Source={x:Static local:Resources.guidNetworkDeviceClass},Mode=OneWay}"
+                                    <smcontrols:SingleInstancePicker Style="{StaticResource sipStyle}" BaseClassId="{Binding Source={x:Static local:Resources.guidStorageDeviceClass},Mode=OneWay}"
                                                                  Instance="{Binding Path=StorageDevice, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="InstancePicker_MouseDoubleClick"/>
                                     <Label Content="Monitor Device"/>
                                     <smcontrols:SingleInstancePicker Style="{StaticResource sipStyle}" BaseClassId="{Binding Source={x:Static local:Resources.guidMonitorClass},Mode=OneWay}"
                                                                  Instance="{Binding Path=Monitor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="InstancePicker_MouseDoubleClick"/>
-
+                                    <Label Content="Other Device"/>
+                                    <smcontrols:SingleInstancePicker Style="{StaticResource sipStyle}" BaseClassId="{Binding Source={x:Static local:Resources.guidOtherHWClass},Mode=OneWay}"
+                                                                 Instance="{Binding Path=OtherDevice, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="InstancePicker_MouseDoubleClick"/>
                                 </StackPanel>
 
                                 <StackPanel Style="{StaticResource stackPanelStyle}" Grid.Row="2"  Grid.ColumnSpan="4">

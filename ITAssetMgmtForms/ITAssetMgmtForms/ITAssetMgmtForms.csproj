@@ -222,8 +222,14 @@
     <Compile Include="NetworkDeviceForm.xaml.cs">
       <DependentUpon>NetworkDeviceForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="OfficeDesk.xaml.cs">
+      <DependentUpon>OfficeDesk.xaml</DependentUpon>
+    </Compile>
     <Compile Include="OrganizationForm.xaml.cs">
       <DependentUpon>OrganizationForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OtherDevice.xaml.cs">
+      <DependentUpon>OtherDevice.xaml</DependentUpon>
     </Compile>
     <Compile Include="PrinterForm.xaml.cs">
       <DependentUpon>PrinterForm.xaml</DependentUpon>
@@ -249,6 +255,9 @@
     </Compile>
     <Compile Include="Resources.xaml.cs">
       <DependentUpon>Resources.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ScannerForm.xaml.cs">
+      <DependentUpon>ScannerForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="SKUForm.xaml.cs">
       <DependentUpon>SKUForm.xaml</DependentUpon>
@@ -391,7 +400,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="OfficeDesk.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="OrganizationForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OtherDevice.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -408,6 +425,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ScannerForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -549,6 +570,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Pictures\ic_phone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\ic_copy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\ic_access_point.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\ic_public_company.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

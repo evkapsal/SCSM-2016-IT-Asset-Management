@@ -105,8 +105,12 @@
     <Form ID="Form.Monitor" Accessibility="Public" Target="Projection.Monitor" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.MonitorForm">
       <Category>Form</Category>
     </Form>
-    
-    
+    <Form ID="Form.Scanner" Accessibility="Public" Target="Projection.Scanner" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.ScannerForm">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.OtherDevice" Accessibility="Public" Target="Projection.OtherDevice" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.OtherDevice">
+      <Category>Form</Category>
+    </Form>
     <Form ID="Form.NetworkDevice" Accessibility="Public" Target="Projection.NetworkDevice" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.NetworkDeviceForm">
       <Category>Form</Category>
     </Form>
@@ -120,6 +124,9 @@
       <Category>Form</Category>
     </Form>
     <Form ID="Form.DeviceManufacturer" Accessibility="Public" Target="Projection.DeviceManufacturer" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.DeviceManufacturerForm">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.OfficeDesk" Accessibility="Public" Target="Projection.OfficeDesk" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.OfficeDesk">
       <Category>Form</Category>
     </Form>
   </Forms>

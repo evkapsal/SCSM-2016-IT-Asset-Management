@@ -5,7 +5,9 @@
           <TypeProjection ID="Projection.HardwareAssetView" Accessibility="Public" Type="HardwareAsset">
           <Component Path="$Context/Path[Relationship='Relationship.HardwareAssetReferencesHardware']$" Alias="Hardware" />
           <Component Path="$Context/Path[Relationship='Relationship.HardwareAssetReferencesPrinter']$" Alias="Printer" />
-          <Component Path="$Context/Path[Relationship='Relationship.HardwareAssetReferencesMonitorDevice']$" Alias="Monitor" />
+          <Component Path="$Context/Path[Relationship='Relationship.HardwareAssetReferencesScannerDevice']$" Alias="Monitor" />
+          <Component Path="$Context/Path[Relationship='Relationship.HardwareAssetReferencesOtherDevice']$" Alias="ScannerDevice" />
+          <Component Path="$Context/Path[Relationship='Relationship.HardwareAssetReferencesMonitorDevice']$" Alias="OtherDevice" />
           <Component Path="$Context/Path[Relationship='Relationship.HardwareAssetReferencesMobileDevice']$" Alias="MobileDevice" />
           <Component Path="$Context/Path[Relationship='Relationship.HardwareAssetReferencesNetworkDevice']$" Alias="NetworkDevice" />
           <Component Path="$Context/Path[Relationship='Relationship.HardwareAssetReferencesStorageDevice']$" Alias="StorageDevice" />
@@ -69,11 +71,17 @@
           <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem' SeedRole='Target']$" Alias="RelatedConfigItemSource" />
           <Component Path="$Context/Path[Relationship='CoreKnowledge!System.EntityLinksToKnowledgeDocument']$" Alias="RelatedKnowledgeArticles" />         
         </TypeProjection>
+        <TypeProjection ID="Projection.OfficeDesk" Accessibility="Public" Type="OfficeDesk">
+          <Component Path="$Context/Path[Relationship='Relationship.OfficeDeskHasLocation']$" Alias="Location" />
+          <Component Path="$Context/Path[Relationship='Relationship.OfficeDeskHasUser']$" Alias="User" />
+          <Component Path="$Context/Path[Relationship='Relationship.OfficeDeskHasOrganization']$" Alias="Organization" />
+          <Component Path="$Context/Path[Relationship='Relationship.OfficeDeskHasHardwareAssets']$" Alias="HardwareAssets" />
+        </TypeProjection>
         <TypeProjection ID="Projection.LicenseStatus" Accessibility="Public" Type="LicenseStatus">
           <Component Path="$Context/Path[Relationship='Relationship.LicStatusIsForSoftwareAgreement']$" Alias="SoftwareAgreement" />
           <Component Path="$Context/Path[Relationship='Relationship.LicStatusHasSoftware']$" Alias="Software" />
-        </TypeProjection>    
-		<!--
+        </TypeProjection>
+        <!--
 		<TypeProjection ID="Projection.UserRole" Accessibility="Public" Type="Role">
           <Component Path="$Context/Path[Relationship='Relationship.UserRoleHasMember']$" Alias="IsMember" />
           <Component Path="$Context/Path[Relationship='Relationship.UserRoleHasSetting']$" Alias="Setting" />
@@ -517,6 +525,11 @@
           <Name>Support Agreement Projection </Name>
           <Description> Support Agreement Projection </Description>
         </DisplayString>
+        
+        <DisplayString ElementID="Projection.OfficeDesk">
+        <Name>Office Desk Projection </Name>
+        <Description> Office Desk Projection </Description>
+      </DisplayString>
         <DisplayString ElementID="Projection.Hardware">
           <Name> Hardware Projection </Name>
           <Description> Hardware Projection </Description>

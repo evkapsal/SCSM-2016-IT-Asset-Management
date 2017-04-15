@@ -24,7 +24,9 @@
     <Category ID="Category.6973d51d3c384bfbb19f328698a80b17" Target="Folder.e490ba87a894448ba80597ef78bf310a" Value="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.FolderTasks" />
     <Category ID="Category.c44ce994b7b84e8188fabeb9f8cd08be" Target="Folder.d62825058ca44dae963074ffa16f20aa" Value="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.FolderTasks" />
     <Category ID="Category.f0a85b1699134eaaaae4eaf0e70db43c" Target="Folder.16560765e30d4fd98f9ad2cadb019243" Value="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.FolderTasks" />
+    <Category ID="Category.e5d66ab7f1c64a5e8b815609be273c04" Target="Folder.39e553a749564edb93140e6b076576f9" Value="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.FolderTasks" />
     <Category ID="Category.390d5131a897442e9c0c3368e5b610ed" Target="View.fa3af164f5d3412ba37c78bdf1fbf495" Value="SCSMUIAuth!Microsoft.EnterpriseManagement.ServiceManager.UI.Authoring.CreateTypeCategory" />
+    <Category ID="Category.11a363342f194d15b5767f354f96cece" Target="View.9e34470a2a094c46af199b9ed3534e34" Value="SCSMUIAuth!Microsoft.EnterpriseManagement.ServiceManager.UI.Authoring.CreateTypeCategory" />
     <Category ID="Category.2a0b48b8fd1a4d4ba8a7d830f787582a" Target="View.13e0b9cfa15a4008af1aa36454ebe7c1" Value="SCSMUIAuth!Microsoft.EnterpriseManagement.ServiceManager.UI.Authoring.CreateTypeCategory" />
     <Category ID="Category.5af024d9976d48939eb8b33e2d0e1bf2" Target="View.c745acce989a4d34a871b5081074d399" Value="SCSMUIAuth!Microsoft.EnterpriseManagement.ServiceManager.UI.Authoring.CreateTypeCategory" />
     <Category ID="Category.7837acfb399340dabfafaf4638939316" Target="View.5d89c460a19943479b7204553137f251" Value="SCSMUIAuth!Microsoft.EnterpriseManagement.ServiceManager.UI.Authoring.CreateTypeCategory" />
@@ -94,6 +96,8 @@
     <Category ID="Category.3f2de3570cf24b658862dcf8edd303a1" Target="View.c6f4dc0afdb84784a2c183ae8ee04de7" Value="SCSMUIAuth!Microsoft.EnterpriseManagement.ServiceManager.UI.Authoring.CreateTypeCategory" />
     <Category ID="Category.48cffa9b11784f70942ae9a2af62b557" Target="View.8062abce7b3d43bdada6797cd9eb07ac" Value="SCSMUIAuth!Microsoft.EnterpriseManagement.ServiceManager.UI.Authoring.CreateTypeCategory" />
     <Category ID="Category.e09e7f592d864f1b95539c8f5e548bb8" Target="View.4033955e0664486481ce29c19f7ac77a" Value="SCSMUIAuth!Microsoft.EnterpriseManagement.ServiceManager.UI.Authoring.CreateTypeCategory" />
+    <Category ID="Category.df4e0e488a1b4ed4be2ca8e974b24664" Target="View.ba623167ef75434192a4a74ed99cd4d5" Value="SCSMUIAuth!Microsoft.EnterpriseManagement.ServiceManager.UI.Authoring.CreateTypeCategory" />
+    <Category ID="Category.456a6944c7c04e33886d7f06185c1ca2" Target="View.f86c313066e848c58a6b3f7aed5cfd5c" Value="SCSMUIAuth!Microsoft.EnterpriseManagement.ServiceManager.UI.Authoring.CreateTypeCategory" />
   </Categories>
   <Presentation>
     <Views>
@@ -170,6 +174,76 @@
             <ViewString ID="Quantity.6c2918254a2742fdbdb6059a8b25f608">$MPElement[Name="Quantity.196ba03eaeb64979bed21375a6c8b266"]$</ViewString>
             <ViewString ID="Duration.dbb63d3846d344c78eff5409cbd1fa2f">$MPElement[Name="Duration.f72ddd20a3604f03818307f7ad9ff0d6"]$</ViewString>
             <ViewString ID="Type.73570f40afe14c0d9f82314eb7369989">$MPElement[Name="Type.858e425b23ed4e37ae49d0665a05c517"]$</ViewString>
+          </ViewStrings>
+        </Presentation>
+      </View> 
+      <View ID="View.9e34470a2a094c46af199b9ed3534e34" Accessibility="Public" Enabled="true" Target="OfficeDesk" TypeID="Console!GridViewType" Visible="true">
+        <Category>NotUsed</Category>
+        <Data>
+          <Adapters>
+            <Adapter AdapterName="dataportal:EnterpriseManagementObjectProjectionAdapter">
+              <AdapterAssembly>Microsoft.EnterpriseManagement.UI.SdkDataAccess</AdapterAssembly>
+              <AdapterType>Microsoft.EnterpriseManagement.UI.SdkDataAccess.DataAdapters.EnterpriseManagementObjectProjectionAdapter</AdapterType>
+            </Adapter>
+            <Adapter AdapterName="viewframework://Adapters/AdvancedList">
+              <AdapterAssembly>Microsoft.EnterpriseManagement.UI.ViewFramework</AdapterAssembly>
+              <AdapterType>Microsoft.EnterpriseManagement.UI.ViewFramework.AdvancedListSupportAdapter</AdapterType>
+            </Adapter>
+            <Adapter AdapterName="omsdk://Adapters/Criteria">
+              <AdapterAssembly>Microsoft.EnterpriseManagement.UI.SdkDataAccess</AdapterAssembly>
+              <AdapterType>Microsoft.EnterpriseManagement.UI.SdkDataAccess.DataAdapters.SdkCriteriaAdapter</AdapterType>
+            </Adapter>
+          </Adapters>
+          <ItemsSource>
+            <AdvancedListSupportClass DataTypeName="" AdapterName="viewframework://Adapters/AdvancedList" FullUpdateAdapter="dataportal:EnterpriseManagementObjectProjectionAdapter" DataSource="mom:ManagementGroup" FullUpdateFrequency="1" Streaming="true" IsRecurring="true" RecurrenceFrequency="{x:Static s:Int32.MaxValue}" xmlns="clr-namespace:Microsoft.EnterpriseManagement.UI.ViewFramework;assembly=Microsoft.EnterpriseManagement.UI.ViewFramework" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib">
+              <AdvancedListSupportClass.Parameters>
+                <QueryParameter Parameter="TypeProjectionId" Value="$MPElement[Name='Projection.OfficeDesk']$" />
+              </AdvancedListSupportClass.Parameters>
+            </AdvancedListSupportClass>
+          </ItemsSource>
+          <Criteria>
+            <QueryCriteria Adapter="omsdk://Adapters/Criteria" xmlns="http://tempuri.org/Criteria.xsd">
+              <Criteria>
+                <FreeformCriteria>
+                  <Freeform>
+                    <Criteria xmlns="http://Microsoft.EnterpriseManagement.Core.Criteria/">
+                      <Expression>
+                        <SimpleExpression>
+                          <ValueExpressionLeft>
+                            <Property>$Context/Property[Type='System!System.ConfigItem']/ObjectStatus$</Property>
+                          </ValueExpressionLeft>
+                          <Operator>NotEqual</Operator>
+                          <ValueExpressionRight>
+                            <Value>{47101e64-237f-12c8-e3f5-ec5a665412fb}</Value>
+                          </ValueExpressionRight>
+                        </SimpleExpression>
+                      </Expression>
+                    </Criteria>
+                  </Freeform>
+                </FreeformCriteria>
+              </Criteria>
+            </QueryCriteria>
+          </Criteria>
+        </Data>
+        <Presentation>
+          <Columns>
+            <mux:ColumnCollection xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mux="http://schemas.microsoft.com/SystemCenter/Common/UI/Views/GridView" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:datebinding="clr-namespace:Microsoft.EnterpriseManagement.UI.Extensions;assembly=Microsoft.EnterpriseManagement.UI.Extensions" xmlns:data="clr-namespace:Microsoft.EnterpriseManagement.UI.Extensions;assembly=Microsoft.EnterpriseManagement.UI.Extensions" xmlns:appCommon="clr-namespace:Microsoft.EnterpriseManagement.ServiceManager.Application.Common;assembly=Microsoft.EnterpriseManagement.ServiceManager.Application.Common" xmlns:toolbox="clr-namespace:Microsoft.EnterpriseManagement.UI.WpfToolbox;assembly=Microsoft.EnterpriseManagement.UI.FormsInfra" xmlns:slaBinding="clr-namespace:Microsoft.EnterpriseManagement.ServiceManager.SLA.Common;assembly=Microsoft.EnterpriseManagement.ServiceManager.SLA.Common">
+              <mux:Column Name="GenericDisplayName" DisplayMemberBinding="{Binding Path=DisplayName}" DisplayName="DisplayName.4cecfd9d4c644d69ae80f79d468f0f00" Property="DisplayName" DataType="s:String" IsVisible="True" />
+              <mux:Column Name="Type" DisplayMemberBinding="{Binding Path=Type.DisplayName}" DisplayName="Type.3c72093cb2924a4aa16ae46e335cb908" Property="Type.Ordinal" DataType="s:Double" IsVisible="True" />
+              <mux:Column Name="OfficDeskStatus" DisplayMemberBinding="{Binding Path=OfficDeskStatus.DisplayName}" DisplayName="Status.e270485687d24799ae8bc0744b5a64c3" Property="OfficDeskStatus.Ordinal" DataType="s:Double" IsVisible="True" />
+              <mux:Column Name="GenericLocationDisplayName" DisplayMemberBinding="{Binding Path=Location.DisplayName}" DisplayName="DisplayName.01d76f3101404500828d5bacdda1004f" Property="Location.DisplayName" DataType="s:String" IsVisible="True" />
+              <mux:Column Name="OrganizationOrganizationName" DisplayMemberBinding="{Binding Path=Organization.OrganizationName}" DisplayName="OrganizationName.c5d919621c9945acaa02e317edf9bead" Property="Organization.OrganizationName" DataType="s:String" IsVisible="True" />
+              <mux:Column Name="GenericUserDisplayName" DisplayMemberBinding="{Binding Path=User.DisplayName}" DisplayName="DisplayName.6d36632f71a44b06a829c2dcbc1a31e4" Property="User.DisplayName" DataType="s:String" IsVisible="True" />
+            </mux:ColumnCollection>
+          </Columns>
+          <AdditonalProperties />
+          <ViewStrings>
+            <ViewString ID="DisplayName.4cecfd9d4c644d69ae80f79d468f0f00">$MPElement[Name="DisplayName.abebdce09f824da1b35af6b49b487695"]$</ViewString>
+            <ViewString ID="Type.3c72093cb2924a4aa16ae46e335cb908">$MPElement[Name="Type.5c6b4b185f9743e9a8a40cf4cb2ee108"]$</ViewString>
+            <ViewString ID="Status.e270485687d24799ae8bc0744b5a64c3">$MPElement[Name="Status.a6c80a14d1d4481aa4348962f53c8f9d"]$</ViewString>
+            <ViewString ID="DisplayName.01d76f3101404500828d5bacdda1004f">$MPElement[Name="DisplayName.99395ad1856346e7b9fb679d1310e897"]$</ViewString>
+            <ViewString ID="OrganizationName.c5d919621c9945acaa02e317edf9bead">$MPElement[Name="OrganizationName.fb87c0f2b63b447180668e3bfabe3861"]$</ViewString>
+            <ViewString ID="DisplayName.6d36632f71a44b06a829c2dcbc1a31e4">$MPElement[Name="DisplayName.1223b6fb67d84dbb8c99377acf0ceb78"]$</ViewString>
           </ViewStrings>
         </Presentation>
       </View>
@@ -304,6 +378,146 @@
             <ViewString ID="DisplayName.81a94ac49db249eaa67e18e3abcaafd2">$MPElement[Name="DisplayName.945b23353d7a4472bbbe3519fb5fe9a4"]$</ViewString>
             <ViewString ID="DisplayName.115890a03f154018955a3152d8df1164">$MPElement[Name="DisplayName.9365767f4282499fac73b55e26ae72c8"]$</ViewString>
             <ViewString ID="Installed.8a126cab6cbb45d6a2a28ce31f2b735e">$MPElement[Name="Installed.e92995e9361a47a99531abc2fe5fc199"]$</ViewString>
+          </ViewStrings>
+        </Presentation>
+      </View>
+      <View ID="View.ba623167ef75434192a4a74ed99cd4d5" Accessibility="Public" Enabled="true" Target="Scanner" TypeID="Console!GridViewType" Visible="true">
+        <Category>NotUsed</Category>
+        <Data>
+          <Adapters>
+            <Adapter AdapterName="dataportal:EnterpriseManagementObjectProjectionAdapter">
+              <AdapterAssembly>Microsoft.EnterpriseManagement.UI.SdkDataAccess</AdapterAssembly>
+              <AdapterType>Microsoft.EnterpriseManagement.UI.SdkDataAccess.DataAdapters.EnterpriseManagementObjectProjectionAdapter</AdapterType>
+            </Adapter>
+            <Adapter AdapterName="viewframework://Adapters/AdvancedList">
+              <AdapterAssembly>Microsoft.EnterpriseManagement.UI.ViewFramework</AdapterAssembly>
+              <AdapterType>Microsoft.EnterpriseManagement.UI.ViewFramework.AdvancedListSupportAdapter</AdapterType>
+            </Adapter>
+            <Adapter AdapterName="omsdk://Adapters/Criteria">
+              <AdapterAssembly>Microsoft.EnterpriseManagement.UI.SdkDataAccess</AdapterAssembly>
+              <AdapterType>Microsoft.EnterpriseManagement.UI.SdkDataAccess.DataAdapters.SdkCriteriaAdapter</AdapterType>
+            </Adapter>
+          </Adapters>
+          <ItemsSource>
+            <AdvancedListSupportClass DataTypeName="" AdapterName="viewframework://Adapters/AdvancedList" FullUpdateAdapter="dataportal:EnterpriseManagementObjectProjectionAdapter" DataSource="mom:ManagementGroup" FullUpdateFrequency="1" Streaming="true" IsRecurring="true" RecurrenceFrequency="{x:Static s:Int32.MaxValue}" xmlns="clr-namespace:Microsoft.EnterpriseManagement.UI.ViewFramework;assembly=Microsoft.EnterpriseManagement.UI.ViewFramework" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib">
+              <AdvancedListSupportClass.Parameters>
+                <QueryParameter Parameter="TypeProjectionId" Value="$MPElement[Name='Projection.Scanner']$" />
+              </AdvancedListSupportClass.Parameters>
+            </AdvancedListSupportClass>
+          </ItemsSource>
+          <Criteria>
+            <QueryCriteria Adapter="omsdk://Adapters/Criteria" xmlns="http://tempuri.org/Criteria.xsd">
+              <Criteria>
+                <FreeformCriteria>
+                  <Freeform>
+                    <Criteria xmlns="http://Microsoft.EnterpriseManagement.Core.Criteria/">
+                      <Expression>
+                        <SimpleExpression>
+                          <ValueExpressionLeft>
+                            <Property>$Context/Property[Type='System!System.ConfigItem']/ObjectStatus$</Property>
+                          </ValueExpressionLeft>
+                          <Operator>NotEqual</Operator>
+                          <ValueExpressionRight>
+                            <Value>{47101e64-237f-12c8-e3f5-ec5a665412fb}</Value>
+                          </ValueExpressionRight>
+                        </SimpleExpression>
+                      </Expression>
+                    </Criteria>
+                  </Freeform>
+                </FreeformCriteria>
+              </Criteria>
+            </QueryCriteria>
+          </Criteria>
+        </Data>
+        <Presentation>
+          <Columns>
+            <mux:ColumnCollection xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mux="http://schemas.microsoft.com/SystemCenter/Common/UI/Views/GridView" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:datebinding="clr-namespace:Microsoft.EnterpriseManagement.UI.Extensions;assembly=Microsoft.EnterpriseManagement.UI.Extensions" xmlns:data="clr-namespace:Microsoft.EnterpriseManagement.UI.Extensions;assembly=Microsoft.EnterpriseManagement.UI.Extensions" xmlns:appCommon="clr-namespace:Microsoft.EnterpriseManagement.ServiceManager.Application.Common;assembly=Microsoft.EnterpriseManagement.ServiceManager.Application.Common" xmlns:toolbox="clr-namespace:Microsoft.EnterpriseManagement.UI.WpfToolbox;assembly=Microsoft.EnterpriseManagement.UI.FormsInfra" xmlns:slaBinding="clr-namespace:Microsoft.EnterpriseManagement.ServiceManager.SLA.Common;assembly=Microsoft.EnterpriseManagement.ServiceManager.SLA.Common">
+              <mux:Column Name="GenericDisplayName" DisplayMemberBinding="{Binding Path=DisplayName}" DisplayName="DisplayName.e6284cb0a6f2472c8e0f9b3f13c6bc0d" Property="DisplayName" DataType="s:String" IsVisible="True" />
+              <mux:Column Name="ManufacturerManufacturerName" DisplayMemberBinding="{Binding Path=Manufacturer.ManufacturerName}" DisplayName="ManufacturerName.7caefbadd34843f0967308f9a486de9b" Property="Manufacturer.ManufacturerName" DataType="s:String" IsVisible="True" />
+              <mux:Column Name="ModelModelName" DisplayMemberBinding="{Binding Path=Model.ModelName}" DisplayName="ModelName.63efe099283e4eb2850ae975039a4687" Property="Model.ModelName" DataType="s:String" IsVisible="True" />
+              <mux:Column Name="Interface" DisplayMemberBinding="{Binding Path=Interface.DisplayName}" DisplayName="Interface.63dfe4c0550e4a96a98725e57f482f99" Property="Interface.Ordinal" DataType="s:Double" IsVisible="True" />
+              <mux:Column Name="Type" DisplayMemberBinding="{Binding Path=Type.DisplayName}" DisplayName="Type.7fb06d80756f47898cd6ece2e74b4295" Property="Type.Ordinal" DataType="s:Double" IsVisible="True" />
+              <mux:Column Name="Resolution" DisplayMemberBinding="{Binding Path=Resolution}" DisplayName="Resolution.452cf3ba5be04e98a8d576297ee1697a" Property="Resolution" DataType="s:String" IsVisible="True" />
+            </mux:ColumnCollection>
+          </Columns>
+          <AdditonalProperties />
+          <ViewStrings>
+            <ViewString ID="DisplayName.e6284cb0a6f2472c8e0f9b3f13c6bc0d">$MPElement[Name="DisplayName.ba0557a13a8e4a379e56de545c29afc6"]$</ViewString>
+            <ViewString ID="ManufacturerName.7caefbadd34843f0967308f9a486de9b">$MPElement[Name="ManufacturerName.81ced06abadb4023bbde737331b2f0ff"]$</ViewString>
+            <ViewString ID="ModelName.63efe099283e4eb2850ae975039a4687">$MPElement[Name="ModelName.6ff65871aa9c4aaa9413917bcd600d64"]$</ViewString>
+            <ViewString ID="Interface.63dfe4c0550e4a96a98725e57f482f99">$MPElement[Name="Interface.1f3be73d9d5047ebb10d4db7908de5da"]$</ViewString>
+            <ViewString ID="Type.7fb06d80756f47898cd6ece2e74b4295">$MPElement[Name="Type.1467edb832fc45199ebac7b79c7097a0"]$</ViewString>
+            <ViewString ID="Resolution.452cf3ba5be04e98a8d576297ee1697a">$MPElement[Name="Resolution.2b57b611b682424488890643b5417afd"]$</ViewString>
+          </ViewStrings>
+        </Presentation>
+      </View>
+      <View ID="View.f86c313066e848c58a6b3f7aed5cfd5c" Accessibility="Public" Enabled="true" Target="OtherDevice" TypeID="Console!GridViewType" Visible="true">
+        <Category>NotUsed</Category>
+        <Data>
+          <Adapters>
+            <Adapter AdapterName="dataportal:EnterpriseManagementObjectProjectionAdapter">
+              <AdapterAssembly>Microsoft.EnterpriseManagement.UI.SdkDataAccess</AdapterAssembly>
+              <AdapterType>Microsoft.EnterpriseManagement.UI.SdkDataAccess.DataAdapters.EnterpriseManagementObjectProjectionAdapter</AdapterType>
+            </Adapter>
+            <Adapter AdapterName="viewframework://Adapters/AdvancedList">
+              <AdapterAssembly>Microsoft.EnterpriseManagement.UI.ViewFramework</AdapterAssembly>
+              <AdapterType>Microsoft.EnterpriseManagement.UI.ViewFramework.AdvancedListSupportAdapter</AdapterType>
+            </Adapter>
+            <Adapter AdapterName="omsdk://Adapters/Criteria">
+              <AdapterAssembly>Microsoft.EnterpriseManagement.UI.SdkDataAccess</AdapterAssembly>
+              <AdapterType>Microsoft.EnterpriseManagement.UI.SdkDataAccess.DataAdapters.SdkCriteriaAdapter</AdapterType>
+            </Adapter>
+          </Adapters>
+          <ItemsSource>
+            <AdvancedListSupportClass DataTypeName="" AdapterName="viewframework://Adapters/AdvancedList" FullUpdateAdapter="dataportal:EnterpriseManagementObjectProjectionAdapter" DataSource="mom:ManagementGroup" FullUpdateFrequency="1" Streaming="true" IsRecurring="true" RecurrenceFrequency="{x:Static s:Int32.MaxValue}" xmlns="clr-namespace:Microsoft.EnterpriseManagement.UI.ViewFramework;assembly=Microsoft.EnterpriseManagement.UI.ViewFramework" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib">
+              <AdvancedListSupportClass.Parameters>
+                <QueryParameter Parameter="TypeProjectionId" Value="$MPElement[Name='Projection.OtherDevice']$" />
+              </AdvancedListSupportClass.Parameters>
+            </AdvancedListSupportClass>
+          </ItemsSource>
+          <Criteria>
+            <QueryCriteria Adapter="omsdk://Adapters/Criteria" xmlns="http://tempuri.org/Criteria.xsd">
+              <Criteria>
+                <FreeformCriteria>
+                  <Freeform>
+                    <Criteria xmlns="http://Microsoft.EnterpriseManagement.Core.Criteria/">
+                      <Expression>
+                        <SimpleExpression>
+                          <ValueExpressionLeft>
+                            <Property>$Context/Property[Type='System!System.ConfigItem']/ObjectStatus$</Property>
+                          </ValueExpressionLeft>
+                          <Operator>NotEqual</Operator>
+                          <ValueExpressionRight>
+                            <Value>{47101e64-237f-12c8-e3f5-ec5a665412fb}</Value>
+                          </ValueExpressionRight>
+                        </SimpleExpression>
+                      </Expression>
+                    </Criteria>
+                  </Freeform>
+                </FreeformCriteria>
+              </Criteria>
+            </QueryCriteria>
+          </Criteria>
+        </Data>
+        <Presentation>
+          <Columns>
+            <mux:ColumnCollection xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mux="http://schemas.microsoft.com/SystemCenter/Common/UI/Views/GridView" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:datebinding="clr-namespace:Microsoft.EnterpriseManagement.UI.Extensions;assembly=Microsoft.EnterpriseManagement.UI.Extensions" xmlns:data="clr-namespace:Microsoft.EnterpriseManagement.UI.Extensions;assembly=Microsoft.EnterpriseManagement.UI.Extensions" xmlns:appCommon="clr-namespace:Microsoft.EnterpriseManagement.ServiceManager.Application.Common;assembly=Microsoft.EnterpriseManagement.ServiceManager.Application.Common" xmlns:toolbox="clr-namespace:Microsoft.EnterpriseManagement.UI.WpfToolbox;assembly=Microsoft.EnterpriseManagement.UI.FormsInfra" xmlns:slaBinding="clr-namespace:Microsoft.EnterpriseManagement.ServiceManager.SLA.Common;assembly=Microsoft.EnterpriseManagement.ServiceManager.SLA.Common" xmlns:converters="clr-namespace:itnetX.SCSM.AdvancedViewEditor.Converters;assembly=itnetX.SCSM.AdvancedViewEditor">
+              <mux:Column Name="GenericDisplayName" DisplayMemberBinding="{Binding Path=DisplayName}" DisplayName="DisplayName.25818100f54541ee843fc7d637d33a00" Property="DisplayName" DataType="s:String" IsVisible="True" />
+              <mux:Column Name="Type" DisplayMemberBinding="{Binding Path=Type.DisplayName}" DisplayName="Type.acf5e48479e34d2e97375b1ff4e0b49f" Property="Type.Ordinal" DataType="s:Double" IsVisible="True" />
+              <mux:Column Name="ManufacturerManufacturerName" DisplayMemberBinding="{Binding Path=Manufacturer.ManufacturerName}" DisplayName="ManufacturerName.99761a7481fa455c9b8b91e3ad587238" Property="Manufacturer.ManufacturerName" DataType="s:String" IsVisible="True" />
+              <mux:Column Name="ModelModelName" DisplayMemberBinding="{Binding Path=Model.ModelName}" DisplayName="ModelName.ffefd628e1774aa3ba6b38be885d1f99" Property="Model.ModelName" DataType="s:String" IsVisible="True" />
+              <mux:Column Name="Interface" DisplayMemberBinding="{Binding Path=Interface.DisplayName}" DisplayName="Interface.bcdb26e6f5504276aab94d47b4904fe4" Property="Interface.Ordinal" DataType="s:Double" IsVisible="True" />
+              <mux:Column Name="IPAddress" DisplayMemberBinding="{Binding Path=IPAddress}" DisplayName="IPAddress.6ca31ef33d104f7eb2fe06d860d8b2ef" Property="IPAddress" DataType="s:String" IsVisible="True" />
+            </mux:ColumnCollection>
+          </Columns>
+          <AdditonalProperties />
+          <ViewStrings>
+            <ViewString ID="DisplayName.25818100f54541ee843fc7d637d33a00">$MPElement[Name="DisplayName.093539c220244046843637ac2aab03c3"]$</ViewString>
+            <ViewString ID="Type.acf5e48479e34d2e97375b1ff4e0b49f">$MPElement[Name="Type.040951cd111b4143a45c3bb3d4c29f14"]$</ViewString>
+            <ViewString ID="ManufacturerName.99761a7481fa455c9b8b91e3ad587238">$MPElement[Name="ManufacturerName.70edf131ced9417d9a389a82db0345b1"]$</ViewString>
+            <ViewString ID="ModelName.ffefd628e1774aa3ba6b38be885d1f99">$MPElement[Name="ModelName.47fe5a9af2204a5492ce4bbff66ac754"]$</ViewString>
+            <ViewString ID="Interface.bcdb26e6f5504276aab94d47b4904fe4">$MPElement[Name="Interface.5b8ac0ea21604215ab2f5a65c38de5db"]$</ViewString>
+            <ViewString ID="IPAddress.6ca31ef33d104f7eb2fe06d860d8b2ef">$MPElement[Name="IPAddress.223aaf32a9e64f8ba726976676f7c900"]$</ViewString>
           </ViewStrings>
         </Presentation>
       </View>
@@ -4288,10 +4502,8 @@
             <ViewString ID="Type.86f5920890314a08a7d5f4056cdc5b68">$MPElement[Name="Type.5a77780e0064447d84b83ce81f2a63a8"]$</ViewString>
           </ViewStrings>
         </Presentation>
-      </View>
-    
-      
-        <View ID="View.e2a5ad78c7114f61bd739d4a047b3eba" Accessibility="Public" Enabled="true" Target="SoftwareAsset" TypeID="Console!GridViewType" Visible="true">
+      </View>   
+      <View ID="View.e2a5ad78c7114f61bd739d4a047b3eba" Accessibility="Public" Enabled="true" Target="SoftwareAsset" TypeID="Console!GridViewType" Visible="true">
         <Category>NotUsed</Category>
         <Data>
           <Adapters>
@@ -4566,8 +4778,7 @@
             <ViewString ID="SerialNumber.d35826daae9540659579479130708ed0">$MPElement[Name="SerialNumber.646423ae64774b88bed31a2a9f6cc1da"]$</ViewString>
           </ViewStrings>
         </Presentation>
-      </View>
-     
+      </View>    
       <View ID="View.2407b2591732458d80595c709cd849a0" Accessibility="Public" Enabled="true" Target="SKU" TypeID="Console!GridViewType" Visible="true">
         <Category>NotUsed</Category>
         <Data>
@@ -4904,6 +5115,7 @@
     </Views>
     <Folders>
       <Folder ID="Folder.008ede8faaae45d68a0b49039aacdd60" Accessibility="Public" ParentFolder="AssetWorkSpace.SoftwareManagement" />
+      <Folder ID="Folder.39e553a749564edb93140e6b076576f9" Accessibility="Public" ParentFolder="AssertWorkSpace.Administration" />
       <Folder ID="Folder.c8f17f47d9524b1ba61a0f70af798b3a" Accessibility="Public" ParentFolder="AssertWorkSpace.Administration" />
       <Folder ID="Folder.d051a482b501414d84c7a016c5a2e117" Accessibility="Public" ParentFolder="AssertWorkSpace.Administration" />
       <Folder ID="Folder.7d1d3444f69442c7b72cef7908ade728" Accessibility="Public" ParentFolder="AssertWorkSpace.Administration" />
@@ -4937,6 +5149,9 @@
     </Folders>
     <FolderItems>
       <FolderItem ElementID="View.13e0b9cfa15a4008af1aa36454ebe7c1" ID="FolderItem.b9890f62216640b8a5f9a0c1f111b2d3" Folder="Folder.730776261ba1477486cb8fa0a49beba5" />
+      <FolderItem ElementID="View.9e34470a2a094c46af199b9ed3534e34" ID="FolderItem.6b36c3b6e8e44cdea25b124d39ef4f7f" Folder="Folder.39e553a749564edb93140e6b076576f9" />
+      <FolderItem ElementID="View.ba623167ef75434192a4a74ed99cd4d5" ID="FolderItem.f842afb764184fbda693c73bf97a250d" Folder="Folder.730776261ba1477486cb8fa0a49beba5" />
+      <FolderItem ElementID="View.f86c313066e848c58a6b3f7aed5cfd5c" ID="FolderItem.75372b58ba034504bea16976dc6b8494" Folder="Folder.730776261ba1477486cb8fa0a49beba5" />
       <FolderItem ElementID="View.ec34c77bbbbb4e8591e39ed9c6d762f3" ID="FolderItem.a1f5d90a25044b4bbd47253a2be4187a" Folder="Folder.fb6bcbf734bb4ed5b317dcfeba60eb0f" />
       <FolderItem ElementID="View.5323a96036514b999d1a53989022b6d1" ID="FolderItem.f8ef7c017d7547fc919b0a23be8fb064" Folder="Folder.fb6bcbf734bb4ed5b317dcfeba60eb0f" />
       <FolderItem ElementID="View.ff4ddd430a974dcca323176dd47db6c9" ID="FolderItem.2f3692b7b2e44537aeeab82ab7bb400c" Folder="Folder.fb6bcbf734bb4ed5b317dcfeba60eb0f" />
@@ -4952,69 +5167,74 @@
       <FolderItem ElementID="View.3db36828050448aaad47220ca25f98bc" ID="FolderItem.3b5d9ce5eae74ff7a66acdf81d40b5a4" Folder="Folder.730776261ba1477486cb8fa0a49beba5" />
       <FolderItem ElementID="View.fe62a1e56e3b41d280e07679cda40292" ID="FolderItem.c20ff496c36040e5b207e91ffc743f33" Folder="Folder.8ac05338a7694d15b68af429b633a675" />
       <FolderItem ElementID="View.8981a12328e54845a8f81bbff085bccc" ID="FolderItem.f3d553dc5e704f0999c4a29e1c4a15e7" Folder="Folder.99b7f28237c64885b7dba6e5c2be5416" />
+      <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.CreateFolderAdvanced" ID="FolderItem.63e86405b79049188f660a95516106ec" Folder="Folder.39e553a749564edb93140e6b076576f9" />
+      <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.GroupViewTask" ID="FolderItem.14d56eb27ed84c62ae9d72c51771718c" Folder="Folder.39e553a749564edb93140e6b076576f9" />
+     
+      <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateGridView" ID="FolderItem.ee306baf58b34038a90833908bba18db" Folder="Folder.39e553a749564edb93140e6b076576f9" />
+      <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateFolder" ID="FolderItem.1a69bd495c1e4e7cb31242aed5ba1bbf" Folder="Folder.39e553a749564edb93140e6b076576f9" />
       <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateGridView" ID="FolderItem.c9950deb08ba4e97810a31ecb136647c" Folder="Folder.e9d87eae89d74106bc0b6898065e2202" />
       <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateFolder" ID="FolderItem.4d1234c5f4dd46e3a21dc4bad06af898" Folder="Folder.e9d87eae89d74106bc0b6898065e2202" />
       <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.CreateFolderAdvanced" ID="FolderItem.a75dd86866c9486a967e173907599131" Folder="Folder.e9d87eae89d74106bc0b6898065e2202" />
       <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.GroupViewTask" ID="FolderItem.d0b4a877499747189210285c4befed5d" Folder="Folder.e9d87eae89d74106bc0b6898065e2202" />
-      <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.EditFolderAdvanced" ID="FolderItem.40390d8b674c41a183b284ebcb65cf64" Folder="Folder.e9d87eae89d74106bc0b6898065e2202" />
+    
       <FolderItem ElementID="View.b16962214adb4c86b04d728ee26c8c8e" ID="FolderItem.3fb07dfa38024970b7263609a5190014" Folder="Folder.e9d87eae89d74106bc0b6898065e2202" />
       <FolderItem ElementID="View.3a6a753b60294c689aacf7b57a89225d" ID="FolderItem.2f76a30157eb4e30a8c55b2eba513573" Folder="Folder.e9d87eae89d74106bc0b6898065e2202" />
       <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateGridView" ID="FolderItem.78693e63bb5f44e6a8f2bebbf794afcd" Folder="Folder.55d0298cf0cd4ab4842a4856fd06e182" />
       <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateFolder" ID="FolderItem.9db685dfc74748f3a50a1838f03a6cc8" Folder="Folder.55d0298cf0cd4ab4842a4856fd06e182" />
       <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.CreateFolderAdvanced" ID="FolderItem.251ffd4e319e438dacdca259045ca757" Folder="Folder.55d0298cf0cd4ab4842a4856fd06e182" />
       <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.GroupViewTask" ID="FolderItem.03fae8c20068406fb5a4b8f4566c01e9" Folder="Folder.55d0298cf0cd4ab4842a4856fd06e182" />
-      <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.EditFolderAdvanced" ID="FolderItem.edf985e730644cc5b207a326a0a6fb73" Folder="Folder.55d0298cf0cd4ab4842a4856fd06e182" />
+     
       <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateGridView" ID="FolderItem.3ed6bf55778f44b9b9b55cedb26919a1" Folder="Folder.37b158ecb4684080bd60804aa4ad5c3d" />
       <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateFolder" ID="FolderItem.43033532403749e9a6f3879dd87b1405" Folder="Folder.37b158ecb4684080bd60804aa4ad5c3d" />
       <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.CreateFolderAdvanced" ID="FolderItem.8abe5060d6c04a51bf62c9e03a50a91c" Folder="Folder.37b158ecb4684080bd60804aa4ad5c3d" />
       <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.GroupViewTask" ID="FolderItem.01cd03d73ddd4c60a010b999fd7d81e5" Folder="Folder.37b158ecb4684080bd60804aa4ad5c3d" />
-      <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.EditFolderAdvanced" ID="FolderItem.793781ab1a924747942522c37fc1161a" Folder="Folder.37b158ecb4684080bd60804aa4ad5c3d" />
+      
       <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateGridView" ID="FolderItem.0d1225557c7543f7b3a7253e5c96d8e1" Folder="Folder.eb4191e1d7e140329f5c64fa927cce0e" />
       <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateFolder" ID="FolderItem.8cb5150168064629a334b448c3e466b9" Folder="Folder.eb4191e1d7e140329f5c64fa927cce0e" />
       <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.CreateFolderAdvanced" ID="FolderItem.2e91824a72da4694b0ef5404a364d801" Folder="Folder.eb4191e1d7e140329f5c64fa927cce0e" />
       <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.GroupViewTask" ID="FolderItem.ff1411e9b3794dd19d2751ae492e981c" Folder="Folder.eb4191e1d7e140329f5c64fa927cce0e" />
-      <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.EditFolderAdvanced" ID="FolderItem.196d21b436454ec28f33c14519983106" Folder="Folder.eb4191e1d7e140329f5c64fa927cce0e" />
+     
       <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateGridView" ID="FolderItem.24c44e31bdf24b978c0af43ebf77e9c7" Folder="Folder.fccedf6d8b374c95a35942c8ef8adae6" />
       <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateFolder" ID="FolderItem.4d051745c5e04278b7bc3cb7afd5ddc0" Folder="Folder.fccedf6d8b374c95a35942c8ef8adae6" />
       <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.CreateFolderAdvanced" ID="FolderItem.466a2053a18e4ef3bbc888bf7c9629ba" Folder="Folder.fccedf6d8b374c95a35942c8ef8adae6" />
       <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.GroupViewTask" ID="FolderItem.e96313eb17cd426bae58147b3b0d5d36" Folder="Folder.fccedf6d8b374c95a35942c8ef8adae6" />
-      <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.EditFolderAdvanced" ID="FolderItem.ec421c43bb894f4aaa773a409f14c000" Folder="Folder.fccedf6d8b374c95a35942c8ef8adae6" />
+      
       <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateGridView" ID="FolderItem.25b4ea3d697f4faabe9bfed30b328804" Folder="Folder.94dd235938964c6d8057948572f4d2b9" />
       <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateFolder" ID="FolderItem.779aaafb1c8b45489624267e4f49dca8" Folder="Folder.94dd235938964c6d8057948572f4d2b9" />
       <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.CreateFolderAdvanced" ID="FolderItem.3cfa213a632b4412880256986583e79d" Folder="Folder.94dd235938964c6d8057948572f4d2b9" />
       <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.GroupViewTask" ID="FolderItem.592cff507856422a986644f3f3b81986" Folder="Folder.94dd235938964c6d8057948572f4d2b9" />
-      <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.EditFolderAdvanced" ID="FolderItem.fe1fbe5eb06e454791dced6f38c295e1" Folder="Folder.94dd235938964c6d8057948572f4d2b9" />
+     
       <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateGridView" ID="FolderItem.f62fdc05533940209fb05475e60cc03e" Folder="Folder.1ef862890df44c4597357d9c13401d04" />
       <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateFolder" ID="FolderItem.6dd6b847521f4810b2f94a9b58ea4397" Folder="Folder.1ef862890df44c4597357d9c13401d04" />
       <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.CreateFolderAdvanced" ID="FolderItem.9e020022eac045e397a85d87da059cc4" Folder="Folder.1ef862890df44c4597357d9c13401d04" />
       <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.GroupViewTask" ID="FolderItem.c8dbae34a0dc43b08691ed2a22ba6260" Folder="Folder.1ef862890df44c4597357d9c13401d04" />
-      <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.EditFolderAdvanced" ID="FolderItem.806a5cf4d79741e5bb86c83e592835e5" Folder="Folder.1ef862890df44c4597357d9c13401d04" />
+    
       <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateGridView" ID="FolderItem.87d674c8d90340109049de2fd0f12d29" Folder="Folder.c1d36619067a4ac6af8fe83575547835" />
       <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateFolder" ID="FolderItem.87e614b468f84e10be2bb1c80fafc61f" Folder="Folder.c1d36619067a4ac6af8fe83575547835" />
       <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.CreateFolderAdvanced" ID="FolderItem.d88983b6c48743fe98700ea47fbe4981" Folder="Folder.c1d36619067a4ac6af8fe83575547835" />
       <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.GroupViewTask" ID="FolderItem.ffc99feb27424aea8c8e04d94f9e92db" Folder="Folder.c1d36619067a4ac6af8fe83575547835" />
-      <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.EditFolderAdvanced" ID="FolderItem.4149aab1fd6b4489b9b765a0bbf376a9" Folder="Folder.c1d36619067a4ac6af8fe83575547835" />
+      
       <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateGridView" ID="FolderItem.89dff2c9a6b24d4aba7dfb17cf3d136d" Folder="Folder.e490ba87a894448ba80597ef78bf310a" />
       <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateFolder" ID="FolderItem.1df73abc108a43b19f8ae14221ea989f" Folder="Folder.e490ba87a894448ba80597ef78bf310a" />
       <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.CreateFolderAdvanced" ID="FolderItem.ba48649c92c8419983fa7371ab22c06d" Folder="Folder.e490ba87a894448ba80597ef78bf310a" />
       <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.GroupViewTask" ID="FolderItem.643a89f6ecaf4934b1f338c701d16a99" Folder="Folder.e490ba87a894448ba80597ef78bf310a" />
-      <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.EditFolderAdvanced" ID="FolderItem.6e5b2d951edf4376a78efb715e1222fa" Folder="Folder.e490ba87a894448ba80597ef78bf310a" />
+     
       <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateGridView" ID="FolderItem.d5a41f7728c448748f093739a070b6e6" Folder="Folder.d62825058ca44dae963074ffa16f20aa" />
       <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateFolder" ID="FolderItem.d6bf6e43affb4685a0a0842ec4159511" Folder="Folder.d62825058ca44dae963074ffa16f20aa" />
       <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.CreateFolderAdvanced" ID="FolderItem.1db625e4c3ce4c5aa6a9eb5320146662" Folder="Folder.d62825058ca44dae963074ffa16f20aa" />
       <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.GroupViewTask" ID="FolderItem.9f0ec7c8ee444b1bb7fb94d7e85842d3" Folder="Folder.d62825058ca44dae963074ffa16f20aa" />
-      <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.EditFolderAdvanced" ID="FolderItem.bda1dcb3b5c3496998818b3f3551f7a4" Folder="Folder.d62825058ca44dae963074ffa16f20aa" />
+     
       <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateGridView" ID="FolderItem.33cfad7603a1420d9349f62213e43e84" Folder="Folder.16560765e30d4fd98f9ad2cadb019243" />
       <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateFolder" ID="FolderItem.0d0f5dd1436243209a2fa70ae1b25570" Folder="Folder.16560765e30d4fd98f9ad2cadb019243" />
       <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.CreateFolderAdvanced" ID="FolderItem.a5133deb80534dce998c4aee1d8d8cbf" Folder="Folder.16560765e30d4fd98f9ad2cadb019243" />
       <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.GroupViewTask" ID="FolderItem.04be24b293854a57a99084e065147e99" Folder="Folder.16560765e30d4fd98f9ad2cadb019243" />
-      <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.EditFolderAdvanced" ID="FolderItem.1908c958e1354ce6a31b97b7f747e336" Folder="Folder.16560765e30d4fd98f9ad2cadb019243" />
+     
       <FolderItem ElementID="View.0b5718e5e2fc4b948e71289d4f9e652f" ID="FolderItem.5a57f92460754595897f89a33e5c7b23" Folder="Folder.5a552ade29c44868a0d9428eb660be13" />
       <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateGridView" ID="FolderItem.fc7d43d0a8144b02b1cc7b9b71852f65" Folder="Folder.008ede8faaae45d68a0b49039aacdd60" />
       <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateFolder" ID="FolderItem.89766a68d7dd47f1920df24ebffcfed9" Folder="Folder.008ede8faaae45d68a0b49039aacdd60" />
       <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.CreateFolderAdvanced" ID="FolderItem.1474019026b8404aaccca3636854bfb9" Folder="Folder.008ede8faaae45d68a0b49039aacdd60" />
       <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.GroupViewTask" ID="FolderItem.1204c08402bc44fca44a04e4931fe166" Folder="Folder.008ede8faaae45d68a0b49039aacdd60" />
-      <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.EditFolderAdvanced" ID="FolderItem.c5d9fdef299546219c235e66eff767dd" Folder="Folder.008ede8faaae45d68a0b49039aacdd60" />
+   
       <FolderItem ElementID="View.667b63b79d9c4cc5a5390440359922cf" ID="FolderItem.33f1a96c1fa343ef92a019a0088d73e8" Folder="Folder.008ede8faaae45d68a0b49039aacdd60" />
       <!--
       <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateGridView" ID="FolderItem.3b3f55a5720b4177885cb76f8262832b" Folder="Folder.5431dc43927b4113a002a06a385a99b1" />
@@ -5031,67 +5251,66 @@
       <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateFolder" ID="FolderItem.b8d55a8a13da40bd95f421e6473b1c3d" Folder="Folder.c8f17f47d9524b1ba61a0f70af798b3a" />
       <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.CreateFolderAdvanced" ID="FolderItem.ec53e377ceaa4e5f8eb2848bff2c68e3" Folder="Folder.c8f17f47d9524b1ba61a0f70af798b3a" />
       <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.GroupViewTask" ID="FolderItem.0677d3991c2542c786674e592a2497a4" Folder="Folder.c8f17f47d9524b1ba61a0f70af798b3a" />
-      <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.EditFolderAdvanced" ID="FolderItem.8f8ad15ab9e94798b26b6c8714bdbe73" Folder="Folder.c8f17f47d9524b1ba61a0f70af798b3a" />
+   
       <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateGridView" ID="FolderItem.560576ee9e334fcab02b2e4769c6ebc4" Folder="Folder.d051a482b501414d84c7a016c5a2e117" />
       <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateFolder" ID="FolderItem.7f38cc450113474e933d4a8d224170f2" Folder="Folder.d051a482b501414d84c7a016c5a2e117" />
       <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.CreateFolderAdvanced" ID="FolderItem.15f3d4f5196a413f9be52e49444d537e" Folder="Folder.d051a482b501414d84c7a016c5a2e117" />
       <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.GroupViewTask" ID="FolderItem.ca7714ad57a94d5499fd1dbcbf6fe391" Folder="Folder.d051a482b501414d84c7a016c5a2e117" />
-      <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.EditFolderAdvanced" ID="FolderItem.e11cffd45a5740259bd41efdd010abdd" Folder="Folder.d051a482b501414d84c7a016c5a2e117" />
+      
       <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateGridView" ID="FolderItem.f6620cd0f5044388972c01a2fd5d45e0" Folder="Folder.7d1d3444f69442c7b72cef7908ade728" />
       <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateFolder" ID="FolderItem.75800746ff3e4605acfe08796973b554" Folder="Folder.7d1d3444f69442c7b72cef7908ade728" />
       <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.CreateFolderAdvanced" ID="FolderItem.ac37b481e48a471789f978c087c24f2a" Folder="Folder.7d1d3444f69442c7b72cef7908ade728" />
       <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.GroupViewTask" ID="FolderItem.8ac4454d3e8545eb92710d41bb708589" Folder="Folder.7d1d3444f69442c7b72cef7908ade728" />
-      <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.EditFolderAdvanced" ID="FolderItem.65b47f7e10b347e0af477139288ef06c" Folder="Folder.7d1d3444f69442c7b72cef7908ade728" />
+    
       <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateGridView" ID="FolderItem.1847a8035ca842a89d67581dfcf73827" Folder="Folder.ce6c7ebb363144359df45f205d67466f" />
       <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateFolder" ID="FolderItem.7722d71a0086483d9d8ae407bbfee1a8" Folder="Folder.ce6c7ebb363144359df45f205d67466f" />
       <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.CreateFolderAdvanced" ID="FolderItem.0dc0807a0ccd4ad7a93fc5d8376b518b" Folder="Folder.ce6c7ebb363144359df45f205d67466f" />
       <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.GroupViewTask" ID="FolderItem.7b4c3ff5cae04734b35bf5ae5a9b70c7" Folder="Folder.ce6c7ebb363144359df45f205d67466f" />
-      <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.EditFolderAdvanced" ID="FolderItem.5d0e17b2e5ee436b9e519e877e722219" Folder="Folder.ce6c7ebb363144359df45f205d67466f" />
+
       <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateGridView" ID="FolderItem.f7e009e0d0db41a9bb1aef653991152f" Folder="Folder.99b7f28237c64885b7dba6e5c2be5416" />
       <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateFolder" ID="FolderItem.33340a22a71e4d97afcc69d4e092470e" Folder="Folder.99b7f28237c64885b7dba6e5c2be5416" />
       <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.CreateFolderAdvanced" ID="FolderItem.5425f9bab0624c4fad14dc726c129f10" Folder="Folder.99b7f28237c64885b7dba6e5c2be5416" />
       <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.GroupViewTask" ID="FolderItem.263ed2b05bf644158df5cc663fe2329c" Folder="Folder.99b7f28237c64885b7dba6e5c2be5416" />
-      <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.EditFolderAdvanced" ID="FolderItem.4c8a3cfd024b4e528e1a4112319a110c" Folder="Folder.99b7f28237c64885b7dba6e5c2be5416" />
+
       <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateGridView" ID="FolderItem.04df577305f7440185848ff8f8f8b9aa" Folder="Folder.92a6771ea5ca4b3b8f7cdf369da5f6e0" />
       <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateFolder" ID="FolderItem.479d9c833f7b4e718d013319b3efd664" Folder="Folder.92a6771ea5ca4b3b8f7cdf369da5f6e0" />
       <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.CreateFolderAdvanced" ID="FolderItem.cbb840d4ca784963856d455bb0e9b109" Folder="Folder.92a6771ea5ca4b3b8f7cdf369da5f6e0" />
       <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.GroupViewTask" ID="FolderItem.839fe1f9e8e94e9a81e0115edf576584" Folder="Folder.92a6771ea5ca4b3b8f7cdf369da5f6e0" />
-      <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.EditFolderAdvanced" ID="FolderItem.e6fc540e5c5b4b549bbae567b776d451" Folder="Folder.92a6771ea5ca4b3b8f7cdf369da5f6e0" />
+
       <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateGridView" ID="FolderItem.565d67b6180f4faa8a0b48ea9b7345f2" Folder="Folder.30baff799a954aaca7499790f763852a" />
       <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateFolder" ID="FolderItem.99044fc4990e4ea18a2206a07e47bdd4" Folder="Folder.30baff799a954aaca7499790f763852a" />
       <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.CreateFolderAdvanced" ID="FolderItem.8e5f96c305f14e238cad692b0512179c" Folder="Folder.30baff799a954aaca7499790f763852a" />
       <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.GroupViewTask" ID="FolderItem.b655aa3aa4ab425d85a7d9a9cb8c5f14" Folder="Folder.30baff799a954aaca7499790f763852a" />
-      <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.EditFolderAdvanced" ID="FolderItem.0d0ef05045e74b0c9d83a4b581458dc0" Folder="Folder.30baff799a954aaca7499790f763852a" />
+
       <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateGridView" ID="FolderItem.31d2c658b3f8459ebf48cbce9afda22a" Folder="Folder.a0264b1427a349f68c09d2aafc5f02bf" />
       <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateFolder" ID="FolderItem.473d7ae1347048cbbb78cd90c1189d22" Folder="Folder.a0264b1427a349f68c09d2aafc5f02bf" />
       <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.CreateFolderAdvanced" ID="FolderItem.7cde37f663a146ea9c4af30f0e09ee7a" Folder="Folder.a0264b1427a349f68c09d2aafc5f02bf" />
       <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.GroupViewTask" ID="FolderItem.fa4c0b3feb544e7a979bb7d5aab98ccf" Folder="Folder.a0264b1427a349f68c09d2aafc5f02bf" />
-      <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.EditFolderAdvanced" ID="FolderItem.b73543b6db2e4297adc9cd2c1daec429" Folder="Folder.a0264b1427a349f68c09d2aafc5f02bf" />
+
       <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateGridView" ID="FolderItem.3bb1a8d5204d48e080f3e6d19165e606" Folder="Folder.2f7ca099991c47948c0f766624a09863" />
       <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateFolder" ID="FolderItem.8fa468451e2d43ef9143977685f2fd17" Folder="Folder.2f7ca099991c47948c0f766624a09863" />
       <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.CreateFolderAdvanced" ID="FolderItem.be7cabf8fcbb48ceaa46359650f889f9" Folder="Folder.2f7ca099991c47948c0f766624a09863" />
       <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.GroupViewTask" ID="FolderItem.a1112229f3294f21bd1654b0968d5160" Folder="Folder.2f7ca099991c47948c0f766624a09863" />
-      <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.EditFolderAdvanced" ID="FolderItem.2f74b60206094543bde8250d298409b8" Folder="Folder.2f7ca099991c47948c0f766624a09863" />
+
       <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateGridView" ID="FolderItem.95c0ed591b6a4edf82858aa83e95dfce" Folder="Folder.730776261ba1477486cb8fa0a49beba5" />
       <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateFolder" ID="FolderItem.18811fa76e974e228297ba171dfe3794" Folder="Folder.730776261ba1477486cb8fa0a49beba5" />
       <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.CreateFolderAdvanced" ID="FolderItem.38eb036c3c274502919c14b12065cfc6" Folder="Folder.730776261ba1477486cb8fa0a49beba5" />
       <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.GroupViewTask" ID="FolderItem.96af1812bd3749a39fb95123ef90965b" Folder="Folder.730776261ba1477486cb8fa0a49beba5" />
-      <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.EditFolderAdvanced" ID="FolderItem.00ba50951ec14ec5af869efed1a3d742" Folder="Folder.730776261ba1477486cb8fa0a49beba5" />
+
       <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateGridView" ID="FolderItem.d73bd5036769414281e8e0c095eff853" Folder="Folder.fb6bcbf734bb4ed5b317dcfeba60eb0f" />
       <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateFolder" ID="FolderItem.991a5a6ec3214af3bc01846c9de8acc6" Folder="Folder.fb6bcbf734bb4ed5b317dcfeba60eb0f" />
       <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.CreateFolderAdvanced" ID="FolderItem.b5059d4ab0f2407fa0c43f519f57abc8" Folder="Folder.fb6bcbf734bb4ed5b317dcfeba60eb0f" />
       <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.GroupViewTask" ID="FolderItem.17bbad8efbdc473aabd585267125b2f0" Folder="Folder.fb6bcbf734bb4ed5b317dcfeba60eb0f" />
-      <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.EditFolderAdvanced" ID="FolderItem.d0949df068204dec9563144a383917f0" Folder="Folder.fb6bcbf734bb4ed5b317dcfeba60eb0f" />
+
       <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateGridView" ID="FolderItem.df2e0abe1b85429293892fc420be8db0" Folder="Folder.8ac05338a7694d15b68af429b633a675" />
       <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateFolder" ID="FolderItem.2f263cf30f554b099df789d46583467d" Folder="Folder.8ac05338a7694d15b68af429b633a675" />
       <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.CreateFolderAdvanced" ID="FolderItem.da96de943df54cae9afa36b6ad3ed9f0" Folder="Folder.8ac05338a7694d15b68af429b633a675" />
       <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.GroupViewTask" ID="FolderItem.386f0e0fc771402788c31d1d8fa9dd82" Folder="Folder.8ac05338a7694d15b68af429b633a675" />
-      <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.EditFolderAdvanced" ID="FolderItem.e8b290d72897400c81a17990bd06bb44" Folder="Folder.8ac05338a7694d15b68af429b633a675" />
+
       <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateGridView" ID="FolderItem.938a023bb180453e9c1274483c4bb994" Folder="Folder.ca4979beebdb4706a7a8adc3af618db8" />
       <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateFolder" ID="FolderItem.8e2d756fc5c049df923f31f9781b6ed7" Folder="Folder.ca4979beebdb4706a7a8adc3af618db8" />
       <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.CreateFolderAdvanced" ID="FolderItem.a2e756c7e1384f0ea64f95663254dabc" Folder="Folder.ca4979beebdb4706a7a8adc3af618db8" />
       <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.GroupViewTask" ID="FolderItem.bc6b9319092b4a9f81acca1e3c06b88a" Folder="Folder.ca4979beebdb4706a7a8adc3af618db8" />
-      <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.EditFolderAdvanced" ID="FolderItem.140c55ec3c634aedb737d05b7e4acb94" Folder="Folder.ca4979beebdb4706a7a8adc3af618db8" />
       <FolderItem ElementID="View.726e2ca2bd3441f38381ad04436d83be" ID="FolderItem.16c3d39a16034ad8a4dc55d53c2f437e" Folder="Folder.92a6771ea5ca4b3b8f7cdf369da5f6e0" />
       <FolderItem ElementID="View.02a41abb1ecc4d61900b4a06c7c6ca38" ID="FolderItem.5364cf0c93b74f42ae128c6fb7f7dc29" Folder="Folder.92a6771ea5ca4b3b8f7cdf369da5f6e0" />
       <FolderItem ElementID="View.4ad12c8637c34d9dba27b8f82d6fe38c" ID="FolderItem.aaf32ef91f0f44cda4d96af1ce062eb8" Folder="Folder.2f7ca099991c47948c0f766624a09863" />
@@ -5157,6 +5376,8 @@
       <FolderItem ElementID="View.4033955e0664486481ce29c19f7ac77a" ID="FolderItem.17b4a707415d41899b3c378f9549f4b3" Folder="Folder.0f152d971d6a4922b6372188a2de4419" />
     </FolderItems>
     <ImageReferences>
+      <ImageReference ElementID="Folder.39e553a749564edb93140e6b076576f9" ImageID="officedesk16x16.png" />
+      <ImageReference ElementID="View.9e34470a2a094c46af199b9ed3534e34" ImageID="officedesk16x16.png" />
       <ImageReference ElementID="View.13e0b9cfa15a4008af1aa36454ebe7c1" ImageID="mobiledevice16x16.png" />
       <ImageReference ElementID="View.3db36828050448aaad47220ca25f98bc" ImageID="icmon16x16.png" />
       <ImageReference ElementID="View.12d95a13dbbe4d3a9b52c341d364e4e0" ImageID="lickey16x16.png" />
@@ -5179,6 +5400,8 @@
       <ImageReference ElementID="View.0b5718e5e2fc4b948e71289d4f9e652f" ImageID="keyinfo16x16.png" />
       <ImageReference ElementID="Folder.008ede8faaae45d68a0b49039aacdd60" ImageID="lickey16x16.png" />
       <ImageReference ElementID="View.667b63b79d9c4cc5a5390440359922cf" ImageID="lickey16x16.png" />
+      <ImageReference ElementID="View.ba623167ef75434192a4a74ed99cd4d5" ImageID="scanner16x16.png" />
+      <ImageReference ElementID="View.f86c313066e848c58a6b3f7aed5cfd5c" ImageID="otherdev16x16.png" />
       
       
       <!--
@@ -5263,7 +5486,25 @@
       <ImageReference ElementID="View.4033955e0664486481ce29c19f7ac77a" ImageID="liccan16x16.png" />
     </ImageReferences>
     <StringResources>
+      <StringResource ID="DisplayName.abebdce09f824da1b35af6b49b487695" />
+      <StringResource ID="Type.5c6b4b185f9743e9a8a40cf4cb2ee108" />
+      <StringResource ID="Status.a6c80a14d1d4481aa4348962f53c8f9d" />
+      <StringResource ID="DisplayName.99395ad1856346e7b9fb679d1310e897" />
+      <StringResource ID="OrganizationName.fb87c0f2b63b447180668e3bfabe3861" />
+      <StringResource ID="DisplayName.1223b6fb67d84dbb8c99377acf0ceb78" />
       <StringResource ID="DisplayName.e6d056478424428b829b8b3dd439d075" />
+      <StringResource ID="DisplayName.ba0557a13a8e4a379e56de545c29afc6" />
+      <StringResource ID="ManufacturerName.81ced06abadb4023bbde737331b2f0ff" />
+      <StringResource ID="ModelName.6ff65871aa9c4aaa9413917bcd600d64" />
+      <StringResource ID="Interface.1f3be73d9d5047ebb10d4db7908de5da" />
+      <StringResource ID="Type.1467edb832fc45199ebac7b79c7097a0" />
+      <StringResource ID="Resolution.2b57b611b682424488890643b5417afd" />
+      <StringResource ID="DisplayName.093539c220244046843637ac2aab03c3" />
+      <StringResource ID="Type.040951cd111b4143a45c3bb3d4c29f14" />
+      <StringResource ID="ManufacturerName.70edf131ced9417d9a389a82db0345b1" />
+      <StringResource ID="ModelName.47fe5a9af2204a5492ce4bbff66ac754" />
+      <StringResource ID="Interface.5b8ac0ea21604215ab2f5a65c38de5db" />
+      <StringResource ID="IPAddress.223aaf32a9e64f8ba726976676f7c900" />
       <StringResource ID="Type.d3bd1431284b4a4d98a52d876c09e5b0" />
       <StringResource ID="UseType.1c0defa2a456413f95c78285e967d571" />
       <StringResource ID="Resolution.0d734d4a7b9b4c068629a7908c051361" />
@@ -5811,7 +6052,8 @@
           <Description>Status</Description>
         </DisplayString>
         <DisplayString ElementID="View.3db36828050448aaad47220ca25f98bc">
-          <Name>Monitor</Name>
+          <Name>Monitors</Name>
+          <Description>Monitors</Description>
         </DisplayString>
         <DisplayString ElementID="DisplayName.b1780e861a564073bf8c7a82c9da8814">
           <Name>Display Name</Name>
@@ -5829,6 +6071,37 @@
           <Name>Assigned User</Name>
           <Description>Display name</Description>
         </DisplayString>
+        <DisplayString ElementID="Folder.39e553a749564edb93140e6b076576f9">
+          <Name>Office Desks</Name>
+          <Description>Office Desks Unified Management</Description>
+        </DisplayString>
+        <DisplayString ElementID="DisplayName.abebdce09f824da1b35af6b49b487695">
+          <Name>Display Name</Name>
+          <Description>Display name</Description>
+        </DisplayString>
+        <DisplayString ElementID="Type.5c6b4b185f9743e9a8a40cf4cb2ee108">
+          <Name>Office Desk Type</Name>
+          <Description>Desk Type</Description>
+        </DisplayString>
+        <DisplayString ElementID="Status.a6c80a14d1d4481aa4348962f53c8f9d">
+          <Name>Office Desk Status</Name>
+          <Description>Desk Status</Description>
+        </DisplayString>
+        <DisplayString ElementID="DisplayName.99395ad1856346e7b9fb679d1310e897">
+          <Name>Office Location</Name>
+          <Description>Display name</Description>
+        </DisplayString>
+        <DisplayString ElementID="OrganizationName.fb87c0f2b63b447180668e3bfabe3861">
+          <Name>Office Organization</Name>
+          <Description>Organization Name</Description>
+        </DisplayString>
+        <DisplayString ElementID="DisplayName.1223b6fb67d84dbb8c99377acf0ceb78">
+          <Name>Office Desk User</Name>
+          <Description>Display name</Description>
+        </DisplayString>
+        <DisplayString ElementID="View.9e34470a2a094c46af199b9ed3534e34">
+          <Name>Office Desks</Name>
+        </DisplayString>
         <DisplayString ElementID="HardwareVersion.83fe1afcc9c84b9da7bf2b346a5917ec">
           <Name>Device Hardware Version</Name>
           <Description>Device Hardware Version</Description>
@@ -5840,6 +6113,62 @@
         <DisplayString ElementID="DeviceOS.7d8aa908d4944ae189f6f97b0696aab6">
           <Name>Device OS</Name>
           <Description>Device OS</Description>
+        </DisplayString>
+         <DisplayString ElementID="DisplayName.ba0557a13a8e4a379e56de545c29afc6">
+          <Name>Display Name</Name>
+          <Description>Display name</Description>
+        </DisplayString>
+        <DisplayString ElementID="ManufacturerName.81ced06abadb4023bbde737331b2f0ff">
+          <Name>Manufacturer Name</Name>
+          <Description>Manufacturer Name</Description>
+        </DisplayString>
+        <DisplayString ElementID="ModelName.6ff65871aa9c4aaa9413917bcd600d64">
+          <Name>Model Name</Name>
+          <Description>Model Name</Description>
+        </DisplayString>
+        <DisplayString ElementID="Interface.1f3be73d9d5047ebb10d4db7908de5da">
+          <Name>Scanner Interface</Name>
+          <Description>Scanner Interface</Description>
+        </DisplayString>
+        <DisplayString ElementID="Type.1467edb832fc45199ebac7b79c7097a0">
+          <Name>Scanner Type</Name>
+          <Description>Scanner Type</Description>
+        </DisplayString>
+        <DisplayString ElementID="Resolution.2b57b611b682424488890643b5417afd">
+          <Name>Scanner Resolution</Name>
+          <Description>Scanner Resolution</Description>
+        </DisplayString>
+        <DisplayString ElementID="View.ba623167ef75434192a4a74ed99cd4d5">
+          <Name>Scanner Devices</Name>
+          <Description>Scanner Devices</Description>
+        </DisplayString>
+        <DisplayString ElementID="DisplayName.093539c220244046843637ac2aab03c3">
+          <Name>Display Name</Name>
+          <Description>Display name</Description>
+        </DisplayString>
+        <DisplayString ElementID="Type.040951cd111b4143a45c3bb3d4c29f14">
+          <Name>Device Type</Name>
+          <Description>Device Type</Description>
+        </DisplayString>
+        <DisplayString ElementID="ManufacturerName.70edf131ced9417d9a389a82db0345b1">
+          <Name>Manufacturer Name</Name>
+          <Description>Manufacturer Name</Description>
+        </DisplayString>
+        <DisplayString ElementID="ModelName.47fe5a9af2204a5492ce4bbff66ac754">
+          <Name>Model Name</Name>
+          <Description>Model Name</Description>
+        </DisplayString>
+        <DisplayString ElementID="Interface.5b8ac0ea21604215ab2f5a65c38de5db">
+          <Name>Device Interface</Name>
+          <Description>Device Interface</Description>
+        </DisplayString>
+        <DisplayString ElementID="IPAddress.223aaf32a9e64f8ba726976676f7c900">
+          <Name>IP Address</Name>
+          <Description>IP Address</Description>
+        </DisplayString>
+        <DisplayString ElementID="View.f86c313066e848c58a6b3f7aed5cfd5c">
+          <Name>Other Devices</Name>
+          <Description>Other Devices</Description>
         </DisplayString>
         <DisplayString ElementID="Status.342b224519484e09a8bb96fb2a1f5d74">
           <Name>Device Status</Name>
@@ -6181,8 +6510,8 @@
           <Description>Display name</Description>
         </DisplayString>
         <DisplayString ElementID="View.c745acce989a4d34a871b5081074d399">
-          <Name>Hardware Printers</Name>
-          <Description>Hardware Printers</Description>
+          <Name>Printers</Name>
+          <Description>Printers</Description>
         </DisplayString>
         <DisplayString ElementID="DisplayName.5ad2cb8a0ff044d1b81dbafe4e8e68a6">
           <Name>Display Name</Name>
@@ -6680,8 +7009,8 @@
           <Description>Display name</Description>
         </DisplayString>
         <DisplayString ElementID="View.fd3705531eec40dda9bc0023a92c020b">
-          <Name>Hardware Windows Desktop</Name>
-          <Description>Hardware Windows Desktop</Description>
+          <Name>Desktop Windows</Name>
+          <Description>Desktop Windows</Description>
         </DisplayString>
         <DisplayString ElementID="DeviceName.66ee6d9998ac4206a303659e1c6fb0ea">
           <Name>Device Name</Name>
@@ -6714,8 +7043,8 @@
           <Description>Logical Processors</Description>
         </DisplayString>
         <DisplayString ElementID="View.54ca2487e0124a32a280e96c2a1d1262">
-          <Name>Hardware Windows Server</Name>
-          <Description>Hardware Windows Server</Description>
+          <Name>Windows Servers</Name>
+          <Description>Windows Servers</Description>
         </DisplayString>
         <DisplayString ElementID="DeviceName.fbe4dbae27bf41ceb4024aec5283c4fb">
           <Name>Device Name</Name>
@@ -6736,8 +7065,8 @@
           <Description>OS Name</Description>
         </DisplayString>
         <DisplayString ElementID="View.da6e164798ac4277849227de74b489a6">
-          <Name>Hardware Virtual Machine</Name>
-          <Description>Hardware Virtual Machine</Description>
+          <Name>Virtual Machines</Name>
+          <Description>Virtual Machines</Description>
         </DisplayString>
         <DisplayString ElementID="PhysicalCores.5a2caff53f574045bee13fa890019cda">
           <Name>Physical Cores</Name>
@@ -7803,8 +8132,8 @@
           <Description>Serial Number</Description>
         </DisplayString>
         <DisplayString ElementID="View.05d2da9fa39746feba2f77b6c6c20d0f">
-          <Name>Hardware Retired</Name>
-          <Description>Hardware Retired</Description>
+          <Name>Computers Retired</Name>
+          <Description>Computers Retired</Description>
         </DisplayString>
         <DisplayString ElementID="Cost.462de9562e164d5c8f84ad009e39ca7d">
           <Name>Cost</Name>

@@ -221,7 +221,15 @@
           <Property ID="AssetTag" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
           <Property ID="Size" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
           <Property ID="IPAddress" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
-        </ClassType>                
+        </ClassType>
+        <ClassType ID="OfficeDesk" Accessibility="Public" Abstract="false" Base="System!System.ConfigItem" Hosted="false" Singleton="false">
+          <Property ID="DeskName" Type="string" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0"/>
+          <Property ID="ODsKey" Type="string" AutoIncrement="true" Key="true" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" DefaultValue="ODsKId{0}"/>
+          <Property ID="Description" Type="string" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0"/>
+          <Property ID="Type" Type="enum" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" EnumType="ODeskType" />
+          <Property ID="Status" Type="enum" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" EnumType="DeviceStatus" />
+          <Property ID="OfficDeskStatus" Type="enum" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" EnumType="OrganizationStatus" />
+        </ClassType>
         <ClassType ID="StorageDevice" Accessibility="Public" Abstract="false" Base="System!System.ConfigItem" Hosted="false" Singleton="false">
           <Property ID="DeviceName" Type="string" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0"/>
           <Property ID="Description" Type="string" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0"/>
@@ -557,6 +565,16 @@
         </ClassType>
       </ClassTypes>
     <EnumerationTypes>
+      <EnumerationValue ID="ODeskType" Accessibility="Public" />
+      <EnumerationValue ID="ODeskType.Office" Parent="ODeskType" Accessibility="Public" Ordinal="5"/>
+      <EnumerationValue ID="ODeskType.Mobile" Parent="ODeskType" Accessibility="Public" Ordinal="10"/>
+      <EnumerationValue ID="ODeskType.Kiosk" Parent="ODeskType" Accessibility="Public" Ordinal="15"/>
+      <EnumerationValue ID="ODeskType.Reception" Parent="ODeskType" Accessibility="Public" Ordinal="20"/>
+      <EnumerationValue ID="ODeskType.POS" Parent="ODeskType" Accessibility="Public" Ordinal="25"/>
+      <EnumerationValue ID="ODeskType.HelpDesk" Parent="ODeskType" Accessibility="Public" Ordinal="30"/>
+      <EnumerationValue ID="ODeskType.Administration" Parent="ODeskType" Accessibility="Public" Ordinal="35"/>
+      <EnumerationValue ID="ODeskType.Management" Parent="ODeskType" Accessibility="Public" Ordinal="40"/>
+      <EnumerationValue ID="ODeskType.Other" Parent="ODeskType" Accessibility="Public" Ordinal="45"/>
       <EnumerationValue ID="ScanDeviceType" Accessibility="Public" />
       <EnumerationValue ID="ScanDeviceType.Flatbed" Parent="ScanDeviceType" Accessibility="Public" Ordinal="5"/>
       <EnumerationValue ID="ScanDeviceType.Photo" Parent="ScanDeviceType" Accessibility="Public" Ordinal="10"/>
@@ -722,7 +740,6 @@
       <EnumerationValue ID="ITSMConnectorType.AzureSyncronization" Parent="ITSMConnectorType" Accessibility="Public" Ordinal="20"/>
       <EnumerationValue ID="ITSMConnectorType.AmazonSyncronization" Parent="ITSMConnectorType" Accessibility="Public" Ordinal="25"/>
       <EnumerationValue ID="ITSMConnectorType.OMSConnector" Parent="ITSMConnectorType" Accessibility="Public" Ordinal="25"/>
-      
      <!-- <EnumerationValue ID="ITSMConnectorType.ADGroupSyncronization" Parent="ITSMConnectorType" Accessibility="Public" Ordinal="35"/> -->
       <EnumerationValue ID="LicStatus" Accessibility="Public" />
       <EnumerationValue ID="LicStatus.Healthy" Parent="LicStatus" Accessibility="Public" Ordinal="5"/>
@@ -1086,6 +1103,8 @@
     <Category ID="List.ODeviceType.Visible" Target="ODeviceType" Value="System!VisibleToUser" />
     <Category ID="List.OConnectivityType" Target="OConnectivityType" Value="SCSMUIAuth!Microsoft.EnterpriseManagement.ServiceManager.UI.Authoring.EnumerationViewTasks" />
     <Category ID="List.OConnectivityType.Visible" Target="OConnectivityType" Value="System!VisibleToUser" />
+    <Category ID="List.ODeskType" Target="ODeskType" Value="SCSMUIAuth!Microsoft.EnterpriseManagement.ServiceManager.UI.Authoring.EnumerationViewTasks" />
+    <Category ID="List.ODeskType.Visible" Target="ODeskType" Value="System!VisibleToUser" />
     <!-- 
     <Category ID="List.UserRole" Target="UserRole" Value="SCSMUIAuth!Microsoft.EnterpriseManagement.ServiceManager.UI.Authoring.EnumerationViewTasks" />
     <Category ID="List.UserRole.Visible" Target="UserRole" Value="System!VisibleToUser" />
@@ -1794,8 +1813,8 @@
           <Description>Device Status</Description>
         </DisplayString>
         <DisplayString ElementID="Hardware">
-          <Name>Hardware</Name>
-          <Description>Hardware</Description>
+          <Name>Computer</Name>
+          <Description>Computer Hardware</Description>
         </DisplayString>
         <DisplayString ElementID="Hardware" SubElementID="HardwareID">
           <Name>Hardware ID</Name>
@@ -2084,6 +2103,26 @@
         <DisplayString ElementID="StorageDevice" SubElementID="SNMPAddress">
           <Name>SNMP Address</Name>
           <Description>SNMP Address</Description>
+        </DisplayString>
+        <DisplayString ElementID="OfficeDesk">
+          <Name>Office Desk</Name>
+          <Description>Office Desk</Description>
+        </DisplayString>
+        <DisplayString ElementID="OfficeDesk" SubElementID="DeskName">
+          <Name>Desk Name</Name>
+          <Description>Desk Name</Description>
+        </DisplayString>
+        <DisplayString ElementID="OfficeDesk" SubElementID="Description">
+          <Name>Description</Name>
+          <Description>Description</Description>
+        </DisplayString>
+        <DisplayString ElementID="OfficeDesk" SubElementID="Type">
+          <Name>Desk Type</Name>
+          <Description>Desk Type</Description>
+        </DisplayString>
+        <DisplayString ElementID="OfficeDesk" SubElementID="Status" >
+          <Name>Desk Status</Name>
+          <Description>Desk Status</Description>
         </DisplayString>
         <DisplayString ElementID="StorageDevice" SubElementID="SerialNumber">
           <Name>Serial Number</Name>
@@ -2619,6 +2658,36 @@
         </DisplayString>
         <DisplayString ElementID="ODeviceType.Fiber" >
           <Name>  Fiber </Name>
+        </DisplayString>
+        <DisplayString ElementID="ODeskType">
+          <Name> Office Desk Type </Name>
+        </DisplayString>
+        <DisplayString ElementID="ODeskType.Office">
+          <Name> Office Desk </Name>
+        </DisplayString>
+        <DisplayString ElementID="ODeskType.Mobile" >
+          <Name> Mobile Desk </Name>
+        </DisplayString>
+        <DisplayString ElementID="ODeskType.Kiosk">
+          <Name> Kiosk Desk </Name>
+        </DisplayString>
+        <DisplayString ElementID="ODeskType.Reception">
+          <Name>  Reception Desk  </Name>
+        </DisplayString>
+        <DisplayString ElementID="ODeskType.POS" >
+          <Name> POS Desk </Name>
+        </DisplayString>
+        <DisplayString ElementID="ODeskType.HelpDesk">
+          <Name>  Help Desk </Name>
+        </DisplayString>
+        <DisplayString ElementID="ODeskType.Administration" >
+          <Name>  Administration Desk </Name>
+        </DisplayString>
+        <DisplayString ElementID="ODeskType.Management" >
+          <Name>  Management Desk </Name>
+        </DisplayString>
+        <DisplayString ElementID="ODeskType.Other" >
+          <Name>  Other Desk </Name>
         </DisplayString>
         <DisplayString ElementID="ODeviceType.Projector" >
           <Name>  Projector </Name>

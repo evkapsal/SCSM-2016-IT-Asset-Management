@@ -610,6 +610,24 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Pictures\officedesk16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\officedesk24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\otherdev16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\otherdev24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\scanner16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\scanner24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Pictures\mobiledevice16x16.png">
       <SubType>Content</SubType>
     </EmbeddedResource>

@@ -163,7 +163,13 @@
     <Image ID="mobiledevice16x16.png" Accessibility="Public" FileName="mobiledevice16x16.png" HasNullStream="false" />
     <Image ID="mobiledevice24x24.png" Accessibility="Public" FileName="mobiledevice24x24.png" HasNullStream="false" />
     <Image ID="icmon16x16.png" Accessibility="Public" FileName="icmon16x16.png" HasNullStream="false" />
-    <Image ID="icmon24x24.png" Accessibility="Public" FileName="icmon24x24.png" HasNullStream="false" />
+    <Image ID="icmon24x24.png" Accessibility="Public" FileName="icmon24x24.png" HasNullStream="false" />    
+    <Image ID="otherdev16x16.png" Accessibility="Public" FileName="otherdev16x16.png" HasNullStream="false" />
+    <Image ID="scanner16x16.png" Accessibility="Public" FileName="scanner16x16.png" HasNullStream="false" />
+    <Image ID="otherdev24x24.png" Accessibility="Public" FileName="otherdev24x24.png" HasNullStream="false" />
+    <Image ID="scanner24x24.png" Accessibility="Public" FileName="scanner24x24.png" HasNullStream="false" />
+    <Image ID="officedesk16x16.png" Accessibility="Public" FileName="officedesk16x16.png" HasNullStream="false" />
+    <Image ID="officedesk24x24.png" Accessibility="Public" FileName="officedesk24x24.png" HasNullStream="false" />
   </Resources>
   
 </ManagementPackFragment>
