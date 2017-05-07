@@ -1,0 +1,15 @@
+﻿<ManagementPackFragment SchemaVersion="SM2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Warehouse>
+    <Extensions>
+      <SystemCenterCube ID="SCSMCube">
+        <MeasureGroups>
+          <MeasureGroup ID="HardwareAssetHasOrganizationFactMG" Fact="ITSMDW!HardwareAssetHasOrganizationFact" />
+        </MeasureGroups>
+        <Substitutions>
+          <Substitution MeasureGroupName="HardwareAssetHasLocationFactMG" TargetDimension="ITSMDW!HardwareAssetDim" AliasTargetDimensionAs="HardwareAssetDim" Relationship="ITSM!Relationship.HardwareAssetHasLocation" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="HardwareAssetHasLocationFactMG" TargetDimension="ITSMDW!LocationDim" AliasTargetDimensionAs="HasLocationDim" Relationship="ITSM!Relationship.HardwareAssetHasLocation" RelationshipEndPoint="Target" />
+        </Substitutions>
+      </SystemCenterCube>
+    </Extensions>
+  </Warehouse>
+</ManagementPackFragment>

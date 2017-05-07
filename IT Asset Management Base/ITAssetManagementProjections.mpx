@@ -5,9 +5,9 @@
           <TypeProjection ID="Projection.HardwareAssetView" Accessibility="Public" Type="HardwareAsset">
           <Component Path="$Context/Path[Relationship='Relationship.HardwareAssetReferencesHardware']$" Alias="Hardware" />
           <Component Path="$Context/Path[Relationship='Relationship.HardwareAssetReferencesPrinter']$" Alias="Printer" />
-          <Component Path="$Context/Path[Relationship='Relationship.HardwareAssetReferencesScannerDevice']$" Alias="Monitor" />
-          <Component Path="$Context/Path[Relationship='Relationship.HardwareAssetReferencesOtherDevice']$" Alias="ScannerDevice" />
-          <Component Path="$Context/Path[Relationship='Relationship.HardwareAssetReferencesMonitorDevice']$" Alias="OtherDevice" />
+          <Component Path="$Context/Path[Relationship='Relationship.HardwareAssetReferencesMonitorDevice']$" Alias="MonitorDevice" />
+          <Component Path="$Context/Path[Relationship='Relationship.HardwareAssetReferencesScannerDevice']$" Alias="ScannerDevice" />
+          <Component Path="$Context/Path[Relationship='Relationship.HardwareAssetReferencesOtherDevice']$" Alias="OtherDevice" />
           <Component Path="$Context/Path[Relationship='Relationship.HardwareAssetReferencesMobileDevice']$" Alias="MobileDevice" />
           <Component Path="$Context/Path[Relationship='Relationship.HardwareAssetReferencesNetworkDevice']$" Alias="NetworkDevice" />
           <Component Path="$Context/Path[Relationship='Relationship.HardwareAssetReferencesStorageDevice']$" Alias="StorageDevice" />
@@ -353,6 +353,9 @@
           <Component Path="$Context/Path[Relationship='Relationship.MobileDeviceHasModel' SeedRole='Target']$" Alias="MobileDevice" />
           <Component Path="$Context/Path[Relationship='Relationship.PrinterHasModel' SeedRole='Target']$" Alias="Printer" />
           <Component Path="$Context/Path[Relationship='Relationship.HardwareHasModel' SeedRole='Target']$" Alias="Hardware" />
+          <Component Path="$Context/Path[Relationship='Relationship.ScannerHasModel' SeedRole='Target']$" Alias="Scanner" />
+          <Component Path="$Context/Path[Relationship='Relationship.MonitorHasModel' SeedRole='Target']$" Alias="Monitor" />
+          <Component Path="$Context/Path[Relationship='Relationship.OtherDeviceHasModel' SeedRole='Target']$" Alias="OtherDevice" />
         </TypeProjection>
          <TypeProjection ID="Projection.AzureConnector" Accessibility="Public" Type="AzureConnector">
         </TypeProjection>

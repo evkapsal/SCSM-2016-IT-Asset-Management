@@ -140,7 +140,7 @@
                                 <TextBox Style="{StaticResource textBoxStyle}"  Text="{Binding Path=ProcessorType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                                 <Label Content="Device Status"/>
                                 <scwpf:ListPicker Style="{StaticResource listPickerStyle}" ParentCategoryId="{Binding Mode=OneWay, Source={x:Static local:Resources.guidNetDeviceStatusEnumRoot}}" 
-                                	SelectedItem="{Binding Path=OSType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="23" />
+                                	SelectedItem="{Binding Path=Status, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="23" />
 
                             </StackPanel>
                             <StackPanel Style="{StaticResource stackPanelStyle}" Grid.Column="5"   Grid.Row="0" Grid.ColumnSpan="8">

@@ -1,127 +1,565 @@
 ﻿<ManagementPackFragment SchemaVersion="SM2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Warehouse>
     <Extensions>
-      <SystemCenterCube ID="ITSMCube">
+      <SystemCenterCube ID="HardwareAssetCube">
         <MeasureGroups>
-            <MeasureGroup ID="HardwareAssetHasSupplierFactMG" Fact="ITSMDW!HardwareAssetHasSupplierFact" />
-			      <MeasureGroup ID="SupportAgreementHasSupplierFactMG" Fact="ITSMDW!SupportAgreementHasSupplierFact" />
-			      <MeasureGroup ID="SoftwareAgreementHasSupplierFactMG" Fact="ITSMDW!SoftwareAgreementHasSupplierFact" />
-			      <MeasureGroup ID="CostHasSupplierFactMG" Fact="ITSMDW!CostHasSupplierFact" />
-			      <MeasureGroup ID="HardwareAgreementHasSupplierFactMG" Fact="ITSMDW!HardwareAgreementHasSupplierFact" />
-			      <MeasureGroup ID="PurchaseOrderHasSupplierFactMG" Fact="ITSMDW!PurchaseOrderHasSupplierFact" />
-			      <MeasureGroup ID="SoftwareAssetHasSupplierFactMG" Fact="ITSMDW!SoftwareAssetHasSupplierFact" />
-			      <MeasureGroup ID="ContactHasCompanyFactMG" Fact="ITSMDW!ContactHasCompanyFact" />
-			      <MeasureGroup ID="LeaseAgreementHasSupplierFactMG" Fact="ITSMDW!LeaseAgreementHasSupplierFact" />
-			      <MeasureGroup ID="InvoiceHasSupplierFactMG" Fact="ITSMDW!InvoiceHasSupplierFact" />
-			      <MeasureGroup ID="SupportAgreementHasContactFactMG" Fact="ITSMDW!SupportAgreementHasContactFact" />
-			      <MeasureGroup ID="SoftwareAgreementHasContactFactMG" Fact="ITSMDW!SoftwareAgreementHasContactFact" />
-			      <MeasureGroup ID="HWAgreementHasConctFactMG" Fact="ITSMDW!HWAgreementHasConctFact" />
-			      <MeasureGroup ID="SoftwareAssetHasContactFactMG" Fact="ITSMDW!SoftwareAssetHasContactFact" />
-			      <MeasureGroup ID="LeaseAgreementHasContactFactMG" Fact="ITSMDW!LeaseAgreementHasContactFact" />
-			      <MeasureGroup ID="InvoiceHasContactFactMG" Fact="ITSMDW!InvoiceHasContactFact" />
-			      <MeasureGroup ID="CostHasOrganizationFactMG" Fact="ITSMDW!CostHasOrganizationFact" />
-			      <MeasureGroup ID="SoftwareAgreementHasOrganizationFactMG" Fact="ITSMDW!SoftwareAgreementHasOrganizationFact" />
-			      <MeasureGroup ID="HWAgreementHasOrganizationFactMG" Fact="ITSMDW!HWAgreementHasOrganizationFact" />
-			      <MeasureGroup ID="SupportAgreementHasOrganizationFactMG" Fact="ITSMDW!SupportAgreementHasOrganizationFact" />
-			      <MeasureGroup ID="SoftwareAssetHasOrganizationFactMG" Fact="ITSMDW!SoftwareAssetHasOrganizationFact" />
-			      <MeasureGroup ID="OrganizationHasCostCenterFactMG" Fact="ITSMDW!OrganizationHasCostCenterFact" />
-			      <MeasureGroup ID="OrganizationHasLocationFactMG" Fact="ITSMDW!OrganizationHasLocationFact" />
-			      <MeasureGroup ID="UserIsAffiliatedWithOrganizationFactMG" Fact="ITSMDW!UserIsAffiliatedWithOrganizationFact" />
-			      <MeasureGroup ID="PurchaseOrderHasOrganizationFactMG" Fact="ITSMDW!PurchaseOrderHasOrganizationFact" />
-			      <MeasureGroup ID="HardwareAssetHasOrganizationFactMG" Fact="ITSMDW!HardwareAssetHasOrganizationFact" />
-			      <MeasureGroup ID="LeaseAgreementHasOrganizationFactMG" Fact="ITSMDW!LeaseAgreementHasOrganizationFact" />
-			      <MeasureGroup ID="InvoiceIsForOrganizationFactMG" Fact="ITSMDW!InvoiceIsForOrganizationFact" />
-			      <MeasureGroup ID="SoftwareAgreementHasCostCenterFactMG" Fact="ITSMDW!SoftwareAgreementHasCostCenterFact" />
-			      <MeasureGroup ID="CostHasCostCenterFactMG" Fact="ITSMDW!CostHasCostCenterFact" />
-			      <MeasureGroup ID="HardwareAgreementHasCostCenterFactMG" Fact="ITSMDW!HardwareAgreementHasCostCenterFact" />
-			      <MeasureGroup ID="SupportAgreementHasCostCenterFactMG" Fact="ITSMDW!SupportAgreementHasCostCenterFact" />
-			      <MeasureGroup ID="SoftwareAssetHasCostCenterFactMG" Fact="ITSMDW!SoftwareAssetHasCostCenterFact" />
-			      <MeasureGroup ID="CostCenterHasLocationFactMG" Fact="ITSMDW!CostCenterHasLocationFact" />
-			      <MeasureGroup ID="UserIsAffiliatedWithCostCenterFactMG" Fact="ITSMDW!UserIsAffiliatedWithCostCenterFact" />
-			      <MeasureGroup ID="PurchaseOrderHasCostCenterFactMG" Fact="ITSMDW!PurchaseOrderHasCostCenterFact" />
-			      <MeasureGroup ID="HardwareAssetHasCostCenterFactMG" Fact="ITSMDW!HardwareAssetHasCostCenterFact" />
-			      <MeasureGroup ID="LeaseAgreementHasCostCenterFactMG" Fact="ITSMDW!LeaseAgreementHasCostCenterFact" />
-			      <MeasureGroup ID="InvoiceHasCostCenterFactMG" Fact="ITSMDW!InvoiceHasCostCenterFact" />
-			      <MeasureGroup ID="HardwareAssetHasLocationFactMG" Fact="ITSMDW!HardwareAssetHasLocationFact" />
-			      <MeasureGroup ID="SoftwareAgreementHasLocationFactMG" Fact="ITSMDW!SoftwareAgreementHasLocationFact" />
-			      <MeasureGroup ID="CostHasLocationFactMG" Fact="ITSMDW!CostHasLocationFact" />
-			      <MeasureGroup ID="SupportAgreementHasLocationFactMG" Fact="ITSMDW!SupportAgreementHasLocationFact" />
-			      <MeasureGroup ID="SoftwareAssetHasLocationFactMG" Fact="ITSMDW!SoftwareAssetHasLocationFact" />
-			      <MeasureGroup ID="UserIsAffiliatedWithLocationFactMG" Fact="ITSMDW!UserIsAffiliatedWithLocationFact" />
-			      <MeasureGroup ID="PurchaseOrderHasLocationFactMG" Fact="ITSMDW!PurchaseOrderHasLocationFact" />
-			      <MeasureGroup ID="LeaseAgreementHasLocationFactMG" Fact="ITSMDW!LeaseAgreementHasLocationFact" />
-			      <MeasureGroup ID="InvoiceHasLocationFactMG" Fact="ITSMDW!InvoiceHasLocationFact" />
-			      <MeasureGroup ID="HWAgreementHasPurchaseOrderFactMG" Fact="ITSMDW!HWAgreementHasPurchaseOrderFact" />
-			      <MeasureGroup ID="HWAgreementHasLocationFactMG" Fact="ITSMDW!HWAgreementHasLocationFact" />
-			      <MeasureGroup ID="HWAgreementHasInvoiceFactMG" Fact="ITSMDW!HWAgreementHasInvoiceFact" />
-			      <MeasureGroup ID="HWAgreementHasCostFactMG" Fact="ITSMDW!HWAgreementHasCostFact" />
-			      <MeasureGroup ID="HardwareAssetHasAgreementFactMG" Fact="ITSMDW!HardwareAssetHasAgreementFact" />
-			      <MeasureGroup ID="SoftwareAgreementHasInvoiceFactMG" Fact="ITSMDW!SoftwareAgreementHasInvoiceFact" />
-			      <MeasureGroup ID="SoftwareAgreementHasCostFactMG" Fact="ITSMDW!SoftwareAgreementHasCostFact" />
-			      <MeasureGroup ID="SoftwareAgreementHasPurchaseOrderFactMG" Fact="ITSMDW!SoftwareAgreementHasPurchaseOrderFact" />
-			      <MeasureGroup ID="LicStatusIsForSoftwareAgreementFactMG" Fact="ITSMDW!LicStatusIsForSoftwareAgreementFact" />
-			      <MeasureGroup ID="SoftwareAssetHasAgreementFactMG" Fact="ITSMDW!SoftwareAssetHasAgreementFact" />
-			      <MeasureGroup ID="HardwareAssetHasLeaseAgreementFactMG" Fact="ITSMDW!HardwareAssetHasLeaseAgreementFact" />
-			      <MeasureGroup ID="SoftwareAssetHasLeaseAgreementFactMG" Fact="ITSMDW!SoftwareAssetHasLeaseAgreementFact" />
-			      <MeasureGroup ID="LeaseAgreementHasCostFactMG" Fact="ITSMDW!LeaseAgreementHasCostFact" />
-			      <MeasureGroup ID="LeaseAgreementHasInvoiceFactMG" Fact="ITSMDW!LeaseAgreementHasInvoiceFact" />
-			      <MeasureGroup ID="LeaseAgreementHasPurchaseOrderFactMG" Fact="ITSMDW!LeaseAgreementHasPurchaseOrderFact" />
-			      <MeasureGroup ID="SupportAgreementHasCostFactMG" Fact="ITSMDW!SupportAgreementHasCostFact" />
-			      <MeasureGroup ID="SupportAgreementHasPurchaseOrderFactMG" Fact="ITSMDW!SupportAgreementHasPurchaseOrderFact" />
-			      <MeasureGroup ID="SupportAgreementHasInvoiceFactMG" Fact="ITSMDW!SupportAgreementHasInvoiceFact" />
-			      <MeasureGroup ID="SoftwareAssetHasSupportAgreementFactMG" Fact="ITSMDW!SoftwareAssetHasSupportAgreementFact" />
-			      <MeasureGroup ID="HardwareAssetHasSupportAgreementFactMG" Fact="ITSMDW!HardwareAssetHasSupportAgreementFact" />
-			      <MeasureGroup ID="CostHasUsrFactMG" Fact="ITSMDW!CostHasUsrFact" />
-			      <MeasureGroup ID="CostIsForInvoiceFactMG" Fact="ITSMDW!CostIsForInvoiceFact" />
-			      <MeasureGroup ID="CostIsForPurchaseOrderFactMG" Fact="ITSMDW!CostIsForPurchaseOrderFact" />
-			      <MeasureGroup ID="PurchaseOrderHasInvoiceFactMG" Fact="ITSMDW!PurchaseOrderHasInvoiceFact" />
-			      <MeasureGroup ID="SoftwareAssetHasInvoiceFactMG" Fact="ITSMDW!SoftwareAssetHasInvoiceFact" />
-			      <MeasureGroup ID="InvoiceHasUserFactMG" Fact="ITSMDW!InvoiceHasUserFact" />
-			      <MeasureGroup ID="HardwareAssetHasInvFactMG" Fact="ITSMDW!HardwareAssetHasInvFact" />
-			      <MeasureGroup ID="SoftwareAssetHasPurchaseOrderFactMG" Fact="ITSMDW!SoftwareAssetHasPurchaseOrderFact" />
-			      <MeasureGroup ID="SkuHasPurchaseOrderFactMG" Fact="ITSMDW!SkuHasPurchaseOrderFact" />
-			      <MeasureGroup ID="PurchaseOrderHasUserFactMG" Fact="ITSMDW!PurchaseOrderHasUserFact" />
-			      <MeasureGroup ID="PurchaseOrderHasSKUFactMG" Fact="ITSMDW!PurchaseOrderHasSKUFact" />
-			      <MeasureGroup ID="HardwareAssetHasPOFactMG" Fact="ITSMDW!HardwareAssetHasPOFact" />
-			      <MeasureGroup ID="HardwareHasModelFactMG" Fact="ITSMDW!HardwareHasModelFact" />
-			      <MeasureGroup ID="HardwareHasUserFactMG" Fact="ITSMDW!HardwareHasUserFact" />
-			      <MeasureGroup ID="HardwareHasManufacturerFactMG" Fact="ITSMDW!HardwareHasManufacturerFact" />
-			      <MeasureGroup ID="HardwareAssetReferencesHardwareFactMG" Fact="ITSMDW!HardwareAssetReferencesHardwareFact" />
-			      <MeasureGroup ID="HardwareAssetReferencesPrinterFactMG" Fact="ITSMDW!HardwareAssetReferencesPrinterFact" />
-			      <MeasureGroup ID="PrinterHasManufacturerFactMG" Fact="ITSMDW!PrinterHasManufacturerFact" />
-			      <MeasureGroup ID="PrinterHasUserFactMG" Fact="ITSMDW!PrinterHasUserFact" />
-			      <MeasureGroup ID="PrinterHasModelFactMG" Fact="ITSMDW!PrinterHasModelFact" />
-			      <MeasureGroup ID="HardwareAssetReferencesNetworkDeviceFactMG" Fact="ITSMDW!HardwareAssetReferencesNetworkDeviceFact" />
-			      <MeasureGroup ID="NetworkDeviceHasManufacturerFactMG" Fact="ITSMDW!NetworkDeviceHasManufacturerFact" />
-			      <MeasureGroup ID="NetworkDeviceHasModelFactMG" Fact="ITSMDW!NetworkDeviceHasModelFact" />
-			      <MeasureGroup ID="NetworkDeviceHasUserFactMG" Fact="ITSMDW!NetworkDeviceHasUserFact" />
-			      <MeasureGroup ID="HardwareAssetReferencesStorageDeviceFactMG" Fact="ITSMDW!HardwareAssetReferencesStorageDeviceFact" />
-			      <MeasureGroup ID="StorageDeviceHasManufacturerFactMG" Fact="ITSMDW!StorageDeviceHasManufacturerFact" />
-			      <MeasureGroup ID="StorageDeviceHasUserFactMG" Fact="ITSMDW!StorageDeviceHasUserFact" />
-			      <MeasureGroup ID="StorageDeviceHasModelFactMG" Fact="ITSMDW!StorageDeviceHasModelFact" />
-			      <MeasureGroup ID="MobileDeviceHasUserFactMG" Fact="ITSMDW!MobileDeviceHasUserFact" />
-			      <MeasureGroup ID="MobileDeviceHasModelFactMG" Fact="ITSMDW!MobileDeviceHasModelFact" />
-			      <MeasureGroup ID="MobileDeviceHasManufacturerFactMG" Fact="ITSMDW!MobileDeviceHasManufacturerFact" />
-			      <MeasureGroup ID="HardwareAssetReferencesMobileDeviceFactMG" Fact="ITSMDW!HardwareAssetReferencesMobileDeviceFact" />
-			      <MeasureGroup ID="HardwareAssetChangedByUserFactMG" Fact="ITSMDW!HardwareAssetChangedByUserFact" />
-			      <MeasureGroup ID="HardwareAssetHasUserFactMG" Fact="ITSMDW!HardwareAssetHasUserFact" />
-			      <MeasureGroup ID="SoftwareVersionInstalledOnAssetsFactMG" Fact="ITSMDW!SoftwareVersionInstalledOnAssetsFact" />
-			      <MeasureGroup ID="DeviceModelHasManufacturerFactMG" Fact="ITSMDW!DeviceModelHasManufacturerFact" />
-			      <MeasureGroup ID="SoftwareHasSKUFactMG" Fact="ITSMDW!SoftwareHasSKUFact" />
-			      <MeasureGroup ID="SoftwareIsInstalledOnHardwareAssetFactMG" Fact="ITSMDW!SoftwareIsInstalledOnHardwareAssetFact" />
-			      <MeasureGroup ID="SoftwareHasLicenseKeyFactMG" Fact="ITSMDW!SoftwareHasLicenseKeyFact" />
-			      <MeasureGroup ID="LicStatusHasSoftwareFactMG" Fact="ITSMDW!LicStatusHasSoftwareFact" />
-			      <MeasureGroup ID="SoftwareAssetHasSoftwareFactMG" Fact="ITSMDW!SoftwareAssetHasSoftwareFact" />
-			      <MeasureGroup ID="SoftwareHasVersionFactMG" Fact="ITSMDW!SoftwareHasVersionFact" />
-			      <MeasureGroup ID="SoftwareAssetHasUserFactMG" Fact="ITSMDW!SoftwareAssetHasUserFact" />
-			      <MeasureGroup ID="SkuIsForSoftwareAssetFactMG" Fact="ITSMDW!SkuIsForSoftwareAssetFact" />
-			      <MeasureGroup ID="SoftwareAssetChangedByUserFactMG" Fact="ITSMDW!SoftwareAssetChangedByUserFact" />
-			      <MeasureGroup ID="SkuHasSoftwareLicenseKeyFactMG" Fact="ITSMDW!SkuHasSoftwareLicenseKeyFact" />
-			      <MeasureGroup ID="SoftwareHasPublisherFactMG" Fact="ITSMDW!SoftwareHasPublisherFact" />
-			      <MeasureGroup ID="SoftwareLicenseKeyIsForSoftwareAssetFactMG" Fact="ITSMDW!SoftwareLicenseKeyIsForSoftwareAssetFact" />
+            <MeasureGroup ID="HardwareAssetHasSupplierFactMG" Fact="ITSMDW!HardwareAssetHasSupplierFact" DateDimAlias="HardwareAssetHasSupplierFactDateDim" />
+			      <MeasureGroup ID="HardwareAssetReferencesScannerFactMG" Fact="ITSMDW!HardwareAssetReferencesScannerFact" DateDimAlias="HardwareAssetReferencesScannerFactDateDim"/>
+            <MeasureGroup ID="HardwareAssetReferencesOtherDeviceFactMG" Fact="ITSMDW!HardwareAssetReferencesOtherDeviceFact" DateDimAlias="HardwareAssetReferencesOtherDeviceFactDateDim"/>
+            <MeasureGroup ID="HardwareAssetReferencesMonitorFactMG" Fact="ITSMDW!HardwareAssetReferencesMonitorFact" DateDimAlias="HardwareAssetReferencesMonitorFactDateDim"/>
+			      <MeasureGroup ID="HardwareAssetHasOrganizationFactMG" Fact="ITSMDW!HardwareAssetHasOrganizationFact" DateDimAlias="HardwareAssetHasOrganizationFactDateDim"/>
+            <MeasureGroup ID="HardwareAssetReferencesMobileDeviceFactMG" Fact="ITSMDW!HardwareAssetReferencesMobileDeviceFact" DateDimAlias="HardwareAssetReferencesMobileDeviceFactDateDim"/>
+			      <MeasureGroup ID="HardwareAssetHasUserFactMG" Fact="ITSMDW!HardwareAssetHasUserFact" DateDimAlias="HardwareAssetHasUserFactDateDim" />
+            <MeasureGroup ID="HardwareAssetHasCostCenterFactMG" Fact="ITSMDW!HardwareAssetHasCostCenterFact" DateDimAlias="HardwareAssetHasCostCenterFactDateDim" />
+            <MeasureGroup ID="HardwareAssetReferencesHardwareFactMG" Fact="ITSMDW!HardwareAssetReferencesHardwareFact" DateDimAlias="HardwareAssetReferencesHardwareFactDateDim" />
+			      <MeasureGroup ID="HardwareAssetReferencesPrinterFactMG" Fact="ITSMDW!HardwareAssetReferencesPrinterFact" DateDimAlias="HardwareAssetReferencesPrinterFactDateDim"/>
+            <MeasureGroup ID="HardwareAssetHasAgreementFactMG" Fact="ITSMDW!HardwareAssetHasAgreementFact" DateDimAlias="HardwareAssetHasAgreementFactDateDim"/>
+			      <MeasureGroup ID="HardwareAssetHasLeaseAgreementFactMG" Fact="ITSMDW!HardwareAssetHasLeaseAgreementFact" DateDimAlias="HardwareAssetHasLeaseAgreementFactDateDim"/>
+			      <MeasureGroup ID="HardwareAssetHasSupportAgreementFactMG" Fact="ITSMDW!HardwareAssetHasSupportAgreementFact" DateDimAlias="HardwareAssetHasSupportAgreementFactDateDim"/>
+            <MeasureGroup ID="HardwareAssetReferencesNetworkDeviceFactMG" Fact="ITSMDW!HardwareAssetReferencesNetworkDeviceFact" DateDimAlias="HardwareAssetReferencesNetworkDeviceFactDateDim"/>
+            <MeasureGroup ID="HardwareAssetReferencesStorageDeviceFactMG" Fact="ITSMDW!HardwareAssetReferencesStorageDeviceFact" DateDimAlias="HardwareAssetReferencesStorageDeviceFactDateDim"/>
+            <MeasureGroup ID="HardwareAssetHasLocationFactMG" Fact="ITSMDW!HardwareAssetHasLocationFact" DateDimAlias="HardwareAssetHasLocationFactDateDim"/>            
         </MeasureGroups>
+        <Substitutions>
+          <Substitution MeasureGroupName="HardwareAssetHasSupplierFactMG" TargetDimension="ITSMDW!HardwareAssetDim" AliasTargetDimensionAs="HardwareAssetDim" Relationship="ITSM!Relationship.HardwareAssetHasSupplier" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="HardwareAssetHasSupplierFactMG" TargetDimension="ITSMDW!CompanyDim" AliasTargetDimensionAs="ByCompanyDim" Relationship="ITSM!Relationship.HardwareAssetHasSupplier" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="HardwareAssetHasOrganizationFactMG" TargetDimension="ITSMDW!HardwareAssetDim" AliasTargetDimensionAs="HardwareAssetDim" Relationship="ITSM!Relationship.HardwareAssetHasOrganization" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="HardwareAssetHasOrganizationFactMG" TargetDimension="ITSMDW!OrganizationDim" AliasTargetDimensionAs="HasOrganizationDim" Relationship="ITSM!Relationship.HardwareAssetHasOrganization" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="HardwareAssetHasCostCenterFactMG" TargetDimension="ITSMDW!HardwareAssetDim" AliasTargetDimensionAs="HardwareAssetDim" Relationship="ITSM!Relationship.HardwareAssetHasCostCenter" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="HardwareAssetHasCostCenterFactMG" TargetDimension="ITSMDW!CostCenterDim" AliasTargetDimensionAs="HasCostCenterDim" Relationship="ITSM!Relationship.HardwareAssetHasCostCenter" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="HardwareAssetHasLocationFactMG" TargetDimension="ITSMDW!HardwareAssetDim" AliasTargetDimensionAs="HardwareAssetDim" Relationship="ITSM!Relationship.HardwareAssetHasLocation" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="HardwareAssetHasLocationFactMG" TargetDimension="ITSMDW!LocationDim" AliasTargetDimensionAs="HasLocationDim" Relationship="ITSM!Relationship.HardwareAssetHasLocation" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="HardwareAssetHasAgreementFactMG" TargetDimension="ITSMDW!HardwareAssetDim" AliasTargetDimensionAs="HardwareAssetDim" Relationship="ITSM!Relationship.HardwareAssetHasAgreement" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="HardwareAssetHasAgreementFactMG" TargetDimension="ITSMDW!HardwareAgreementDim" AliasTargetDimensionAs="HasHardwareAgreementDim" Relationship="ITSM!Relationship.HardwareAssetHasAgreement" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="HardwareAssetHasLeaseAgreementFactMG" TargetDimension="ITSMDW!HardwareAssetDim" AliasTargetDimensionAs="HardwareAssetDim" Relationship="ITSM!Relationship.HardwareAssetHasLeaseAgreement" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="HardwareAssetHasLeaseAgreementFactMG" TargetDimension="ITSMDW!LeaseAgreementDim" AliasTargetDimensionAs="HasLeaseAgreementDim" Relationship="ITSM!Relationship.HardwareAssetHasLeaseAgreement" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="HardwareAssetHasSupportAgreementFactMG" TargetDimension="ITSMDW!HardwareAssetDim" AliasTargetDimensionAs="HardwareAssetDim" Relationship="ITSM!Relationship.HardwareAssetHasSupportAgreement" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="HardwareAssetHasSupportAgreementFactMG" TargetDimension="ITSMDW!SupportAgreementDim" AliasTargetDimensionAs="HasSupportAgreementDim" Relationship="ITSM!Relationship.HardwareAssetHasSupportAgreement" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="HardwareAssetReferencesHardwareFactMG" TargetDimension="ITSMDW!HardwareAssetDim" AliasTargetDimensionAs="HardwareAssetDim" Relationship="ITSM!Relationship.HardwareAssetReferencesHardware" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="HardwareAssetReferencesHardwareFactMG" TargetDimension="ITSMDW!HardwareDim" AliasTargetDimensionAs="HasHardwareDim" Relationship="ITSM!Relationship.HardwareAssetReferencesHardware" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="HardwareAssetReferencesPrinterFactMG" TargetDimension="ITSMDW!HardwareAssetDim" AliasTargetDimensionAs="HardwareAssetDim" Relationship="ITSM!Relationship.HardwareAssetReferencesPrinter" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="HardwareAssetReferencesPrinterFactMG" TargetDimension="ITSMDW!PrinterDim" AliasTargetDimensionAs="HasPrinterDim" Relationship="ITSM!Relationship.HardwareAssetReferencesPrinter" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="HardwareAssetReferencesNetworkDeviceFactMG" TargetDimension="ITSMDW!HardwareAssetDim" AliasTargetDimensionAs="HardwareAssetDim" Relationship="ITSM!Relationship.HardwareAssetReferencesNetworkDevice" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="HardwareAssetReferencesNetworkDeviceFactMG" TargetDimension="ITSMDW!NetworkDeviceDim" AliasTargetDimensionAs="HasNetworkDeviceDim" Relationship="ITSM!Relationship.HardwareAssetReferencesNetworkDevice" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="HardwareAssetReferencesMobileDeviceFactMG" TargetDimension="ITSMDW!HardwareAssetDim" AliasTargetDimensionAs="HardwareAssetDim" Relationship="ITSM!Relationship.HardwareAssetReferencesMobileDevice" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="HardwareAssetReferencesMobileDeviceFactMG" TargetDimension="ITSMDW!MobileDeviceDim" AliasTargetDimensionAs="HasMobileDeviceDim" Relationship="ITSM!Relationship.HardwareAssetReferencesMobileDevice" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="HardwareAssetReferencesStorageDeviceFactMG" TargetDimension="ITSMDW!HardwareAssetDim" AliasTargetDimensionAs="HardwareAssetDim" Relationship="ITSM!Relationship.HardwareAssetReferencesStorageDevice" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="HardwareAssetReferencesStorageDeviceFactMG" TargetDimension="ITSMDW!StorageDeviceDim" AliasTargetDimensionAs="HasStorageDeviceDim" Relationship="ITSM!Relationship.HardwareAssetReferencesStorageDevice" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="HardwareAssetHasUserFactMG" TargetDimension="ITSMDW!HardwareAssetDim" AliasTargetDimensionAs="HardwareAssetDim" Relationship="ITSM!Relationship.HardwareAssetHasUser" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="HardwareAssetHasUserFactMG" TargetDimension="DWBase!UserDim" AliasTargetDimensionAs="HasUserDim" Relationship="ITSM!Relationship.HardwareAssetHasUser" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="HardwareAssetReferencesScannerFactMG" TargetDimension="ITSMDW!HardwareAssetDim" AliasTargetDimensionAs="HardwareAssetDim" Relationship="ITSM!Relationship.HardwareAssetReferencesScannerDevice" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="HardwareAssetReferencesScannerFactMG" TargetDimension="ITSMDW!ScannerDim" AliasTargetDimensionAs="HasScannerDim" Relationship="ITSM!Relationship.HardwareAssetReferencesScannerDevice" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="HardwareAssetReferencesOtherDeviceFactMG" TargetDimension="ITSMDW!HardwareAssetDim" AliasTargetDimensionAs="HardwareAssetDim" Relationship="ITSM!Relationship.HardwareAssetReferencesOtherDevice" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="HardwareAssetReferencesOtherDeviceFactMG" TargetDimension="ITSMDW!OtherDeviceDim" AliasTargetDimensionAs="HasOtherDeviceDim" Relationship="ITSM!Relationship.HardwareAssetReferencesOtherDevice" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="HardwareAssetReferencesMonitorFactMG" TargetDimension="ITSMDW!HardwareAssetDim" AliasTargetDimensionAs="HardwareAssetDim" Relationship="ITSM!Relationship.HardwareAssetReferencesMonitorDevice" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="HardwareAssetReferencesMonitorFactMG" TargetDimension="ITSMDW!MonitorDim" AliasTargetDimensionAs="HasMonitorDim" Relationship="ITSM!Relationship.HardwareAssetReferencesMonitorDevice" RelationshipEndPoint="Target" />
+        </Substitutions>
+        <Measures>
+        </Measures>
+        <ManyToManyRelationships>
+          
+        </ManyToManyRelationships>
+      </SystemCenterCube>
+      <SystemCenterCube ID="SoftwareAssetCube">
+        <MeasureGroups>
+            <MeasureGroup ID="SoftwareAssetHasSupplierFactMG" Fact="ITSMDW!SoftwareAssetHasSupplierFact" DateDimAlias="SoftwareAssetHasSupplierFactDateDim" />
+            <MeasureGroup ID="SoftwareAssetHasContactFactMG" Fact="ITSMDW!SoftwareAssetHasContactFact" DateDimAlias="SoftwareAssetHasContactFactDateDim" />
+            <MeasureGroup ID="SoftwareAssetHasOrganizationFactMG" Fact="ITSMDW!SoftwareAssetHasOrganizationFact" DateDimAlias="SoftwareAssetHasOrganizationFactDateDim" />
+            <MeasureGroup ID="SoftwareAssetHasSoftwareFactMG" Fact="ITSMDW!SoftwareAssetHasSoftwareFact" DateDimAlias="SoftwareAssetHasSoftwareFactDateDim"/>
+			      <MeasureGroup ID="SoftwareAssetHasUserFactMG" Fact="ITSMDW!SoftwareAssetHasUserFact" DateDimAlias="SoftwareAssetHasUserFactDateDim"/>
+			      <MeasureGroup ID="SoftwareAssetChangedByUserFactMG" Fact="ITSMDW!SoftwareAssetChangedByUserFact" DateDimAlias="SoftwareAssetChangedByUserFactDateDim"/>
+			      <MeasureGroup ID="SoftwareLicenseKeyIsForSoftwareAssetFactMG" Fact="ITSMDW!SoftwareLicenseKeyIsForSoftwareAssetFact" DateDimAlias="SoftwareLicenseKeyIsForSoftwareAssetFactDateDim"/>
+            <MeasureGroup ID="SoftwareAssetHasLeaseAgreementFactMG" Fact="ITSMDW!SoftwareAssetHasLeaseAgreementFact" DateDimAlias="SoftwareAssetHasLeaseAgreementFactDateDim" />
+			      <MeasureGroup ID="SoftwareAssetHasAgreementFactMG" Fact="ITSMDW!SoftwareAssetHasAgreementFact" DateDimAlias="SoftwareAssetHasAgreementFactDateDim"/>
+			      <MeasureGroup ID="SoftwareAssetHasSupportAgreementFactMG" Fact="ITSMDW!SoftwareAssetHasSupportAgreementFact" DateDimAlias="SoftwareAssetHasSupportAgreementFactDateDim"/>
+            <MeasureGroup ID="SoftwareAssetHasInvoiceFactMG" Fact="ITSMDW!SoftwareAssetHasInvoiceFact" DateDimAlias="SoftwareAssetHasInvoiceFactDateDim"/>
+            <MeasureGroup ID="SoftwareAssetHasPurchaseOrderFactMG" Fact="ITSMDW!SoftwareAssetHasPurchaseOrderFact" DateDimAlias="SoftwareAssetHasPurchaseOrderFactDateDim"/>
+            <MeasureGroup ID="SoftwareAssetHasCostCenterFactMG" Fact="ITSMDW!SoftwareAssetHasCostCenterFact" DateDimAlias="SoftwareAssetHasCostCenterFactDateDim"/>
+            <MeasureGroup ID="SoftwareAssetHasLocationFactMG" Fact="ITSMDW!SoftwareAssetHasLocationFact" DateDimAlias="SoftwareAssetHasLocationFactDateDim"/>
+            <MeasureGroup ID="SkuIsForSoftwareAssetFactMG" Fact="ITSMDW!SkuIsForSoftwareAssetFact" DateDimAlias="SkuIsForSoftwareAssetFactDateDim"/>
+        </MeasureGroups>
+          <Substitutions>
+          <Substitution MeasureGroupName="SoftwareAssetHasSupplierFactMG" TargetDimension="ITSMDW!SoftwareAssetDim" AliasTargetDimensionAs="SoftwareAssetDim" Relationship="ITSM!Relationship.SoftwareAssetHasSupplier" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="SoftwareAssetHasSupplierFactMG" TargetDimension="ITSMDW!CompanyDim" AliasTargetDimensionAs="ByCompanyDim" Relationship="ITSM!Relationship.SoftwareAssetHasSupplier" RelationshipEndPoint="Target" />   
+          <Substitution MeasureGroupName="SoftwareAssetHasContactFactMG" TargetDimension="ITSMDW!SoftwareAssetDim" AliasTargetDimensionAs="SoftwareAssetDim" Relationship="ITSM!Relationship.SoftwareAssetHasContact" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="SoftwareAssetHasContactFactMG" TargetDimension="ITSMDW!ContactDim" AliasTargetDimensionAs="HasContactDim" Relationship="ITSM!Relationship.SoftwareAssetHasContact" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="SoftwareAssetHasCostCenterFactMG" TargetDimension="ITSMDW!SoftwareAssetDim" AliasTargetDimensionAs="SoftwareAssetDim" Relationship="ITSM!Relationship.SoftwareAssetHasCostCenter" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="SoftwareAssetHasCostCenterFactMG" TargetDimension="ITSMDW!CostCenterDim" AliasTargetDimensionAs="HasCostCenterDim" Relationship="ITSM!Relationship.SoftwareAssetHasCostCenter" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="SoftwareAssetHasOrganizationFactMG" TargetDimension="ITSMDW!SoftwareAssetDim" AliasTargetDimensionAs="SoftwareAssetDim" Relationship="ITSM!Relationship.SoftwareAssetHasOrganization" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="SoftwareAssetHasOrganizationFactMG" TargetDimension="ITSMDW!OrganizationDim" AliasTargetDimensionAs="HasOrganizationDim" Relationship="ITSM!Relationship.SoftwareAssetHasOrganization" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="SoftwareAssetHasAgreementFactMG" TargetDimension="ITSMDW!SoftwareAssetDim" AliasTargetDimensionAs="SoftwareAssetDim" Relationship="ITSM!Relationship.SoftwareAssetHasAgreement" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="SoftwareAssetHasAgreementFactMG" TargetDimension="ITSMDW!SoftwareAgreementDim" AliasTargetDimensionAs="HasSoftwareAgreementDim" Relationship="ITSM!Relationship.SoftwareAssetHasAgreement" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="SoftwareAssetHasLeaseAgreementFactMG" TargetDimension="ITSMDW!SoftwareAssetDim" AliasTargetDimensionAs="SoftwareAssetDim" Relationship="ITSM!Relationship.SoftwareAssetHasLeaseAgreement" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="SoftwareAssetHasLeaseAgreementFactMG" TargetDimension="ITSMDW!LeaseAgreementDim" AliasTargetDimensionAs="HasLeaseAgreementDim" Relationship="ITSM!Relationship.SoftwareAssetHasLeaseAgreement" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="SoftwareAssetHasLocationFactMG" TargetDimension="ITSMDW!SoftwareAssetDim" AliasTargetDimensionAs="SoftwareAssetDim" Relationship="ITSM!Relationship.SoftwareAssetHasLocation" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="SoftwareAssetHasLocationFactMG" TargetDimension="ITSMDW!LocationDim" AliasTargetDimensionAs="HasLocationDim" Relationship="ITSM!Relationship.SoftwareAssetHasLocation" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="SoftwareAssetHasSupportAgreementFactMG" TargetDimension="ITSMDW!SoftwareAssetDim" AliasTargetDimensionAs="SoftwareAssetDim" Relationship="ITSM!Relationship.SoftwareAssetHasSupportAgreement" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="SoftwareAssetHasSupportAgreementFactMG" TargetDimension="ITSMDW!SupportAgreementDim" AliasTargetDimensionAs="HasSupportAgreementDim" Relationship="ITSM!Relationship.SoftwareAssetHasSupportAgreement" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="SoftwareAssetHasInvoiceFactMG" TargetDimension="ITSMDW!SoftwareAssetDim" AliasTargetDimensionAs="SoftwareAssetDim" Relationship="ITSM!Relationship.SoftwareAssetHasInvoice" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="SoftwareAssetHasInvoiceFactMG" TargetDimension="ITSMDW!InvoiceDim" AliasTargetDimensionAs="HasInvoiceDim" Relationship="ITSM!Relationship.SoftwareAssetHasInvoice" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="SoftwareAssetHasPurchaseOrderFactMG" TargetDimension="ITSMDW!SoftwareAssetDim" AliasTargetDimensionAs="SoftwareAssetDim" Relationship="ITSM!Relationship.SoftwareAssetHasPurchaseOrder" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="SoftwareAssetHasPurchaseOrderFactMG" TargetDimension="ITSMDW!PurchaseOrderDim" AliasTargetDimensionAs="HasPurchaseOrderDim" Relationship="ITSM!Relationship.SoftwareAssetHasPurchaseOrder" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="SoftwareAssetHasUserFactMG" TargetDimension="ITSMDW!SoftwareAssetDim" AliasTargetDimensionAs="SoftwareAssetDim" Relationship="ITSM!Relationship.SoftwareAssetHasUser" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="SoftwareAssetHasUserFactMG" TargetDimension="DWBase!UserDim" AliasTargetDimensionAs="HasUserDim" Relationship="ITSM!Relationship.SoftwareAssetHasUser" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="SkuIsForSoftwareAssetFactMG" TargetDimension="ITSMDW!SKUDim" AliasTargetDimensionAs="SKUDim" Relationship="ITSM!Relationship.SkuIsForSoftwareAsset" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="SkuIsForSoftwareAssetFactMG" TargetDimension="ITSMDW!SoftwareAssetDim" AliasTargetDimensionAs="HasSoftwareAssetDim" Relationship="ITSM!Relationship.SkuIsForSoftwareAsset" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="SoftwareAssetChangedByUserFactMG" TargetDimension="ITSMDW!SoftwareAssetDim" AliasTargetDimensionAs="SoftwareAssetDim" Relationship="ITSM!Relationship.SoftwareAssetChangedByUser" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="SoftwareAssetChangedByUserFactMG" TargetDimension="DWBase!UserDim" AliasTargetDimensionAs="HasUserDim" Relationship="ITSM!Relationship.SoftwareAssetChangedByUser" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="SoftwareAssetHasSoftwareFactMG" TargetDimension="ITSMDW!SoftwareAssetDim" AliasTargetDimensionAs="SoftwareAssetDim" Relationship="ITSM!Relationship.SoftwareAssetHasSoftware" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="SoftwareAssetHasSoftwareFactMG" TargetDimension="ITSMDW!SoftwareDim" AliasTargetDimensionAs="HasSoftwareDim" Relationship="ITSM!Relationship.SoftwareAssetHasSoftware" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="SoftwareLicenseKeyIsForSoftwareAssetFactMG" TargetDimension="ITSMDW!SoftwareLicenseKeyDim" AliasTargetDimensionAs="SoftwareLicenseKeyDim" Relationship="ITSM!Relationship.SoftwareLicenseKeyIsForSoftwareAsset" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="SoftwareLicenseKeyIsForSoftwareAssetFactMG" TargetDimension="ITSMDW!SoftwareAssetDim" AliasTargetDimensionAs="HasSoftwareAssetDim" Relationship="ITSM!Relationship.SoftwareLicenseKeyIsForSoftwareAsset" RelationshipEndPoint="Target" />
+        </Substitutions>
+        <Measures></Measures>
+        <ManyToManyRelationships></ManyToManyRelationships>
+      </SystemCenterCube>
+      <SystemCenterCube ID="SoftwareCube">
+        <MeasureGroups>
+ 	       <MeasureGroup ID="SoftwareVersionInstalledOnAssetsFactMG" Fact="ITSMDW!SoftwareVersionInstalledOnAssetsFact" DateDimAlias="SoftwareVersionInstalledOnAssetsFactDateDim"/>
+         <MeasureGroup ID="SoftwareHasSKUFactMG" Fact="ITSMDW!SoftwareHasSKUFact" DateDimAlias="SoftwareHasSKUFactDateDim"/>
+         <MeasureGroup ID="SoftwareIsInstalledOnHardwareAssetFactMG" Fact="ITSMDW!SoftwareIsInstalledOnHardwareAssetFact" DateDimAlias="SoftwareIsInstalledOnHardwareAssetFactDateDim"/>
+         <MeasureGroup ID="SkuHasSoftwareLicenseKeyFactMG" Fact="ITSMDW!SkuHasSoftwareLicenseKeyFact" DateDimAlias="SkuHasSoftwareLicenseKeyFactDateDim"/>
+         <MeasureGroup ID="SoftwareHasPublisherFactMG" Fact="ITSMDW!SoftwareHasPublisherFact" DateDimAlias="SoftwareHasPublisherFactDateDim"/>
+         <MeasureGroup ID="LicStatusHasSoftwareFactMG" Fact="ITSMDW!LicStatusHasSoftwareFact" DateDimAlias="LicStatusHasSoftwareFactDateDim" />
+         <MeasureGroup ID="SoftwareHasLicenseKeyFactMG" Fact="ITSMDW!SoftwareHasLicenseKeyFact" DateDimAlias="SoftwareHasLicenseKeyFactDateDim"/>
+         <MeasureGroup ID="SoftwareHasVersionFactMG" Fact="ITSMDW!SoftwareHasVersionFact" DateDimAlias="SoftwareHasVersionFactDateDim"/>
+        </MeasureGroups>
+        <Substitutions>
+          <Substitution MeasureGroupName="SoftwareHasSKUFactMG" TargetDimension="ITSMDW!SoftwareDim" AliasTargetDimensionAs="SoftwareDim" Relationship="ITSM!Relationship.SoftwareHasSKU" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="SoftwareHasSKUFactMG" TargetDimension="ITSMDW!SKUDim" AliasTargetDimensionAs="HasSKUDim" Relationship="ITSM!Relationship.SoftwareHasSKU" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="SoftwareIsInstalledOnHardwareAssetFactMG" TargetDimension="ITSMDW!SoftwareDim" AliasTargetDimensionAs="SoftwareDim" Relationship="ITSM!Relationship.SoftwareIsInstalledOnHardwareAsset" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="SoftwareIsInstalledOnHardwareAssetFactMG" TargetDimension="ITSMDW!HardwareAssetDim" AliasTargetDimensionAs="HasHardwareAssetDim" Relationship="ITSM!Relationship.SoftwareIsInstalledOnHardwareAsset" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="SoftwareHasLicenseKeyFactMG" TargetDimension="ITSMDW!SoftwareDim" AliasTargetDimensionAs="SoftwareDim" Relationship="ITSM!Relationship.SoftwareHasLicenseKey" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="SoftwareHasLicenseKeyFactMG" TargetDimension="ITSMDW!SoftwareLicenseKeyDim" AliasTargetDimensionAs="HasSoftwareLicenseKeyDim" Relationship="ITSM!Relationship.SoftwareHasLicenseKey" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="LicStatusHasSoftwareFactMG" TargetDimension="ITSMDW!LicenseStatusDim" AliasTargetDimensionAs="LicenseStatusDim" Relationship="ITSM!Relationship.LicStatusHasSoftware" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="LicStatusHasSoftwareFactMG" TargetDimension="ITSMDW!SoftwareDim" AliasTargetDimensionAs="HasSoftwareDim" Relationship="ITSM!Relationship.LicStatusHasSoftware" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="SoftwareHasVersionFactMG" TargetDimension="ITSMDW!SoftwareVersionDim" AliasTargetDimensionAs="SoftwareVersionDim" Relationship="ITSM!Relationship.SoftwareHasVersion" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="SoftwareHasVersionFactMG" TargetDimension="ITSMDW!SoftwareDim" AliasTargetDimensionAs="HasSoftwareDim" Relationship="ITSM!Relationship.SoftwareHasVersion" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="SkuHasSoftwareLicenseKeyFactMG" TargetDimension="ITSMDW!SKUDim" AliasTargetDimensionAs="SKUDim" Relationship="ITSM!Relationship.SkuHasSoftwareLicenseKey" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="SkuHasSoftwareLicenseKeyFactMG" TargetDimension="ITSMDW!SoftwareLicenseKeyDim" AliasTargetDimensionAs="HasSoftwareLicenseKeyDim" Relationship="ITSM!Relationship.SkuHasSoftwareLicenseKey" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="SoftwareHasPublisherFactMG" TargetDimension="ITSMDW!SoftwareDim" AliasTargetDimensionAs="SoftwareDim" Relationship="ITSM!Relationship.SoftwareHasPublisher" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="SoftwareHasPublisherFactMG" TargetDimension="ITSMDW!SoftwarePublisherDim" AliasTargetDimensionAs="HasSoftwarePublisherDim" Relationship="ITSM!Relationship.SoftwareHasPublisher" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="SoftwareVersionInstalledOnAssetsFactMG" TargetDimension="ITSMDW!SoftwareVersionDim" AliasTargetDimensionAs="SoftwareVersionDim" Relationship="ITSM!Relationship.SoftwareVersionInstalledOnAssets" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="SoftwareVersionInstalledOnAssetsFactMG" TargetDimension="ITSMDW!HardwareAssetDim" AliasTargetDimensionAs="HasHardwareAssetDim" Relationship="ITSM!Relationship.SoftwareVersionInstalledOnAssets" RelationshipEndPoint="Target" />
+        </Substitutions>
+        <Measures></Measures>
+        <ManyToManyRelationships></ManyToManyRelationships>
+      </SystemCenterCube>
+      <SystemCenterCube ID="HardwarePeripheralsCube">
+        <MeasureGroups>
+            <MeasureGroup ID="OtherDeviceHasUserFactMG" Fact="ITSMDW!OtherDeviceHasUserFact" DateDimAlias="OtherDeviceHasUserFactDateDim"/>
+            <MeasureGroup ID="OtherDeviceHasManufacturerFactMG" Fact="ITSMDW!OtherDeviceHasManufacturerFact" DateDimAlias="OtherDeviceHasManufacturerFactDateDim"/>
+            <MeasureGroup ID="OtherDeviceHasModelFactMG" Fact="ITSMDW!OtherDeviceHasModelFact" DateDimAlias="OtherDeviceHasModelFactDateDim"/>
+            <MeasureGroup ID="MonitorHasUserFactMG" Fact="ITSMDW!MonitorHasUserFact" DateDimAlias="MonitorHasUserFactDateDim"/>
+            <MeasureGroup ID="MonitorHasManufacturerFactMG" Fact="ITSMDW!MonitorHasManufacturerFact" DateDimAlias="MonitorHasManufacturerFactDateDim"/>
+            <MeasureGroup ID="MonitorHasModelFactMG" Fact="ITSMDW!MonitorHasModelFact" DateDimAlias="MonitorHasModelFactDateDim"/>
+			      <MeasureGroup ID="NetworkDeviceHasManufacturerFactMG" Fact="ITSMDW!NetworkDeviceHasManufacturerFact" DateDimAlias="NetworkDeviceHasManufacturerFactDateDim"/>
+			      <MeasureGroup ID="NetworkDeviceHasModelFactMG" Fact="ITSMDW!NetworkDeviceHasModelFact" DateDimAlias="NetworkDeviceHasModelFactDateDim"/>
+			      <MeasureGroup ID="NetworkDeviceHasUserFactMG" Fact="ITSMDW!NetworkDeviceHasUserFact" DateDimAlias="NetworkDeviceHasUserFactDateDim"/>
+			      <MeasureGroup ID="StorageDeviceHasManufacturerFactMG" Fact="ITSMDW!StorageDeviceHasManufacturerFact" DateDimAlias="StorageDeviceHasManufacturerFactDateDim"/>
+			      <MeasureGroup ID="StorageDeviceHasUserFactMG" Fact="ITSMDW!StorageDeviceHasUserFact" DateDimAlias="StorageDeviceHasUserFactDateDim"/>
+			      <MeasureGroup ID="StorageDeviceHasModelFactMG" Fact="ITSMDW!StorageDeviceHasModelFact" DateDimAlias="StorageDeviceHasModelFactDateDim"/>
+			      <MeasureGroup ID="MobileDeviceHasUserFactMG" Fact="ITSMDW!MobileDeviceHasUserFact" DateDimAlias="MobileDeviceHasUserFactDateDim" />
+			      <MeasureGroup ID="MobileDeviceHasModelFactMG" Fact="ITSMDW!MobileDeviceHasModelFact" DateDimAlias="MobileDeviceHasModelFactDateDim"/>
+			      <MeasureGroup ID="MobileDeviceHasManufacturerFactMG" Fact="ITSMDW!MobileDeviceHasManufacturerFact" DateDimAlias="MobileDeviceHasManufacturerFactDateDim"/>
+        </MeasureGroups>
+        <Substitutions>
+          <Substitution MeasureGroupName="OtherDeviceHasUserFactMG" TargetDimension="ITSMDW!OtherDeviceDim" AliasTargetDimensionAs="OtherDeviceDim" Relationship="ITSM!Relationship.OtherDeviceHasUser" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="OtherDeviceHasUserFactMG" TargetDimension="DWBase!UserDim" AliasTargetDimensionAs="HasUserDim" Relationship="ITSM!Relationship.OtherDeviceHasUser" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="OtherDeviceHasManufacturerFactMG" TargetDimension="ITSMDW!OtherDeviceDim" AliasTargetDimensionAs="OtherDeviceDim" Relationship="ITSM!Relationship.OtherDeviceHasManufacturer" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="OtherDeviceHasManufacturerFactMG" TargetDimension="ITSMDW!DeviceManufacturerDim" AliasTargetDimensionAs="HasDeviceManufacturerDim" Relationship="ITSM!Relationship.OtherDeviceHasManufacturer" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="OtherDeviceHasModelFactMG" TargetDimension="ITSMDW!OtherDeviceDim" AliasTargetDimensionAs="OtherDeviceDim" Relationship="ITSM!Relationship.OtherDeviceHasModel" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="OtherDeviceHasModelFactMG" TargetDimension="ITSMDW!DeviceModelDim" AliasTargetDimensionAs="HasDeviceModelDim" Relationship="ITSM!Relationship.OtherDeviceHasModel" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="MonitorHasUserFactMG" TargetDimension="ITSMDW!MonitorDim" AliasTargetDimensionAs="MonitorDim" Relationship="ITSM!Relationship.MonitorHasUser" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="MonitorHasUserFactMG" TargetDimension="DWBase!UserDim" AliasTargetDimensionAs="HasUserDim" Relationship="ITSM!Relationship.MonitorHasUser" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="MonitorHasManufacturerFactMG" TargetDimension="ITSMDW!MonitorDim" AliasTargetDimensionAs="MonitorDim" Relationship="ITSM!Relationship.MonitorHasManufacturer" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="MonitorHasManufacturerFactMG" TargetDimension="ITSMDW!DeviceManufacturerDim" AliasTargetDimensionAs="HasDeviceManufacturerDim" Relationship="ITSM!Relationship.MonitorHasManufacturer" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="MonitorHasModelFactMG" TargetDimension="ITSMDW!MonitorDim" AliasTargetDimensionAs="MonitorDim" Relationship="ITSM!Relationship.MonitorHasModel" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="MonitorHasModelFactMG" TargetDimension="ITSMDW!DeviceModelDim" AliasTargetDimensionAs="HasDeviceModelDim" Relationship="ITSM!Relationship.MonitorHasModel" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="NetworkDeviceHasManufacturerFactMG" TargetDimension="ITSMDW!NetworkDeviceDim" AliasTargetDimensionAs="NetworkDeviceDim" Relationship="ITSM!Relationship.NetworkDeviceHasManufacturer" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="NetworkDeviceHasManufacturerFactMG" TargetDimension="ITSMDW!DeviceManufacturerDim" AliasTargetDimensionAs="HasDeviceManufacturerDim" Relationship="ITSM!Relationship.NetworkDeviceHasManufacturer" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="NetworkDeviceHasModelFactMG" TargetDimension="ITSMDW!NetworkDeviceDim" AliasTargetDimensionAs="NetworkDeviceDim" Relationship="ITSM!Relationship.NetworkDeviceHasModel" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="NetworkDeviceHasModelFactMG" TargetDimension="ITSMDW!DeviceModelDim" AliasTargetDimensionAs="HasDeviceModelDim" Relationship="ITSM!Relationship.NetworkDeviceHasModel" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="NetworkDeviceHasUserFactMG" TargetDimension="ITSMDW!NetworkDeviceDim" AliasTargetDimensionAs="NetworkDeviceDim" Relationship="ITSM!Relationship.NetworkDeviceHasUser" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="NetworkDeviceHasUserFactMG" TargetDimension="DWBase!UserDim" AliasTargetDimensionAs="HasUserDim" Relationship="ITSM!Relationship.NetworkDeviceHasUser" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="StorageDeviceHasManufacturerFactMG" TargetDimension="ITSMDW!StorageDeviceDim" AliasTargetDimensionAs="StorageDeviceDim" Relationship="ITSM!Relationship.StorageDeviceHasManufacturer" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="StorageDeviceHasManufacturerFactMG" TargetDimension="ITSMDW!DeviceManufacturerDim" AliasTargetDimensionAs="HasDeviceManufacturerDim" Relationship="ITSM!Relationship.StorageDeviceHasManufacturer" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="StorageDeviceHasUserFactMG" TargetDimension="ITSMDW!StorageDeviceDim" AliasTargetDimensionAs="StorageDeviceDim" Relationship="ITSM!Relationship.StorageDeviceHasUser" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="StorageDeviceHasUserFactMG" TargetDimension="DWBase!UserDim" AliasTargetDimensionAs="HasUserDim" Relationship="ITSM!Relationship.StorageDeviceHasUser" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="StorageDeviceHasModelFactMG" TargetDimension="ITSMDW!StorageDeviceDim" AliasTargetDimensionAs="StorageDeviceDim" Relationship="ITSM!Relationship.StorageDeviceHasModel" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="StorageDeviceHasModelFactMG" TargetDimension="ITSMDW!DeviceModelDim" AliasTargetDimensionAs="HasDeviceModelDim" Relationship="ITSM!Relationship.StorageDeviceHasModel" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="MobileDeviceHasUserFactMG" TargetDimension="ITSMDW!MobileDeviceDim" AliasTargetDimensionAs="MobileDeviceDim" Relationship="ITSM!Relationship.MobileDeviceHasUser" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="MobileDeviceHasUserFactMG" TargetDimension="DWBase!UserDim" AliasTargetDimensionAs="HasUserDim" Relationship="ITSM!Relationship.MobileDeviceHasUser" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="MobileDeviceHasModelFactMG" TargetDimension="ITSMDW!MobileDeviceDim" AliasTargetDimensionAs="MobileDeviceDim" Relationship="ITSM!Relationship.MobileDeviceHasModel" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="MobileDeviceHasModelFactMG" TargetDimension="ITSMDW!DeviceModelDim" AliasTargetDimensionAs="HasDeviceModelDim" Relationship="ITSM!Relationship.MobileDeviceHasModel" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="MobileDeviceHasManufacturerFactMG" TargetDimension="ITSMDW!MobileDeviceDim" AliasTargetDimensionAs="MobileDeviceDim" Relationship="ITSM!Relationship.MobileDeviceHasManufacturer" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="MobileDeviceHasManufacturerFactMG" TargetDimension="ITSMDW!DeviceManufacturerDim" AliasTargetDimensionAs="HasDeviceManufacturerDim" Relationship="ITSM!Relationship.MobileDeviceHasManufacturer" RelationshipEndPoint="Target" />
+        </Substitutions>
+        <Measures></Measures>
+        <ManyToManyRelationships></ManyToManyRelationships>
+      </SystemCenterCube>
+      <SystemCenterCube ID="HardwareCube">
+        <MeasureGroups>
+            <MeasureGroup ID="ScannerHasUserFactMG" Fact="ITSMDW!ScannerHasUserFact" DateDimAlias="ScannerHasUserFactDateDim"/>
+            <MeasureGroup ID="ScannerHasManufacturerFactMG" Fact="ITSMDW!ScannerHasManufacturerFact" DateDimAlias="ScannerHasManufacturerFactDateDim"/>
+            <MeasureGroup ID="ScannerHasModelFactMG" Fact="ITSMDW!ScannerHasModelFact" DateDimAlias="ScannerHasModelFactDateDim"/>
+			      <MeasureGroup ID="PrinterHasManufacturerFactMG" Fact="ITSMDW!PrinterHasManufacturerFact" DateDimAlias="PrinterHasManufacturerFactDateDim"/>
+			      <MeasureGroup ID="PrinterHasUserFactMG" Fact="ITSMDW!PrinterHasUserFact" DateDimAlias="PrinterHasUserFactDateDim"/>
+			      <MeasureGroup ID="PrinterHasModelFactMG" Fact="ITSMDW!PrinterHasModelFact" DateDimAlias="PrinterHasModelFactDateDim"/>
+			      <MeasureGroup ID="HardwareHasModelFactMG" Fact="ITSMDW!HardwareHasModelFact" DateDimAlias="HardwareHasModelFactDateDim"/>
+            <MeasureGroup ID="HardwareHasManufacturerFactMG" Fact="ITSMDW!HardwareHasManufacturerFact" DateDimAlias="HardwareHasManufacturerFactDateDim"/>
+			      <MeasureGroup ID="HardwareHasUserFactMG" Fact="ITSMDW!HardwareHasUserFact" DateDimAlias="HardwareHasUserFactDateDim"/>
+        </MeasureGroups>
+        <Substitutions>
+          <Substitution MeasureGroupName="ScannerHasUserFactMG" TargetDimension="ITSMDW!ScannerDim" AliasTargetDimensionAs="ScannerDim" Relationship="ITSM!Relationship.ScannerHasUser" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="ScannerHasUserFactMG" TargetDimension="DWBase!UserDim" AliasTargetDimensionAs="HasUserDim" Relationship="ITSM!Relationship.ScannerHasUser" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="ScannerHasManufacturerFactMG" TargetDimension="ITSMDW!ScannerDim" AliasTargetDimensionAs="ScannerDim" Relationship="ITSM!Relationship.ScannerHasManufacturer" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="ScannerHasManufacturerFactMG" TargetDimension="ITSMDW!DeviceManufacturerDim" AliasTargetDimensionAs="HasDeviceManufacturerDim" Relationship="ITSM!Relationship.ScannerHasManufacturer" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="ScannerHasModelFactMG" TargetDimension="ITSMDW!ScannerDim" AliasTargetDimensionAs="ScannerDim" Relationship="ITSM!Relationship.ScannerHasModel" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="ScannerHasModelFactMG" TargetDimension="ITSMDW!DeviceModelDim" AliasTargetDimensionAs="HasDeviceModelDim" Relationship="ITSM!Relationship.ScannerHasModel" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="HardwareHasModelFactMG" TargetDimension="ITSMDW!HardwareDim" AliasTargetDimensionAs="HardwareDim" Relationship="ITSM!Relationship.HardwareHasModel" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="HardwareHasModelFactMG" TargetDimension="ITSMDW!DeviceModelDim" AliasTargetDimensionAs="HasDeviceModelDim" Relationship="ITSM!Relationship.HardwareHasModel" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="HardwareHasUserFactMG" TargetDimension="ITSMDW!HardwareDim" AliasTargetDimensionAs="HardwareDim" Relationship="ITSM!Relationship.HardwareHasUser" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="HardwareHasUserFactMG" TargetDimension="DWBase!UserDim" AliasTargetDimensionAs="HasUserDim" Relationship="ITSM!Relationship.HardwareHasUser" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="HardwareHasManufacturerFactMG" TargetDimension="ITSMDW!HardwareDim" AliasTargetDimensionAs="HardwareDim" Relationship="ITSM!Relationship.HardwareHasManufacturer" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="HardwareHasManufacturerFactMG" TargetDimension="ITSMDW!DeviceManufacturerDim" AliasTargetDimensionAs="HasDeviceManufacturerDim" Relationship="ITSM!Relationship.HardwareHasManufacturer" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="PrinterHasManufacturerFactMG" TargetDimension="ITSMDW!PrinterDim" AliasTargetDimensionAs="HasPrinterDim" Relationship="ITSM!Relationship.PrinterHasManufacturer" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="PrinterHasManufacturerFactMG" TargetDimension="ITSMDW!DeviceManufacturerDim" AliasTargetDimensionAs="HasDeviceManufacturerDim" Relationship="ITSM!Relationship.PrinterHasManufacturer" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="PrinterHasModelFactMG" TargetDimension="ITSMDW!PrinterDim" AliasTargetDimensionAs="HasPrinterDim" Relationship="ITSM!Relationship.PrinterHasModel" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="PrinterHasModelFactMG" TargetDimension="ITSMDW!DeviceModelDim" AliasTargetDimensionAs="HasDeviceModelDim" Relationship="ITSM!Relationship.PrinterHasModel" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="PrinterHasUserFactMG" TargetDimension="ITSMDW!PrinterDim" AliasTargetDimensionAs="HasPrinterDim" Relationship="ITSM!Relationship.PrinterHasUser" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="PrinterHasUserFactMG" TargetDimension="DWBase!UserDim" AliasTargetDimensionAs="HasUserDim" Relationship="ITSM!Relationship.PrinterHasUser" RelationshipEndPoint="Target" />
+        </Substitutions>
+        <Measures>
+        </Measures>
+        <ManyToManyRelationships></ManyToManyRelationships>
+      </SystemCenterCube>
+      <SystemCenterCube ID="OfficeDeskCube">
+        <MeasureGroups>
+         <MeasureGroup ID="OfficeDeskHasHardwareAssetsFactMG" Fact="ITSMDW!OfficeDeskHasHardwareAssetsFact" DateDimAlias="OfficeDeskHasHardwareAssetsFactDateDim"/>
+         <MeasureGroup ID="OfficeDeskHasLocationFactMG" Fact="ITSMDW!OfficeDeskHasLocationFact" DateDimAlias="OfficeDeskHasLocationFactDateDim"/>
+         <MeasureGroup ID="OfficeDeskHasUserFactMG" Fact="ITSMDW!OfficeDeskHasUserFact" DateDimAlias="OfficeDeskHasUserFactDateDim"/>
+         <MeasureGroup ID="OfficeDeskHasOrganizationFactMG" Fact="ITSMDW!OfficeDeskHasOrganizationFact" DateDimAlias="OfficeDeskHasOrganizationFactDateDim"/>
+        </MeasureGroups>
+        <Substitutions>
+          <Substitution MeasureGroupName="OfficeDeskHasLocationFactMG" TargetDimension="ITSMDW!OfficeDeskDim" AliasTargetDimensionAs="OfficeDeskDim" Relationship="ITSM!Relationship.OfficeDeskHasLocation" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="OfficeDeskHasLocationFactMG" TargetDimension="ITSMDW!LocationDim" AliasTargetDimensionAs="HasLocationDim" Relationship="ITSM!Relationship.OfficeDeskHasLocation" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="OfficeDeskHasUserFactMG" TargetDimension="ITSMDW!OfficeDeskDim" AliasTargetDimensionAs="OfficeDeskDim" Relationship="ITSM!Relationship.OfficeDeskHasUser" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="OfficeDeskHasUserFactMG" TargetDimension="DWBase!UserDim" AliasTargetDimensionAs="HasUserDim" Relationship="ITSM!Relationship.OfficeDeskHasUser" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="OfficeDeskHasOrganizationFactMG" TargetDimension="ITSMDW!OfficeDeskDim" AliasTargetDimensionAs="OfficeDeskDim" Relationship="ITSM!Relationship.OfficeDeskHasOrganization" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="OfficeDeskHasOrganizationFactMG" TargetDimension="ITSMDW!OrganizationDim" AliasTargetDimensionAs="HasOrganizationDim" Relationship="ITSM!Relationship.OfficeDeskHasOrganization" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="OfficeDeskHasHardwareAssetsFactMG" TargetDimension="ITSMDW!OfficeDeskDim" AliasTargetDimensionAs="OfficeDeskDim" Relationship="ITSM!Relationship.OfficeDeskHasHardwareAssets" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="OfficeDeskHasHardwareAssetsFactMG" TargetDimension="ITSMDW!HardwareAssetDim" AliasTargetDimensionAs="HasHardwareAssetDim" Relationship="ITSM!Relationship.OfficeDeskHasHardwareAssets" RelationshipEndPoint="Target" />
+        </Substitutions>
+        <Measures></Measures>
+        <ManyToManyRelationships> </ManyToManyRelationships>
+     </SystemCenterCube>    
+      <SystemCenterCube ID="SoftwareAgreementCube">
+        <MeasureGroups>
+          <MeasureGroup ID="LicStatusIsForSoftwareAgreementFactMG" Fact="ITSMDW!LicStatusIsForSoftwareAgreementFact" DateDimAlias="LicStatusIsForSoftwareAgreementFactDateDim"/>
+          <MeasureGroup ID="SoftwareAgreementHasContactFactMG" Fact="ITSMDW!SoftwareAgreementHasContactFact" DateDimAlias="SoftwareAgreementHasContactFactDateDim" />
+          <MeasureGroup ID="SoftwareAgreementHasSupplierFactMG" Fact="ITSMDW!SoftwareAgreementHasSupplierFact" DateDimAlias="SoftwareAgreementHasSupplierFactDateDim" />
+          <MeasureGroup ID="SoftwareAgreementHasInvoiceFactMG" Fact="ITSMDW!SoftwareAgreementHasInvoiceFact" DateDimAlias="SoftwareAgreementHasCostFactDateDim"/>
+			    <MeasureGroup ID="SoftwareAgreementHasCostFactMG" Fact="ITSMDW!SoftwareAgreementHasCostFact" DateDimAlias="SoftwareAgreementHasCostFactDateDim"/>
+			    <MeasureGroup ID="SoftwareAgreementHasPurchaseOrderFactMG" Fact="ITSMDW!SoftwareAgreementHasPurchaseOrderFact" DateDimAlias="SoftwareAgreementHasPurchaseOrderFactDateDim"/>
+          <MeasureGroup ID="SoftwareAgreementHasOrganizationFactMG" Fact="ITSMDW!SoftwareAgreementHasOrganizationFact"  DateDimAlias="SoftwareAgreementHasOrganizationFactDateDim"/>
+          <MeasureGroup ID="SoftwareAgreementHasCostCenterFactMG" Fact="ITSMDW!SoftwareAgreementHasCostCenterFact" DateDimAlias="SoftwareAgreementHasCostCenterFactDateDim"/>
+          <MeasureGroup ID="SoftwareAgreementHasLocationFactMG" Fact="ITSMDW!SoftwareAgreementHasLocationFact" DateDimAlias="SoftwareAgreementHasLocationFactDateDim"/>
+        </MeasureGroups>
+       <Substitutions>
+          <Substitution MeasureGroupName="SoftwareAgreementHasSupplierFactMG" TargetDimension="ITSMDW!SoftwareAgreementDim" AliasTargetDimensionAs="SoftwareAgreementDim" Relationship="ITSM!Relationship.SoftwareAgreementHasSupplier" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="SoftwareAgreementHasSupplierFactMG" TargetDimension="ITSMDW!CompanyDim" AliasTargetDimensionAs="ByCompanyDim" Relationship="ITSM!Relationship.SoftwareAgreementHasSupplier" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="SoftwareAgreementHasInvoiceFactMG" TargetDimension="ITSMDW!SoftwareAgreementDim" AliasTargetDimensionAs="SoftwareAgreementDim" Relationship="ITSM!Relationship.SoftwareAgreementHasInvoice" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="SoftwareAgreementHasInvoiceFactMG" TargetDimension="ITSMDW!InvoiceDim" AliasTargetDimensionAs="HasInvoiceDim" Relationship="ITSM!Relationship.SoftwareAgreementHasInvoice" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="SoftwareAgreementHasCostFactMG" TargetDimension="ITSMDW!SoftwareAgreementDim" AliasTargetDimensionAs="SoftwareAgreementDim" Relationship="ITSM!Relationship.SoftwareAgreementHasCost" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="SoftwareAgreementHasCostFactMG" TargetDimension="ITSMDW!CostDim" AliasTargetDimensionAs="HasCostDim" Relationship="ITSM!Relationship.SoftwareAgreementHasCost" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="SoftwareAgreementHasPurchaseOrderFactMG" TargetDimension="ITSMDW!SoftwareAgreementDim" AliasTargetDimensionAs="SoftwareAgreementDim" Relationship="ITSM!Relationship.SoftwareAgreementHasPurchaseOrder" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="SoftwareAgreementHasPurchaseOrderFactMG" TargetDimension="ITSMDW!PurchaseOrderDim" AliasTargetDimensionAs="HasPurchaseOrderDim" Relationship="ITSM!Relationship.SoftwareAgreementHasPurchaseOrder" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="LicStatusIsForSoftwareAgreementFactMG" TargetDimension="ITSMDW!LicenseStatusDim" AliasTargetDimensionAs="LicenseStatusDim" Relationship="ITSM!Relationship.LicStatusIsForSoftwareAgreement" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="LicStatusIsForSoftwareAgreementFactMG" TargetDimension="ITSMDW!SoftwareAgreementDim" AliasTargetDimensionAs="HasSoftwareAgreementDim" Relationship="ITSM!Relationship.LicStatusIsForSoftwareAgreement" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="SoftwareAgreementHasContactFactMG" TargetDimension="ITSMDW!SoftwareAgreementDim" AliasTargetDimensionAs="SoftwareAgreementDim" Relationship="ITSM!Relationship.SoftwareAgreementHasContact" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="SoftwareAgreementHasContactFactMG" TargetDimension="ITSMDW!ContactDim" AliasTargetDimensionAs="HasContactDim" Relationship="ITSM!Relationship.SoftwareAgreementHasContact" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="SoftwareAgreementHasOrganizationFactMG" TargetDimension="ITSMDW!SoftwareAgreementDim" AliasTargetDimensionAs="SoftwareAgreementDim" Relationship="ITSM!Relationship.SoftwareAgreementHasOrganization" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="SoftwareAgreementHasOrganizationFactMG" TargetDimension="ITSMDW!OrganizationDim" AliasTargetDimensionAs="HasOrganizationDim" Relationship="ITSM!Relationship.SoftwareAgreementHasOrganization" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="SoftwareAgreementHasCostCenterFactMG" TargetDimension="ITSMDW!SoftwareAgreementDim" AliasTargetDimensionAs="SoftwareAgreementDim" Relationship="ITSM!Relationship.SoftwareAgreementHasCostCenter" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="SoftwareAgreementHasCostCenterFactMG" TargetDimension="ITSMDW!CostCenterDim" AliasTargetDimensionAs="HasCostCenterDim" Relationship="ITSM!Relationship.SoftwareAgreementHasCostCenter" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="SoftwareAgreementHasLocationFactMG" TargetDimension="ITSMDW!SoftwareAgreementDim" AliasTargetDimensionAs="SoftwareAgreementDim" Relationship="ITSM!Relationship.SoftwareAgreementHasLocation" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="SoftwareAgreementHasLocationFactMG" TargetDimension="ITSMDW!LocationDim" AliasTargetDimensionAs="HasLocationDim" Relationship="ITSM!Relationship.SoftwareAgreementHasLocation" RelationshipEndPoint="Target" />
+        </Substitutions>
+        <Measures>
+        </Measures>
+        <ManyToManyRelationships>
+          
+        </ManyToManyRelationships>
+      </SystemCenterCube>      
+      <SystemCenterCube ID="HardwareAgreementCube">
+        <MeasureGroups>
+         <MeasureGroup ID="HardwareAgreementHasSupplierFactMG" Fact="ITSMDW!HardwareAgreementHasSupplierFact" DateDimAlias="HardwareAgreementHasSupplierFactDateDim" />
+         <MeasureGroup ID="HardwareAgreementHasCostCenterFactMG" Fact="ITSMDW!HardwareAgreementHasCostCenterFact" DateDimAlias="HardwareAgreementHasCostCenterFactDateDim"/>
+         <MeasureGroup ID="HWAgreementHasPurchaseOrderFactMG" Fact="ITSMDW!HWAgreementHasPurchaseOrderFact" DateDimAlias="HWAgreementHasPurchaseOrderFactDateDim"/>
+			   <MeasureGroup ID="HWAgreementHasLocationFactMG" Fact="ITSMDW!HWAgreementHasLocationFact" DateDimAlias="HWAgreementHasLocationFactDateDim"/>
+			   <MeasureGroup ID="HWAgreementHasInvoiceFactMG" Fact="ITSMDW!HWAgreementHasInvoiceFact" DateDimAlias="HWAgreementHasInvoiceFactDateDim"/>
+			   <MeasureGroup ID="HWAgreementHasCostFactMG" Fact="ITSMDW!HWAgreementHasCostFact" DateDimAlias="HWAgreementHasCostFactDateDim"/>
+         <MeasureGroup ID="HWAgreementHasConctFactMG" Fact="ITSMDW!HWAgreementHasConctFact" DateDimAlias="HWAgreementHasConctFactDateDim" />
+			   <MeasureGroup ID="HWAgreementHasOrganizationFactMG" Fact="ITSMDW!HWAgreementHasOrganizationFact" DateDimAlias="HWAgreementHasOrganizationFactDateDim" />
+        </MeasureGroups>
+       <Substitutions>
+          <Substitution MeasureGroupName="HardwareAgreementHasSupplierFactMG" TargetDimension="ITSMDW!HardwareAgreementDim" AliasTargetDimensionAs="HardwareAgreementDim" Relationship="ITSM!Relationship.HardwareAgreementHasSupplier" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="HardwareAgreementHasSupplierFactMG" TargetDimension="ITSMDW!CompanyDim" AliasTargetDimensionAs="ByCompanyDim" Relationship="ITSM!Relationship.HardwareAgreementHasSupplier" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="HWAgreementHasConctFactMG" TargetDimension="ITSMDW!HardwareAgreementDim" AliasTargetDimensionAs="HardwareAgreementDim" Relationship="ITSM!Relationship.HWAgreementHasConct" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="HWAgreementHasConctFactMG" TargetDimension="ITSMDW!ContactDim" AliasTargetDimensionAs="HasContactDim" Relationship="ITSM!Relationship.HWAgreementHasConct" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="HWAgreementHasOrganizationFactMG" TargetDimension="ITSMDW!HardwareAgreementDim" AliasTargetDimensionAs="HardwareAgreementDim" Relationship="ITSM!Relationship.HWAgreementHasOrganization" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="HWAgreementHasOrganizationFactMG" TargetDimension="ITSMDW!OrganizationDim" AliasTargetDimensionAs="HasOrganizationDim" Relationship="ITSM!Relationship.HWAgreementHasOrganization" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="HWAgreementHasPurchaseOrderFactMG" TargetDimension="ITSMDW!HardwareAgreementDim" AliasTargetDimensionAs="HardwareAgreementDim" Relationship="ITSM!Relationship.HWAgreementHasPurchaseOrder" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="HWAgreementHasPurchaseOrderFactMG" TargetDimension="ITSMDW!PurchaseOrderDim" AliasTargetDimensionAs="HasPurchaseOrderDim" Relationship="ITSM!Relationship.HWAgreementHasPurchaseOrder" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="HWAgreementHasLocationFactMG" TargetDimension="ITSMDW!HardwareAgreementDim" AliasTargetDimensionAs="HardwareAgreementDim" Relationship="ITSM!Relationship.HWAgreementHasLocation" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="HWAgreementHasLocationFactMG" TargetDimension="ITSMDW!LocationDim" AliasTargetDimensionAs="HasLocationDim" Relationship="ITSM!Relationship.HWAgreementHasLocation" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="HWAgreementHasInvoiceFactMG" TargetDimension="ITSMDW!HardwareAgreementDim" AliasTargetDimensionAs="HardwareAgreementDim" Relationship="ITSM!Relationship.HWAgreementHasInvoice" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="HWAgreementHasInvoiceFactMG" TargetDimension="ITSMDW!InvoiceDim" AliasTargetDimensionAs="HasInvoiceDim" Relationship="ITSM!Relationship.HWAgreementHasInvoice" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="HWAgreementHasCostFactMG" TargetDimension="ITSMDW!HardwareAgreementDim" AliasTargetDimensionAs="HardwareAgreementDim" Relationship="ITSM!Relationship.HWAgreementHasCost" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="HWAgreementHasCostFactMG" TargetDimension="ITSMDW!CostDim" AliasTargetDimensionAs="HasCostDim" Relationship="ITSM!Relationship.HWAgreementHasCost" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="HardwareAgreementHasCostCenterFactMG" TargetDimension="ITSMDW!HardwareAgreementDim" AliasTargetDimensionAs="HardwareAgreementDim" Relationship="ITSM!Relationship.HardwareAgreementHasCostCenter" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="HardwareAgreementHasCostCenterFactMG" TargetDimension="ITSMDW!CostCenterDim" AliasTargetDimensionAs="HasCostCenterDim" Relationship="ITSM!Relationship.HardwareAgreementHasCostCenter" RelationshipEndPoint="Target" />
+        </Substitutions>
+        <Measures></Measures>
+        <ManyToManyRelationships></ManyToManyRelationships>
+      </SystemCenterCube>   
+      <SystemCenterCube ID="LeaseSupportAgreementCube">
+        <MeasureGroups>
+         <MeasureGroup ID="LeaseAgreementHasCostFactMG" Fact="ITSMDW!LeaseAgreementHasCostFact" DateDimAlias="LeaseAgreementHasCostFactDateDim" />
+			   <MeasureGroup ID="LeaseAgreementHasInvoiceFactMG" Fact="ITSMDW!LeaseAgreementHasInvoiceFact" DateDimAlias="LeaseAgreementHasInvoiceFactDateDim"/>
+			   <MeasureGroup ID="LeaseAgreementHasPurchaseOrderFactMG" Fact="ITSMDW!LeaseAgreementHasPurchaseOrderFact" DateDimAlias="LeaseAgreementHasPurchaseOrderFactDateDim"/>
+			   <MeasureGroup ID="SupportAgreementHasCostFactMG" Fact="ITSMDW!SupportAgreementHasCostFact" DateDimAlias="SupportAgreementHasCostFactDateDim"/>
+			   <MeasureGroup ID="SupportAgreementHasPurchaseOrderFactMG" Fact="ITSMDW!SupportAgreementHasPurchaseOrderFact" DateDimAlias="SupportAgreementHasPurchaseOrderFactDateDim"/>
+			   <MeasureGroup ID="SupportAgreementHasInvoiceFactMG" Fact="ITSMDW!SupportAgreementHasInvoiceFact" DateDimAlias="SupportAgreementHasInvoiceFactDateDim" />
+         <MeasureGroup ID="LeaseAgreementHasSupplierFactMG" Fact="ITSMDW!LeaseAgreementHasSupplierFact" DateDimAlias="LeaseAgreementHasSupplierFactDateDim" />
+			   <MeasureGroup ID="SupportAgreementHasOrganizationFactMG" Fact="ITSMDW!SupportAgreementHasOrganizationFact"  DateDimAlias="SupportAgreementHasOrganizationFactDateDim"/>
+         <MeasureGroup ID="SupportAgreementHasContactFactMG" Fact="ITSMDW!SupportAgreementHasContactFact" DateDimAlias="SupportAgreementHasContactFactDateDim" />
+         <MeasureGroup ID="LeaseAgreementHasContactFactMG" Fact="ITSMDW!LeaseAgreementHasContactFact" DateDimAlias="LeaseAgreementHasContactFactDateDim" />
+         <MeasureGroup ID="SupportAgreementHasSupplierFactMG" Fact="ITSMDW!SupportAgreementHasSupplierFact" DateDimAlias="SupportAgreementHasSupplierFactDateDim" />
+         <MeasureGroup ID="SupportAgreementHasCostCenterFactMG" Fact="ITSMDW!SupportAgreementHasCostCenterFact" DateDimAlias="SupportAgreementHasCostCenterFactDateDim"/>
+         <MeasureGroup ID="LeaseAgreementHasOrganizationFactMG" Fact="ITSMDW!LeaseAgreementHasOrganizationFact" DateDimAlias="LeaseAgreementHasOrganizationFactDateDim" />
+         <MeasureGroup ID="LeaseAgreementHasCostCenterFactMG" Fact="ITSMDW!LeaseAgreementHasCostCenterFact" DateDimAlias="LeaseAgreementHasCostCenterFactDateDim"/>
+         <MeasureGroup ID="SupportAgreementHasLocationFactMG" Fact="ITSMDW!SupportAgreementHasLocationFact" DateDimAlias="SupportAgreementHasLocationFactDateDim"/>
+         <MeasureGroup ID="LeaseAgreementHasLocationFactMG" Fact="ITSMDW!LeaseAgreementHasLocationFact" DateDimAlias="LeaseAgreementHasLocationFactDateDim"/>
+        </MeasureGroups>
+       <Substitutions>
+         <Substitution MeasureGroupName="SupportAgreementHasSupplierFactMG" TargetDimension="ITSMDW!SupportAgreementDim" AliasTargetDimensionAs="SupportAgreementDim" Relationship="ITSM!Relationship.SupportAgreementHasSupplier" RelationshipEndPoint="Source" />
+         <Substitution MeasureGroupName="SupportAgreementHasSupplierFactMG" TargetDimension="ITSMDW!CompanyDim" AliasTargetDimensionAs="ByCompanyDim" Relationship="ITSM!Relationship.SupportAgreementHasSupplier" RelationshipEndPoint="Target" />
+         <Substitution MeasureGroupName="LeaseAgreementHasSupplierFactMG" TargetDimension="ITSMDW!LeaseAgreementDim" AliasTargetDimensionAs="LeaseAgreementDim" Relationship="ITSM!Relationship.LeaseAgreementHasSupplier" RelationshipEndPoint="Source" />
+         <Substitution MeasureGroupName="LeaseAgreementHasSupplierFactMG" TargetDimension="ITSMDW!CompanyDim" AliasTargetDimensionAs="ByCompanyDim" Relationship="ITSM!Relationship.LeaseAgreementHasSupplier" RelationshipEndPoint="Target" />      
+         <Substitution MeasureGroupName="SupportAgreementHasContactFactMG" TargetDimension="ITSMDW!SupportAgreementDim" AliasTargetDimensionAs="SupportAgreementDim" Relationship="ITSM!Relationship.SupportAgreementHasContact" RelationshipEndPoint="Source" />
+         <Substitution MeasureGroupName="SupportAgreementHasContactFactMG" TargetDimension="ITSMDW!ContactDim" AliasTargetDimensionAs="HasContactDim" Relationship="ITSM!Relationship.SupportAgreementHasContact" RelationshipEndPoint="Target" />       
+         <Substitution MeasureGroupName="LeaseAgreementHasContactFactMG" TargetDimension="ITSMDW!LeaseAgreementDim" AliasTargetDimensionAs="LeaseAgreementDim" Relationship="ITSM!Relationship.LeaseAgreementHasContact" RelationshipEndPoint="Source" />
+         <Substitution MeasureGroupName="LeaseAgreementHasContactFactMG" TargetDimension="ITSMDW!ContactDim" AliasTargetDimensionAs="HasContactDim" Relationship="ITSM!Relationship.LeaseAgreementHasContact" RelationshipEndPoint="Target" />
+         <Substitution MeasureGroupName="SupportAgreementHasOrganizationFactMG" TargetDimension="ITSMDW!SupportAgreementDim" AliasTargetDimensionAs="SupportAgreementDim" Relationship="ITSM!Relationship.SupportAgreementHasOrganization" RelationshipEndPoint="Source" />
+         <Substitution MeasureGroupName="SupportAgreementHasOrganizationFactMG" TargetDimension="ITSMDW!OrganizationDim" AliasTargetDimensionAs="HasOrganizationDim" Relationship="ITSM!Relationship.SupportAgreementHasOrganization" RelationshipEndPoint="Target" />
+         <Substitution MeasureGroupName="LeaseAgreementHasOrganizationFactMG" TargetDimension="ITSMDW!LeaseAgreementDim" AliasTargetDimensionAs="LeaseAgreementDim" Relationship="ITSM!Relationship.LeaseAgreementHasOrganization" RelationshipEndPoint="Source" />
+         <Substitution MeasureGroupName="LeaseAgreementHasOrganizationFactMG" TargetDimension="ITSMDW!OrganizationDim" AliasTargetDimensionAs="HasOrganizationDim" Relationship="ITSM!Relationship.LeaseAgreementHasOrganization" RelationshipEndPoint="Target" />
+         <Substitution MeasureGroupName="SupportAgreementHasCostCenterFactMG" TargetDimension="ITSMDW!SupportAgreementDim" AliasTargetDimensionAs="SupportAgreementDim" Relationship="ITSM!Relationship.SupportAgreementHasCostCenter" RelationshipEndPoint="Source" />
+         <Substitution MeasureGroupName="SupportAgreementHasCostCenterFactMG" TargetDimension="ITSMDW!CostCenterDim" AliasTargetDimensionAs="HasCostCenterDim" Relationship="ITSM!Relationship.SupportAgreementHasCostCenter" RelationshipEndPoint="Target" />
+         <Substitution MeasureGroupName="SupportAgreementHasLocationFactMG" TargetDimension="ITSMDW!SupportAgreementDim" AliasTargetDimensionAs="SupportAgreementDim" Relationship="ITSM!Relationship.SupportAgreementHasLocation" RelationshipEndPoint="Source" />
+         <Substitution MeasureGroupName="SupportAgreementHasLocationFactMG" TargetDimension="ITSMDW!LocationDim" AliasTargetDimensionAs="HasLocationDim" Relationship="ITSM!Relationship.SupportAgreementHasLocation" RelationshipEndPoint="Target" />
+         <Substitution MeasureGroupName="LeaseAgreementHasCostCenterFactMG" TargetDimension="ITSMDW!LeaseAgreementDim" AliasTargetDimensionAs="LeaseAgreementDim" Relationship="ITSM!Relationship.LeaseAgreementHasCostCenter" RelationshipEndPoint="Source" />
+         <Substitution MeasureGroupName="LeaseAgreementHasCostCenterFactMG" TargetDimension="ITSMDW!CostCenterDim" AliasTargetDimensionAs="HasCostCenterDim" Relationship="ITSM!Relationship.LeaseAgreementHasCostCenter" RelationshipEndPoint="Target" />
+         <Substitution MeasureGroupName="LeaseAgreementHasLocationFactMG" TargetDimension="ITSMDW!LeaseAgreementDim" AliasTargetDimensionAs="LeaseAgreementDim" Relationship="ITSM!Relationship.LeaseAgreementHasLocation" RelationshipEndPoint="Source" />
+         <Substitution MeasureGroupName="LeaseAgreementHasLocationFactMG" TargetDimension="ITSMDW!LocationDim" AliasTargetDimensionAs="HasLocationDim" Relationship="ITSM!Relationship.LeaseAgreementHasLocation" RelationshipEndPoint="Target" />
+         <Substitution MeasureGroupName="LeaseAgreementHasCostFactMG" TargetDimension="ITSMDW!LeaseAgreementDim" AliasTargetDimensionAs="LeaseAgreementDim" Relationship="ITSM!Relationship.LeaseAgreementHasCost" RelationshipEndPoint="Source" />
+         <Substitution MeasureGroupName="LeaseAgreementHasCostFactMG" TargetDimension="ITSMDW!CostDim" AliasTargetDimensionAs="HasCostDim" Relationship="ITSM!Relationship.LeaseAgreementHasCost" RelationshipEndPoint="Target" />
+         <Substitution MeasureGroupName="LeaseAgreementHasInvoiceFactMG" TargetDimension="ITSMDW!LeaseAgreementDim" AliasTargetDimensionAs="LeaseAgreementDim" Relationship="ITSM!Relationship.LeaseAgreementHasInvoice" RelationshipEndPoint="Source" />
+         <Substitution MeasureGroupName="LeaseAgreementHasInvoiceFactMG" TargetDimension="ITSMDW!InvoiceDim" AliasTargetDimensionAs="HasInvoiceDim" Relationship="ITSM!Relationship.LeaseAgreementHasInvoice" RelationshipEndPoint="Target" />
+         <Substitution MeasureGroupName="LeaseAgreementHasPurchaseOrderFactMG" TargetDimension="ITSMDW!LeaseAgreementDim" AliasTargetDimensionAs="LeaseAgreementDim" Relationship="ITSM!Relationship.LeaseAgreementHasPurchaseOrder" RelationshipEndPoint="Source" />
+         <Substitution MeasureGroupName="LeaseAgreementHasPurchaseOrderFactMG" TargetDimension="ITSMDW!PurchaseOrderDim" AliasTargetDimensionAs="HasPurchaseOrderDim" Relationship="ITSM!Relationship.LeaseAgreementHasPurchaseOrder" RelationshipEndPoint="Target" />
+         <Substitution MeasureGroupName="SupportAgreementHasCostFactMG" TargetDimension="ITSMDW!SupportAgreementDim" AliasTargetDimensionAs="SupportAgreementDim" Relationship="ITSM!Relationship.SupportAgreementHasCost" RelationshipEndPoint="Source" />
+         <Substitution MeasureGroupName="SupportAgreementHasCostFactMG" TargetDimension="ITSMDW!CostDim" AliasTargetDimensionAs="HasCostDim" Relationship="ITSM!Relationship.SupportAgreementHasCost" RelationshipEndPoint="Target" />
+         <Substitution MeasureGroupName="SupportAgreementHasPurchaseOrderFactMG" TargetDimension="ITSMDW!SupportAgreementDim" AliasTargetDimensionAs="SupportAgreementDim" Relationship="ITSM!Relationship.SupportAgreementHasPurchaseOrder" RelationshipEndPoint="Source" />
+         <Substitution MeasureGroupName="SupportAgreementHasPurchaseOrderFactMG" TargetDimension="ITSMDW!PurchaseOrderDim" AliasTargetDimensionAs="HasPurchaseOrderDim" Relationship="ITSM!Relationship.SupportAgreementHasPurchaseOrder" RelationshipEndPoint="Target" />
+         <Substitution MeasureGroupName="SupportAgreementHasInvoiceFactMG" TargetDimension="ITSMDW!SupportAgreementDim" AliasTargetDimensionAs="SupportAgreementDim" Relationship="ITSM!Relationship.SupportAgreementHasInvoice" RelationshipEndPoint="Source" />
+         <Substitution MeasureGroupName="SupportAgreementHasInvoiceFactMG" TargetDimension="ITSMDW!InvoiceDim" AliasTargetDimensionAs="HasInvoiceDim" Relationship="ITSM!Relationship.SupportAgreementHasInvoice" RelationshipEndPoint="Target" />
+        </Substitutions>
+        <Measures></Measures>
+        <ManyToManyRelationships></ManyToManyRelationships>
+      </SystemCenterCube>
+      <SystemCenterCube ID="FinanceCube">
+        <MeasureGroups>
+            <MeasureGroup ID="InvoiceIsForOrganizationFactMG" Fact="ITSMDW!InvoiceIsForOrganizationFact" DateDimAlias="InvoiceIsForOrganizationFactDateDim"/>
+            <MeasureGroup ID="InvoiceHasSupplierFactMG" Fact="ITSMDW!InvoiceHasSupplierFact" DateDimAlias="InvoiceHasSupplierFactDateDim" />
+			      <MeasureGroup ID="InvoiceHasContactFactMG" Fact="ITSMDW!InvoiceHasContactFact" DateDimAlias="InvoiceHasContactFactDateDim" />
+			      <MeasureGroup ID="InvoiceHasUserFactMG" Fact="ITSMDW!InvoiceHasUserFact" DateDimAlias="InvoiceHasUserFactDateDim"/>
+            <MeasureGroup ID="InvoiceHasCostCenterFactMG" Fact="ITSMDW!InvoiceHasCostCenterFact" DateDimAlias="InvoiceHasCostCenterFactDateDim"/>
+            <MeasureGroup ID="InvoiceHasLocationFactMG" Fact="ITSMDW!InvoiceHasLocationFact" DateDimAlias="InvoiceHasLocationFactDateDim"/>
+            <MeasureGroup ID="HardwareAssetHasInvFactMG" Fact="ITSMDW!HardwareAssetHasInvFact" DateDimAlias="HardwareAssetHasInvFactDateDim"/> 
+            <MeasureGroup ID="CostHasLocationFactMG" Fact="ITSMDW!CostHasLocationFact" DateDimAlias="CostHasLocationFactDateDim"/>
+            <MeasureGroup ID="CostHasUsrFactMG" Fact="ITSMDW!CostHasUsrFact" DateDimAlias="CostHasUsrFactDateDim"/>
+			      <MeasureGroup ID="CostIsForInvoiceFactMG" Fact="ITSMDW!CostIsForInvoiceFact" DateDimAlias="CostIsForInvoiceFactDateDim"/>
+			      <MeasureGroup ID="CostIsForPurchaseOrderFactMG" Fact="ITSMDW!CostIsForPurchaseOrderFact" DateDimAlias="CostIsForPurchaseOrderFactDateDim"/>
+			      <MeasureGroup ID="CostHasOrganizationFactMG" Fact="ITSMDW!CostHasOrganizationFact" DateDimAlias="CostHasOrganizationFactDateDim" />    
+			      <MeasureGroup ID="CostHasCostCenterFactMG" Fact="ITSMDW!CostHasCostCenterFact" DateDimAlias="CostHasCostCenterFactDateDim"/> 
+			      <MeasureGroup ID="CostHasSupplierFactMG" Fact="ITSMDW!CostHasSupplierFact" DateDimAlias="CostHasSupplierFactDateDim" />
+    </MeasureGroups>
+      <Substitutions>
+          <Substitution MeasureGroupName="InvoiceHasSupplierFactMG" TargetDimension="ITSMDW!InvoiceDim" AliasTargetDimensionAs="InvoiceDim" Relationship="ITSM!Relationship.InvoiceHasSupplier" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="InvoiceHasSupplierFactMG" TargetDimension="ITSMDW!CompanyDim" AliasTargetDimensionAs="ByCompanyDim" Relationship="ITSM!Relationship.InvoiceHasSupplier" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="InvoiceHasContactFactMG" TargetDimension="ITSMDW!InvoiceDim" AliasTargetDimensionAs="InvoiceDim" Relationship="ITSM!Relationship.InvoiceHasContact" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="InvoiceHasContactFactMG" TargetDimension="ITSMDW!ContactDim" AliasTargetDimensionAs="HasContactDim" Relationship="ITSM!Relationship.InvoiceHasContact" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="HardwareAssetHasInvFactMG" TargetDimension="ITSMDW!HardwareAssetDim" AliasTargetDimensionAs="HardwareAssetDim" Relationship="ITSM!Relationship.HardwareAssetHasInv" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="HardwareAssetHasInvFactMG" TargetDimension="ITSMDW!InvoiceDim" AliasTargetDimensionAs="HasInvoiceDim" Relationship="ITSM!Relationship.HardwareAssetHasInv" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="InvoiceIsForOrganizationFactMG" TargetDimension="ITSMDW!InvoiceDim" AliasTargetDimensionAs="InvoiceDim" Relationship="ITSM!Relationship.InvoiceIsForOrganization" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="InvoiceIsForOrganizationFactMG" TargetDimension="ITSMDW!OrganizationDim" AliasTargetDimensionAs="HasOrganizationDim" Relationship="ITSM!Relationship.InvoiceIsForOrganization" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="CostHasSupplierFactMG" TargetDimension="ITSMDW!CostDim" AliasTargetDimensionAs="CostDim" Relationship="ITSM!Relationship.CostHasSupplier" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="CostHasSupplierFactMG" TargetDimension="ITSMDW!CompanyDim" AliasTargetDimensionAs="ByCompanyDim" Relationship="ITSM!Relationship.CostHasSupplier" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="InvoiceHasUserFactMG" TargetDimension="ITSMDW!InvoiceDim" AliasTargetDimensionAs="InvoiceDim" Relationship="ITSM!Relationship.InvoiceHasUser" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="InvoiceHasUserFactMG" TargetDimension="DWBase!UserDim" AliasTargetDimensionAs="HasUserDim" Relationship="ITSM!Relationship.InvoiceHasUser" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="CostHasOrganizationFactMG" TargetDimension="ITSMDW!CostDim" AliasTargetDimensionAs="CostDim" Relationship="ITSM!Relationship.CostHasOrganization" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="CostHasOrganizationFactMG" TargetDimension="ITSMDW!OrganizationDim" AliasTargetDimensionAs="HasOrganizationDim" Relationship="ITSM!Relationship.CostHasOrganization" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="InvoiceHasCostCenterFactMG" TargetDimension="ITSMDW!InvoiceDim" AliasTargetDimensionAs="InvoiceDim" Relationship="ITSM!Relationship.InvoiceHasCostCenter" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="InvoiceHasCostCenterFactMG" TargetDimension="ITSMDW!CostCenterDim" AliasTargetDimensionAs="HasCostCenterDim" Relationship="ITSM!Relationship.InvoiceHasCostCenter" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="InvoiceHasLocationFactMG" TargetDimension="ITSMDW!InvoiceDim" AliasTargetDimensionAs="InvoiceDim" Relationship="ITSM!Relationship.InvoiceHasLocation" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="InvoiceHasLocationFactMG" TargetDimension="ITSMDW!LocationDim" AliasTargetDimensionAs="HasLocationDim" Relationship="ITSM!Relationship.InvoiceHasLocation" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="CostHasUsrFactMG" TargetDimension="ITSMDW!CostDim" AliasTargetDimensionAs="CostDim" Relationship="ITSM!Relationship.CostHasUsr" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="CostHasUsrFactMG" TargetDimension="DWBase!UserDim" AliasTargetDimensionAs="HasUserDim" Relationship="ITSM!Relationship.CostHasUsr" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="CostIsForInvoiceFactMG" TargetDimension="ITSMDW!CostDim" AliasTargetDimensionAs="CostDim" Relationship="ITSM!Relationship.CostIsForInvoice" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="CostIsForInvoiceFactMG" TargetDimension="ITSMDW!InvoiceDim" AliasTargetDimensionAs="HasInvoiceDim" Relationship="ITSM!Relationship.CostIsForInvoice" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="CostIsForPurchaseOrderFactMG" TargetDimension="ITSMDW!CostDim" AliasTargetDimensionAs="CostDim" Relationship="ITSM!Relationship.CostIsForPurchaseOrder" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="CostIsForPurchaseOrderFactMG" TargetDimension="ITSMDW!PurchaseOrderDim" AliasTargetDimensionAs="HasPurchaseOrderDim" Relationship="ITSM!Relationship.CostIsForPurchaseOrder" RelationshipEndPoint="Target" /> 
+          <Substitution MeasureGroupName="CostHasCostCenterFactMG" TargetDimension="ITSMDW!CostDim" AliasTargetDimensionAs="CostDim" Relationship="ITSM!Relationship.CostHasCostCenter" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="CostHasCostCenterFactMG" TargetDimension="ITSMDW!CostCenterDim" AliasTargetDimensionAs="HasCostCenterDim" Relationship="ITSM!Relationship.CostHasCostCenter" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="CostHasLocationFactMG" TargetDimension="ITSMDW!CostDim" AliasTargetDimensionAs="CostDim" Relationship="ITSM!Relationship.CostHasLocation" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="CostHasLocationFactMG" TargetDimension="ITSMDW!LocationDim" AliasTargetDimensionAs="HasLocationDim" Relationship="ITSM!Relationship.CostHasLocation" RelationshipEndPoint="Target" />
+      </Substitutions>
+         <Measures>
+        </Measures>
+        <ManyToManyRelationships>
+         </ManyToManyRelationships>
+        </SystemCenterCube>
+      <SystemCenterCube ID="PurchaseOrderCube">
+        <MeasureGroups>
+          <MeasureGroup ID="PurchaseOrderHasSupplierFactMG" Fact="ITSMDW!PurchaseOrderHasSupplierFact" DateDimAlias="PurchaseOrderHasSupplierFactDateDim"/>
+          <MeasureGroup ID="PurchaseOrderHasOrganizationFactMG" Fact="ITSMDW!PurchaseOrderHasOrganizationFact" DateDimAlias="PurchaseOrderHasOrganizationFactDateDim"/>
+          <MeasureGroup ID="SkuHasPurchaseOrderFactMG" Fact="ITSMDW!SkuHasPurchaseOrderFact" DateDimAlias="SkuHasPurchaseOrderFactDateDim"/>
+          <MeasureGroup ID="PurchaseOrderHasUserFactMG" Fact="ITSMDW!PurchaseOrderHasUserFact" DateDimAlias="PurchaseOrderHasUserFactDateDim"/>
+          <MeasureGroup ID="PurchaseOrderHasSKUFactMG" Fact="ITSMDW!PurchaseOrderHasSKUFact" DateDimAlias="PurchaseOrderHasSKUFactDateDim"/>
+          <MeasureGroup ID="PurchaseOrderHasInvoiceFactMG" Fact="ITSMDW!PurchaseOrderHasInvoiceFact" DateDimAlias="PurchaseOrderHasInvoiceFactDateDim"/>
+          <MeasureGroup ID="HardwareAssetHasPOFactMG" Fact="ITSMDW!HardwareAssetHasPOFact" DateDimAlias="HardwareAssetHasPOFactDateDim"/>
+          <MeasureGroup ID="PurchaseOrderHasLocationFactMG" Fact="ITSMDW!PurchaseOrderHasLocationFact" DateDimAlias="PurchaseOrderHasLocationFactDateDim"/>
+          <MeasureGroup ID="PurchaseOrderHasCostCenterFactMG" Fact="ITSMDW!PurchaseOrderHasCostCenterFact" DateDimAlias="PurchaseOrderHasCostCenterFactDateDim"/>
+        </MeasureGroups>
+        <Substitutions>
+          <Substitution MeasureGroupName="PurchaseOrderHasSupplierFactMG" TargetDimension="ITSMDW!PurchaseOrderDim" AliasTargetDimensionAs="PurchaseOrderDim" Relationship="ITSM!Relationship.PurchaseOrderHasSupplier" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="PurchaseOrderHasSupplierFactMG" TargetDimension="ITSMDW!CompanyDim" AliasTargetDimensionAs="ByCompanyDim" Relationship="ITSM!Relationship.PurchaseOrderHasSupplier" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="PurchaseOrderHasUserFactMG" TargetDimension="ITSMDW!PurchaseOrderDim" AliasTargetDimensionAs="PurchaseOrderDim" Relationship="ITSM!Relationship.PurchaseOrderHasUser" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="PurchaseOrderHasUserFactMG" TargetDimension="DWBase!UserDim" AliasTargetDimensionAs="HasUserDim" Relationship="ITSM!Relationship.PurchaseOrderHasUser" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="PurchaseOrderHasSKUFactMG" TargetDimension="ITSMDW!PurchaseOrderDim" AliasTargetDimensionAs="PurchaseOrderDim" Relationship="ITSM!Relationship.PurchaseOrderHasSKU" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="PurchaseOrderHasSKUFactMG" TargetDimension="ITSMDW!SKUDim" AliasTargetDimensionAs="HasSKUDim" Relationship="ITSM!Relationship.PurchaseOrderHasSKU" RelationshipEndPoint="Target" />  
+          <Substitution MeasureGroupName="PurchaseOrderHasInvoiceFactMG" TargetDimension="ITSMDW!PurchaseOrderDim" AliasTargetDimensionAs="PurchaseOrderDim" Relationship="ITSM!Relationship.PurchaseOrderHasInvoice" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="PurchaseOrderHasInvoiceFactMG" TargetDimension="ITSMDW!InvoiceDim" AliasTargetDimensionAs="HasInvoiceDim" Relationship="ITSM!Relationship.PurchaseOrderHasInvoice" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="PurchaseOrderHasLocationFactMG" TargetDimension="ITSMDW!PurchaseOrderDim" AliasTargetDimensionAs="PurchaseOrderDim" Relationship="ITSM!Relationship.PurchaseOrderHasLocation" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="PurchaseOrderHasLocationFactMG" TargetDimension="ITSMDW!LocationDim" AliasTargetDimensionAs="HasLocationDim" Relationship="ITSM!Relationship.PurchaseOrderHasLocation" RelationshipEndPoint="Target" />     
+          <Substitution MeasureGroupName="HardwareAssetHasPOFactMG" TargetDimension="ITSMDW!HardwareAssetDim" AliasTargetDimensionAs="HardwareAssetDim" Relationship="ITSM!Relationship.HardwareAssetHasPO" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="HardwareAssetHasPOFactMG" TargetDimension="ITSMDW!PurchaseOrderDim" AliasTargetDimensionAs="HasPurchaseOrderDim" Relationship="ITSM!Relationship.HardwareAssetHasPO" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="PurchaseOrderHasOrganizationFactMG" TargetDimension="ITSMDW!PurchaseOrderDim" AliasTargetDimensionAs="PurchaseOrderDim" Relationship="ITSM!Relationship.PurchaseOrderHasOrganization" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="PurchaseOrderHasOrganizationFactMG" TargetDimension="ITSMDW!OrganizationDim" AliasTargetDimensionAs="HasOrganizationDim" Relationship="ITSM!Relationship.PurchaseOrderHasOrganization" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="PurchaseOrderHasCostCenterFactMG" TargetDimension="ITSMDW!PurchaseOrderDim" AliasTargetDimensionAs="PurchaseOrderDim" Relationship="ITSM!Relationship.PurchaseOrderHasCostCenter" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="PurchaseOrderHasCostCenterFactMG" TargetDimension="ITSMDW!CostCenterDim" AliasTargetDimensionAs="HasCostCenterDim" Relationship="ITSM!Relationship.PurchaseOrderHasCostCenter" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="SkuHasPurchaseOrderFactMG" TargetDimension="ITSMDW!SKUDim" AliasTargetDimensionAs="SKUDim" Relationship="ITSM!Relationship.SkuHasPurchaseOrder" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="SkuHasPurchaseOrderFactMG" TargetDimension="ITSMDW!PurchaseOrderDim" AliasTargetDimensionAs="HasPurchaseOrderDim" Relationship="ITSM!Relationship.SkuHasPurchaseOrder" RelationshipEndPoint="Target" />
+      </Substitutions>
+       <Measures>
+        </Measures>
+        <ManyToManyRelationships>
+         </ManyToManyRelationships>
+      </SystemCenterCube>
+      <SystemCenterCube ID="AdministrationCube">
+        <MeasureGroups>
+         <MeasureGroup ID="DeviceModelHasManufacturerFactMG" Fact="ITSMDW!DeviceModelHasManufacturerFact" DateDimAlias="DeviceModelHasManufacturerFactDateDim"/>
+         <MeasureGroup ID="UserIsAffiliatedWithLocationFactMG" Fact="ITSMDW!UserIsAffiliatedWithLocationFact" DateDimAlias="UserIsAffiliatedWithLocationFactDateDim"/>
+         <MeasureGroup ID="UserIsAffiliatedWithOrganizationFactMG" Fact="ITSMDW!UserIsAffiliatedWithOrganizationFact" DateDimAlias="UserIsAffiliatedWithOrganizationFactDateDim"/>
+         <MeasureGroup ID="OrganizationHasCostCenterFactMG" Fact="ITSMDW!OrganizationHasCostCenterFact" DateDimAlias="OrganizationHasCostCenterFactDateDim"/>
+			   <MeasureGroup ID="OrganizationHasLocationFactMG" Fact="ITSMDW!OrganizationHasLocationFact" DateDimAlias="OrganizationHasLocationFactDateDim"/>
+         <MeasureGroup ID="UserIsAffiliatedWithCostCenterFactMG" Fact="ITSMDW!UserIsAffiliatedWithCostCenterFact" DateDimAlias="UserIsAffiliatedWithCostCenterFactDateDim"/>
+         <MeasureGroup ID="HardwareAssetChangedByUserFactMG" Fact="ITSMDW!HardwareAssetChangedByUserFact" DateDimAlias="HardwareAssetChangedByUserFactDateDim"/>
+         <MeasureGroup ID="ContactHasCompanyFactMG" Fact="ITSMDW!ContactHasCompanyFact" DateDimAlias="ContactHasCompanyFactDateDim" />
+         <MeasureGroup ID="CostCenterHasLocationFactMG" Fact="ITSMDW!CostCenterHasLocationFact" DateDimAlias="CostCenterHasLocationFactDateDim"/>
+        </MeasureGroups>
+       <Substitutions>
+          <Substitution MeasureGroupName="ContactHasCompanyFactMG" TargetDimension="ITSMDW!ContactDim" AliasTargetDimensionAs="ContactDim" Relationship="ITSM!Relationship.ContactHasCompany" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="ContactHasCompanyFactMG" TargetDimension="ITSMDW!CompanyDim" AliasTargetDimensionAs="ByCompanyDim" Relationship="ITSM!Relationship.ContactHasCompany" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="OrganizationHasLocationFactMG" TargetDimension="ITSMDW!OrganizationDim" AliasTargetDimensionAs="OrganizationDim" Relationship="ITSM!Relationship.OrganizationHasLocation" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="OrganizationHasLocationFactMG" TargetDimension="ITSMDW!LocationDim" AliasTargetDimensionAs="HasLocationDim" Relationship="ITSM!Relationship.OrganizationHasLocation" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="UserIsAffiliatedWithOrganizationFactMG" TargetDimension="DWBase!UserDim" AliasTargetDimensionAs="UserDim" Relationship="ITSM!Relationship.UserIsAffiliatedWithOrganization" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="UserIsAffiliatedWithOrganizationFactMG" TargetDimension="ITSMDW!OrganizationDim" AliasTargetDimensionAs="HasOrganizationDim" Relationship="ITSM!Relationship.UserIsAffiliatedWithOrganization" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="HardwareAssetChangedByUserFactMG" TargetDimension="ITSMDW!HardwareAssetDim" AliasTargetDimensionAs="HardwareAssetDim" Relationship="ITSM!Relationship.HardwareAssetChangedByUser" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="HardwareAssetChangedByUserFactMG" TargetDimension="DWBase!UserDim" AliasTargetDimensionAs="HasUserDim" Relationship="ITSM!Relationship.HardwareAssetChangedByUser" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="UserIsAffiliatedWithCostCenterFactMG" TargetDimension="DWBase!UserDim" AliasTargetDimensionAs="UserDim" Relationship="ITSM!Relationship.UserIsAffiliatedWithCostCenter" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="UserIsAffiliatedWithCostCenterFactMG" TargetDimension="ITSMDW!CostCenterDim" AliasTargetDimensionAs="HasCostCenterDim" Relationship="ITSM!Relationship.UserIsAffiliatedWithCostCenter" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="UserIsAffiliatedWithLocationFactMG" TargetDimension="DWBase!UserDim" AliasTargetDimensionAs="UserDim" Relationship="ITSM!Relationship.UserIsAffiliatedWithLocation" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="UserIsAffiliatedWithLocationFactMG" TargetDimension="ITSMDW!LocationDim" AliasTargetDimensionAs="HasLocationDim" Relationship="ITSM!Relationship.UserIsAffiliatedWithLocation" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="DeviceModelHasManufacturerFactMG" TargetDimension="ITSMDW!DeviceModelDim" AliasTargetDimensionAs="DeviceModelDim" Relationship="ITSM!Relationship.DeviceModelHasManufacturer" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="DeviceModelHasManufacturerFactMG" TargetDimension="ITSMDW!DeviceManufacturerDim" AliasTargetDimensionAs="HasDeviceManufacturerDim" Relationship="ITSM!Relationship.DeviceModelHasManufacturer" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="OrganizationHasCostCenterFactMG" TargetDimension="ITSMDW!OrganizationDim" AliasTargetDimensionAs="OrganizationDim" Relationship="ITSM!Relationship.OrganizationHasCostCenter" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="OrganizationHasCostCenterFactMG" TargetDimension="ITSMDW!CostCenterDim" AliasTargetDimensionAs="HasCostCenterDim" Relationship="ITSM!Relationship.OrganizationHasCostCenter" RelationshipEndPoint="Target" />
+          <Substitution MeasureGroupName="CostCenterHasLocationFactMG" TargetDimension="ITSMDW!CostCenterDim" AliasTargetDimensionAs="CostCenterDim" Relationship="ITSM!Relationship.CostCenterHasLocation" RelationshipEndPoint="Source" />
+          <Substitution MeasureGroupName="CostCenterHasLocationFactMG" TargetDimension="ITSMDW!LocationDim" AliasTargetDimensionAs="HasLocationDim" Relationship="ITSM!Relationship.CostCenterHasLocation" RelationshipEndPoint="Target" /> 
+       </Substitutions>
+        <Measures>
+        </Measures>
+        <ManyToManyRelationships>
+        </ManyToManyRelationships>
       </SystemCenterCube>
     </Extensions>
   </Warehouse>
-  
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+        <DisplayString ElementID="HardwareAssetCube">
+          <Name>Hardware Asset Cube</Name>
+          <Description>Hardware Asset Cube</Description>
+        </DisplayString>
+        <DisplayString ElementID="SoftwareCube">
+          <Name>Software Cube</Name>
+          <Description> Software Cube </Description>
+        </DisplayString>
+        <DisplayString ElementID="SoftwareAssetCube">
+          <Name> Software Asset Cube </Name>
+          <Description> Software Asset Cube </Description>
+        </DisplayString>
+        <DisplayString ElementID="HardwarePeripheralsCube">
+          <Name> Hardware Peripherals Cube </Name>
+          <Description> Hardware Peripherals Cube</Description>
+        </DisplayString>
+        <DisplayString ElementID="HardwareCube">
+          <Name> Hardware Cube </Name>
+          <Description> Hardware Cube </Description>
+        </DisplayString>
+        <DisplayString ElementID="OfficeDeskCube">
+          <Name> Office Desk Cube </Name>
+          <Description>Office Desk Cube </Description>
+        </DisplayString>
+        <DisplayString ElementID="SoftwareAgreementCube">
+          <Name>Software Agreement Cube </Name>
+          <Description>Software Agreement Cube </Description>
+        </DisplayString>
+             <DisplayString ElementID="HardwareAgreementCube">
+          <Name>Hardware Agreement Cube </Name>
+          <Description>Hardware Agreement Cube </Description>
+        </DisplayString>
+        <DisplayString ElementID="LeaseSupportAgreementCube">
+          <Name> Lease And Support Agreement Cube </Name>
+          <Description>Lease And Support Agreement Cube </Description>
+        </DisplayString>
+        <DisplayString ElementID="FinanceCube">
+          <Name> Finance Cube </Name>
+          <Description>Finance Cube </Description>
+        </DisplayString>
+        <DisplayString ElementID="PurchaseOrderCube">
+          <Name> Purchase Order Cube </Name>
+          <Description>Purchase Order Cube </Description>
+        </DisplayString>
+        <DisplayString ElementID="AdministrationCube">
+          <Name> Administration Cube </Name>
+          <Description>Administration Cube </Description>
+        </DisplayString>
+      </DisplayStrings>
+    </LanguagePack>
+  </LanguagePacks>
 </ManagementPackFragment>

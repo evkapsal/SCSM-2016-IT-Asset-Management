@@ -67,166 +67,19 @@
       <Outrigger ID="SKUDimLicensingModel" Accessibility="Public"><Attribute ID="LicensingModel" PropertyPath="$Context/Property[Type='ITSM!SKU']/LicensingModel$" /></Outrigger>
       <Outrigger ID="SKUDimLicensingProgram" Accessibility="Public"><Attribute ID="LicensingProgram" PropertyPath="$Context/Property[Type='ITSM!SKU']/LicensingProgram$" /></Outrigger>
       <Outrigger ID="SKUDimLicensingUnit" Accessibility="Public"><Attribute ID="LicensingUnit" PropertyPath="$Context/Property[Type='ITSM!SKU']/LicensingUnit$" /></Outrigger>
-      <Outrigger ID="LicenseStatusDimStatus" Accessibility="Public"><Attribute ID="Status" PropertyPath="$Context/Property[Type='ITSM!LicenseStatus']/Status$" /></Outrigger>    
+      <Outrigger ID="LicenseStatusDimStatus" Accessibility="Public"><Attribute ID="Status" PropertyPath="$Context/Property[Type='ITSM!LicenseStatus']/Status$" /></Outrigger>
+      <Outrigger ID="OfficeDeskDimOfficeDeskStatus" Accessibility="Public"><Attribute ID="OfficDeskStatus" PropertyPath="$Context/Property[Type='ITSM!OfficeDesk']/OfficDeskStatus$" /></Outrigger>
+      <Outrigger ID="OfficeDeskDimType" Accessibility="Public"><Attribute ID="Type" PropertyPath="$Context/Property[Type='ITSM!OfficeDesk']/Type$" /></Outrigger>
+      <Outrigger ID="OfficeDeskDimStatus" Accessibility="Public"><Attribute ID="Status" PropertyPath="$Context/Property[Type='ITSM!OfficeDesk']/Status$" /></Outrigger>
+      <Outrigger ID="ScannerDimStatus" Accessibility="Public"><Attribute ID="Status" PropertyPath="$Context/Property[Type='ITSM!Scanner']/Status$" /></Outrigger>
+      <Outrigger ID="ScannerDimInterface" Accessibility="Public"><Attribute ID="Interface" PropertyPath="$Context/Property[Type='ITSM!Scanner']/Interface$" /></Outrigger>
+      <Outrigger ID="ScannerDimDocumentFeed" Accessibility="Public"><Attribute ID="DocumentFeed" PropertyPath="$Context/Property[Type='ITSM!Scanner']/DocumentFeed$" /></Outrigger>
+      <Outrigger ID="MonitorDimStatus" Accessibility="Public"><Attribute ID="Status" PropertyPath="$Context/Property[Type='ITSM!Monitor']/Status$" /></Outrigger>
+      <Outrigger ID="MonitorDimType" Accessibility="Public"><Attribute ID="Type" PropertyPath="$Context/Property[Type='ITSM!Monitor']/Type$" /></Outrigger>
+      <Outrigger ID="MonitorDimUseType" Accessibility="Public"><Attribute ID="UseType" PropertyPath="$Context/Property[Type='ITSM!Monitor']/UseType$" /></Outrigger>
+      <Outrigger ID="OtherDeviceDimStatus" Accessibility="Public"><Attribute ID="Status" PropertyPath="$Context/Property[Type='ITSM!OtherDevice']/Status$" /></Outrigger>
+      <Outrigger ID="OtherDeviceDimType" Accessibility="Public"><Attribute ID="Type" PropertyPath="$Context/Property[Type='ITSM!OtherDevice']/Type$" /></Outrigger>
+      <Outrigger ID="OtherDeviceDimInterface" Accessibility="Public"><Attribute ID="Interface" PropertyPath="$Context/Property[Type='ITSM!OtherDevice']/Interface$" /></Outrigger>
     </Outriggers>
-    <!--
-      <Outrigger ID="ObjectStatus" Accessibility="Public">
-        <Attribute ID="ObjectStatus" PropertyPath="$Context/Property[Type='System!System.ConfigItem']/ObjectStatus$" />
-      </Outrigger>
-      <Outrigger ID="CostCenterStatus" Accessibility="Public">
-        <Attribute ID="Status" PropertyPath="$Context/Property[Type='ITSM!CostCenter']/Status$" />
-      </Outrigger>
-      <Outrigger ID="PrinterColorType" Accessibility="Public">
-        <Attribute ID="ColorType" PropertyPath="$Context/Property[Type='ITSM!Printer']/ColorType$" />
-      </Outrigger>
-      <Outrigger ID="PrinterConnectivity" Accessibility="Public">
-        <Attribute ID="Connectivity" PropertyPath="$Context/Property[Type='ITSM!Printer']/Connectivity$" />
-      </Outrigger>
-      <Outrigger ID="PrinterType" Accessibility="Public">
-        <Attribute ID="Type" PropertyPath="$Context/Property[Type='ITSM!Printer']/Type$" />
-      </Outrigger>
-      <Outrigger ID="PrinterStatus" Accessibility="Public">
-        <Attribute ID="Status" PropertyPath="$Context/Property[Type='ITSM!Printer']/Status$" />
-      </Outrigger>
-      <Outrigger ID="NetworkDeviceType" Accessibility="Public">
-        <Attribute ID="Type" PropertyPath="$Context/Property[Type='ITSM!NetworkDevice']/Type$" />
-      </Outrigger>
-      <Outrigger ID="NetworkDeviceStatus" Accessibility="Public">
-        <Attribute ID="Status" PropertyPath="$Context/Property[Type='ITSM!NetworkDevice']/Status$" />
-      </Outrigger>
-      <Outrigger ID="StorageDeviceConnectivity" Accessibility="Public">
-        <Attribute ID="Connectivity" PropertyPath="$Context/Property[Type='ITSM!StorageDevice']/Connectivity$" />
-      </Outrigger>
-      <Outrigger ID="StorageDeviceStatus" Accessibility="Public">
-        <Attribute ID="Status" PropertyPath="$Context/Property[Type='ITSM!StorageDevice']/Status$" />
-      </Outrigger>
-      <Outrigger ID="ContactStatus" Accessibility="Public">
-        <Attribute ID="Status" PropertyPath="$Context/Property[Type='ITSM!Contact']/Status$" />
-      </Outrigger>
-      <Outrigger ID="ContactRole" Accessibility="Public">
-        <Attribute ID="Role" PropertyPath="$Context/Property[Type='ITSM!Contact']/Role$" />
-      </Outrigger>
-      <Outrigger ID="ContactCity" Accessibility="Public">
-        <Attribute ID="City" PropertyPath="$Context/Property[Type='ITSM!Contact']/City$" />
-      </Outrigger>
-      <Outrigger ID="LocationType" Accessibility="Public">
-        <Attribute ID="Type" PropertyPath="$Context/Property[Type='ITSM!NLocation']/Type$" />
-      </Outrigger>
-      <Outrigger ID="LocationCity" Accessibility="Public">
-        <Attribute ID="City" PropertyPath="$Context/Property[Type='ITSM!NLocation']/City$" />
-      </Outrigger>
-      <Outrigger ID="LocationCountry" Accessibility="Public">
-        <Attribute ID="Country" PropertyPath="$Context/Property[Type='ITSM!NLocation']/Country$" />
-      </Outrigger>
-      <Outrigger ID="InvoiceType" Accessibility="Public">
-        <Attribute ID="Type" PropertyPath="$Context/Property[Type='ITSM!Invoice']/Type$" />
-      </Outrigger>
-      <Outrigger ID="OrganizationType" Accessibility="Public">
-        <Attribute ID="OrganizationType" PropertyPath="$Context/Property[Type='ITSM!Organization']/OrganizationType$" />
-      </Outrigger>
-      <Outrigger ID="OrganizationStatus" Accessibility="Public">
-        <Attribute ID="OrganizationStatus" PropertyPath="$Context/Property[Type='ITSM!Organization']/OrganizationStatus$" />
-      </Outrigger>
-      <Outrigger ID="OrganizationName" Accessibility="Public">
-        <Attribute ID="OrganizationName" PropertyPath="$Context/Property[Type='ITSM!Organization']/OrganizationName$" />
-      </Outrigger>
-      <Outrigger ID="SKUDisplayName" Accessibility="Public">
-        <Attribute ID="DisplayName" PropertyPath="$Context/Property[Type='System!System.ConfigItem']/DisplayName$" />
-      </Outrigger>
-      <Outrigger ID="SKUDesignatedUse" Accessibility="Public">
-        <Attribute ID="DesignatedUse" PropertyPath="$Context/Property[Type='ITSM!SKU']/DesignatedUse$" />
-      </Outrigger>
-      <Outrigger ID="SKULicenseType" Accessibility="Public">
-        <Attribute ID="LicenseType" PropertyPath="$Context/Property[Type='ITSM!SKU']/LicenseType$" />
-      </Outrigger>
-      <Outrigger ID="SKULicensingChannel" Accessibility="Public">
-        <Attribute ID="LicensingChannel" PropertyPath="$Context/Property[Type='ITSM!SKU']/LicensingChannel$" />
-      </Outrigger>
-      <Outrigger ID="SKULicensingModel" Accessibility="Public">
-        <Attribute ID="LicensingModel" PropertyPath="$Context/Property[Type='ITSM!SKU']/LicensingModel$" />
-      </Outrigger>
-      <Outrigger ID="SKULicensingProgram" Accessibility="Public">
-        <Attribute ID="LicensingProgram" PropertyPath="$Context/Property[Type='ITSM!SKU']/LicensingProgram$" />
-      </Outrigger>
-      <Outrigger ID="PurchaseOrderType" Accessibility="Public">
-        <Attribute ID="Type" PropertyPath="$Context/Property[Type='ITSM!PurchaseOrder']/Type$" />
-      </Outrigger>
-      <Outrigger ID="SoftwareAssetLicensingCategory" Accessibility="Public">
-        <Attribute ID="LicensingCategory" PropertyPath="$Context/Property[Type='ITSM!SoftwareAsset']/LicensingCategory$" />
-      </Outrigger>
-      <Outrigger ID="SoftwareAssetManagementScope" Accessibility="Public">
-        <Attribute ID="ManagementScope" PropertyPath="$Context/Property[Type='ITSM!SoftwareAsset']/ManagementScope$" />
-      </Outrigger>
-      <Outrigger ID="SoftwareAssetReadinessStatus" Accessibility="Public">
-        <Attribute ID="ReadinessStatus" PropertyPath="$Context/Property[Type='ITSM!SoftwareAsset']/ReadinessStatus$" />
-      </Outrigger>
-      <Outrigger ID="HardwareAssetDesignatedUse" Accessibility="Public">
-        <Attribute ID="DesignatedUse" PropertyPath="$Context/Property[Type='ITSM!HardwareAsset']/DesignatedUse$" />
-      </Outrigger>
-      <Outrigger ID="HardwareAssetType" Accessibility="Public">
-        <Attribute ID="Type" PropertyPath="$Context/Property[Type='ITSM!HardwareAsset']/Type$" />
-      </Outrigger>
-      <Outrigger ID="HardwareAssetOwnershipType" Accessibility="Public">
-        <Attribute ID="OwnershipType" PropertyPath="$Context/Property[Type='ITSM!HardwareAsset']/OwnershipType$" />
-      </Outrigger>
-      <Outrigger ID="HardwareDeviceType" Accessibility="Public">
-        <Attribute ID="DeviceType" PropertyPath="$Context/Property[Type='ITSM!Hardware']/DeviceType$" />
-      </Outrigger>
-      <Outrigger ID="HardwareOSName" Accessibility="Public">
-        <Attribute ID="OSName" PropertyPath="$Context/Property[Type='ITSM!Hardware']/OSName$" />
-      </Outrigger>
-      <Outrigger ID="HardwareOSType" Accessibility="Public">
-        <Attribute ID="OSType" PropertyPath="$Context/Property[Type='ITSM!Hardware']/OSType$" />
-      </Outrigger>
-      <Outrigger ID="HardwareProcessorFamily" Accessibility="Public">
-        <Attribute ID="ProcessorFamily" PropertyPath="$Context/Property[Type='ITSM!Hardware']/ProcessorFamily$" />
-      </Outrigger>
-      <Outrigger ID="SoftwareAgreementStatus" Accessibility="Public">
-        <Attribute ID="Status" PropertyPath="$Context/Property[Type='ITSM!SoftwareAgreement']/Status$" />
-      </Outrigger>
-      <Outrigger ID="SoftwareAgreementType" Accessibility="Public">
-        <Attribute ID="Type" PropertyPath="$Context/Property[Type='ITSM!SoftwareAgreement']/Type$" />
-      </Outrigger>
-      <Outrigger ID="HardwareAgreementType" Accessibility="Public">
-        <Attribute ID="Type" PropertyPath="$Context/Property[Type='ITSM!HardwareAgreement']/Type$" />
-      </Outrigger>
-      <Outrigger ID="HardwareAgreementSupportType" Accessibility="Public">
-        <Attribute ID="SupportType" PropertyPath="$Context/Property[Type='ITSM!HardwareAgreement']/SupportType$" />
-      </Outrigger>
-      <Outrigger ID="HardwareAgreementStatus" Accessibility="Public">
-        <Attribute ID="Status" PropertyPath="$Context/Property[Type='ITSM!HardwareAgreement']/Status$" />
-      </Outrigger>
-      <Outrigger ID="SupportAgreementStatus" Accessibility="Public">
-        <Attribute ID="Status" PropertyPath="$Context/Property[Type='ITSM!SupportAgreement']/Status$" />
-      </Outrigger>
-      <Outrigger ID="SupportAgreementType" Accessibility="Public">
-        <Attribute ID="Type" PropertyPath="$Context/Property[Type='ITSM!SupportAgreement']/Type$" />
-      </Outrigger>
-      <Outrigger ID="SupportAgreementDuration" Accessibility="Public">
-        <Attribute ID="Duration" PropertyPath="$Context/Property[Type='ITSM!SupportAgreement']/Duration$" />
-      </Outrigger>
-      <Outrigger ID="LeaseAgreementStatus" Accessibility="Public">
-        <Attribute ID="Status" PropertyPath="$Context/Property[Type='ITSM!LeaseAgreement']/Status$" />
-      </Outrigger>
-      <Outrigger ID="LeaseAgreementType" Accessibility="Public">
-        <Attribute ID="Type" PropertyPath="$Context/Property[Type='ITSM!LeaseAgreement']/Type$" />
-      </Outrigger>
-      <Outrigger ID="LeaseAgreementDuration" Accessibility="Public">
-        <Attribute ID="Duration" PropertyPath="$Context/Property[Type='ITSM!LeaseAgreement']/Duration$" />
-      </Outrigger>
-      <Outrigger ID="MobileDeviceType" Accessibility="Public">
-        <Attribute ID="Type" PropertyPath="$Context/Property[Type='ITSM!MobileDevice']/Type$" />
-      </Outrigger>
-      <Outrigger ID="MobileDeviceDeviceOS" Accessibility="Public">
-        <Attribute ID="DeviceOS" PropertyPath="$Context/Property[Type='ITSM!MobileDevice']/DeviceOS$" />
-      </Outrigger>
-      <Outrigger ID="MobileDeviceOSType" Accessibility="Public">
-        <Attribute ID="OSType" PropertyPath="$Context/Property[Type='ITSM!MobileDevice']/OSType$" />
-      </Outrigger>
-      <Outrigger ID="MobileDeviceStatus" Accessibility="Public">
-        <Attribute ID="Status" PropertyPath="$Context/Property[Type='ITSM!MobileDevice']/Status$" />
-      </Outrigger>
-    </Outriggers>
- -->
   </Warehouse>
 </ManagementPackFragment>

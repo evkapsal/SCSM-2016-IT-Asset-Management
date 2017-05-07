@@ -99,6 +99,78 @@ namespace ITAssetMgmtForms
             IDataItem emoProjectionObject = (IDataItem)Hardware.SelectedItem;
             Microsoft.EnterpriseManagement.GenericForm.FormUtilities.Instance.PopoutForm(emoProjectionObject);
         }
+
+        //
+        private void btnAdd_Click_Scanner(object sender, RoutedEventArgs e)
+        {
+            AddItemToListView(this.Scanner, ITAssetMgmtForms.Resources.guidScannerClass);
+        }
+
+        private void btnRemove_Click_Scanner(object sender, RoutedEventArgs e)
+        {
+            RemoveItemFromWorkItemListView(this.Scanner);
+        }
+
+        private void btnOpen_Click_Scanner(object sender, RoutedEventArgs e)
+        {
+            IDataItem emoProjectionObject = (IDataItem)Scanner.SelectedItem;
+            Microsoft.EnterpriseManagement.GenericForm.FormUtilities.Instance.PopoutForm(emoProjectionObject);
+        }
+
+        private void MouseDoubleClick_Scanner(object sender, MouseButtonEventArgs e)
+        {
+            IDataItem emoProjectionObject = (IDataItem)Scanner.SelectedItem;
+            Microsoft.EnterpriseManagement.GenericForm.FormUtilities.Instance.PopoutForm(emoProjectionObject);
+        }
+
+        //
+
+        private void btnAdd_Click_Monitor(object sender, RoutedEventArgs e)
+        {
+            AddItemToListView(this.Monitor, ITAssetMgmtForms.Resources.guidMonitorClass);
+        }
+
+        private void btnRemove_Click_Monitor(object sender, RoutedEventArgs e)
+        {
+            RemoveItemFromWorkItemListView(this.Monitor);
+        }
+
+        private void btnOpen_Click_Monitor(object sender, RoutedEventArgs e)
+        {
+            IDataItem emoProjectionObject = (IDataItem)Monitor.SelectedItem;
+            Microsoft.EnterpriseManagement.GenericForm.FormUtilities.Instance.PopoutForm(emoProjectionObject);
+        }
+
+        private void MouseDoubleClick_Monitor(object sender, MouseButtonEventArgs e)
+        {
+            IDataItem emoProjectionObject = (IDataItem)Monitor.SelectedItem;
+            Microsoft.EnterpriseManagement.GenericForm.FormUtilities.Instance.PopoutForm(emoProjectionObject);
+        }
+        //
+
+        private void btnAdd_Click_OtherDevice(object sender, RoutedEventArgs e)
+        {
+            AddItemToListView(this.OtherDevice, ITAssetMgmtForms.Resources.guidOtherHWClass);
+        }
+
+        private void btnRemove_Click_OtherDevice(object sender, RoutedEventArgs e)
+        {
+            RemoveItemFromWorkItemListView(this.OtherDevice);
+        }
+
+        private void btnOpen_Click_OtherDevice(object sender, RoutedEventArgs e)
+        {
+            IDataItem emoProjectionObject = (IDataItem)OtherDevice.SelectedItem;
+            Microsoft.EnterpriseManagement.GenericForm.FormUtilities.Instance.PopoutForm(emoProjectionObject);
+        }
+
+        private void MouseDoubleClick_OtherDevice(object sender, MouseButtonEventArgs e)
+        {
+            IDataItem emoProjectionObject = (IDataItem)OtherDevice.SelectedItem;
+            Microsoft.EnterpriseManagement.GenericForm.FormUtilities.Instance.PopoutForm(emoProjectionObject);
+        }
+
+
         //
         private void btnAdd_Click_Printer(object sender, RoutedEventArgs e)
         {
@@ -268,6 +340,21 @@ namespace ITAssetMgmtForms
         }
 
         private void MobileDevice_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void Scanner_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void Monitor_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void OtherDevice_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }

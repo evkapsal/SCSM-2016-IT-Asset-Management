@@ -158,7 +158,7 @@
                                                                  Instance="{Binding Path=StorageDevice, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="InstancePicker_MouseDoubleClick"/>
                                     <Label Content="Monitor Device"/>
                                     <smcontrols:SingleInstancePicker Style="{StaticResource sipStyle}" BaseClassId="{Binding Source={x:Static local:Resources.guidMonitorClass},Mode=OneWay}"
-                                                                 Instance="{Binding Path=Monitor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="InstancePicker_MouseDoubleClick"/>
+                                                                 Instance="{Binding Path=MonitorDevice, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="InstancePicker_MouseDoubleClick"/>
                                     <Label Content="Other Device"/>
                                     <smcontrols:SingleInstancePicker Style="{StaticResource sipStyle}" BaseClassId="{Binding Source={x:Static local:Resources.guidOtherHWClass},Mode=OneWay}"
                                                                  Instance="{Binding Path=OtherDevice, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="InstancePicker_MouseDoubleClick"/>

@@ -265,7 +265,89 @@
                         </Grid>
                     </Expander>
                 </Grid>
+
             </TabItem>
+            <TabItem Header="Devices More" x:Name="tabItemDevicesII">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Expander Name="expDetail" Grid.Row="2" Grid.ColumnSpan="6" Header="Devices" IsExpanded="True" BorderThickness="1,5" Margin="0,10,0,0" Loaded="expDetails_Loaded">
+                        <Grid HorizontalAlignment="Stretch">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Style="{StaticResource stackPanelSLVStyle}" Grid.Row="0" Grid.ColumnSpan="5">
+                                <Label Content="Scanner"/>
+                                <scwpf:SortableListView x:Name="Scanner" ItemsSource="{Binding Scanner}" Style="{StaticResource slvStyle}" MouseDoubleClick="MouseDoubleClick_Scanner" SelectionChanged="Scanner_SelectionChanged">
+                                    <scwpf:SortableListView.View>
+                                        <GridView>
+                                            <scwpf:SortableGridViewColumn SortPropertyName="DisplayName" DisplayMemberBinding="{Binding DisplayName}" Header="Display Name" Width="Auto"/>
+                                        </GridView>
+                                    </scwpf:SortableListView.View>
+                                </scwpf:SortableListView>
+                            </StackPanel>
+                            <StackPanel Style="{StaticResource stackPanelButtonStyle}" Grid.Row="0" Grid.Column="5">
+                                <Button x:Name="btnAdd_Scanner" Style="{StaticResource buttonStyle}" Content="Add" Margin="0,27,0,0" Click="btnAdd_Click_Scanner" />
+                                <Button x:Name="btnRemove_Scanner" Style="{StaticResource buttonStyle}" Content="Remove" Margin="0,5,0,0" Click="btnRemove_Click_Scanner" />
+                                <Button x:Name="btnOpen_Scanner" Style="{StaticResource buttonStyle}" Content="Open" Margin="0,5,0,0" Click="btnOpen_Click_Scanner" />
+                            </StackPanel>
+                            <StackPanel Style="{StaticResource stackPanelSLVStyle}" Grid.Row="1" Grid.ColumnSpan="5">
+                                <Label Content="Monitor"/>
+                                <scwpf:SortableListView x:Name="Monitor" ItemsSource="{Binding Monitor}" Style="{StaticResource slvStyle}" MouseDoubleClick="MouseDoubleClick_Monitor" SelectionChanged="Monitor_SelectionChanged">
+                                    <scwpf:SortableListView.View>
+                                        <GridView>
+                                            <scwpf:SortableGridViewColumn SortPropertyName="DisplayName" DisplayMemberBinding="{Binding DisplayName}" Header="Display Name" Width="Auto"/>
+                                        </GridView>
+                                    </scwpf:SortableListView.View>
+                                </scwpf:SortableListView>
+                            </StackPanel>
+                            <StackPanel Style="{StaticResource stackPanelButtonStyle}" Grid.Row="1" Grid.Column="5">
+                                <Button x:Name="btnAdd_Monitor" Style="{StaticResource buttonStyle}" Content="Add" Margin="0,27,0,0" Click="btnAdd_Click_Monitor" />
+                                <Button x:Name="btnRemove_Monitor" Style="{StaticResource buttonStyle}" Content="Remove" Margin="0,5,0,0" Click="btnRemove_Click_Monitor" />
+                                <Button x:Name="btnOpen_Monitor" Style="{StaticResource buttonStyle}" Content="Open" Margin="0,5,0,0" Click="btnOpen_Click_Monitor" />
+                            </StackPanel>
+                            <StackPanel Style="{StaticResource stackPanelSLVStyle}" Grid.Row="2" Grid.ColumnSpan="5">
+                                <Label Content="Other Device"/>
+                                <scwpf:SortableListView x:Name="OtherDevice" ItemsSource="{Binding OtherDevice}" Style="{StaticResource slvStyle}" MouseDoubleClick="MouseDoubleClick_OtherDevice" SelectionChanged="OtherDevice_SelectionChanged">
+                                    <scwpf:SortableListView.View>
+                                        <GridView>
+                                            <scwpf:SortableGridViewColumn SortPropertyName="DisplayName" DisplayMemberBinding="{Binding DisplayName}" Header="Display Name" Width="Auto"/>
+                                        </GridView>
+                                    </scwpf:SortableListView.View>
+                                </scwpf:SortableListView>
+                            </StackPanel>
+                            <StackPanel Style="{StaticResource stackPanelButtonStyle}" Grid.Row="2" Grid.Column="5">
+                                <Button x:Name="btnAdd_OtherDevice" Style="{StaticResource buttonStyle}" Content="Add" Margin="0,27,0,0" Click="btnAdd_Click_OtherDevice" />
+                                <Button x:Name="btnRemove_OtherDevice" Style="{StaticResource buttonStyle}" Content="Remove" Margin="0,5,0,0" Click="btnRemove_Click_OtherDevice" />
+                                <Button x:Name="btnOpen_OtherDevice" Style="{StaticResource buttonStyle}" Content="Open" Margin="0,5,0,0" Click="btnOpen_Click_OtherDevice" />
+                            </StackPanel>
+                        </Grid>
+                    </Expander>
+                </Grid>
+                
+            </TabItem>
+            
             <TabItem Header="History" x:Name="tabItemHistory">
                 <smcontrols:HistoryTab></smcontrols:HistoryTab>
             </TabItem>

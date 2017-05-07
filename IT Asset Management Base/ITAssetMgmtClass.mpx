@@ -563,6 +563,12 @@
           <Property ID="SubnetName" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
           <Property ID="AddressPrefix" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
         </ClassType>
+        <ClassType ID="AzureLocation" Accessibility="Public" Abstract="false" Base="System!System.ConfigItem" Hosted="false" Singleton="false" Extension="false">
+          <Property ID="AzLocID" Type="string" AutoIncrement="true" Key="true" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" DefaultValue="AzLocID{0}" />
+          <Property ID="Description" Type="richtext" MinLength="0" MaxLength="2000" AutoIncrement="false" />
+          <Property ID="LocationName" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
+        </ClassType>
+        
       </ClassTypes>
     <EnumerationTypes>
       <EnumerationValue ID="ODeskType" Accessibility="Public" />

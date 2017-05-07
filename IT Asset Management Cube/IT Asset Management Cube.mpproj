@@ -34,6 +34,18 @@
     <AssemblyOriginatorKeyFile />
   </PropertyGroup>
   <ItemGroup>
+    <ManagementPackReference Include="IT_Asset_Management_Base">
+      <HintPath>C:\Users\Vangelis\OneDrive - Microsoft\ITSM2016\IT Asset Management Management Pack\IT Asset Management Base\IT Asset Management Base\bin\Debug\IT_Asset_Management_Base.mp</HintPath>
+      <Alias>ITSM</Alias>
+      <MinVersion>1.2.0.120</MinVersion>
+      <PackageToBundle>False</PackageToBundle>
+    </ManagementPackReference>
+    <ManagementPackReference Include="IT_Asset_Management_DW">
+      <HintPath>C:\Users\Vangelis\OneDrive - Microsoft\ITSM2016\IT Asset Management Management Pack\IT Asset Management Base\IT Asset Management DW\bin\Debug\IT_Asset_Management_DW.mp</HintPath>
+      <Alias>ITSMDW</Alias>
+      <MinVersion>1.0.0.69</MinVersion>
+      <PackageToBundle>False</PackageToBundle>
+    </ManagementPackReference>
     <ManagementPackReference Include="Microsoft.SystemCenter.Datawarehouse.Base">
       <HintPath>C:\Program Files (x86)\Microsoft System Center 2012\Service Manager Authoring\Library\Microsoft.SystemCenter.Datawarehouse.Base.mp</HintPath>
       <Alias>DWBase</Alias>
@@ -53,14 +65,6 @@
     <Compile Include="ITSMCube.mpx">
       <SubType>Code</SubType>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\IT Asset Management DW\IT Asset Management DW.mpproj">
-      <Name>IT Asset Management DW</Name>
-      <Project>{34f38fb6-413d-48e0-9b1d-d0195bbb9e4e}</Project>
-      <Private>True</Private>
-      <Alias>ITSMDW</Alias>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VSAC\Microsoft.SystemCenter.OperationsManager.targets" />
 </Project>

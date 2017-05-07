@@ -146,7 +146,7 @@
                                 <Label Content="Asset Tag"/>
                                 <TextBox Style="{StaticResource textBoxStyle}"  Text="{Binding Path=AssetTag, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                                 <Label Content="Firmware Version"/>
-                                <TextBox Style="{StaticResource textBoxStyle}"  Text="{Binding Path=Firmware Version, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                <TextBox Style="{StaticResource textBoxStyle}"  Text="{Binding Path=Firmware, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                                 <Label Content="Network Device Status"/>
                                 <scwpf:ListPicker Style="{StaticResource listPickerStyle}" ParentCategoryId="{Binding Mode=OneWay, Source={x:Static local:Resources.guidNetDeviceStatusEnumRoot}}" 
                                 	SelectedItem="{Binding Path=Status, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="23" />
