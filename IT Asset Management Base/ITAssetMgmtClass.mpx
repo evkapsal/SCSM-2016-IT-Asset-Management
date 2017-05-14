@@ -936,6 +936,7 @@
       <EnumerationValue ID="HardwareAssetType.Scanner" Accessibility="Public" Parent="HardwareAssetType" Ordinal="25" />
       <EnumerationValue ID="HardwareAssetType.Server" Accessibility="Public" Parent="HardwareAssetType" Ordinal="5" />
       <EnumerationValue ID="HardwareAssetType.StorageDevice" Accessibility="Public" Parent="HardwareAssetType" Ordinal="65" />
+      <EnumerationValue ID="HardwareAssetType.OtherDevice" Accessibility="Public" Parent="HardwareAssetType" Ordinal="95" />
       <EnumerationValue ID="HardwareAssetType.Tablet" Accessibility="Public" Parent="HardwareAssetType" Ordinal="85" />
       <EnumerationValue ID="HardwareAssetType.Monitor" Accessibility="Public" Parent="HardwareAssetType" Ordinal="30" />
       <EnumerationValue ID="HardwareAssetType.VirtualMachine" Accessibility="Internal" Parent="HardwareAssetType" Ordinal="50" />
@@ -3289,6 +3290,9 @@
         <DisplayString ElementID="HardwareAssetType.Consumables" >
           <Name>Consumables</Name>
         </DisplayString>
+        <DisplayString ElementID="HardwareAssetType.OtherDevice" >
+          <Name>Other Device</Name>
+        </DisplayString>
         <DisplayString ElementID="MobileDeviceType" >
           <Name>Mobile Device Type</Name>
         </DisplayString>
@@ -3360,7 +3364,22 @@
         </DisplayString>
         <DisplayString ElementID="HardwareAssetType.VirtualMachine" >
           <Name>Virtual Machine</Name>
+        </DisplayString>      
+        <DisplayString ElementID= "HardwareAssetType.NetworkDevice.Switch" >
+          <Name>Switch</Name>
         </DisplayString>
+        <DisplayString ElementID="HardwareAssetType.NetworkDevice.Router" >
+          <Name>Router</Name>
+        </DisplayString>
+        <DisplayString ElementID=  "HardwareAssetType.NetworkDevice.Firewall" >
+          <Name>Firewall</Name>
+        </DisplayString>
+        <DisplayString ElementID=  "HardwareAssetType.NetworkDevice.Security" >
+          <Name>Security Device</Name>
+        </DisplayString>
+        <DisplayString ElementID=  "HardwareAssetType.NetworkDevice.Other" >
+          <Name>Other</Name>
+        </DisplayString>          
         <DisplayString ElementID="HardwareAssetClass" >
           <Name>Hardware Asset Class</Name>
         </DisplayString>

@@ -2,7 +2,7 @@
   <Manifest>
     <Identity>
       <ID>HardwareConnector</ID>
-      <Version>1.1.0.5</Version>
+      <Version>1.1.0.6</Version>
     </Identity>
     <Name>HardwareConnector</Name>
     <References>
@@ -65,10 +65,10 @@
 #NOTES
 #===========================================================================
 #Created with:  SAPIEN Technologies, Inc., PowerShell Studio 2015
-#Created on:    17/8/2016 18:00 PM
+#Created on:    13/5/2017 24:00 PM
 #Created by:     Evangelos Kapsalakis
 #Organization:   Microsoft Hellas
-#Filename:  Hardware Connector V4.1
+#Filename:  Hardware Connector V5.1
 #===========================================================================
 #.DESCRIPTION
 #A description of the file.
@@ -83,26 +83,36 @@ if ($HardwareConnectorAdminSettingObj.IsActive -eq $true)
  
  Try
  {
-  $ActiveId = (Get-SCSMEnumeration -Name ITSMConnectorStatus.Running$).id
-  Set-SCSMObject -SMObject $HardwareConnectorAdminSettingObj -Property "Status" -Value $ActiveId
+   $ActiveId = (Get-SCSMEnumeration -Name ITSMConnectorStatus.Running$).id
  }
- Catch { }
- 
- 
+ Catch 
+  {
+   $ActiveId = $null
+  }
+ Finally
+  {
+ if($ActiveId)
+  {
+    Set-SCSMObject -SMObject $HardwareConnectorAdminSettingObj -Property "Status" -Value $ActiveId
+  }
+ }
  
  ##
  try
  {
-  $SQLSrv = (Get-SCSMConnector  | ?{ $_.DataProviderName -eq "SmsConnector" }).ServerName
-  $DBName = (Get-SCSMConnector  | ?{ $_.DataProviderName -eq "SmsConnector" }).DatabaseName
+   $SQLSrv = (Get-SCSMConnector  | ?{ $_.DataProviderName -eq "SmsConnector" }).ServerName
+   $DBName = (Get-SCSMConnector  | ?{ $_.DataProviderName -eq "SmsConnector" }).DatabaseName
  }
- catch { }
+ catch 
+  {
+   $SQLSrv = $null
+  $DBName = $null
+  }
  
  Try
  {
   $events = [System.Diagnostics.EventLog]::SourceExists("Hardware Connector");
  }
- catch { }
  finally
  {
   if ($events -ne $true)
@@ -169,6 +179,19 @@ if ($HardwareConnectorAdminSettingObj.IsActive -eq $true)
  $ContainVolumeRelCl = Get-SCSMRelationshipClass -Name Relationship.HardwareContainsVolumes$
  $DevHasSoftInstalledRelClId = (Get-SCSMRelationshipClass -Name System.DeviceHasSoftwareItemInstalled$).id
  $DevHasUpdInstalledRelClId = (Get-SCSMRelationshipClass -Name System.DeviceHasSoftwareUpdateInstalled$).id
+ $ScannerCl = Get-SCSMClass -Name Scanner$
+ $HardwareAssetReferenceScannerRelCl= Get-SCSMRelationshipClass -Name Relationship.HardwareAssetReferencesScannerDevice$
+ $ScannerAssetTypeId= (Get-SCSMEnumeration HardwareAssetType.Scanner$).id
+ $AssetStatusEnumDeployedId = (Get-SCSMEnumeration -Name System.ConfigItem.AssetStatusEnum.Deployed$).id
+ $ScannerUserRelCl = Get-SCSMRelationshipClass -Name Relationship.ScannerHasUser$
+ $MonitorCl = Get-SCSMClass -Name Monitor$
+ $HardwareAssetRefMonitorRelCl = Get-SCSMRelationshipClass -Name Relationship.HardwareAssetReferencesMonitorDevice$
+ $MonitorAssetTyteId = (Get-SCSMEnumeration -Name HardwareAssetType.Monitor$).id
+ $MonitorUserRelCL= Get-SCSMRelationshipClass -Name Relationship.MonitorHasUser$
+ $OtherDeviceCl = Get-SCSMClass -Name OtherDevice$
+ $HardwareAssetRefOtherDevRelCl = Get-SCSMRelationshipClass -Name Relationship.HardwareAssetReferencesOtherDevice$
+ $OtherDeviceTypeId= (Get-SCSMEnumeration -Name HardwareAssetType.OtherDevice$).id
+ $OtherDeviceRelCl= Get-SCSMRelationshipClass -Name Relationship.OtherDeviceHasUser$
  
  #Asset Class Enum
  $ComputerHWAssetEnumId = (Get-SCSMEnumeration -Name HardwareAssetClass.Computer$).id
@@ -206,7 +229,9 @@ if ($HardwareConnectorAdminSettingObj.IsActive -eq $true)
  {
   param (
    [string]$COMP,
+   [ValidateNotNullOrEmpty()]
    [string]$Server,
+   [ValidateNotNullOrEmpty()]
    [string]$Database
   )
   
@@ -247,7 +272,9 @@ if ($HardwareConnectorAdminSettingObj.IsActive -eq $true)
  function Get-InactiveComputers
  {
   param (
+   [ValidateNotNullOrEmpty()]
    [string]$Server,
+   [ValidateNotNullOrEmpty()]
    [string]$Database
   )
   
@@ -280,9 +307,15 @@ if ($HardwareConnectorAdminSettingObj.IsActive -eq $true)
   
  }
  
- $InactiveComputers = $null
- $InactiveComputers = Get-InactiveComputers -Server $SQLSrv -Database $DBName
- 
+  if($SQLSrv)
+    {
+    $InactiveComputers = $null
+    $InactiveComputers = Get-InactiveComputers -Server $SQLSrv -Database $DBName
+    }
+  else{
+      Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId 10000 -Category 0 -EntryType Information -Message "SCCM Connector is not enabled"
+    }
+  
  #Process Windows Computers
  Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId 10000 -Category 0 -EntryType Information -Message "Hardware Connector Start Processing of Computer Objects"
  $WindowsComputers = Get-SCSMObjectProjection -Projection $ComputerProjectionClass -Filter "ObjectStatus -eq $ActiveObjEnum"
@@ -314,8 +347,12 @@ if ($HardwareConnectorAdminSettingObj.IsActive -eq $true)
      try
      {
       $Res = $null
-      $Res = Get-ProcessorDetails -COMP $($WindowsComputer.NetbiosComputerName) -Server $SQLSrv -Database $DBName
-     }
+   if($SQLSrv)
+   {
+       $Res = Get-ProcessorDetails -COMP $($WindowsComputer.NetbiosComputerName) -Server $SQLSrv -Database $DBName
+   }
+  
+  }
      Catch
      {
       $Res = $null
@@ -323,23 +360,31 @@ if ($HardwareConnectorAdminSettingObj.IsActive -eq $true)
      }
      Finally
      {
-      if (($Res.Processors | Measure-Object).Count -gt 1)
-      {
-       $FPhyProcSum = $null
-       $LogicProc = $null
-       $FPhyProcSum = $($Res.Processors) -join '+'
-       $LogicProc = Invoke-Expression $FPhyProcSum
-       
-       $FPhyCorSum = $($Res.Cores) -join '+'
-       $PhysProc = Invoke-Expression $FPhyCorSum
-       
-      }
-      else
-      {
-       $LogicProc = $null
-       $PhysProc = $null
-       $LogicProc = $Res.Processors
-       $PhysProc = $Res.Cores
+  if($Res)
+  {
+       if (($Res.Processors | Measure-Object).Count -gt 1)
+       {
+        $FPhyProcSum = $null
+        $LogicProc = $null
+        $FPhyProcSum = $($Res.Processors) -join '+'
+        $LogicProc = Invoke-Expression $FPhyProcSum
+        $FPhyCorSum = $($Res.Cores) -join '+'
+        $PhysProc = Invoke-Expression $FPhyCorSum
+        
+       }
+       else
+       {
+        $LogicProc = $null
+        $PhysProc = $null
+        $LogicProc = $Res.Processors
+        $PhysProc = $Res.Cores
+       }
+   }
+   else{
+     $LogicProc = $null
+         $PhysProc = $null
+   $LogicProc = $WindowsComputer.LogicalProcessors
+   $PhysProc = $WindowsComputer.PhysicalProcessors
       }
       
      }
@@ -537,19 +582,26 @@ if ($HardwareConnectorAdminSettingObj.IsActive -eq $true)
        
        if ($iNewMan)
        {
-        
-        $Key = ($HardwareConnectorAdminSettingObj.Searchkey)
-        $env:MS_BingSearch_API_key = "$Key"
-        $Uri = 'https://api.cognitive.microsoft.com/bing/v5.0/search?q=' + $CompManufacturer
-        $Result = Invoke-RestMethod -Uri $Uri -Method 'GET' -ContentType 'application/json' -Headers @{ 'Ocp-Apim-Subscription-Key' = $env:MS_BingSearch_API_key }
-        $Url = $Result.webPages.value[0].displayUrl
-        $ManUrl = "http://" + $Url
-        
-        if ($ManUrl)
-        {
-         Set-SCSMObject -SMObject $iNewMan -Property "ManufacturerWebSite" -Value $ManUrl
-         
-        }
+        try{
+          $Key = ($HardwareConnectorAdminSettingObj.Searchkey)
+          $env:MS_BingSearch_API_key = "$Key"
+          $Uri = 'https://api.cognitive.microsoft.com/bing/v5.0/search?q=' + $CompManufacturer
+          $Result = Invoke-RestMethod -Uri $Uri -Method 'GET' -ContentType 'application/json' -Headers @{ 'Ocp-Apim-Subscription-Key' = $env:MS_BingSearch_API_key }
+          $Url = $Result.webPages.value[0].displayUrl
+          $ManUrl = "http://" + $Url
+      }
+  catch
+   {
+   $ManUrl = $null
+   Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId $WarningId -Category 0 -EntryType Warning -Message "SCSM Server Cannot Find Manufacturer URL. Please Check if you have Insert the Bing API Key in Hardware Connector Setting, or SCSM Server is connected to Internet."
+   }
+  finally
+   {
+          if ($ManUrl)
+          {
+           Set-SCSMObject -SMObject $iNewMan -Property "ManufacturerWebSite" -Value $ManUrl
+          }
+   }
        }
       }
      }
@@ -580,19 +632,28 @@ if ($HardwareConnectorAdminSettingObj.IsActive -eq $true)
        
        if ($iModEx)
        {
-        $Key = ($HardwareConnectorAdminSettingObj.Searchkey)
-        $env:MS_BingSearch_API_key = "$Key"
-        $Uri = 'https://api.cognitive.microsoft.com/bing/v5.0/search?q=' + $CompModel
-        $Result = Invoke-RestMethod -Uri $Uri -Method 'GET' -ContentType 'application/json' -Headers @{ 'Ocp-Apim-Subscription-Key' = $env:MS_BingSearch_API_key }
-        $Url = $Result.webPages.value[0].displayUrl
-        $ModelUrl = "http://" + $Url
-        
-        
+      try
+   {
+           $Key = ($HardwareConnectorAdminSettingObj.Searchkey)
+           $env:MS_BingSearch_API_key = "$Key"
+           $Uri = 'https://api.cognitive.microsoft.com/bing/v5.0/search?q=' + $CompModel
+           $Result = Invoke-RestMethod -Uri $Uri -Method 'GET' -ContentType 'application/json' -Headers @{ 'Ocp-Apim-Subscription-Key' = $env:MS_BingSearch_API_key }
+           $Url = $Result.webPages.value[0].displayUrl
+           $ModelUrl = "http://" + $Url
+   }
+  catch
+   {
+   $ModelUrl = $null
+   Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId $WarningId -Category 0 -EntryType Warning -Message "SCSM Server Cannot Find Model URL. Please Check if you have Insert the Bing API Key in Hardware Connector Setting, or SCSM Server is connected to Internet."
+   }
+  finally
+   {        
         if ($ModelUrl)
-        {
-         Set-SCSMObject -SMObject $iModEx -Property "ModelWebSite" -Value $ModelUrl
-        }
-       }
+           {
+            Set-SCSMObject -SMObject $iModEx -Property "ModelWebSite" -Value $ModelUrl
+           }
+         }
+    }
       }
       
       #Relationships
@@ -669,6 +730,9 @@ if ($HardwareConnectorAdminSettingObj.IsActive -eq $true)
    {
     $ActualHw = Get-SCSMObject -Class $HardwareClass -Filter "DeviceName -eq $($WindowsComputer.PrincipalName)"
     [datetime]$LastModified = $WindowsComputer.Object.LastModified
+ $ObjLast = $null
+ $WinCLast = $null
+ 
     $ObjLast = Get-Date -Date $($ActualHW.LastModifiedSync) -Format "yyyy-MM-dd hh:mm"
     $WinCLast = Get-Date -Date $($WindowsComputer.LastModified) -Format "yyyy-MM-dd hh:mm"
     if ($ObjLast -ne $WinCLast)
@@ -790,9 +854,8 @@ if ($HardwareConnectorAdminSettingObj.IsActive -eq $true)
          
         }
         
-        
        }
-       elseif (($RelationshipChanges.ManagementPackRelationshipTypeId -ne $DevHasSoftInstalledRelClId) -or ($RelationshipChanges.ManagementPackRelationshipTypeId -ne $DevHasUpdInstalledRelClId))
+       elseif (($($RelationshipChanges.ManagementPackRelationshipTypeId) -ne $DevHasSoftInstalledRelClId) -or ($($RelationshipChanges.ManagementPackRelationshipTypeId) -ne $DevHasUpdInstalledRelClId))
        {
         $SourceObj = $null
         $TargetObj = $null
@@ -807,47 +870,57 @@ if ($HardwareConnectorAdminSettingObj.IsActive -eq $true)
         $Src = $null
         $Tar = $null
         $Rel = $null
-        
-        $Src = Get-SCSMObject -Id $SourceObj
-        $Tar = Get-SCSMObject -Id $TargetObj
-        $Rel = Get-SCSMRelationshipClass -id = $RelationshipClassObj
-        
-        if ($RChangeType -eq "Insert")
-        {
-         try
-         {
-          New-SCSMRelationshipObject -Source $Src -Target $Tar -Relationship $Rel -Bulk
+     try
+   {
+         $Src = Get-SCSMObject -Id $SourceObj
+         $Tar = Get-SCSMObject -Id $TargetObj
+         $Rel = Get-SCSMRelationshipClass -id $RelationshipClassObj
          }
-         catch
-         {
-          Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId $ErrorID -Category 0 -EntryType Error -Message "Hardware Connector Cannot Update Object Relationships:$ActualHw For Relationship:$Rel with Source:$Src and Target:$Tar for Change Type:$ChangeType with Error: $($_.Exception.Message)"
-         }
-        }
-        elseIf ($RChangeType -eq "Modify")
-        {
-         try
-         {
-          New-SCSMRelationshipObject -Source $Src -Target $Tar -Relationship $Rel -Bulk
-         }
-         catch
-         {
-          Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId $ErrorID -Category 0 -EntryType Error -Message "Hardware Connector Cannot Update Object Relationships:$ActualHw For Relationship:$Rel with Source:$Src and Target:$Tar for Change Type:$ChangeType with Error: $($_.Exception.Message)"
-         }
-        }
-        elseif ($RChangeType -eq "Delete")
-        {
-         try
-         {
-          Get-SCSMRelationshipObject -BySource $Src | ? { ($_.RelationshipClassId -eq $Rel) } | Remove-SCSMRelationshipObject
-         }
-         catch
-         {
-          
-          Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId $ErrorID -Category 0 -EntryType Error -Message "Hardware Connector Cannot Update Object Relationships:$ActualHw For Relationship:$Rel with Source:$Src and Target:$Tar for Change Type:$ChangeType with Error: $($_.Exception.Message)"
-          
-         }
-        }
-        
+  catch{
+    Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId $ErrorID -Category 0 -EntryType Error -Message " SRC:$($SRC) , Tar:$($Tar) , Rel: $($Rel), Hardware Connector Cannot Update Object: $ActualHw For Property $Propery with Value: $Value and Method: $ChangeType with Error: $($_.Exception.Message)"
+
+    }
+  finally
+   {
+   if($Src -and $Tar -and $Rel) 
+    {
+          if ($RChangeType -eq "Insert")
+          {
+           try
+           {
+            New-SCSMRelationshipObject -Source $Src -Target $Tar -Relationship $Rel -Bulk
+           }
+           catch
+           {
+            Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId $ErrorID -Category 0 -EntryType Error -Message "Hardware Connector Cannot Update Object Relationships:$ActualHw For Relationship:$Rel with Source:$Src and Target:$Tar for Change Type:$ChangeType with Error: $($_.Exception.Message)"
+           }
+          }
+          elseIf ($RChangeType -eq "Modify")
+          {
+           try
+           {
+            New-SCSMRelationshipObject -Source $Src -Target $Tar -Relationship $Rel -Bulk
+           }
+           catch
+           {
+            Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId $ErrorID -Category 0 -EntryType Error -Message "Hardware Connector Cannot Update Object Relationships:$ActualHw For Relationship:$Rel with Source:$Src and Target:$Tar for Change Type:$ChangeType with Error: $($_.Exception.Message)"
+           }
+          }
+          elseif ($RChangeType -eq "Delete")
+          {
+           try
+           {
+            Get-SCSMRelationshipObject -BySource $Src | ? { ($_.RelationshipClassId -eq $Rel) } | Remove-SCSMRelationshipObject
+           }
+           catch
+           {
+            
+            Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId $ErrorID -Category 0 -EntryType Error -Message "Hardware Connector Cannot Update Object Relationships:$ActualHw For Relationship:$Rel with Source:$Src and Target:$Tar for Change Type:$ChangeType with Error: $($_.Exception.Message)"
+            
+           }
+          }
+          }
+   }
        }
        
       }
@@ -863,347 +936,369 @@ if ($HardwareConnectorAdminSettingObj.IsActive -eq $true)
  
  #Process Network Devices
  Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId 10000 -Category 0 -EntryType Information -Message "Hardware Connector Start Processing of Network Objects"
- $NetworkDevices = Get-SCSMObject -Class $NetworkClass -Filter "ObjectStatus -ne $PendingDeleteEnumId"
- if ($NetworkDevices)
- {
-  foreach ($NetDevice in $NetworkDevices)
+if($NetworkClass)
+{
+  $NetworkDevices = Get-SCSMObject -Class $NetworkClass -Filter "ObjectStatus -ne $PendingDeleteEnumId"
+  if ($NetworkDevices)
   {
-   [datetime]$LastModified = $NetDevice.LastModified
-   $NetDevExists = Get-SCSMObject -Class $NetworkDeviceClass -Filter "SNMPAddress -eq '$($NetDevice.SNMPAddress)' and ObjectStatus -ne '$PendingDeleteEnumId'"
-   if (!$NetDevExists)
+   foreach ($NetDevice in $NetworkDevices)
    {
     [datetime]$LastModified = $NetDevice.LastModified
-    [string]$NetDevHash = $($NetDevice.SNMPAddress) + $($NetDevice.sysName) + $($NetDevice.Model) + $($NetDevice.Vendor) + $($LastModified.ToString())
-    $ObjectHash = Get-StringHash -String $NetDevHash
-    
-    $NetHashTable = @{
-     
-     "DisplayName" = $($NetDevice.SNMPAddress);
-     "DeviceName" = $($NetDevice.sysName);
-     "Ports" = $($NetDevice.PortNumber);
-     "SNMPAddress" = $($NetDevice.SNMPAddress);
-     "SupportsSNMP" = $($NetDevice.SupportsSNMP);
-     "ObjectHash" = $ObjectHash
-     "LastDiscoveredDate" = (Get-Date);
-     "Location" = $($NetDevice.Location);
-     "SNMPVersion" = $($NetDevice.SNMPVersion);
-     "Description" = $($NetDevice.Description);
-     "Status" = $ActiveDeviceStatusEnumId;
-     "LastModifiedSync" = $LastModified;
-     
-     
-    }
-    try
+    $NetDevExists = Get-SCSMObject -Class $NetworkDeviceClass -Filter "SNMPAddress -eq '$($NetDevice.SNMPAddress)' and ObjectStatus -ne '$PendingDeleteEnumId'"
+    if (!$NetDevExists)
     {
-     $NewNetDevice = New-SCSMObject -Class $NetworkDeviceClass -PropertyHashtable $NetHashTable -PassThru
-     New-SCSMRelationshipObject -Relationship $ConfigItemRelCl -Source $NewNetDevice -Target $NetDevice -Bulk
+     [datetime]$LastModified = $NetDevice.LastModified
+     [string]$NetDevHash = $($NetDevice.SNMPAddress) + $($NetDevice.sysName) + $($NetDevice.Model) + $($NetDevice.Vendor) + $($LastModified.ToString())
+     $ObjectHash = Get-StringHash -String $NetDevHash
      
-     if ($NetDevice.PrimaryOwnerName)
-     {
-      $Owner = Get-SCSMObject -Class $UserClass -Filter "DisplayName -like $($NetDevice.PrimaryOwnerName)"
-      if ($Owner)
-      {
-       $MustRelateOwner = New-SCSMRelationshipObject -Source $NewNetDevice -Target $Owner -Relationship $NetDevUserRelationShip -Bulk
-      }
-     }
-     
-     if ($NetDevice.Vendor)
-     {
-      $NewMan = $null
-      $NewMan = Get-SCSMObject -Class $DevManufacturer -Filter "DisplayName -eq $($NetDevice.Vendor)"
-      if ($NewMan)
-      {
-       $RelMan = New-SCSMRelationshipObject -Source $NewNetDevice -Target $NewMan -Relationship $NetDevModelRel -Bulk
-       
-      }
-      else
-      {
-       
-       $VendorHashTable = @{
-        
-        "DisplayName" = $($NetDevice.Vendor);
-        "ManufacturerName" = $($NetDevice.Vendor);
-        
-       }
-       
-       $NewMan = New-SCSMObject -Class $DevManufacturer -PropertyHashtable $VendorHashTable -PassThru
-       $RelMan = New-SCSMRelationshipObject -Source $NewNetDevice -Target $NewMan -Relationship $NetDevManufactRel -Bulk
-       
-       
-      }
+     $NetHashTable = @{
       
-      if ($NewMan)
+      "DisplayName" = $($NetDevice.SNMPAddress);
+      "DeviceName" = $($NetDevice.sysName);
+      "Ports" = $($NetDevice.PortNumber);
+      "SNMPAddress" = $($NetDevice.SNMPAddress);
+      "SupportsSNMP" = $($NetDevice.SupportsSNMP);
+      "ObjectHash" = $ObjectHash
+      "LastDiscoveredDate" = (Get-Date);
+      "Location" = $($NetDevice.Location);
+      "SNMPVersion" = $($NetDevice.SNMPVersion);
+      "Description" = $($NetDevice.Description);
+      "Status" = $ActiveDeviceStatusEnumId;
+      "LastModifiedSync" = $LastModified;
+      
+      
+     }
+     try
+     {
+      $NewNetDevice = New-SCSMObject -Class $NetworkDeviceClass -PropertyHashtable $NetHashTable -PassThru
+      New-SCSMRelationshipObject -Relationship $ConfigItemRelCl -Source $NewNetDevice -Target $NetDevice -Bulk
+      
+      if ($NetDevice.PrimaryOwnerName)
       {
-       
-       $Key = ($HardwareConnectorAdminSettingObj.Searchkey)
-       $env:MS_BingSearch_API_key = "$Key"
-       $Uri = 'https://api.cognitive.microsoft.com/bing/v5.0/search?q=' + $($NetDevice.Vendor)
-       $Result = Invoke-RestMethod -Uri $Uri -Method 'GET' -ContentType 'application/json' -Headers @{ 'Ocp-Apim-Subscription-Key' = $env:MS_BingSearch_API_key }
-       $Url = $Result.webPages.value[0].displayUrl
-       $ManUrl = "http://" + $Url
-       
-       if ($ManUrl)
+       $Owner = Get-SCSMObject -Class $UserClass -Filter "DisplayName -like $($NetDevice.PrimaryOwnerName)"
+       if ($Owner)
        {
-        Set-SCSMObject -SMObject $NewMan -Property "ManufacturerWebSite" -Value $ManUrl
-        
+        $MustRelateOwner = New-SCSMRelationshipObject -Source $NewNetDevice -Target $Owner -Relationship $NetDevUserRelationShip -Bulk
        }
       }
       
-     }
-     
-     
-     if ($NetDevice.Model)
-     {
-      $ModEx = $null
-      $ModEx = Get-SCSMObject -Class $DevModel -Filter "DisplayName -eq $($NetDevice.Model)"
-      if ($ModEx)
+      if ($NetDevice.Vendor)
       {
-       $RelModel = New-SCSMRelationshipObject -Source $NewNetDevice -Target $ModEx -Relationship $NetDevModelRel -Bulk
-       $RelDevMan = New-SCSMRelationshipObject -Source $RelModel -Target $NewMan -Relationship $ModelHasManufacturerRelCl -Bulk
-       
-      }
-      else
-      {
-       
-       $ModelHashTable = @{
+       $NewMan = $null
+       $NewMan = Get-SCSMObject -Class $DevManufacturer -Filter "DisplayName -eq $($NetDevice.Vendor)"
+       if ($NewMan)
+       {
+        $RelMan = New-SCSMRelationshipObject -Source $NewNetDevice -Target $NewMan -Relationship $NetDevModelRel -Bulk
         
-        "DisplayName" = $($NetDevice.Model);
-        "ModelName" = $($NetDevice.Model);
+       }
+       else
+       {
+        
+        $VendorHashTable = @{
+         
+         "DisplayName" = $($NetDevice.Vendor);
+         "ManufacturerName" = $($NetDevice.Vendor);
+         
+        }
+        
+        $NewMan = New-SCSMObject -Class $DevManufacturer -PropertyHashtable $VendorHashTable -PassThru
+        $RelMan = New-SCSMRelationshipObject -Source $NewNetDevice -Target $NewMan -Relationship $NetDevManufactRel -Bulk
+        
         
        }
        
-       $ModEx = New-SCSMObject -Class $DevModel -PropertyHashtable $ModelHashTable -PassThru
+       if ($NewMan)
+       {
+        try
+      {
+          $Key = ($HardwareConnectorAdminSettingObj.Searchkey)
+          $env:MS_BingSearch_API_key = "$Key"
+          $Uri = 'https://api.cognitive.microsoft.com/bing/v5.0/search?q=' + $($NetDevice.Vendor)
+          $Result = Invoke-RestMethod -Uri $Uri -Method 'GET' -ContentType 'application/json' -Headers @{ 'Ocp-Apim-Subscription-Key' = $env:MS_BingSearch_API_key }
+          $Url = $Result.webPages.value[0].displayUrl
+          $ManUrl = "http://" + $Url
+   }
+  catch
+   {
+   $ManUrl = $null
+   Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId $WarningId -Category 0 -EntryType Warning -Message "SCSM Server Cannot Find Network Manufacturer URL. Please Check if you have Insert the Bing API Key in Hardware Connector Setting, or SCSM Server is connected to Internet."
+   }
+  finally
+   {               
+          if ($ManUrl)
+          {
+           Set-SCSMObject -SMObject $NewMan -Property "ManufacturerWebSite" -Value $ManUrl
+          }
+     }
+    
+    }
+       
       }
+      
+      
       if ($NetDevice.Model)
       {
-       
-       $Key = ($HardwareConnectorAdminSettingObj.Searchkey)
-       $env:MS_BingSearch_API_key = "$Key"
-       $Uri = 'https://api.cognitive.microsoft.com/bing/v5.0/search?q=' + $($NetDevice.Model)
-       $Result = Invoke-RestMethod -Uri $Uri -Method 'GET' -ContentType 'application/json' -Headers @{ 'Ocp-Apim-Subscription-Key' = $env:MS_BingSearch_API_key }
-       $Url = $Result.webPages.value[0].displayUrl
-       $ModelUrl = "http://" + $Url
-       
-       
-       if ($ModelUrl)
+       $ModEx = $null
+       $ModEx = Get-SCSMObject -Class $DevModel -Filter "DisplayName -eq $($NetDevice.Model)"
+       if ($ModEx)
        {
-        Set-SCSMObject -SMObject $ModEx -Property "ModelWebSite" -Value $ModelUrl
+        $RelModel = New-SCSMRelationshipObject -Source $NewNetDevice -Target $ModEx -Relationship $NetDevModelRel -Bulk
+        $RelDevMan = New-SCSMRelationshipObject -Source $RelModel -Target $NewMan -Relationship $ModelHasManufacturerRelCl -Bulk
+        
        }
+       else
+       {
+        
+        $ModelHashTable = @{
+         
+         "DisplayName" = $($NetDevice.Model);
+         "ModelName" = $($NetDevice.Model);
+         
+        }
+        
+        $ModEx = New-SCSMObject -Class $DevModel -PropertyHashtable $ModelHashTable -PassThru
+       }
+ if ($NetDevice.Model)
+    {
+        
+  try
+   { 
+       $Key = ($HardwareConnectorAdminSettingObj.Searchkey)
+          $env:MS_BingSearch_API_key = "$Key"
+          $Uri = 'https://api.cognitive.microsoft.com/bing/v5.0/search?q=' + $($NetDevice.Model)
+          $Result = Invoke-RestMethod -Uri $Uri -Method 'GET' -ContentType 'application/json' -Headers @{ 'Ocp-Apim-Subscription-Key' = $env:MS_BingSearch_API_key }
+          $Url = $Result.webPages.value[0].displayUrl
+          $ModelUrl = "http://" + $Url
+   }
+  catch
+   {
+   $ModelUrl = $null
+   Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId $WarningId -Category 0 -EntryType Warning -Message "SCSM Server Cannot Find Network Model URL. Please Check if you have Insert the Bing API Key in Hardware Connector Setting, or SCSM Server is connected to Internet."
+   }
+  finally
+   {                    
+          
+          if ($ModelUrl)
+          {
+           Set-SCSMObject -SMObject $ModEx -Property "ModelWebSite" -Value $ModelUrl
+          }
       }
-      $RelModel = New-SCSMRelationshipObject -Source $NewNetDevice -Target $ModEx -Relationship $NetDevModelRel -Bulk
-      $RelDevMan = New-SCSMRelationshipObject -Source $ModEx -Target $NewMan -Relationship $ModelHasManufacturerRelCl -Bulk
+  }
+       $RelModel = New-SCSMRelationshipObject -Source $NewNetDevice -Target $ModEx -Relationship $NetDevModelRel -Bulk
+       $RelDevMan = New-SCSMRelationshipObject -Source $ModEx -Target $NewMan -Relationship $ModelHasManufacturerRelCl -Bulk
+       
+      }
       
+      $DevAssetEx = Get-SCSMObject -Class $HardwareAssetClass -Filter "DisplayName -eq $($NewNetDevice.DisplayName)"
+      if (!$DevAssetEx)
+      {
+       $AssetHashTable = @{
+        "AssetName" = $($NewNetDevice.DisplayName);
+        "DisplayName" = $($NewNetDevice.DisplayName);
+        "Type" = $NetHardwareAssetTypeId;
+        "ReadinessStatus" = $ReadinessStatusEnumId;
+        "AssetTag" = $AssetTag;
+       }
+       $DevAsset = New-SCSMObject -Class $HardwareAssetClass -PropertyHashtable $AssetHashTable -PassThru
+       New-SCSMRelationshipObject -Relationship $HAssetRefNetRelCl -Source $DevAsset -Target $NewNetDevice -Bulk
+      }
+     }
+     catch
+     {
      }
      
-     $DevAssetEx = Get-SCSMObject -Class $HardwareAssetClass -Filter "DisplayName -eq $($NewNetDevice.DisplayName)"
-     if (!$DevAssetEx)
-     {
-      $AssetHashTable = @{
-       "AssetName" = $($NewNetDevice.DisplayName);
-       "DisplayName" = $($NewNetDevice.DisplayName);
-       "Type" = $NetHardwareAssetTypeId;
-       "ReadinessStatus" = $ReadinessStatusEnumId;
-       "AssetTag" = $AssetTag;
-      }
-      $DevAsset = New-SCSMObject -Class $HardwareAssetClass -PropertyHashtable $AssetHashTable -PassThru
-      New-SCSMRelationshipObject -Relationship $HAssetRefNetRelCl -Source $DevAsset -Target $NewNetDevice -Bulk
-     }
+     
+     
     }
-    catch
+    else
     {
-    }
-    
-    
-    
-   }
-   else
-   {
-    $NObjLast = Get-Date -Date $($NetDevExists.LastModifiedSync) -Format "yyyy-MM-dd hh:mm"
-    $NetDvLast = Get-Date -Date $($NetDevice.LastModified) -Format "yyyy-MM-dd hh:mm"
-    if ($NObjLast -ne $NetDvLast)
-    {
-     $ObjHistory = $null
-     $emg = $null
-     $emg = New-Object Microsoft.EnterpriseManagement.EnterpriseManagementGroup "localhost"
-     $ObjHistory = $emg.EntityObjects.GetObjectHistoryTransactions($NetDevice) | ? { $_.DateOccurred -gt $($NetDevExists.LastModifiedSync) }
-     foreach ($ObjHist in $ObjHistory)
+     $NObjLast = Get-Date -Date $($NetDevExists.LastModifiedSync) -Format "yyyy-MM-dd hh:mm"
+     $NetDvLast = Get-Date -Date $($NetDevice.LastModified) -Format "yyyy-MM-dd hh:mm"
+     if ($NObjLast -ne $NetDvLast)
      {
-      try
+      $ObjHistory = $null
+      $emg = $null
+      $emg = New-Object Microsoft.EnterpriseManagement.EnterpriseManagementGroup "localhost"
+      $ObjHistory = $emg.EntityObjects.GetObjectHistoryTransactions($NetDevice) | ? { $_.DateOccurred -gt $($NetDevExists.LastModifiedSync) }
+      foreach ($ObjHist in $ObjHistory)
       {
-       $PropertyChanges = $null
-       $RelationshipChanges = $null
-       
-       $PropertyChanges = $ObjHist.ObjectHistory.Values.ClassHistory.PropertyChanges
-       $RelationshipChanges = $ObjHist.ObjectHistory.Values.ClassHistory.RelationshipChanges
-      }
-      Catch
-      {
-       $PropertyChanges = $null
-       $RelationshipChanges = $null
-      }
-      Finally
-      {
-       if ($PropertyChanges)
+       try
        {
-        if ($PropertyChanges.Count -gt 1)
-        {
-         foreach ($PropertyChange in $PropertyChanges.Values.Second)
-         {
-           $Propery = $null
-           $Value = $null
-           $ChangeType = $null
-           
-           $Propery = $PropertyChange.Type.Name
-           $Value = $PropertyChange.Value
-           $ChangeType = $ObjHist.ObjectHistory.Values.ClassHistory.ChangeType
-           
-           if ($ChangeType -eq "Insert")
-           {
-            try
-            {
-             Set-SCSMObject -SMObject $NetDevExists -Property $Propery -Value $Value
-            }
-            catch
-            {
-             Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId $ErrorID -Category 0 -EntryType Error -Message "Hardware Connector Cannot Update Object: $NetDevExists For Property $Propery with Value: $Value and Method: $ChangeType with Error: $($_.Exception.Message)"
-            }
-           }
-           elseIf ($ChangeType -eq "Modify")
-           {
-            try
-            {
-             Set-SCSMObject -SMObject $NetDevExists -Property $Propery -Value $Value
-            }
-            catch
-            {
-             Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId $ErrorID -Category 0 -EntryType Error -Message "Hardware Connector Cannot Update Object: $NetDevExists For Property $Propery with Value: $Value and Method: $ChangeType with Error: $($_.Exception.Message)"
-            }
-           }
-           elseif ($ChangeType -eq "Delete")
-           {
-            try
-            {
-             Set-SCSMObject -SMObject $NetDevExists -Property $Propery -Value " "
-            }
-            catch
-            {
-             Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId $ErrorID -Category 0 -EntryType Error -Message "Hardware Connector Cannot Update Object: $NetDevExists For Property $Propery with Value: $Value and Method: $ChangeType with Error: $($_.Exception.Message)"
-            }
-           }
-         }
-        }
-        else
-        {
-           $Propery = $null
-           $Value = $null
-           $ChangeType = $null
-           
-           $Propery = $ObjHist.ObjectHistory.Values.ClassHistory.PropertyChanges.Key
-           $Value = $ObjHist.ObjectHistory.Values.ClassHistory.PropertyChanges.Value
-           $ChangeType = $ObjHist.ObjectHistory.Values.ClassHistory.PropertyChanges.ChangeType
-           
-           if ($ChangeType -eq "Insert")
-           {
-            try
-            {
-             Set-SCSMObject -SMObject $NetDevExists -Property $Propery -Value $Value
-            }
-            catch
-            {
-             Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId $ErrorID -Category 0 -EntryType Error -Message "Hardware Connector Cannot Update Object: $NetDevExists For Property $Propery with Value: $Value and Method: $ChangeType with Error: $($_.Exception.Message)"
-            }
-           }
-           elseIf ($ChangeType -eq "Modify")
-           {
-            try
-            {
-             Set-SCSMObject -SMObject $NetDevExists -Property $Propery -Value $Value
-            }
-            catch
-            {
-             Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId $ErrorID -Category 0 -EntryType Error -Message "Hardware Connector Cannot Update Object: $NetDevExists For Property $Propery with Value: $Value and Method: $ChangeType with Error: $($_.Exception.Message)"
-            }
-           }
-           elseif ($ChangeType -eq "Delete")
-           {
-            try
-            {
-             Set-SCSMObject -SMObject $NetDevExists -Property $Propery -Value ""
-            }
-            catch
-            {
-             Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId $ErrorID -Category 0 -EntryType Error -Message "Hardware Connector Cannot Update Object: $NetDevExists For Property $Propery with Value: $Value and Method: $ChangeType with Error: $($_.Exception.Message)"
-            }
-           }
-        }
+        $PropertyChanges = $null
+        $RelationshipChanges = $null
+        
+        $PropertyChanges = $ObjHist.ObjectHistory.Values.ClassHistory.PropertyChanges
+        $RelationshipChanges = $ObjHist.ObjectHistory.Values.ClassHistory.RelationshipChanges
        }
-       elseif ($RelationshipChanges)
+       Catch
        {
-        $SourceObj = $null
-        $TargetObj = $null
-        $RelationshipClassObj = $null
-        $RChangeType = $null
-        
-        $SourceObj = $ObjHist.ObjectHistory.Values.RelationshipHistory.SourceObjectId
-        $TargetObj = $ObjHist.ObjectHistory.Values.RelationshipHistory.TargetObjectId
-        $RelationshipClassObj = $ObjHist.ObjectHistory.Values.RelationshipHistory.ManagementPackRelationshipTypeId
-        $RChangeType = $ObjHist.ObjectHistory.Values.RelationshipHistory.ChangeType
-        
-        $Src = $null
-        $Tar = $null
-        $Rel = $null
-        
-        $Src = Get-SCSMObject -Id $SourceObj
-        $Tar = Get-SCSMObject -Id $TargetObj
-        $Rel = Get-SCSMRelationshipClass -id = $RelationshipClassObj
-        
-        if ($RChangeType -eq "Insert")
+        $PropertyChanges = $null
+        $RelationshipChanges = $null
+       }
+       Finally
+       {
+        if ($PropertyChanges)
         {
-         try
+         if ($PropertyChanges.Count -gt 1)
          {
-          New-SCSMRelationshipObject -Source $Src -Target $Tar -Relationship $Rel -Bulk
+          foreach ($PropertyChange in $PropertyChanges.Values.Second)
+          {
+            $Propery = $null
+            $Value = $null
+            $ChangeType = $null
+            
+            $Propery = $PropertyChange.Type.Name
+            $Value = $PropertyChange.Value
+            $ChangeType = $ObjHist.ObjectHistory.Values.ClassHistory.ChangeType
+            
+            if ($ChangeType -eq "Insert")
+            {
+             try
+             {
+              Set-SCSMObject -SMObject $NetDevExists -Property $Propery -Value $Value
+             }
+             catch
+             {
+              Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId $ErrorID -Category 0 -EntryType Error -Message "Hardware Connector Cannot Update Object: $NetDevExists For Property $Propery with Value: $Value and Method: $ChangeType with Error: $($_.Exception.Message)"
+             }
+            }
+            elseIf ($ChangeType -eq "Modify")
+            {
+             try
+             {
+              Set-SCSMObject -SMObject $NetDevExists -Property $Propery -Value $Value
+             }
+             catch
+             {
+              Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId $ErrorID -Category 0 -EntryType Error -Message "Hardware Connector Cannot Update Object: $NetDevExists For Property $Propery with Value: $Value and Method: $ChangeType with Error: $($_.Exception.Message)"
+             }
+            }
+            elseif ($ChangeType -eq "Delete")
+            {
+             try
+             {
+              Set-SCSMObject -SMObject $NetDevExists -Property $Propery -Value " "
+             }
+             catch
+             {
+              Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId $ErrorID -Category 0 -EntryType Error -Message "Hardware Connector Cannot Update Object: $NetDevExists For Property $Propery with Value: $Value and Method: $ChangeType with Error: $($_.Exception.Message)"
+             }
+            }
+          }
          }
-         catch
+         else
          {
-          Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId $ErrorID -Category 0 -EntryType Error -Message "Hardware Connector Cannot Update Object Relationships:$NetDevExists For Relationship:$Rel with Source:$Src and Target:$Tar for Change Type:$ChangeType with Error: $($_.Exception.Message)"
+            $Propery = $null
+            $Value = $null
+            $ChangeType = $null
+            
+            $Propery = $ObjHist.ObjectHistory.Values.ClassHistory.PropertyChanges.Key
+            $Value = $ObjHist.ObjectHistory.Values.ClassHistory.PropertyChanges.Value
+            $ChangeType = $ObjHist.ObjectHistory.Values.ClassHistory.PropertyChanges.ChangeType
+            
+            if ($ChangeType -eq "Insert")
+            {
+             try
+             {
+              Set-SCSMObject -SMObject $NetDevExists -Property $Propery -Value $Value
+             }
+             catch
+             {
+              Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId $ErrorID -Category 0 -EntryType Error -Message "Hardware Connector Cannot Update Object: $NetDevExists For Property $Propery with Value: $Value and Method: $ChangeType with Error: $($_.Exception.Message)"
+             }
+            }
+            elseIf ($ChangeType -eq "Modify")
+            {
+             try
+             {
+              Set-SCSMObject -SMObject $NetDevExists -Property $Propery -Value $Value
+             }
+             catch
+             {
+              Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId $ErrorID -Category 0 -EntryType Error -Message "Hardware Connector Cannot Update Object: $NetDevExists For Property $Propery with Value: $Value and Method: $ChangeType with Error: $($_.Exception.Message)"
+             }
+            }
+            elseif ($ChangeType -eq "Delete")
+            {
+             try
+             {
+              Set-SCSMObject -SMObject $NetDevExists -Property $Propery -Value ""
+             }
+             catch
+             {
+              Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId $ErrorID -Category 0 -EntryType Error -Message "Hardware Connector Cannot Update Object: $NetDevExists For Property $Propery with Value: $Value and Method: $ChangeType with Error: $($_.Exception.Message)"
+             }
+            }
          }
         }
-        elseIf ($RChangeType -eq "Modify")
+        elseif ($RelationshipChanges)
         {
-         try
+         $SourceObj = $null
+         $TargetObj = $null
+         $RelationshipClassObj = $null
+         $RChangeType = $null
+         
+         $SourceObj = $ObjHist.ObjectHistory.Values.RelationshipHistory.SourceObjectId
+         $TargetObj = $ObjHist.ObjectHistory.Values.RelationshipHistory.TargetObjectId
+         $RelationshipClassObj = $ObjHist.ObjectHistory.Values.RelationshipHistory.ManagementPackRelationshipTypeId
+         $RChangeType = $ObjHist.ObjectHistory.Values.RelationshipHistory.ChangeType
+         
+         $Src = $null
+         $Tar = $null
+         $Rel = $null
+         
+         $Src = Get-SCSMObject -Id $SourceObj
+         $Tar = Get-SCSMObject -Id $TargetObj
+         $Rel = Get-SCSMRelationshipClass -id = $RelationshipClassObj
+         
+         if ($RChangeType -eq "Insert")
          {
-          New-SCSMRelationshipObject -Source $Src -Target $Tar -Relationship $Rel -Bulk
+          try
+          {
+           New-SCSMRelationshipObject -Source $Src -Target $Tar -Relationship $Rel -Bulk
+          }
+          catch
+          {
+           Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId $ErrorID -Category 0 -EntryType Error -Message "Hardware Connector Cannot Update Object Relationships:$NetDevExists For Relationship:$Rel with Source:$Src and Target:$Tar for Change Type:$ChangeType with Error: $($_.Exception.Message)"
+          }
          }
-         catch
+         elseIf ($RChangeType -eq "Modify")
          {
-          Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId $ErrorID -Category 0 -EntryType Error -Message "Hardware Connector Cannot Update Object Relationships:$NetDevExists For Relationship:$Rel with Source:$Src and Target:$Tar for Change Type:$ChangeType with Error: $($_.Exception.Message)"
+          try
+          {
+           New-SCSMRelationshipObject -Source $Src -Target $Tar -Relationship $Rel -Bulk
+          }
+          catch
+          {
+           Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId $ErrorID -Category 0 -EntryType Error -Message "Hardware Connector Cannot Update Object Relationships:$NetDevExists For Relationship:$Rel with Source:$Src and Target:$Tar for Change Type:$ChangeType with Error: $($_.Exception.Message)"
+          }
          }
+         elseif ($RChangeType -eq "Delete")
+         {
+          try
+          {
+           Get-SCSMRelationshipObject -BySource $Src | ? { ($_.RelationshipClassId -eq $Rel) } | Remove-SCSMRelationshipObject
+          }
+          catch
+          {
+           Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId $ErrorID -Category 0 -EntryType Error -Message "Hardware Connector Cannot Update Object Relationships:$NetDevExists For Relationship:$Rel with Source:$Src and Target:$Tar for Change Type:$ChangeType with Error: $($_.Exception.Message)"
+          }
+         }
+         
+         
         }
-        elseif ($RChangeType -eq "Delete")
-        {
-         try
-         {
-          Get-SCSMRelationshipObject -BySource $Src | ? { ($_.RelationshipClassId -eq $Rel) } | Remove-SCSMRelationshipObject
-         }
-         catch
-         {
-          Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId $ErrorID -Category 0 -EntryType Error -Message "Hardware Connector Cannot Update Object Relationships:$NetDevExists For Relationship:$Rel with Source:$Src and Target:$Tar for Change Type:$ChangeType with Error: $($_.Exception.Message)"
-         }
-        }
-        
         
        }
-       
       }
+      Set-SCSMObject -SMObject $NetDevExists -Property "LastModifiedSync" -Value $LastModified
      }
-     Set-SCSMObject -SMObject $NetDevExists -Property "LastModifiedSync" -Value $LastModified
     }
+    
    }
-   
   }
- }
- Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId 10000 -Category 0 -EntryType Information -Message "Hardware Connector Finished Process of Network Objects"
- 
+  Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId 10000 -Category 0 -EntryType Information -Message "Hardware Connector Finished Process of Network Objects"
+} 
+
  #Process Printers
  Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId 10000 -Category 0 -EntryType Information -Message "Hardware Connector Start Processing of Printer Objects"
  $Printers = Get-SCSMObject -Class $SystemPrinterClass -Filter "ObjectStatus -ne $PendingDeleteEnumId"
@@ -1785,6 +1880,176 @@ if ($HardwareConnectorAdminSettingObj.IsActive -eq $true)
   }
  }
  Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId 10000 -Category 0 -EntryType Information -Message "Hardware Connector Finished Process of Mobile Objects"
+ 
+ #Process Scanners
+ Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId 10000 -Category 0 -EntryType Information -Message "Hardware Connector Start Processing of Scanner Objects"
+ $ScannerDevices = Get-SCSMObject -Class $ScannerCl -Filter "ObjectStatus -ne $PendingDeleteEnumId"
+ if($ScannerDevices)
+ {
+    foreach ($ScannerDevice in $ScannerDevices)
+  {
+   try
+    {
+    $AssetsRel = (Get-SCSMRelationshipObject -BySource $ScannerDevice | ? {$_.RelationshipId -eq $($HardwareAssetReferenceScannerRelCl.id)}).SourceObject
+    }
+   finally
+    {
+    $sAssetTag = $null
+    $ScannerUser= $null
+    $ScannerAsset =$null
+    if($ScannerDevice.SerialNumber)
+     {
+     $sAssetTag = "$PreFix" + $($ScannerDevice.SerialNumber)
+     }
+    else{$sAssetTag = "NOT PRESENT"}
+    
+    if(!$AssetsRel)
+     {
+     $AssetRelHashTable=@{
+          "AssetName" = $($ScannerDevice.DisplayName);
+                "DisplayName" = $($ScannerDevice.DisplayName);
+                "Type" = $ScannerAssetTypeId;
+                "ReadinessStatus" = $ReadinessStatusEnumId;
+                "AssetTag" = $sAssetTag;
+          "AssetStatus" = $AssetStatusEnumDeployedId;
+          }
+     $ScannerAsset= New-SCSMObject -Class $HardwareAssetClass -PropertyHashtable $AssetRelHashTable -PassThru
+     New-SCSMRelationshipObject -Source $ScannerAsset -Target $ScannerDevice -Relationship $HardwareAssetReferenceScannerRelCl -Bulk
+     $ScannerUser= (Get-SCSMRelationshipObject -BySource $ScannerDevice -ErrorAction SilentlyContinue | ? {$_.RelationshipId -eq $($ScannerUserRelCl.Id)}).TargetObject
+      if($ScannerUser)
+       {
+       New-SCSMRelationshipObject -Source $ScannerAsset -Target $ScannerUser -Relationship $HardwareAssetHasUser -Bulk
+       }
+     
+     
+     }
+     
+    }
+   
+  
+  
+  
+  }
+   
+   
+   
+   
+   }
+ Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId 10000 -Category 0 -EntryType Information -Message "Hardware Connector  Finished Processing of Scanner Objects"
+
+ #Process Monitors
+ Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId 10000 -Category 0 -EntryType Information -Message "Hardware Connector Start Processing of Monitor Objects"
+ $MonitorDevices = Get-SCSMObject -Class $MonitorCl -Filter "ObjectStatus -ne $PendingDeleteEnumId"
+ if($MonitorDevices)
+ {
+    foreach ($MonitorDevice in $MonitorDevices)
+  {
+   try
+    {
+    $mAssetsRel = (Get-SCSMRelationshipObject -BySource $MonitorDevice | ? {$_.RelationshipId -eq $($HardwareAssetRefMonitorRelCl.id)}).SourceObject
+    }
+   finally
+    {
+    $mAssetTag = $null
+    $MonitorUser= $null
+    $MonitorAsset =$null
+    if($MonitorDevice.SerialNumber)
+     {
+     $MonitorDevice = "$PreFix" + $($MonitorDevice.SerialNumber)
+     }
+    else{$mAssetTag = "NOT PRESENT"}
+    
+    if(!$mAssetsRel)
+     {
+     $mAssetRelHashTable=@{
+          "AssetName" = $($MonitorDevice.DisplayName);
+                "DisplayName" = $($MonitorDevice.DisplayName);
+                "Type" = $MonitorAssetTyteId;
+                "ReadinessStatus" = $ReadinessStatusEnumId;
+                "AssetTag" = $mAssetTag;
+          "AssetStatus" = $AssetStatusEnumDeployedId;
+          }
+     $MonitorAsset= New-SCSMObject -Class $HardwareAssetClass -PropertyHashtable $mAssetRelHashTable -PassThru
+     New-SCSMRelationshipObject -Source $MonitorAsset -Target $MonitorDevice -Relationship $HardwareAssetRefMonitorRelCl -Bulk
+     $MonitorUser= (Get-SCSMRelationshipObject -BySource $MonitorDevice -ErrorAction SilentlyContinue | ? {$_.RelationshipId -eq $($MonitorUserRelCL.Id)}).TargetObject
+      if($MonitorUser)
+       {
+       New-SCSMRelationshipObject -Source $MonitorAsset -Target $MonitorUser -Relationship $MonitorUserRelCL -Bulk
+       }
+     
+     
+     }
+     
+    }
+   
+  
+  
+  
+  }
+   
+   
+   
+   
+   }
+ Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId 10000 -Category 0 -EntryType Information -Message "Hardware Connector Finished Processing of Monitor Objects"
+
+
+ #Process OtherDevice
+ Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId 10000 -Category 0 -EntryType Information -Message "Hardware Connector Start Processing of Other Device Objects"
+ $OtherDevices = Get-SCSMObject -Class $OtherDeviceCl -Filter "ObjectStatus -ne $PendingDeleteEnumId"
+ if($OtherDevices)
+ {
+    foreach ($OtherDevice in $OtherDevices)
+  {
+   try
+    {
+    $oAssetsRel = (Get-SCSMRelationshipObject -BySource $OtherDevice | ? {$_.RelationshipId -eq $($HardwareAssetRefOtherDevRelCl.id)}).SourceObject
+    }
+   finally
+    {
+    $oAssetTag = $null
+    $OtherDeUser= $null
+    $OtherDevAsset =$null
+    if($OtherDevice.SerialNumber)
+     {
+     $OtherDevice = "$PreFix" + $($OtherDevice.SerialNumber)
+     }
+    else{$oAssetTag = "NOT PRESENT"}
+    
+    if(!$oAssetsRel)
+     {
+     $oAssetRelHashTable=@{
+          "AssetName" = $($OtherDevice.DisplayName);
+                "DisplayName" = $($OtherDevice.DisplayName);
+                "Type" = $OtherDeviceTypeId;
+                "ReadinessStatus" = $ReadinessStatusEnumId;
+                "AssetTag" = $oAssetTag;
+          "AssetStatus" = $AssetStatusEnumDeployedId;
+          }
+     $OtherDeviceAsset= New-SCSMObject -Class $HardwareAssetClass -PropertyHashtable $oAssetRelHashTable -PassThru
+     New-SCSMRelationshipObject -Source $OtherDeviceAsset -Target $OtherDevice -Relationship $HardwareAssetRefOtherDevRelCl -Bulk
+     $OtherDevUser= (Get-SCSMRelationshipObject -BySource $OtherDevice -ErrorAction SilentlyContinue | ? {$_.RelationshipId -eq $($OtherDeviceRelCl.Id)}).TargetObject
+      if($OtherDevUser)
+       {
+       New-SCSMRelationshipObject -Source $OtherDeviceAsset -Target $OtherDevUser -Relationship $OtherDeviceRelCl -Bulk
+       }
+     
+     
+     }
+     
+    }
+   
+  
+  
+  
+  }
+   
+   
+   
+   
+   }
+  Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId 10000 -Category 0 -EntryType Information -Message "Hardware Connector Finished Processing of Other Device Objects"
+
  
  
  #Process Manufacturers And Final Models Count.
@@ -1950,10 +2215,10 @@ if ($HardwareConnectorAdminSettingObj.IsActive -eq $true)
 #NOTES
 #===========================================================================
 #Created with:  SAPIEN Technologies, Inc., PowerShell Studio 2015
-#Created on:    17/8/2016 18:00 PM
+#Created on:    13/5/2017 24:00 PM
 #Created by:     Evangelos Kapsalakis
 #Organization:   Microsoft Hellas
-#Filename:  Hardware Connector V4.1
+#Filename:  Hardware Connector V5.1
 #===========================================================================
 #.DESCRIPTION
 #A description of the file.
@@ -1968,26 +2233,36 @@ if ($HardwareConnectorAdminSettingObj.IsActive -eq $true)
  
  Try
  {
-  $ActiveId = (Get-SCSMEnumeration -Name ITSMConnectorStatus.Running$).id
-  Set-SCSMObject -SMObject $HardwareConnectorAdminSettingObj -Property "Status" -Value $ActiveId
+   $ActiveId = (Get-SCSMEnumeration -Name ITSMConnectorStatus.Running$).id
  }
- Catch { }
- 
- 
+ Catch 
+  {
+   $ActiveId = $null
+  }
+ Finally
+  {
+ if($ActiveId)
+  {
+    Set-SCSMObject -SMObject $HardwareConnectorAdminSettingObj -Property "Status" -Value $ActiveId
+  }
+ }
  
  ##
  try
  {
-  $SQLSrv = (Get-SCSMConnector  | ?{ $_.DataProviderName -eq "SmsConnector" }).ServerName
-  $DBName = (Get-SCSMConnector  | ?{ $_.DataProviderName -eq "SmsConnector" }).DatabaseName
+   $SQLSrv = (Get-SCSMConnector  | ?{ $_.DataProviderName -eq "SmsConnector" }).ServerName
+   $DBName = (Get-SCSMConnector  | ?{ $_.DataProviderName -eq "SmsConnector" }).DatabaseName
  }
- catch { }
+ catch 
+  {
+   $SQLSrv = $null
+  $DBName = $null
+  }
  
  Try
  {
   $events = [System.Diagnostics.EventLog]::SourceExists("Hardware Connector");
  }
- catch { }
  finally
  {
   if ($events -ne $true)
@@ -2054,6 +2329,19 @@ if ($HardwareConnectorAdminSettingObj.IsActive -eq $true)
  $ContainVolumeRelCl = Get-SCSMRelationshipClass -Name Relationship.HardwareContainsVolumes$
  $DevHasSoftInstalledRelClId = (Get-SCSMRelationshipClass -Name System.DeviceHasSoftwareItemInstalled$).id
  $DevHasUpdInstalledRelClId = (Get-SCSMRelationshipClass -Name System.DeviceHasSoftwareUpdateInstalled$).id
+ $ScannerCl = Get-SCSMClass -Name Scanner$
+ $HardwareAssetReferenceScannerRelCl= Get-SCSMRelationshipClass -Name Relationship.HardwareAssetReferencesScannerDevice$
+ $ScannerAssetTypeId= (Get-SCSMEnumeration HardwareAssetType.Scanner$).id
+ $AssetStatusEnumDeployedId = (Get-SCSMEnumeration -Name System.ConfigItem.AssetStatusEnum.Deployed$).id
+ $ScannerUserRelCl = Get-SCSMRelationshipClass -Name Relationship.ScannerHasUser$
+ $MonitorCl = Get-SCSMClass -Name Monitor$
+ $HardwareAssetRefMonitorRelCl = Get-SCSMRelationshipClass -Name Relationship.HardwareAssetReferencesMonitorDevice$
+ $MonitorAssetTyteId = (Get-SCSMEnumeration -Name HardwareAssetType.Monitor$).id
+ $MonitorUserRelCL= Get-SCSMRelationshipClass -Name Relationship.MonitorHasUser$
+ $OtherDeviceCl = Get-SCSMClass -Name OtherDevice$
+ $HardwareAssetRefOtherDevRelCl = Get-SCSMRelationshipClass -Name Relationship.HardwareAssetReferencesOtherDevice$
+ $OtherDeviceTypeId= (Get-SCSMEnumeration -Name HardwareAssetType.OtherDevice$).id
+ $OtherDeviceRelCl= Get-SCSMRelationshipClass -Name Relationship.OtherDeviceHasUser$
  
  #Asset Class Enum
  $ComputerHWAssetEnumId = (Get-SCSMEnumeration -Name HardwareAssetClass.Computer$).id
@@ -2091,7 +2379,9 @@ if ($HardwareConnectorAdminSettingObj.IsActive -eq $true)
  {
   param (
    [string]$COMP,
+   [ValidateNotNullOrEmpty()]
    [string]$Server,
+   [ValidateNotNullOrEmpty()]
    [string]$Database
   )
   
@@ -2132,7 +2422,9 @@ if ($HardwareConnectorAdminSettingObj.IsActive -eq $true)
  function Get-InactiveComputers
  {
   param (
+   [ValidateNotNullOrEmpty()]
    [string]$Server,
+   [ValidateNotNullOrEmpty()]
    [string]$Database
   )
   
@@ -2165,9 +2457,15 @@ if ($HardwareConnectorAdminSettingObj.IsActive -eq $true)
   
  }
  
- $InactiveComputers = $null
- $InactiveComputers = Get-InactiveComputers -Server $SQLSrv -Database $DBName
- 
+  if($SQLSrv)
+    {
+    $InactiveComputers = $null
+    $InactiveComputers = Get-InactiveComputers -Server $SQLSrv -Database $DBName
+    }
+  else{
+      Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId 10000 -Category 0 -EntryType Information -Message "SCCM Connector is not enabled"
+    }
+  
  #Process Windows Computers
  Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId 10000 -Category 0 -EntryType Information -Message "Hardware Connector Start Processing of Computer Objects"
  $WindowsComputers = Get-SCSMObjectProjection -Projection $ComputerProjectionClass -Filter "ObjectStatus -eq $ActiveObjEnum"
@@ -2199,8 +2497,12 @@ if ($HardwareConnectorAdminSettingObj.IsActive -eq $true)
      try
      {
       $Res = $null
-      $Res = Get-ProcessorDetails -COMP $($WindowsComputer.NetbiosComputerName) -Server $SQLSrv -Database $DBName
-     }
+   if($SQLSrv)
+   {
+       $Res = Get-ProcessorDetails -COMP $($WindowsComputer.NetbiosComputerName) -Server $SQLSrv -Database $DBName
+   }
+  
+  }
      Catch
      {
       $Res = $null
@@ -2208,23 +2510,31 @@ if ($HardwareConnectorAdminSettingObj.IsActive -eq $true)
      }
      Finally
      {
-      if (($Res.Processors | Measure-Object).Count -gt 1)
-      {
-       $FPhyProcSum = $null
-       $LogicProc = $null
-       $FPhyProcSum = $($Res.Processors) -join '+'
-       $LogicProc = Invoke-Expression $FPhyProcSum
-       
-       $FPhyCorSum = $($Res.Cores) -join '+'
-       $PhysProc = Invoke-Expression $FPhyCorSum
-       
-      }
-      else
-      {
-       $LogicProc = $null
-       $PhysProc = $null
-       $LogicProc = $Res.Processors
-       $PhysProc = $Res.Cores
+  if($Res)
+  {
+       if (($Res.Processors | Measure-Object).Count -gt 1)
+       {
+        $FPhyProcSum = $null
+        $LogicProc = $null
+        $FPhyProcSum = $($Res.Processors) -join '+'
+        $LogicProc = Invoke-Expression $FPhyProcSum
+        $FPhyCorSum = $($Res.Cores) -join '+'
+        $PhysProc = Invoke-Expression $FPhyCorSum
+        
+       }
+       else
+       {
+        $LogicProc = $null
+        $PhysProc = $null
+        $LogicProc = $Res.Processors
+        $PhysProc = $Res.Cores
+       }
+   }
+   else{
+     $LogicProc = $null
+         $PhysProc = $null
+   $LogicProc = $WindowsComputer.LogicalProcessors
+   $PhysProc = $WindowsComputer.PhysicalProcessors
       }
       
      }
@@ -2422,19 +2732,26 @@ if ($HardwareConnectorAdminSettingObj.IsActive -eq $true)
        
        if ($iNewMan)
        {
-        
-        $Key = ($HardwareConnectorAdminSettingObj.Searchkey)
-        $env:MS_BingSearch_API_key = "$Key"
-        $Uri = 'https://api.cognitive.microsoft.com/bing/v5.0/search?q=' + $CompManufacturer
-        $Result = Invoke-RestMethod -Uri $Uri -Method 'GET' -ContentType 'application/json' -Headers @{ 'Ocp-Apim-Subscription-Key' = $env:MS_BingSearch_API_key }
-        $Url = $Result.webPages.value[0].displayUrl
-        $ManUrl = "http://" + $Url
-        
-        if ($ManUrl)
-        {
-         Set-SCSMObject -SMObject $iNewMan -Property "ManufacturerWebSite" -Value $ManUrl
-         
-        }
+        try{
+          $Key = ($HardwareConnectorAdminSettingObj.Searchkey)
+          $env:MS_BingSearch_API_key = "$Key"
+          $Uri = 'https://api.cognitive.microsoft.com/bing/v5.0/search?q=' + $CompManufacturer
+          $Result = Invoke-RestMethod -Uri $Uri -Method 'GET' -ContentType 'application/json' -Headers @{ 'Ocp-Apim-Subscription-Key' = $env:MS_BingSearch_API_key }
+          $Url = $Result.webPages.value[0].displayUrl
+          $ManUrl = "http://" + $Url
+      }
+  catch
+   {
+   $ManUrl = $null
+   Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId $WarningId -Category 0 -EntryType Warning -Message "SCSM Server Cannot Find Manufacturer URL. Please Check if you have Insert the Bing API Key in Hardware Connector Setting, or SCSM Server is connected to Internet."
+   }
+  finally
+   {
+          if ($ManUrl)
+          {
+           Set-SCSMObject -SMObject $iNewMan -Property "ManufacturerWebSite" -Value $ManUrl
+          }
+   }
        }
       }
      }
@@ -2465,19 +2782,28 @@ if ($HardwareConnectorAdminSettingObj.IsActive -eq $true)
        
        if ($iModEx)
        {
-        $Key = ($HardwareConnectorAdminSettingObj.Searchkey)
-        $env:MS_BingSearch_API_key = "$Key"
-        $Uri = 'https://api.cognitive.microsoft.com/bing/v5.0/search?q=' + $CompModel
-        $Result = Invoke-RestMethod -Uri $Uri -Method 'GET' -ContentType 'application/json' -Headers @{ 'Ocp-Apim-Subscription-Key' = $env:MS_BingSearch_API_key }
-        $Url = $Result.webPages.value[0].displayUrl
-        $ModelUrl = "http://" + $Url
-        
-        
+      try
+   {
+           $Key = ($HardwareConnectorAdminSettingObj.Searchkey)
+           $env:MS_BingSearch_API_key = "$Key"
+           $Uri = 'https://api.cognitive.microsoft.com/bing/v5.0/search?q=' + $CompModel
+           $Result = Invoke-RestMethod -Uri $Uri -Method 'GET' -ContentType 'application/json' -Headers @{ 'Ocp-Apim-Subscription-Key' = $env:MS_BingSearch_API_key }
+           $Url = $Result.webPages.value[0].displayUrl
+           $ModelUrl = "http://" + $Url
+   }
+  catch
+   {
+   $ModelUrl = $null
+   Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId $WarningId -Category 0 -EntryType Warning -Message "SCSM Server Cannot Find Model URL. Please Check if you have Insert the Bing API Key in Hardware Connector Setting, or SCSM Server is connected to Internet."
+   }
+  finally
+   {        
         if ($ModelUrl)
-        {
-         Set-SCSMObject -SMObject $iModEx -Property "ModelWebSite" -Value $ModelUrl
-        }
-       }
+           {
+            Set-SCSMObject -SMObject $iModEx -Property "ModelWebSite" -Value $ModelUrl
+           }
+         }
+    }
       }
       
       #Relationships
@@ -2554,6 +2880,9 @@ if ($HardwareConnectorAdminSettingObj.IsActive -eq $true)
    {
     $ActualHw = Get-SCSMObject -Class $HardwareClass -Filter "DeviceName -eq $($WindowsComputer.PrincipalName)"
     [datetime]$LastModified = $WindowsComputer.Object.LastModified
+ $ObjLast = $null
+ $WinCLast = $null
+ 
     $ObjLast = Get-Date -Date $($ActualHW.LastModifiedSync) -Format "yyyy-MM-dd hh:mm"
     $WinCLast = Get-Date -Date $($WindowsComputer.LastModified) -Format "yyyy-MM-dd hh:mm"
     if ($ObjLast -ne $WinCLast)
@@ -2675,9 +3004,8 @@ if ($HardwareConnectorAdminSettingObj.IsActive -eq $true)
          
         }
         
-        
        }
-       elseif (($RelationshipChanges.ManagementPackRelationshipTypeId -ne $DevHasSoftInstalledRelClId) -or ($RelationshipChanges.ManagementPackRelationshipTypeId -ne $DevHasUpdInstalledRelClId))
+       elseif (($($RelationshipChanges.ManagementPackRelationshipTypeId) -ne $DevHasSoftInstalledRelClId) -or ($($RelationshipChanges.ManagementPackRelationshipTypeId) -ne $DevHasUpdInstalledRelClId))
        {
         $SourceObj = $null
         $TargetObj = $null
@@ -2692,47 +3020,57 @@ if ($HardwareConnectorAdminSettingObj.IsActive -eq $true)
         $Src = $null
         $Tar = $null
         $Rel = $null
-        
-        $Src = Get-SCSMObject -Id $SourceObj
-        $Tar = Get-SCSMObject -Id $TargetObj
-        $Rel = Get-SCSMRelationshipClass -id = $RelationshipClassObj
-        
-        if ($RChangeType -eq "Insert")
-        {
-         try
-         {
-          New-SCSMRelationshipObject -Source $Src -Target $Tar -Relationship $Rel -Bulk
+     try
+   {
+         $Src = Get-SCSMObject -Id $SourceObj
+         $Tar = Get-SCSMObject -Id $TargetObj
+         $Rel = Get-SCSMRelationshipClass -id $RelationshipClassObj
          }
-         catch
-         {
-          Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId $ErrorID -Category 0 -EntryType Error -Message "Hardware Connector Cannot Update Object Relationships:$ActualHw For Relationship:$Rel with Source:$Src and Target:$Tar for Change Type:$ChangeType with Error: $($_.Exception.Message)"
-         }
-        }
-        elseIf ($RChangeType -eq "Modify")
-        {
-         try
-         {
-          New-SCSMRelationshipObject -Source $Src -Target $Tar -Relationship $Rel -Bulk
-         }
-         catch
-         {
-          Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId $ErrorID -Category 0 -EntryType Error -Message "Hardware Connector Cannot Update Object Relationships:$ActualHw For Relationship:$Rel with Source:$Src and Target:$Tar for Change Type:$ChangeType with Error: $($_.Exception.Message)"
-         }
-        }
-        elseif ($RChangeType -eq "Delete")
-        {
-         try
-         {
-          Get-SCSMRelationshipObject -BySource $Src | ? { ($_.RelationshipClassId -eq $Rel) } | Remove-SCSMRelationshipObject
-         }
-         catch
-         {
-          
-          Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId $ErrorID -Category 0 -EntryType Error -Message "Hardware Connector Cannot Update Object Relationships:$ActualHw For Relationship:$Rel with Source:$Src and Target:$Tar for Change Type:$ChangeType with Error: $($_.Exception.Message)"
-          
-         }
-        }
-        
+  catch{
+    Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId $ErrorID -Category 0 -EntryType Error -Message " SRC:$($SRC) , Tar:$($Tar) , Rel: $($Rel), Hardware Connector Cannot Update Object: $ActualHw For Property $Propery with Value: $Value and Method: $ChangeType with Error: $($_.Exception.Message)"
+
+    }
+  finally
+   {
+   if($Src -and $Tar -and $Rel) 
+    {
+          if ($RChangeType -eq "Insert")
+          {
+           try
+           {
+            New-SCSMRelationshipObject -Source $Src -Target $Tar -Relationship $Rel -Bulk
+           }
+           catch
+           {
+            Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId $ErrorID -Category 0 -EntryType Error -Message "Hardware Connector Cannot Update Object Relationships:$ActualHw For Relationship:$Rel with Source:$Src and Target:$Tar for Change Type:$ChangeType with Error: $($_.Exception.Message)"
+           }
+          }
+          elseIf ($RChangeType -eq "Modify")
+          {
+           try
+           {
+            New-SCSMRelationshipObject -Source $Src -Target $Tar -Relationship $Rel -Bulk
+           }
+           catch
+           {
+            Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId $ErrorID -Category 0 -EntryType Error -Message "Hardware Connector Cannot Update Object Relationships:$ActualHw For Relationship:$Rel with Source:$Src and Target:$Tar for Change Type:$ChangeType with Error: $($_.Exception.Message)"
+           }
+          }
+          elseif ($RChangeType -eq "Delete")
+          {
+           try
+           {
+            Get-SCSMRelationshipObject -BySource $Src | ? { ($_.RelationshipClassId -eq $Rel) } | Remove-SCSMRelationshipObject
+           }
+           catch
+           {
+            
+            Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId $ErrorID -Category 0 -EntryType Error -Message "Hardware Connector Cannot Update Object Relationships:$ActualHw For Relationship:$Rel with Source:$Src and Target:$Tar for Change Type:$ChangeType with Error: $($_.Exception.Message)"
+            
+           }
+          }
+          }
+   }
        }
        
       }
@@ -2748,347 +3086,369 @@ if ($HardwareConnectorAdminSettingObj.IsActive -eq $true)
  
  #Process Network Devices
  Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId 10000 -Category 0 -EntryType Information -Message "Hardware Connector Start Processing of Network Objects"
- $NetworkDevices = Get-SCSMObject -Class $NetworkClass -Filter "ObjectStatus -ne $PendingDeleteEnumId"
- if ($NetworkDevices)
- {
-  foreach ($NetDevice in $NetworkDevices)
+if($NetworkClass)
+{
+  $NetworkDevices = Get-SCSMObject -Class $NetworkClass -Filter "ObjectStatus -ne $PendingDeleteEnumId"
+  if ($NetworkDevices)
   {
-   [datetime]$LastModified = $NetDevice.LastModified
-   $NetDevExists = Get-SCSMObject -Class $NetworkDeviceClass -Filter "SNMPAddress -eq '$($NetDevice.SNMPAddress)' and ObjectStatus -ne '$PendingDeleteEnumId'"
-   if (!$NetDevExists)
+   foreach ($NetDevice in $NetworkDevices)
    {
     [datetime]$LastModified = $NetDevice.LastModified
-    [string]$NetDevHash = $($NetDevice.SNMPAddress) + $($NetDevice.sysName) + $($NetDevice.Model) + $($NetDevice.Vendor) + $($LastModified.ToString())
-    $ObjectHash = Get-StringHash -String $NetDevHash
-    
-    $NetHashTable = @{
-     
-     "DisplayName" = $($NetDevice.SNMPAddress);
-     "DeviceName" = $($NetDevice.sysName);
-     "Ports" = $($NetDevice.PortNumber);
-     "SNMPAddress" = $($NetDevice.SNMPAddress);
-     "SupportsSNMP" = $($NetDevice.SupportsSNMP);
-     "ObjectHash" = $ObjectHash
-     "LastDiscoveredDate" = (Get-Date);
-     "Location" = $($NetDevice.Location);
-     "SNMPVersion" = $($NetDevice.SNMPVersion);
-     "Description" = $($NetDevice.Description);
-     "Status" = $ActiveDeviceStatusEnumId;
-     "LastModifiedSync" = $LastModified;
-     
-     
-    }
-    try
+    $NetDevExists = Get-SCSMObject -Class $NetworkDeviceClass -Filter "SNMPAddress -eq '$($NetDevice.SNMPAddress)' and ObjectStatus -ne '$PendingDeleteEnumId'"
+    if (!$NetDevExists)
     {
-     $NewNetDevice = New-SCSMObject -Class $NetworkDeviceClass -PropertyHashtable $NetHashTable -PassThru
-     New-SCSMRelationshipObject -Relationship $ConfigItemRelCl -Source $NewNetDevice -Target $NetDevice -Bulk
+     [datetime]$LastModified = $NetDevice.LastModified
+     [string]$NetDevHash = $($NetDevice.SNMPAddress) + $($NetDevice.sysName) + $($NetDevice.Model) + $($NetDevice.Vendor) + $($LastModified.ToString())
+     $ObjectHash = Get-StringHash -String $NetDevHash
      
-     if ($NetDevice.PrimaryOwnerName)
-     {
-      $Owner = Get-SCSMObject -Class $UserClass -Filter "DisplayName -like $($NetDevice.PrimaryOwnerName)"
-      if ($Owner)
-      {
-       $MustRelateOwner = New-SCSMRelationshipObject -Source $NewNetDevice -Target $Owner -Relationship $NetDevUserRelationShip -Bulk
-      }
-     }
-     
-     if ($NetDevice.Vendor)
-     {
-      $NewMan = $null
-      $NewMan = Get-SCSMObject -Class $DevManufacturer -Filter "DisplayName -eq $($NetDevice.Vendor)"
-      if ($NewMan)
-      {
-       $RelMan = New-SCSMRelationshipObject -Source $NewNetDevice -Target $NewMan -Relationship $NetDevModelRel -Bulk
-       
-      }
-      else
-      {
-       
-       $VendorHashTable = @{
-        
-        "DisplayName" = $($NetDevice.Vendor);
-        "ManufacturerName" = $($NetDevice.Vendor);
-        
-       }
-       
-       $NewMan = New-SCSMObject -Class $DevManufacturer -PropertyHashtable $VendorHashTable -PassThru
-       $RelMan = New-SCSMRelationshipObject -Source $NewNetDevice -Target $NewMan -Relationship $NetDevManufactRel -Bulk
-       
-       
-      }
+     $NetHashTable = @{
       
-      if ($NewMan)
+      "DisplayName" = $($NetDevice.SNMPAddress);
+      "DeviceName" = $($NetDevice.sysName);
+      "Ports" = $($NetDevice.PortNumber);
+      "SNMPAddress" = $($NetDevice.SNMPAddress);
+      "SupportsSNMP" = $($NetDevice.SupportsSNMP);
+      "ObjectHash" = $ObjectHash
+      "LastDiscoveredDate" = (Get-Date);
+      "Location" = $($NetDevice.Location);
+      "SNMPVersion" = $($NetDevice.SNMPVersion);
+      "Description" = $($NetDevice.Description);
+      "Status" = $ActiveDeviceStatusEnumId;
+      "LastModifiedSync" = $LastModified;
+      
+      
+     }
+     try
+     {
+      $NewNetDevice = New-SCSMObject -Class $NetworkDeviceClass -PropertyHashtable $NetHashTable -PassThru
+      New-SCSMRelationshipObject -Relationship $ConfigItemRelCl -Source $NewNetDevice -Target $NetDevice -Bulk
+      
+      if ($NetDevice.PrimaryOwnerName)
       {
-       
-       $Key = ($HardwareConnectorAdminSettingObj.Searchkey)
-       $env:MS_BingSearch_API_key = "$Key"
-       $Uri = 'https://api.cognitive.microsoft.com/bing/v5.0/search?q=' + $($NetDevice.Vendor)
-       $Result = Invoke-RestMethod -Uri $Uri -Method 'GET' -ContentType 'application/json' -Headers @{ 'Ocp-Apim-Subscription-Key' = $env:MS_BingSearch_API_key }
-       $Url = $Result.webPages.value[0].displayUrl
-       $ManUrl = "http://" + $Url
-       
-       if ($ManUrl)
+       $Owner = Get-SCSMObject -Class $UserClass -Filter "DisplayName -like $($NetDevice.PrimaryOwnerName)"
+       if ($Owner)
        {
-        Set-SCSMObject -SMObject $NewMan -Property "ManufacturerWebSite" -Value $ManUrl
-        
+        $MustRelateOwner = New-SCSMRelationshipObject -Source $NewNetDevice -Target $Owner -Relationship $NetDevUserRelationShip -Bulk
        }
       }
       
-     }
-     
-     
-     if ($NetDevice.Model)
-     {
-      $ModEx = $null
-      $ModEx = Get-SCSMObject -Class $DevModel -Filter "DisplayName -eq $($NetDevice.Model)"
-      if ($ModEx)
+      if ($NetDevice.Vendor)
       {
-       $RelModel = New-SCSMRelationshipObject -Source $NewNetDevice -Target $ModEx -Relationship $NetDevModelRel -Bulk
-       $RelDevMan = New-SCSMRelationshipObject -Source $RelModel -Target $NewMan -Relationship $ModelHasManufacturerRelCl -Bulk
-       
-      }
-      else
-      {
-       
-       $ModelHashTable = @{
+       $NewMan = $null
+       $NewMan = Get-SCSMObject -Class $DevManufacturer -Filter "DisplayName -eq $($NetDevice.Vendor)"
+       if ($NewMan)
+       {
+        $RelMan = New-SCSMRelationshipObject -Source $NewNetDevice -Target $NewMan -Relationship $NetDevModelRel -Bulk
         
-        "DisplayName" = $($NetDevice.Model);
-        "ModelName" = $($NetDevice.Model);
+       }
+       else
+       {
+        
+        $VendorHashTable = @{
+         
+         "DisplayName" = $($NetDevice.Vendor);
+         "ManufacturerName" = $($NetDevice.Vendor);
+         
+        }
+        
+        $NewMan = New-SCSMObject -Class $DevManufacturer -PropertyHashtable $VendorHashTable -PassThru
+        $RelMan = New-SCSMRelationshipObject -Source $NewNetDevice -Target $NewMan -Relationship $NetDevManufactRel -Bulk
+        
         
        }
        
-       $ModEx = New-SCSMObject -Class $DevModel -PropertyHashtable $ModelHashTable -PassThru
+       if ($NewMan)
+       {
+        try
+      {
+          $Key = ($HardwareConnectorAdminSettingObj.Searchkey)
+          $env:MS_BingSearch_API_key = "$Key"
+          $Uri = 'https://api.cognitive.microsoft.com/bing/v5.0/search?q=' + $($NetDevice.Vendor)
+          $Result = Invoke-RestMethod -Uri $Uri -Method 'GET' -ContentType 'application/json' -Headers @{ 'Ocp-Apim-Subscription-Key' = $env:MS_BingSearch_API_key }
+          $Url = $Result.webPages.value[0].displayUrl
+          $ManUrl = "http://" + $Url
+   }
+  catch
+   {
+   $ManUrl = $null
+   Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId $WarningId -Category 0 -EntryType Warning -Message "SCSM Server Cannot Find Network Manufacturer URL. Please Check if you have Insert the Bing API Key in Hardware Connector Setting, or SCSM Server is connected to Internet."
+   }
+  finally
+   {               
+          if ($ManUrl)
+          {
+           Set-SCSMObject -SMObject $NewMan -Property "ManufacturerWebSite" -Value $ManUrl
+          }
+     }
+    
+    }
+       
       }
+      
+      
       if ($NetDevice.Model)
       {
-       
-       $Key = ($HardwareConnectorAdminSettingObj.Searchkey)
-       $env:MS_BingSearch_API_key = "$Key"
-       $Uri = 'https://api.cognitive.microsoft.com/bing/v5.0/search?q=' + $($NetDevice.Model)
-       $Result = Invoke-RestMethod -Uri $Uri -Method 'GET' -ContentType 'application/json' -Headers @{ 'Ocp-Apim-Subscription-Key' = $env:MS_BingSearch_API_key }
-       $Url = $Result.webPages.value[0].displayUrl
-       $ModelUrl = "http://" + $Url
-       
-       
-       if ($ModelUrl)
+       $ModEx = $null
+       $ModEx = Get-SCSMObject -Class $DevModel -Filter "DisplayName -eq $($NetDevice.Model)"
+       if ($ModEx)
        {
-        Set-SCSMObject -SMObject $ModEx -Property "ModelWebSite" -Value $ModelUrl
+        $RelModel = New-SCSMRelationshipObject -Source $NewNetDevice -Target $ModEx -Relationship $NetDevModelRel -Bulk
+        $RelDevMan = New-SCSMRelationshipObject -Source $RelModel -Target $NewMan -Relationship $ModelHasManufacturerRelCl -Bulk
+        
        }
+       else
+       {
+        
+        $ModelHashTable = @{
+         
+         "DisplayName" = $($NetDevice.Model);
+         "ModelName" = $($NetDevice.Model);
+         
+        }
+        
+        $ModEx = New-SCSMObject -Class $DevModel -PropertyHashtable $ModelHashTable -PassThru
+       }
+ if ($NetDevice.Model)
+    {
+        
+  try
+   { 
+       $Key = ($HardwareConnectorAdminSettingObj.Searchkey)
+          $env:MS_BingSearch_API_key = "$Key"
+          $Uri = 'https://api.cognitive.microsoft.com/bing/v5.0/search?q=' + $($NetDevice.Model)
+          $Result = Invoke-RestMethod -Uri $Uri -Method 'GET' -ContentType 'application/json' -Headers @{ 'Ocp-Apim-Subscription-Key' = $env:MS_BingSearch_API_key }
+          $Url = $Result.webPages.value[0].displayUrl
+          $ModelUrl = "http://" + $Url
+   }
+  catch
+   {
+   $ModelUrl = $null
+   Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId $WarningId -Category 0 -EntryType Warning -Message "SCSM Server Cannot Find Network Model URL. Please Check if you have Insert the Bing API Key in Hardware Connector Setting, or SCSM Server is connected to Internet."
+   }
+  finally
+   {                    
+          
+          if ($ModelUrl)
+          {
+           Set-SCSMObject -SMObject $ModEx -Property "ModelWebSite" -Value $ModelUrl
+          }
       }
-      $RelModel = New-SCSMRelationshipObject -Source $NewNetDevice -Target $ModEx -Relationship $NetDevModelRel -Bulk
-      $RelDevMan = New-SCSMRelationshipObject -Source $ModEx -Target $NewMan -Relationship $ModelHasManufacturerRelCl -Bulk
+  }
+       $RelModel = New-SCSMRelationshipObject -Source $NewNetDevice -Target $ModEx -Relationship $NetDevModelRel -Bulk
+       $RelDevMan = New-SCSMRelationshipObject -Source $ModEx -Target $NewMan -Relationship $ModelHasManufacturerRelCl -Bulk
+       
+      }
       
+      $DevAssetEx = Get-SCSMObject -Class $HardwareAssetClass -Filter "DisplayName -eq $($NewNetDevice.DisplayName)"
+      if (!$DevAssetEx)
+      {
+       $AssetHashTable = @{
+        "AssetName" = $($NewNetDevice.DisplayName);
+        "DisplayName" = $($NewNetDevice.DisplayName);
+        "Type" = $NetHardwareAssetTypeId;
+        "ReadinessStatus" = $ReadinessStatusEnumId;
+        "AssetTag" = $AssetTag;
+       }
+       $DevAsset = New-SCSMObject -Class $HardwareAssetClass -PropertyHashtable $AssetHashTable -PassThru
+       New-SCSMRelationshipObject -Relationship $HAssetRefNetRelCl -Source $DevAsset -Target $NewNetDevice -Bulk
+      }
+     }
+     catch
+     {
      }
      
-     $DevAssetEx = Get-SCSMObject -Class $HardwareAssetClass -Filter "DisplayName -eq $($NewNetDevice.DisplayName)"
-     if (!$DevAssetEx)
-     {
-      $AssetHashTable = @{
-       "AssetName" = $($NewNetDevice.DisplayName);
-       "DisplayName" = $($NewNetDevice.DisplayName);
-       "Type" = $NetHardwareAssetTypeId;
-       "ReadinessStatus" = $ReadinessStatusEnumId;
-       "AssetTag" = $AssetTag;
-      }
-      $DevAsset = New-SCSMObject -Class $HardwareAssetClass -PropertyHashtable $AssetHashTable -PassThru
-      New-SCSMRelationshipObject -Relationship $HAssetRefNetRelCl -Source $DevAsset -Target $NewNetDevice -Bulk
-     }
+     
+     
     }
-    catch
+    else
     {
-    }
-    
-    
-    
-   }
-   else
-   {
-    $NObjLast = Get-Date -Date $($NetDevExists.LastModifiedSync) -Format "yyyy-MM-dd hh:mm"
-    $NetDvLast = Get-Date -Date $($NetDevice.LastModified) -Format "yyyy-MM-dd hh:mm"
-    if ($NObjLast -ne $NetDvLast)
-    {
-     $ObjHistory = $null
-     $emg = $null
-     $emg = New-Object Microsoft.EnterpriseManagement.EnterpriseManagementGroup "localhost"
-     $ObjHistory = $emg.EntityObjects.GetObjectHistoryTransactions($NetDevice) | ? { $_.DateOccurred -gt $($NetDevExists.LastModifiedSync) }
-     foreach ($ObjHist in $ObjHistory)
+     $NObjLast = Get-Date -Date $($NetDevExists.LastModifiedSync) -Format "yyyy-MM-dd hh:mm"
+     $NetDvLast = Get-Date -Date $($NetDevice.LastModified) -Format "yyyy-MM-dd hh:mm"
+     if ($NObjLast -ne $NetDvLast)
      {
-      try
+      $ObjHistory = $null
+      $emg = $null
+      $emg = New-Object Microsoft.EnterpriseManagement.EnterpriseManagementGroup "localhost"
+      $ObjHistory = $emg.EntityObjects.GetObjectHistoryTransactions($NetDevice) | ? { $_.DateOccurred -gt $($NetDevExists.LastModifiedSync) }
+      foreach ($ObjHist in $ObjHistory)
       {
-       $PropertyChanges = $null
-       $RelationshipChanges = $null
-       
-       $PropertyChanges = $ObjHist.ObjectHistory.Values.ClassHistory.PropertyChanges
-       $RelationshipChanges = $ObjHist.ObjectHistory.Values.ClassHistory.RelationshipChanges
-      }
-      Catch
-      {
-       $PropertyChanges = $null
-       $RelationshipChanges = $null
-      }
-      Finally
-      {
-       if ($PropertyChanges)
+       try
        {
-        if ($PropertyChanges.Count -gt 1)
-        {
-         foreach ($PropertyChange in $PropertyChanges.Values.Second)
-         {
-           $Propery = $null
-           $Value = $null
-           $ChangeType = $null
-           
-           $Propery = $PropertyChange.Type.Name
-           $Value = $PropertyChange.Value
-           $ChangeType = $ObjHist.ObjectHistory.Values.ClassHistory.ChangeType
-           
-           if ($ChangeType -eq "Insert")
-           {
-            try
-            {
-             Set-SCSMObject -SMObject $NetDevExists -Property $Propery -Value $Value
-            }
-            catch
-            {
-             Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId $ErrorID -Category 0 -EntryType Error -Message "Hardware Connector Cannot Update Object: $NetDevExists For Property $Propery with Value: $Value and Method: $ChangeType with Error: $($_.Exception.Message)"
-            }
-           }
-           elseIf ($ChangeType -eq "Modify")
-           {
-            try
-            {
-             Set-SCSMObject -SMObject $NetDevExists -Property $Propery -Value $Value
-            }
-            catch
-            {
-             Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId $ErrorID -Category 0 -EntryType Error -Message "Hardware Connector Cannot Update Object: $NetDevExists For Property $Propery with Value: $Value and Method: $ChangeType with Error: $($_.Exception.Message)"
-            }
-           }
-           elseif ($ChangeType -eq "Delete")
-           {
-            try
-            {
-             Set-SCSMObject -SMObject $NetDevExists -Property $Propery -Value " "
-            }
-            catch
-            {
-             Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId $ErrorID -Category 0 -EntryType Error -Message "Hardware Connector Cannot Update Object: $NetDevExists For Property $Propery with Value: $Value and Method: $ChangeType with Error: $($_.Exception.Message)"
-            }
-           }
-         }
-        }
-        else
-        {
-           $Propery = $null
-           $Value = $null
-           $ChangeType = $null
-           
-           $Propery = $ObjHist.ObjectHistory.Values.ClassHistory.PropertyChanges.Key
-           $Value = $ObjHist.ObjectHistory.Values.ClassHistory.PropertyChanges.Value
-           $ChangeType = $ObjHist.ObjectHistory.Values.ClassHistory.PropertyChanges.ChangeType
-           
-           if ($ChangeType -eq "Insert")
-           {
-            try
-            {
-             Set-SCSMObject -SMObject $NetDevExists -Property $Propery -Value $Value
-            }
-            catch
-            {
-             Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId $ErrorID -Category 0 -EntryType Error -Message "Hardware Connector Cannot Update Object: $NetDevExists For Property $Propery with Value: $Value and Method: $ChangeType with Error: $($_.Exception.Message)"
-            }
-           }
-           elseIf ($ChangeType -eq "Modify")
-           {
-            try
-            {
-             Set-SCSMObject -SMObject $NetDevExists -Property $Propery -Value $Value
-            }
-            catch
-            {
-             Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId $ErrorID -Category 0 -EntryType Error -Message "Hardware Connector Cannot Update Object: $NetDevExists For Property $Propery with Value: $Value and Method: $ChangeType with Error: $($_.Exception.Message)"
-            }
-           }
-           elseif ($ChangeType -eq "Delete")
-           {
-            try
-            {
-             Set-SCSMObject -SMObject $NetDevExists -Property $Propery -Value ""
-            }
-            catch
-            {
-             Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId $ErrorID -Category 0 -EntryType Error -Message "Hardware Connector Cannot Update Object: $NetDevExists For Property $Propery with Value: $Value and Method: $ChangeType with Error: $($_.Exception.Message)"
-            }
-           }
-        }
+        $PropertyChanges = $null
+        $RelationshipChanges = $null
+        
+        $PropertyChanges = $ObjHist.ObjectHistory.Values.ClassHistory.PropertyChanges
+        $RelationshipChanges = $ObjHist.ObjectHistory.Values.ClassHistory.RelationshipChanges
        }
-       elseif ($RelationshipChanges)
+       Catch
        {
-        $SourceObj = $null
-        $TargetObj = $null
-        $RelationshipClassObj = $null
-        $RChangeType = $null
-        
-        $SourceObj = $ObjHist.ObjectHistory.Values.RelationshipHistory.SourceObjectId
-        $TargetObj = $ObjHist.ObjectHistory.Values.RelationshipHistory.TargetObjectId
-        $RelationshipClassObj = $ObjHist.ObjectHistory.Values.RelationshipHistory.ManagementPackRelationshipTypeId
-        $RChangeType = $ObjHist.ObjectHistory.Values.RelationshipHistory.ChangeType
-        
-        $Src = $null
-        $Tar = $null
-        $Rel = $null
-        
-        $Src = Get-SCSMObject -Id $SourceObj
-        $Tar = Get-SCSMObject -Id $TargetObj
-        $Rel = Get-SCSMRelationshipClass -id = $RelationshipClassObj
-        
-        if ($RChangeType -eq "Insert")
+        $PropertyChanges = $null
+        $RelationshipChanges = $null
+       }
+       Finally
+       {
+        if ($PropertyChanges)
         {
-         try
+         if ($PropertyChanges.Count -gt 1)
          {
-          New-SCSMRelationshipObject -Source $Src -Target $Tar -Relationship $Rel -Bulk
+          foreach ($PropertyChange in $PropertyChanges.Values.Second)
+          {
+            $Propery = $null
+            $Value = $null
+            $ChangeType = $null
+            
+            $Propery = $PropertyChange.Type.Name
+            $Value = $PropertyChange.Value
+            $ChangeType = $ObjHist.ObjectHistory.Values.ClassHistory.ChangeType
+            
+            if ($ChangeType -eq "Insert")
+            {
+             try
+             {
+              Set-SCSMObject -SMObject $NetDevExists -Property $Propery -Value $Value
+             }
+             catch
+             {
+              Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId $ErrorID -Category 0 -EntryType Error -Message "Hardware Connector Cannot Update Object: $NetDevExists For Property $Propery with Value: $Value and Method: $ChangeType with Error: $($_.Exception.Message)"
+             }
+            }
+            elseIf ($ChangeType -eq "Modify")
+            {
+             try
+             {
+              Set-SCSMObject -SMObject $NetDevExists -Property $Propery -Value $Value
+             }
+             catch
+             {
+              Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId $ErrorID -Category 0 -EntryType Error -Message "Hardware Connector Cannot Update Object: $NetDevExists For Property $Propery with Value: $Value and Method: $ChangeType with Error: $($_.Exception.Message)"
+             }
+            }
+            elseif ($ChangeType -eq "Delete")
+            {
+             try
+             {
+              Set-SCSMObject -SMObject $NetDevExists -Property $Propery -Value " "
+             }
+             catch
+             {
+              Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId $ErrorID -Category 0 -EntryType Error -Message "Hardware Connector Cannot Update Object: $NetDevExists For Property $Propery with Value: $Value and Method: $ChangeType with Error: $($_.Exception.Message)"
+             }
+            }
+          }
          }
-         catch
+         else
          {
-          Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId $ErrorID -Category 0 -EntryType Error -Message "Hardware Connector Cannot Update Object Relationships:$NetDevExists For Relationship:$Rel with Source:$Src and Target:$Tar for Change Type:$ChangeType with Error: $($_.Exception.Message)"
+            $Propery = $null
+            $Value = $null
+            $ChangeType = $null
+            
+            $Propery = $ObjHist.ObjectHistory.Values.ClassHistory.PropertyChanges.Key
+            $Value = $ObjHist.ObjectHistory.Values.ClassHistory.PropertyChanges.Value
+            $ChangeType = $ObjHist.ObjectHistory.Values.ClassHistory.PropertyChanges.ChangeType
+            
+            if ($ChangeType -eq "Insert")
+            {
+             try
+             {
+              Set-SCSMObject -SMObject $NetDevExists -Property $Propery -Value $Value
+             }
+             catch
+             {
+              Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId $ErrorID -Category 0 -EntryType Error -Message "Hardware Connector Cannot Update Object: $NetDevExists For Property $Propery with Value: $Value and Method: $ChangeType with Error: $($_.Exception.Message)"
+             }
+            }
+            elseIf ($ChangeType -eq "Modify")
+            {
+             try
+             {
+              Set-SCSMObject -SMObject $NetDevExists -Property $Propery -Value $Value
+             }
+             catch
+             {
+              Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId $ErrorID -Category 0 -EntryType Error -Message "Hardware Connector Cannot Update Object: $NetDevExists For Property $Propery with Value: $Value and Method: $ChangeType with Error: $($_.Exception.Message)"
+             }
+            }
+            elseif ($ChangeType -eq "Delete")
+            {
+             try
+             {
+              Set-SCSMObject -SMObject $NetDevExists -Property $Propery -Value ""
+             }
+             catch
+             {
+              Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId $ErrorID -Category 0 -EntryType Error -Message "Hardware Connector Cannot Update Object: $NetDevExists For Property $Propery with Value: $Value and Method: $ChangeType with Error: $($_.Exception.Message)"
+             }
+            }
          }
         }
-        elseIf ($RChangeType -eq "Modify")
+        elseif ($RelationshipChanges)
         {
-         try
+         $SourceObj = $null
+         $TargetObj = $null
+         $RelationshipClassObj = $null
+         $RChangeType = $null
+         
+         $SourceObj = $ObjHist.ObjectHistory.Values.RelationshipHistory.SourceObjectId
+         $TargetObj = $ObjHist.ObjectHistory.Values.RelationshipHistory.TargetObjectId
+         $RelationshipClassObj = $ObjHist.ObjectHistory.Values.RelationshipHistory.ManagementPackRelationshipTypeId
+         $RChangeType = $ObjHist.ObjectHistory.Values.RelationshipHistory.ChangeType
+         
+         $Src = $null
+         $Tar = $null
+         $Rel = $null
+         
+         $Src = Get-SCSMObject -Id $SourceObj
+         $Tar = Get-SCSMObject -Id $TargetObj
+         $Rel = Get-SCSMRelationshipClass -id = $RelationshipClassObj
+         
+         if ($RChangeType -eq "Insert")
          {
-          New-SCSMRelationshipObject -Source $Src -Target $Tar -Relationship $Rel -Bulk
+          try
+          {
+           New-SCSMRelationshipObject -Source $Src -Target $Tar -Relationship $Rel -Bulk
+          }
+          catch
+          {
+           Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId $ErrorID -Category 0 -EntryType Error -Message "Hardware Connector Cannot Update Object Relationships:$NetDevExists For Relationship:$Rel with Source:$Src and Target:$Tar for Change Type:$ChangeType with Error: $($_.Exception.Message)"
+          }
          }
-         catch
+         elseIf ($RChangeType -eq "Modify")
          {
-          Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId $ErrorID -Category 0 -EntryType Error -Message "Hardware Connector Cannot Update Object Relationships:$NetDevExists For Relationship:$Rel with Source:$Src and Target:$Tar for Change Type:$ChangeType with Error: $($_.Exception.Message)"
+          try
+          {
+           New-SCSMRelationshipObject -Source $Src -Target $Tar -Relationship $Rel -Bulk
+          }
+          catch
+          {
+           Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId $ErrorID -Category 0 -EntryType Error -Message "Hardware Connector Cannot Update Object Relationships:$NetDevExists For Relationship:$Rel with Source:$Src and Target:$Tar for Change Type:$ChangeType with Error: $($_.Exception.Message)"
+          }
          }
+         elseif ($RChangeType -eq "Delete")
+         {
+          try
+          {
+           Get-SCSMRelationshipObject -BySource $Src | ? { ($_.RelationshipClassId -eq $Rel) } | Remove-SCSMRelationshipObject
+          }
+          catch
+          {
+           Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId $ErrorID -Category 0 -EntryType Error -Message "Hardware Connector Cannot Update Object Relationships:$NetDevExists For Relationship:$Rel with Source:$Src and Target:$Tar for Change Type:$ChangeType with Error: $($_.Exception.Message)"
+          }
+         }
+         
+         
         }
-        elseif ($RChangeType -eq "Delete")
-        {
-         try
-         {
-          Get-SCSMRelationshipObject -BySource $Src | ? { ($_.RelationshipClassId -eq $Rel) } | Remove-SCSMRelationshipObject
-         }
-         catch
-         {
-          Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId $ErrorID -Category 0 -EntryType Error -Message "Hardware Connector Cannot Update Object Relationships:$NetDevExists For Relationship:$Rel with Source:$Src and Target:$Tar for Change Type:$ChangeType with Error: $($_.Exception.Message)"
-         }
-        }
-        
         
        }
-       
       }
+      Set-SCSMObject -SMObject $NetDevExists -Property "LastModifiedSync" -Value $LastModified
      }
-     Set-SCSMObject -SMObject $NetDevExists -Property "LastModifiedSync" -Value $LastModified
     }
+    
    }
-   
   }
- }
- Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId 10000 -Category 0 -EntryType Information -Message "Hardware Connector Finished Process of Network Objects"
- 
+  Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId 10000 -Category 0 -EntryType Information -Message "Hardware Connector Finished Process of Network Objects"
+} 
+
  #Process Printers
  Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId 10000 -Category 0 -EntryType Information -Message "Hardware Connector Start Processing of Printer Objects"
  $Printers = Get-SCSMObject -Class $SystemPrinterClass -Filter "ObjectStatus -ne $PendingDeleteEnumId"
@@ -3670,6 +4030,176 @@ if ($HardwareConnectorAdminSettingObj.IsActive -eq $true)
   }
  }
  Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId 10000 -Category 0 -EntryType Information -Message "Hardware Connector Finished Process of Mobile Objects"
+ 
+ #Process Scanners
+ Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId 10000 -Category 0 -EntryType Information -Message "Hardware Connector Start Processing of Scanner Objects"
+ $ScannerDevices = Get-SCSMObject -Class $ScannerCl -Filter "ObjectStatus -ne $PendingDeleteEnumId"
+ if($ScannerDevices)
+ {
+    foreach ($ScannerDevice in $ScannerDevices)
+  {
+   try
+    {
+    $AssetsRel = (Get-SCSMRelationshipObject -BySource $ScannerDevice | ? {$_.RelationshipId -eq $($HardwareAssetReferenceScannerRelCl.id)}).SourceObject
+    }
+   finally
+    {
+    $sAssetTag = $null
+    $ScannerUser= $null
+    $ScannerAsset =$null
+    if($ScannerDevice.SerialNumber)
+     {
+     $sAssetTag = "$PreFix" + $($ScannerDevice.SerialNumber)
+     }
+    else{$sAssetTag = "NOT PRESENT"}
+    
+    if(!$AssetsRel)
+     {
+     $AssetRelHashTable=@{
+          "AssetName" = $($ScannerDevice.DisplayName);
+                "DisplayName" = $($ScannerDevice.DisplayName);
+                "Type" = $ScannerAssetTypeId;
+                "ReadinessStatus" = $ReadinessStatusEnumId;
+                "AssetTag" = $sAssetTag;
+          "AssetStatus" = $AssetStatusEnumDeployedId;
+          }
+     $ScannerAsset= New-SCSMObject -Class $HardwareAssetClass -PropertyHashtable $AssetRelHashTable -PassThru
+     New-SCSMRelationshipObject -Source $ScannerAsset -Target $ScannerDevice -Relationship $HardwareAssetReferenceScannerRelCl -Bulk
+     $ScannerUser= (Get-SCSMRelationshipObject -BySource $ScannerDevice -ErrorAction SilentlyContinue | ? {$_.RelationshipId -eq $($ScannerUserRelCl.Id)}).TargetObject
+      if($ScannerUser)
+       {
+       New-SCSMRelationshipObject -Source $ScannerAsset -Target $ScannerUser -Relationship $HardwareAssetHasUser -Bulk
+       }
+     
+     
+     }
+     
+    }
+   
+  
+  
+  
+  }
+   
+   
+   
+   
+   }
+ Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId 10000 -Category 0 -EntryType Information -Message "Hardware Connector  Finished Processing of Scanner Objects"
+
+ #Process Monitors
+ Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId 10000 -Category 0 -EntryType Information -Message "Hardware Connector Start Processing of Monitor Objects"
+ $MonitorDevices = Get-SCSMObject -Class $MonitorCl -Filter "ObjectStatus -ne $PendingDeleteEnumId"
+ if($MonitorDevices)
+ {
+    foreach ($MonitorDevice in $MonitorDevices)
+  {
+   try
+    {
+    $mAssetsRel = (Get-SCSMRelationshipObject -BySource $MonitorDevice | ? {$_.RelationshipId -eq $($HardwareAssetRefMonitorRelCl.id)}).SourceObject
+    }
+   finally
+    {
+    $mAssetTag = $null
+    $MonitorUser= $null
+    $MonitorAsset =$null
+    if($MonitorDevice.SerialNumber)
+     {
+     $MonitorDevice = "$PreFix" + $($MonitorDevice.SerialNumber)
+     }
+    else{$mAssetTag = "NOT PRESENT"}
+    
+    if(!$mAssetsRel)
+     {
+     $mAssetRelHashTable=@{
+          "AssetName" = $($MonitorDevice.DisplayName);
+                "DisplayName" = $($MonitorDevice.DisplayName);
+                "Type" = $MonitorAssetTyteId;
+                "ReadinessStatus" = $ReadinessStatusEnumId;
+                "AssetTag" = $mAssetTag;
+          "AssetStatus" = $AssetStatusEnumDeployedId;
+          }
+     $MonitorAsset= New-SCSMObject -Class $HardwareAssetClass -PropertyHashtable $mAssetRelHashTable -PassThru
+     New-SCSMRelationshipObject -Source $MonitorAsset -Target $MonitorDevice -Relationship $HardwareAssetRefMonitorRelCl -Bulk
+     $MonitorUser= (Get-SCSMRelationshipObject -BySource $MonitorDevice -ErrorAction SilentlyContinue | ? {$_.RelationshipId -eq $($MonitorUserRelCL.Id)}).TargetObject
+      if($MonitorUser)
+       {
+       New-SCSMRelationshipObject -Source $MonitorAsset -Target $MonitorUser -Relationship $MonitorUserRelCL -Bulk
+       }
+     
+     
+     }
+     
+    }
+   
+  
+  
+  
+  }
+   
+   
+   
+   
+   }
+ Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId 10000 -Category 0 -EntryType Information -Message "Hardware Connector Finished Processing of Monitor Objects"
+
+
+ #Process OtherDevice
+ Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId 10000 -Category 0 -EntryType Information -Message "Hardware Connector Start Processing of Other Device Objects"
+ $OtherDevices = Get-SCSMObject -Class $OtherDeviceCl -Filter "ObjectStatus -ne $PendingDeleteEnumId"
+ if($OtherDevices)
+ {
+    foreach ($OtherDevice in $OtherDevices)
+  {
+   try
+    {
+    $oAssetsRel = (Get-SCSMRelationshipObject -BySource $OtherDevice | ? {$_.RelationshipId -eq $($HardwareAssetRefOtherDevRelCl.id)}).SourceObject
+    }
+   finally
+    {
+    $oAssetTag = $null
+    $OtherDeUser= $null
+    $OtherDevAsset =$null
+    if($OtherDevice.SerialNumber)
+     {
+     $OtherDevice = "$PreFix" + $($OtherDevice.SerialNumber)
+     }
+    else{$oAssetTag = "NOT PRESENT"}
+    
+    if(!$oAssetsRel)
+     {
+     $oAssetRelHashTable=@{
+          "AssetName" = $($OtherDevice.DisplayName);
+                "DisplayName" = $($OtherDevice.DisplayName);
+                "Type" = $OtherDeviceTypeId;
+                "ReadinessStatus" = $ReadinessStatusEnumId;
+                "AssetTag" = $oAssetTag;
+          "AssetStatus" = $AssetStatusEnumDeployedId;
+          }
+     $OtherDeviceAsset= New-SCSMObject -Class $HardwareAssetClass -PropertyHashtable $oAssetRelHashTable -PassThru
+     New-SCSMRelationshipObject -Source $OtherDeviceAsset -Target $OtherDevice -Relationship $HardwareAssetRefOtherDevRelCl -Bulk
+     $OtherDevUser= (Get-SCSMRelationshipObject -BySource $OtherDevice -ErrorAction SilentlyContinue | ? {$_.RelationshipId -eq $($OtherDeviceRelCl.Id)}).TargetObject
+      if($OtherDevUser)
+       {
+       New-SCSMRelationshipObject -Source $OtherDeviceAsset -Target $OtherDevUser -Relationship $OtherDeviceRelCl -Bulk
+       }
+     
+     
+     }
+     
+    }
+   
+  
+  
+  
+  }
+   
+   
+   
+   
+   }
+  Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId 10000 -Category 0 -EntryType Information -Message "Hardware Connector Finished Processing of Other Device Objects"
+
  
  
  #Process Manufacturers And Final Models Count.
