@@ -2,7 +2,7 @@
   <Manifest>
     <Identity>
       <ID>HardwareConnector</ID>
-      <Version>1.1.0.6</Version>
+      <Version>1.1.0.7</Version>
     </Identity>
     <Name>HardwareConnector</Name>
     <References>
@@ -1890,7 +1890,7 @@ if($NetworkClass)
   {
    try
     {
-    $AssetsRel = (Get-SCSMRelationshipObject -BySource $ScannerDevice | ? {$_.RelationshipId -eq $($HardwareAssetReferenceScannerRelCl.id)}).SourceObject
+    $AssetsRel = (Get-SCSMRelationshipObject -ByTarget $ScannerDevice | ? {$_.RelationshipId -eq $($HardwareAssetReferenceScannerRelCl.id)}).SourceObject
     }
    finally
     {
@@ -1946,7 +1946,7 @@ if($NetworkClass)
   {
    try
     {
-    $mAssetsRel = (Get-SCSMRelationshipObject -BySource $MonitorDevice | ? {$_.RelationshipId -eq $($HardwareAssetRefMonitorRelCl.id)}).SourceObject
+    $mAssetsRel = (Get-SCSMRelationshipObject -ByTarget $MonitorDevice | ? {$_.RelationshipId -eq $($HardwareAssetRefMonitorRelCl.id)}).SourceObject
     }
    finally
     {
@@ -2003,7 +2003,7 @@ if($NetworkClass)
   {
    try
     {
-    $oAssetsRel = (Get-SCSMRelationshipObject -BySource $OtherDevice | ? {$_.RelationshipId -eq $($HardwareAssetRefOtherDevRelCl.id)}).SourceObject
+    $oAssetsRel = (Get-SCSMRelationshipObject -ByTarget $OtherDevice | ? {$_.RelationshipId -eq $($HardwareAssetRefOtherDevRelCl.id)}).SourceObject
     }
    finally
     {
@@ -4040,7 +4040,7 @@ if($NetworkClass)
   {
    try
     {
-    $AssetsRel = (Get-SCSMRelationshipObject -BySource $ScannerDevice | ? {$_.RelationshipId -eq $($HardwareAssetReferenceScannerRelCl.id)}).SourceObject
+    $AssetsRel = (Get-SCSMRelationshipObject -ByTarget $ScannerDevice | ? {$_.RelationshipId -eq $($HardwareAssetReferenceScannerRelCl.id)}).SourceObject
     }
    finally
     {
@@ -4096,7 +4096,7 @@ if($NetworkClass)
   {
    try
     {
-    $mAssetsRel = (Get-SCSMRelationshipObject -BySource $MonitorDevice | ? {$_.RelationshipId -eq $($HardwareAssetRefMonitorRelCl.id)}).SourceObject
+    $mAssetsRel = (Get-SCSMRelationshipObject -ByTarget $MonitorDevice | ? {$_.RelationshipId -eq $($HardwareAssetRefMonitorRelCl.id)}).SourceObject
     }
    finally
     {
@@ -4153,7 +4153,7 @@ if($NetworkClass)
   {
    try
     {
-    $oAssetsRel = (Get-SCSMRelationshipObject -BySource $OtherDevice | ? {$_.RelationshipId -eq $($HardwareAssetRefOtherDevRelCl.id)}).SourceObject
+    $oAssetsRel = (Get-SCSMRelationshipObject -ByTarget $OtherDevice | ? {$_.RelationshipId -eq $($HardwareAssetRefOtherDevRelCl.id)}).SourceObject
     }
    finally
     {
