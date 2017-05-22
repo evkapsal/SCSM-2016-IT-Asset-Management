@@ -2,7 +2,7 @@
   <Manifest>
     <Identity>
       <ID>HardwareConnector</ID>
-      <Version>1.1.0.7</Version>
+      <Version>1.1.0.8</Version>
     </Identity>
     <Name>HardwareConnector</Name>
     <References>
@@ -65,10 +65,10 @@
 #NOTES
 #===========================================================================
 #Created with:  SAPIEN Technologies, Inc., PowerShell Studio 2015
-#Created on:    13/5/2017 24:00 PM
+#Created on:    23/5/2017 24:00 PM
 #Created by:     Evangelos Kapsalakis
 #Organization:   Microsoft Hellas
-#Filename:  Hardware Connector V5.1
+#Filename:  Hardware Connector V5.2
 #===========================================================================
 #.DESCRIPTION
 #A description of the file.
@@ -79,7 +79,7 @@ $HardwareConnectorAdminSettingCl = Get-SCSMClass -Name HardwareConnector$
 $HardwareConnectorAdminSettingObj = Get-SCSMObject -Class $HardwareConnectorAdminSettingCl
 if ($HardwareConnectorAdminSettingObj.IsActive -eq $true)
 {
- #Set-SCSMObject -SMObject $HardwareConnectorAdminSettingObj -Property "SyncNow" -Value $false
+# Set-SCSMObject -SMObject $HardwareConnectorAdminSettingObj -Property "SyncNow" -Value $false
  
  Try
  {
@@ -150,6 +150,9 @@ if ($HardwareConnectorAdminSettingObj.IsActive -eq $true)
  $SystemPrinterClass = Get-SCSMClass -Name Microsoft.AD.Printer$
  $PrinterClass = Get-SCSMClass -Name Printer$ | ?{ $_.ManagementPack -eq "IT_Asset_Management_Base" }
  $StorageDeviceClass = Get-SCSMClass -Name StorageDevice$
+ $HardwareRefStorageDev= Get-SCSMRelationshipClass -Name Relationship.HardwareAssetReferencesStorageDevice$
+ $StorageDevTypeId= (Get-SCSMEnumeration -Name HardwareAssetType.StorageDevice).id
+ $StorageDevHasUserRelCl= Get-SCSMRelationshipClass -Name Relationship.StorageDeviceHasUser$
  $SystemMobileClass = Get-SCSMClass -Name Microsoft.SystemCenter.ConfigurationManager.MobileDevice$
  $MobileDeviceClass = Get-SCSMClass -Name MobileDevice$ | ?{ $_.ManagementPack -eq "IT_Asset_Management_Base" }
  $PendingDeleteEnumId = (Get-SCSMEnumeration -Name System.ConfigItem.ObjectStatusEnum.PendingDelete$).Id
@@ -163,6 +166,7 @@ if ($HardwareConnectorAdminSettingObj.IsActive -eq $true)
  $MobileDevHasUsr = Get-SCSMRelationshipClass -Name Relationship.MobileDeviceHasUser$
  $MobDevHasManufacturer = Get-SCSMRelationshipClass -Name Relationship.MobileDeviceHasManufacturer$
  $MobDevHasModel = Get-SCSMRelationshipClass -Name Relationship.MobileDeviceHasModel$
+ $MobDevAssetTypeId= (Get-SCSMEnumeration -Name HardwareAssetType.Phone$).id
  $AssetMobileEnumId = (Get-SCSMEnumeration -Name HardwareAssetClass.Mobile$).id
  $HardwareConnectorAdminSettingCl = Get-SCSMClass -Name HardwareConnector$
  $HardwareConnectorAdminSettingObj = Get-SCSMObject -Class $HardwareConnectorAdminSettingCl
@@ -936,6 +940,58 @@ if ($HardwareConnectorAdminSettingObj.IsActive -eq $true)
  
  #Process Network Devices
  Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId 10000 -Category 0 -EntryType Information -Message "Hardware Connector Start Processing of Network Objects"
+
+if($NetworkDeviceClass)
+{
+ $NetworkDs = Get-SCSMObject -Class $NetworkDeviceClass
+  foreach ($NetworkD in $NetworkDs)
+  {
+   try
+    {
+    $nAssetsRel = (Get-SCSMRelationshipObject -ByTarget $NetworkD | ? {$_.RelationshipId -eq $($HAssetRefNetRelCl.id)}).SourceObject
+    }
+   finally
+    {
+    $nAssetTag = $null
+    $NetworkDUser= $null
+    $NetworkDAsset =$null
+    if($NetworkD.SerialNumber)
+     {
+     $nAssetTag = "$PreFix" + $($NetworkD.SerialNumber)
+     }
+    else{$nAssetTag = "NOT PRESENT"}
+    
+    if(!$nAssetsRel)
+     {
+     $nAssetRelHashTable=@{
+          "AssetName" = $($NetworkD.DisplayName);
+                "DisplayName" = $($NetworkD.DisplayName);
+                "Type" = $NetHardwareAssetTypeId;
+                "ReadinessStatus" = $ReadinessStatusEnumId;
+                "AssetTag" = $nAssetTag;
+          "AssetStatus" = $AssetStatusEnumDeployedId;
+          }
+     $NetworkDAsset= New-SCSMObject -Class $HardwareAssetClass -PropertyHashtable $nAssetRelHashTable -PassThru
+     New-SCSMRelationshipObject -Source $NetworkDAsset -Target $NetworkD -Relationship $HAssetRefNetRelCl -Bulk
+     $NetworkDUser= (Get-SCSMRelationshipObject -BySource $NetworkD -ErrorAction SilentlyContinue | ? {$_.RelationshipId -eq $($NetDevUserRelationShip.Id)}).TargetObject
+      if($NetworkDUser)
+       {
+       New-SCSMRelationshipObject -Source $NetworkDAsset -Target $NetworkDUser -Relationship $HardwareAssetHasUser -Bulk
+       }
+     
+     
+     }
+     
+    }
+   
+  
+  
+  
+  }
+
+
+}
+
 if($NetworkClass)
 {
   $NetworkDevices = Get-SCSMObject -Class $NetworkClass -Filter "ObjectStatus -ne $PendingDeleteEnumId"
@@ -1299,8 +1355,63 @@ if($NetworkClass)
   Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId 10000 -Category 0 -EntryType Information -Message "Hardware Connector Finished Process of Network Objects"
 } 
 
+
  #Process Printers
  Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId 10000 -Category 0 -EntryType Information -Message "Hardware Connector Start Processing of Printer Objects"
+
+ if ($PrinterClass)
+ {
+  $PrintDs = Get-SCSMObject -Class $PrinterClass
+  foreach ($PrintD in $PrintDs)
+  {
+   try
+    {
+    $pAssetsRel = (Get-SCSMRelationshipObject -ByTarget $PrintD | ? {$_.RelationshipId -eq $($HAssetRefPrinterRelCl.id)}).SourceObject
+    }
+   finally
+    {
+    $pAssetTag = $null
+    $PrintDUser= $null
+    $PrintDAsset =$null
+    if($PrintD.SerialNumber)
+     {
+     $pAssetTag = "$PreFix" + $($PrintD.SerialNumber)
+     }
+    else{$pAssetTag = "NOT PRESENT"}
+    
+    if(!$pAssetsRel)
+     {
+     $pAssetRelHashTable=@{
+          "AssetName" = $($PrintD.DisplayName);
+                "DisplayName" = $($PrintD.DisplayName);
+                "Type" = $PrinterAssetEnumId;
+                "ReadinessStatus" = $ReadinessStatusEnumId;
+                "AssetTag" = $pAssetTag;
+          "AssetStatus" = $AssetStatusEnumDeployedId;
+          }
+     $PrintDAsset= New-SCSMObject -Class $HardwareAssetClass -PropertyHashtable $pAssetRelHashTable -PassThru
+     New-SCSMRelationshipObject -Source $PrintDAsset -Target $PrintD -Relationship $HAssetRefPrinterRelCl -Bulk
+     $PrintDUser= (Get-SCSMRelationshipObject -BySource $PrintD -ErrorAction SilentlyContinue | ? {$_.RelationshipId -eq $($PrinterHasUserClass.Id)}).TargetObject
+      if($PrintDUser)
+       {
+       New-SCSMRelationshipObject -Source $PrintDAsset -Target $PrintDUser -Relationship $HardwareAssetHasUser -Bulk
+       }
+     
+     
+     }
+     
+    }
+   
+  
+  
+  
+  }
+
+ 
+ 
+ 
+ }
+ 
  $Printers = Get-SCSMObject -Class $SystemPrinterClass -Filter "ObjectStatus -ne $PendingDeleteEnumId"
  if ($Printers)
  {
@@ -1547,6 +1658,52 @@ if($NetworkClass)
  
  #Process Mobile Devices
  Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId 10000 -Category 0 -EntryType Information -Message "Hardware Connector Start Processing of Mobile Objects"
+ if($MobileDeviceClass)
+ {
+ 
+ $MobDs = Get-SCSMObject -Class $MobileDeviceClass
+  foreach ($MobD in $MobDs)
+  {
+   try
+    {
+    $mbAssetsRel = (Get-SCSMRelationshipObject -ByTarget $MobD | ? {$_.RelationshipId -eq $($HAssetRefMobRelCl.id)}).SourceObject
+    }
+   finally
+    {
+    $mbAssetTag = $null
+    $MobDUser= $null
+    $MobDAsset =$null
+    if($MobD.SerialNumber)
+     {
+     $mbAssetTag = "$PreFix" + $($MobD.SerialNumber)
+     }
+    else{$mbAssetTag = "NOT PRESENT"}
+    
+    if(!$mbAssetsRel)
+     {
+     $mbAssetRelHashTable=@{
+          "AssetName" = $($MobD.DisplayName);
+                "DisplayName" = $($MobD.DisplayName);
+                "Type" = $MobDevAssetTypeId;
+                "ReadinessStatus" = $ReadinessStatusEnumId;
+                "AssetTag" = $mbAssetTag;
+          "AssetStatus" = $AssetStatusEnumDeployedId;
+          }
+     $MobDAsset= New-SCSMObject -Class $HardwareAssetClass -PropertyHashtable $mbAssetRelHashTable -PassThru
+     New-SCSMRelationshipObject -Source $MobDAsset -Target $MobD -Relationship $HAssetRefMobRelCl -Bulk
+     $MobDUser= (Get-SCSMRelationshipObject -BySource $MobD -ErrorAction SilentlyContinue | ? {$_.RelationshipId -eq $($MobileDevHasUsr.Id)}).TargetObject
+      if($MobDUser)
+       {
+       New-SCSMRelationshipObject -Source $MobDAsset -Target $MobDUser -Relationship $HardwareAssetHasUser -Bulk
+       }
+     }
+     
+    }
+    
+  }
+ 
+ }
+ 
  $MobileDevices = Get-SCSMObject -Class $SystemMobileClass -Filter "ObjectStatus -ne $PendingDeleteEnumId"
  if ($MobileDevices)
  {
@@ -1955,7 +2112,7 @@ if($NetworkClass)
     $MonitorAsset =$null
     if($MonitorDevice.SerialNumber)
      {
-     $MonitorDevice = "$PreFix" + $($MonitorDevice.SerialNumber)
+     $mAssetTag = "$PreFix" + $($MonitorDevice.SerialNumber)
      }
     else{$mAssetTag = "NOT PRESENT"}
     
@@ -1974,7 +2131,7 @@ if($NetworkClass)
      $MonitorUser= (Get-SCSMRelationshipObject -BySource $MonitorDevice -ErrorAction SilentlyContinue | ? {$_.RelationshipId -eq $($MonitorUserRelCL.Id)}).TargetObject
       if($MonitorUser)
        {
-       New-SCSMRelationshipObject -Source $MonitorAsset -Target $MonitorUser -Relationship $MonitorUserRelCL -Bulk
+       New-SCSMRelationshipObject -Source $MonitorAsset -Target $MonitorUser -Relationship $HardwareAssetHasUser -Bulk
        }
      
      
@@ -1992,7 +2149,6 @@ if($NetworkClass)
    
    }
  Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId 10000 -Category 0 -EntryType Information -Message "Hardware Connector Finished Processing of Monitor Objects"
-
 
  #Process OtherDevice
  Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId 10000 -Category 0 -EntryType Information -Message "Hardware Connector Start Processing of Other Device Objects"
@@ -2012,7 +2168,7 @@ if($NetworkClass)
     $OtherDevAsset =$null
     if($OtherDevice.SerialNumber)
      {
-     $OtherDevice = "$PreFix" + $($OtherDevice.SerialNumber)
+     $oAssetTag = "$PreFix" + $($OtherDevice.SerialNumber)
      }
     else{$oAssetTag = "NOT PRESENT"}
     
@@ -2031,7 +2187,7 @@ if($NetworkClass)
      $OtherDevUser= (Get-SCSMRelationshipObject -BySource $OtherDevice -ErrorAction SilentlyContinue | ? {$_.RelationshipId -eq $($OtherDeviceRelCl.Id)}).TargetObject
       if($OtherDevUser)
        {
-       New-SCSMRelationshipObject -Source $OtherDeviceAsset -Target $OtherDevUser -Relationship $OtherDeviceRelCl -Bulk
+       New-SCSMRelationshipObject -Source $OtherDeviceAsset -Target $OtherDevUser -Relationship $HardwareAssetHasUser -Bulk
        }
      
      
@@ -2050,6 +2206,66 @@ if($NetworkClass)
    }
   Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId 10000 -Category 0 -EntryType Information -Message "Hardware Connector Finished Processing of Other Device Objects"
 
+ 
+ 
+ 
+ #Process Storage Device
+ Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId 10000 -Category 0 -EntryType Information -Message "Hardware Connector Start Processing of Storage Device Objects"
+ $StorageDevices = Get-SCSMObject -Class $StorageDeviceClass -Filter "ObjectStatus -ne $PendingDeleteEnumId"
+ if($StorageDevices)
+ {
+    foreach ($StorageDevice in $StorageDevices)
+  {
+   try
+    {
+    $stAssetsRel = (Get-SCSMRelationshipObject -ByTarget $StorageDevice | ? {$_.RelationshipId -eq $($HardwareRefStorageDev.id)}).SourceObject
+    }
+   finally
+    {
+    $stAssetTag = $null
+    $StorageDeviceUser= $null
+    $StorageDeviceAsset =$null
+    if($StorageDevice.SerialNumber)
+     {
+     $stAssetTag = "$PreFix" + $($StorageDevice.SerialNumber)
+     }
+    else{$stAssetTag = "NOT PRESENT"}
+    
+    if(!$stAssetsRel)
+     {
+     $stAssetRelHashTable=@{
+          "AssetName" = $($StorageDevice.DisplayName);
+                "DisplayName" = $($StorageDevice.DisplayName);
+                "Type" = $StorageDevTypeId;
+                "ReadinessStatus" = $ReadinessStatusEnumId;
+                "AssetTag" = $stAssetTag;
+          "AssetStatus" = $AssetStatusEnumDeployedId;
+          }
+     $StorageDeviceAsset= New-SCSMObject -Class $HardwareAssetClass -PropertyHashtable $stAssetRelHashTable -PassThru
+     New-SCSMRelationshipObject -Source $StorageDeviceAsset -Target $StorageDevice -Relationship $HardwareRefStorageDev -Bulk
+     $StorageDeviceUser= (Get-SCSMRelationshipObject -BySource $StorageDevice -ErrorAction SilentlyContinue | ? {$_.RelationshipId -eq $($StorageDevHasUserRelCl.Id)}).TargetObject
+      if($StorageDeviceUser)
+       {
+       New-SCSMRelationshipObject -Source $StorageDeviceAsset -Target $StorageDeviceUser -Relationship $HardwareAssetHasUser -Bulk
+       }
+     
+     
+     }
+     
+    }
+   
+  
+  
+  
+  }
+   
+   
+   
+   
+   }
+  Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId 10000 -Category 0 -EntryType Information -Message "Hardware Connector Finished Processing of Other Device Objects"
+
+ 
  
  
  #Process Manufacturers And Final Models Count.
@@ -2215,10 +2431,10 @@ if($NetworkClass)
 #NOTES
 #===========================================================================
 #Created with:  SAPIEN Technologies, Inc., PowerShell Studio 2015
-#Created on:    13/5/2017 24:00 PM
+#Created on:    23/5/2017 24:00 PM
 #Created by:     Evangelos Kapsalakis
 #Organization:   Microsoft Hellas
-#Filename:  Hardware Connector V5.1
+#Filename:  Hardware Connector V5.2
 #===========================================================================
 #.DESCRIPTION
 #A description of the file.
@@ -2300,6 +2516,9 @@ if ($HardwareConnectorAdminSettingObj.IsActive -eq $true)
  $SystemPrinterClass = Get-SCSMClass -Name Microsoft.AD.Printer$
  $PrinterClass = Get-SCSMClass -Name Printer$ | ?{ $_.ManagementPack -eq "IT_Asset_Management_Base" }
  $StorageDeviceClass = Get-SCSMClass -Name StorageDevice$
+ $HardwareRefStorageDev= Get-SCSMRelationshipClass -Name Relationship.HardwareAssetReferencesStorageDevice$
+ $StorageDevTypeId= (Get-SCSMEnumeration -Name HardwareAssetType.StorageDevice).id
+ $StorageDevHasUserRelCl= Get-SCSMRelationshipClass -Name Relationship.StorageDeviceHasUser$
  $SystemMobileClass = Get-SCSMClass -Name Microsoft.SystemCenter.ConfigurationManager.MobileDevice$
  $MobileDeviceClass = Get-SCSMClass -Name MobileDevice$ | ?{ $_.ManagementPack -eq "IT_Asset_Management_Base" }
  $PendingDeleteEnumId = (Get-SCSMEnumeration -Name System.ConfigItem.ObjectStatusEnum.PendingDelete$).Id
@@ -2313,6 +2532,7 @@ if ($HardwareConnectorAdminSettingObj.IsActive -eq $true)
  $MobileDevHasUsr = Get-SCSMRelationshipClass -Name Relationship.MobileDeviceHasUser$
  $MobDevHasManufacturer = Get-SCSMRelationshipClass -Name Relationship.MobileDeviceHasManufacturer$
  $MobDevHasModel = Get-SCSMRelationshipClass -Name Relationship.MobileDeviceHasModel$
+ $MobDevAssetTypeId= (Get-SCSMEnumeration -Name HardwareAssetType.Phone$).id
  $AssetMobileEnumId = (Get-SCSMEnumeration -Name HardwareAssetClass.Mobile$).id
  $HardwareConnectorAdminSettingCl = Get-SCSMClass -Name HardwareConnector$
  $HardwareConnectorAdminSettingObj = Get-SCSMObject -Class $HardwareConnectorAdminSettingCl
@@ -3086,6 +3306,58 @@ if ($HardwareConnectorAdminSettingObj.IsActive -eq $true)
  
  #Process Network Devices
  Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId 10000 -Category 0 -EntryType Information -Message "Hardware Connector Start Processing of Network Objects"
+
+if($NetworkDeviceClass)
+{
+ $NetworkDs = Get-SCSMObject -Class $NetworkDeviceClass
+  foreach ($NetworkD in $NetworkDs)
+  {
+   try
+    {
+    $nAssetsRel = (Get-SCSMRelationshipObject -ByTarget $NetworkD | ? {$_.RelationshipId -eq $($HAssetRefNetRelCl.id)}).SourceObject
+    }
+   finally
+    {
+    $nAssetTag = $null
+    $NetworkDUser= $null
+    $NetworkDAsset =$null
+    if($NetworkD.SerialNumber)
+     {
+     $nAssetTag = "$PreFix" + $($NetworkD.SerialNumber)
+     }
+    else{$nAssetTag = "NOT PRESENT"}
+    
+    if(!$nAssetsRel)
+     {
+     $nAssetRelHashTable=@{
+          "AssetName" = $($NetworkD.DisplayName);
+                "DisplayName" = $($NetworkD.DisplayName);
+                "Type" = $NetHardwareAssetTypeId;
+                "ReadinessStatus" = $ReadinessStatusEnumId;
+                "AssetTag" = $nAssetTag;
+          "AssetStatus" = $AssetStatusEnumDeployedId;
+          }
+     $NetworkDAsset= New-SCSMObject -Class $HardwareAssetClass -PropertyHashtable $nAssetRelHashTable -PassThru
+     New-SCSMRelationshipObject -Source $NetworkDAsset -Target $NetworkD -Relationship $HAssetRefNetRelCl -Bulk
+     $NetworkDUser= (Get-SCSMRelationshipObject -BySource $NetworkD -ErrorAction SilentlyContinue | ? {$_.RelationshipId -eq $($NetDevUserRelationShip.Id)}).TargetObject
+      if($NetworkDUser)
+       {
+       New-SCSMRelationshipObject -Source $NetworkDAsset -Target $NetworkDUser -Relationship $HardwareAssetHasUser -Bulk
+       }
+     
+     
+     }
+     
+    }
+   
+  
+  
+  
+  }
+
+
+}
+
 if($NetworkClass)
 {
   $NetworkDevices = Get-SCSMObject -Class $NetworkClass -Filter "ObjectStatus -ne $PendingDeleteEnumId"
@@ -3449,8 +3721,63 @@ if($NetworkClass)
   Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId 10000 -Category 0 -EntryType Information -Message "Hardware Connector Finished Process of Network Objects"
 } 
 
+
  #Process Printers
  Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId 10000 -Category 0 -EntryType Information -Message "Hardware Connector Start Processing of Printer Objects"
+
+ if ($PrinterClass)
+ {
+  $PrintDs = Get-SCSMObject -Class $PrinterClass
+  foreach ($PrintD in $PrintDs)
+  {
+   try
+    {
+    $pAssetsRel = (Get-SCSMRelationshipObject -ByTarget $PrintD | ? {$_.RelationshipId -eq $($HAssetRefPrinterRelCl.id)}).SourceObject
+    }
+   finally
+    {
+    $pAssetTag = $null
+    $PrintDUser= $null
+    $PrintDAsset =$null
+    if($PrintD.SerialNumber)
+     {
+     $pAssetTag = "$PreFix" + $($PrintD.SerialNumber)
+     }
+    else{$pAssetTag = "NOT PRESENT"}
+    
+    if(!$pAssetsRel)
+     {
+     $pAssetRelHashTable=@{
+          "AssetName" = $($PrintD.DisplayName);
+                "DisplayName" = $($PrintD.DisplayName);
+                "Type" = $PrinterAssetEnumId;
+                "ReadinessStatus" = $ReadinessStatusEnumId;
+                "AssetTag" = $pAssetTag;
+          "AssetStatus" = $AssetStatusEnumDeployedId;
+          }
+     $PrintDAsset= New-SCSMObject -Class $HardwareAssetClass -PropertyHashtable $pAssetRelHashTable -PassThru
+     New-SCSMRelationshipObject -Source $PrintDAsset -Target $PrintD -Relationship $HAssetRefPrinterRelCl -Bulk
+     $PrintDUser= (Get-SCSMRelationshipObject -BySource $PrintD -ErrorAction SilentlyContinue | ? {$_.RelationshipId -eq $($PrinterHasUserClass.Id)}).TargetObject
+      if($PrintDUser)
+       {
+       New-SCSMRelationshipObject -Source $PrintDAsset -Target $PrintDUser -Relationship $HardwareAssetHasUser -Bulk
+       }
+     
+     
+     }
+     
+    }
+   
+  
+  
+  
+  }
+
+ 
+ 
+ 
+ }
+ 
  $Printers = Get-SCSMObject -Class $SystemPrinterClass -Filter "ObjectStatus -ne $PendingDeleteEnumId"
  if ($Printers)
  {
@@ -3697,6 +4024,52 @@ if($NetworkClass)
  
  #Process Mobile Devices
  Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId 10000 -Category 0 -EntryType Information -Message "Hardware Connector Start Processing of Mobile Objects"
+ if($MobileDeviceClass)
+ {
+ 
+ $MobDs = Get-SCSMObject -Class $MobileDeviceClass
+  foreach ($MobD in $MobDs)
+  {
+   try
+    {
+    $mbAssetsRel = (Get-SCSMRelationshipObject -ByTarget $MobD | ? {$_.RelationshipId -eq $($HAssetRefMobRelCl.id)}).SourceObject
+    }
+   finally
+    {
+    $mbAssetTag = $null
+    $MobDUser= $null
+    $MobDAsset =$null
+    if($MobD.SerialNumber)
+     {
+     $mbAssetTag = "$PreFix" + $($MobD.SerialNumber)
+     }
+    else{$mbAssetTag = "NOT PRESENT"}
+    
+    if(!$mbAssetsRel)
+     {
+     $mbAssetRelHashTable=@{
+          "AssetName" = $($MobD.DisplayName);
+                "DisplayName" = $($MobD.DisplayName);
+                "Type" = $MobDevAssetTypeId;
+                "ReadinessStatus" = $ReadinessStatusEnumId;
+                "AssetTag" = $mbAssetTag;
+          "AssetStatus" = $AssetStatusEnumDeployedId;
+          }
+     $MobDAsset= New-SCSMObject -Class $HardwareAssetClass -PropertyHashtable $mbAssetRelHashTable -PassThru
+     New-SCSMRelationshipObject -Source $MobDAsset -Target $MobD -Relationship $HAssetRefMobRelCl -Bulk
+     $MobDUser= (Get-SCSMRelationshipObject -BySource $MobD -ErrorAction SilentlyContinue | ? {$_.RelationshipId -eq $($MobileDevHasUsr.Id)}).TargetObject
+      if($MobDUser)
+       {
+       New-SCSMRelationshipObject -Source $MobDAsset -Target $MobDUser -Relationship $HardwareAssetHasUser -Bulk
+       }
+     }
+     
+    }
+    
+  }
+ 
+ }
+ 
  $MobileDevices = Get-SCSMObject -Class $SystemMobileClass -Filter "ObjectStatus -ne $PendingDeleteEnumId"
  if ($MobileDevices)
  {
@@ -4105,7 +4478,7 @@ if($NetworkClass)
     $MonitorAsset =$null
     if($MonitorDevice.SerialNumber)
      {
-     $MonitorDevice = "$PreFix" + $($MonitorDevice.SerialNumber)
+     $mAssetTag = "$PreFix" + $($MonitorDevice.SerialNumber)
      }
     else{$mAssetTag = "NOT PRESENT"}
     
@@ -4124,7 +4497,7 @@ if($NetworkClass)
      $MonitorUser= (Get-SCSMRelationshipObject -BySource $MonitorDevice -ErrorAction SilentlyContinue | ? {$_.RelationshipId -eq $($MonitorUserRelCL.Id)}).TargetObject
       if($MonitorUser)
        {
-       New-SCSMRelationshipObject -Source $MonitorAsset -Target $MonitorUser -Relationship $MonitorUserRelCL -Bulk
+       New-SCSMRelationshipObject -Source $MonitorAsset -Target $MonitorUser -Relationship $HardwareAssetHasUser -Bulk
        }
      
      
@@ -4142,7 +4515,6 @@ if($NetworkClass)
    
    }
  Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId 10000 -Category 0 -EntryType Information -Message "Hardware Connector Finished Processing of Monitor Objects"
-
 
  #Process OtherDevice
  Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId 10000 -Category 0 -EntryType Information -Message "Hardware Connector Start Processing of Other Device Objects"
@@ -4162,7 +4534,7 @@ if($NetworkClass)
     $OtherDevAsset =$null
     if($OtherDevice.SerialNumber)
      {
-     $OtherDevice = "$PreFix" + $($OtherDevice.SerialNumber)
+     $oAssetTag = "$PreFix" + $($OtherDevice.SerialNumber)
      }
     else{$oAssetTag = "NOT PRESENT"}
     
@@ -4181,7 +4553,7 @@ if($NetworkClass)
      $OtherDevUser= (Get-SCSMRelationshipObject -BySource $OtherDevice -ErrorAction SilentlyContinue | ? {$_.RelationshipId -eq $($OtherDeviceRelCl.Id)}).TargetObject
       if($OtherDevUser)
        {
-       New-SCSMRelationshipObject -Source $OtherDeviceAsset -Target $OtherDevUser -Relationship $OtherDeviceRelCl -Bulk
+       New-SCSMRelationshipObject -Source $OtherDeviceAsset -Target $OtherDevUser -Relationship $HardwareAssetHasUser -Bulk
        }
      
      
@@ -4200,6 +4572,66 @@ if($NetworkClass)
    }
   Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId 10000 -Category 0 -EntryType Information -Message "Hardware Connector Finished Processing of Other Device Objects"
 
+ 
+ 
+ 
+ #Process Storage Device
+ Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId 10000 -Category 0 -EntryType Information -Message "Hardware Connector Start Processing of Storage Device Objects"
+ $StorageDevices = Get-SCSMObject -Class $StorageDeviceClass -Filter "ObjectStatus -ne $PendingDeleteEnumId"
+ if($StorageDevices)
+ {
+    foreach ($StorageDevice in $StorageDevices)
+  {
+   try
+    {
+    $stAssetsRel = (Get-SCSMRelationshipObject -ByTarget $StorageDevice | ? {$_.RelationshipId -eq $($HardwareRefStorageDev.id)}).SourceObject
+    }
+   finally
+    {
+    $stAssetTag = $null
+    $StorageDeviceUser= $null
+    $StorageDeviceAsset =$null
+    if($StorageDevice.SerialNumber)
+     {
+     $stAssetTag = "$PreFix" + $($StorageDevice.SerialNumber)
+     }
+    else{$stAssetTag = "NOT PRESENT"}
+    
+    if(!$stAssetsRel)
+     {
+     $stAssetRelHashTable=@{
+          "AssetName" = $($StorageDevice.DisplayName);
+                "DisplayName" = $($StorageDevice.DisplayName);
+                "Type" = $StorageDevTypeId;
+                "ReadinessStatus" = $ReadinessStatusEnumId;
+                "AssetTag" = $stAssetTag;
+          "AssetStatus" = $AssetStatusEnumDeployedId;
+          }
+     $StorageDeviceAsset= New-SCSMObject -Class $HardwareAssetClass -PropertyHashtable $stAssetRelHashTable -PassThru
+     New-SCSMRelationshipObject -Source $StorageDeviceAsset -Target $StorageDevice -Relationship $HardwareRefStorageDev -Bulk
+     $StorageDeviceUser= (Get-SCSMRelationshipObject -BySource $StorageDevice -ErrorAction SilentlyContinue | ? {$_.RelationshipId -eq $($StorageDevHasUserRelCl.Id)}).TargetObject
+      if($StorageDeviceUser)
+       {
+       New-SCSMRelationshipObject -Source $StorageDeviceAsset -Target $StorageDeviceUser -Relationship $HardwareAssetHasUser -Bulk
+       }
+     
+     
+     }
+     
+    }
+   
+  
+  
+  
+  }
+   
+   
+   
+   
+   }
+  Write-EventLog -LogName 'Operations Manager' -Source 'Hardware Connector' -EventId 10000 -Category 0 -EntryType Information -Message "Hardware Connector Finished Processing of Other Device Objects"
+
+ 
  
  
  #Process Manufacturers And Final Models Count.

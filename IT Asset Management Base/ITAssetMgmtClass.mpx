@@ -18,7 +18,9 @@
           <Property ID="AssetTagPrefix" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0"/>
           <Property ID="IsActive" Type="bool" DefaultValue="0" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0"/>
           <Property ID="SyncNow" Type="bool" DefaultValue="0" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0"/>
-          <Property ID="Searchkey" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0"/>    
+          <Property ID="Searchkey" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0"/>
+          <Property ID="Mapkey" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0"/>
+          
           </ClassType>
         <ClassType ID="SoftwareConnector" Accessibility="Public" Abstract="false" Base="AdminItem!System.SolutionSettings" Hosted="false" Singleton="true" Extension="false">
           <Property ID="Description" Type="richtext" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
@@ -232,10 +234,10 @@
         </ClassType>
         <ClassType ID="StorageDevice" Accessibility="Public" Abstract="false" Base="System!System.ConfigItem" Hosted="false" Singleton="false">
           <Property ID="DeviceName" Type="string" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0"/>
+          <Property ID="StorDevKey" Type="string" Key="true" AutoIncrement="true" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" DefaultValue="StvId{0}"/>
           <Property ID="Description" Type="string" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0"/>
           <Property ID="ObjectHash" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
           <Property ID="LastDiscoveredDate" Type="datetime" />
-          <Property ID="StorDevKey" Type="string" Key="true" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" DefaultValue="StorDvId{0}"/>
           <Property ID="AssetTag" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
           <Property ID="SNMPAddress" Type="string" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0"/>
           <Property ID="SerialNumber" Type="string" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0"/>

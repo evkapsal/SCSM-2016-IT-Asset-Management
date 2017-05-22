@@ -65,6 +65,9 @@
     <Compile Include="ITSMRelationshipFacts.mpx">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ManagementPack.mpx">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VSAC\Microsoft.SystemCenter.OperationsManager.targets" />
 </Project>

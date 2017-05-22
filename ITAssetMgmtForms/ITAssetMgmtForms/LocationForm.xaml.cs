@@ -33,6 +33,7 @@ using Microsoft.EnterpriseManagement.UI.DataModel;      //Contains IDataItem
 
 ////Requires Microsoft.EnterpriseManagement.UI.FormsInfra
 using Microsoft.EnterpriseManagement.UI.FormsInfra;     //Contains PreviewFormCommandEventArgs
+using Microsoft.Maps.MapControl.WPF;
 
 namespace ITAssetMgmtForms
 {
@@ -44,7 +45,12 @@ namespace ITAssetMgmtForms
         public LocationForm()
         {
             InitializeComponent();
-            //myMap.CredentialsProvider = new ApplicationIdCredentialsProvider("AvAtShBibUJzhrWKGf4-j7HLHkumXYbKq-tJqY_BAkvjqpNf8ASd4w64j8_V0oV_");
+            Microsoft.EnterpriseManagement.UI.Core.Connection.IManagementGroupSession session = (Microsoft.EnterpriseManagement.UI.Core.Connection.IManagementGroupSession)FrameworkServices.GetService<Microsoft.EnterpriseManagement.UI.Core.Connection.IManagementGroupSession>();
+            EnterpriseManagementGroup mg = session.ManagementGroup;
+            EnterpriseManagementObject HWConnector = mg.EntityObjects.GetObject<EnterpriseManagementObject>(new Guid("6ec06321-f6c7-6d8c-fa80-cb4df7d63f48"), ObjectQueryOptions.Default);
+            string iMapkey = HWConnector[null, "Mapkey"].Value.ToString();
+            myMap.CredentialsProvider = new ApplicationIdCredentialsProvider(iMapkey);
+
         }
 
         private void OnPreviewSubmit(object sender, PreviewFormCommandEventArgs e)
@@ -53,6 +59,9 @@ namespace ITAssetMgmtForms
             String strDisplayName;
             strDisplayName = DisplayName["DisplayName"].ToString();
             DisplayName["DisplayName"] = strDisplayName;
+
+
+
 
             BindMap();
         }
@@ -67,6 +76,8 @@ namespace ITAssetMgmtForms
 
             if (!data.HasProperty("Longtitude") || !data.HasProperty("Latitude")) return;
 
+            if (data["Longtitude"] == null || data["Latitude"] == null) return;
+
             String strLong = data["Longtitude"].ToString();
             String strLat = data["Latitude"].ToString();
 
@@ -76,20 +87,30 @@ namespace ITAssetMgmtForms
             double.TryParse(strLong, out iLo);
             double.TryParse(strLat, out iLa);
 
-
             myMap.Center = new Microsoft.Maps.MapControl.WPF.Location(iLa, iLo);
             myPin.Location = new Microsoft.Maps.MapControl.WPF.Location(iLa, iLo);
         }
+		
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             this.AddHandler(FormEvents.PreviewSubmitEvent, new EventHandler<PreviewFormCommandEventArgs>(this.OnPreviewSubmit));
+            EnterpriseManagementGroup mg = new EnterpriseManagementGroup("localhost");
+            EnterpriseManagementObject hConn = mg.EntityObjects.GetObject<EnterpriseManagementObject>(new Guid("6ec06321-f6c7-6d8c-fa80-cb4df7d63f48"), ObjectQueryOptions.Default);
+            string Mapkey;
+            if (hConn.Values[9].Value == null) return;
+            Mapkey = hConn.Values[9].Value.ToString();
 
             BindMap();
         }
 
         private void UserControl_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
+            EnterpriseManagementGroup mg = new EnterpriseManagementGroup("localhost");
+            EnterpriseManagementObject hConn = mg.EntityObjects.GetObject<EnterpriseManagementObject>(new Guid("6ec06321-f6c7-6d8c-fa80-cb4df7d63f48"), ObjectQueryOptions.Default);
+            string Mapkey;
+            if (hConn.Values[9].Value == null) return;
+            Mapkey = hConn.Values[9].Value.ToString();
             BindMap();
         }
 

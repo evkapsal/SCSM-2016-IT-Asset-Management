@@ -13,7 +13,7 @@
              xmlns:local="clr-namespace:ITAssetMgmtForms"
              mc:Ignorable="d" 
              Loaded="UserControl_Loaded"
-             d:DesignHeight="300" d:DesignWidth="500">
+             d:DesignHeight="400" d:DesignWidth="500">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -99,6 +99,8 @@
                          SelectedItem="{Binding Path=Status, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="23" />
                         <Label Content="Last Discovered Date"/>
                         <wpfToolKit:DatePicker Style="{StaticResource datePickerStyle}" SelectedDate="{Binding Path=LastSynced, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <Label Content="Bing Maps Key"/>
+                        <TextBox Style="{StaticResource textBoxStyle}" Text="{Binding Path=Mapkey, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
                     <StackPanel Style="{StaticResource stackPanelStyle}" Grid.Row="2"  Grid.ColumnSpan="8">
                         <Label Content="Description"/>

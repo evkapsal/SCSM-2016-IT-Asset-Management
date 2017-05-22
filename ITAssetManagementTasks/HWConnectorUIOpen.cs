@@ -33,6 +33,7 @@ namespace ITAssetManagementTasks
             Microsoft.EnterpriseManagement.GenericForm.FormUtilities.Instance.PopoutForm(emoProjectionObject);
             
             
+            
         }
     }
 
@@ -45,7 +46,7 @@ namespace ITAssetManagementTasks
 
             //Getting the emg
             Microsoft.EnterpriseManagement.UI.Core.Connection.IManagementGroupSession session = (Microsoft.EnterpriseManagement.UI.Core.Connection.IManagementGroupSession)FrameworkServices.GetService<Microsoft.EnterpriseManagement.UI.Core.Connection.IManagementGroupSession>();
-            EnterpriseManagementGroup mg = new EnterpriseManagementGroup("localhost");
+            EnterpriseManagementGroup mg = session.ManagementGroup;
             EnterpriseManagementObject HWConnector = mg.EntityObjects.GetObject<EnterpriseManagementObject>(new Guid("6ec06321-f6c7-6d8c-fa80-cb4df7d63f48"), ObjectQueryOptions.Default);
             HWConnector[null,"SyncNow"].Value = (bool)true;
             HWConnector.Commit();
@@ -62,7 +63,7 @@ namespace ITAssetManagementTasks
 
             //Getting the emg
             Microsoft.EnterpriseManagement.UI.Core.Connection.IManagementGroupSession session = (Microsoft.EnterpriseManagement.UI.Core.Connection.IManagementGroupSession)FrameworkServices.GetService<Microsoft.EnterpriseManagement.UI.Core.Connection.IManagementGroupSession>();
-            EnterpriseManagementGroup mg = new EnterpriseManagementGroup("localhost");
+            EnterpriseManagementGroup mg = session.ManagementGroup;
             EnterpriseManagementObject SWConnector = mg.EntityObjects.GetObject<EnterpriseManagementObject>(new Guid("2338f5c9-020a-9c82-28bb-e955ad8751a7"), ObjectQueryOptions.Default);
             SWConnector[null, "SyncNow"].Value = (bool)true;
             SWConnector.Commit();
@@ -83,7 +84,7 @@ namespace ITAssetManagementTasks
 
             //Getting the emg
             Microsoft.EnterpriseManagement.UI.Core.Connection.IManagementGroupSession session = (Microsoft.EnterpriseManagement.UI.Core.Connection.IManagementGroupSession)FrameworkServices.GetService<Microsoft.EnterpriseManagement.UI.Core.Connection.IManagementGroupSession>();
-            EnterpriseManagementGroup mg = new EnterpriseManagementGroup("localhost");
+            EnterpriseManagementGroup mg = session.ManagementGroup;
             EnterpriseManagementObject LicConnector = mg.EntityObjects.GetObject<EnterpriseManagementObject>(new Guid("21c88509-5a22-365b-bdb3-a2122ea4508a"), ObjectQueryOptions.Default);
             LicConnector[null, "SyncNow"].Value = (bool)true;
             LicConnector.Commit();

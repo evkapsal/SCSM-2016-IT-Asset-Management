@@ -474,9 +474,9 @@
             </TabItem>
             <TabItem Header="Map" x:Name="MapTab">
 
-                <map:Map x:Name="myMap" CredentialsProvider="AvAtShBibUJzhrWKGf4-j7HLHkumXYbKq-tJqY_BAkvjqpNf8ASd4w64j8_V0oV_"
+                <map:Map x:Name="myMap" 
                          ZoomLevel="18">
-                    <map:Pushpin x:Name="myPin" />
+                    <map:Pushpin x:Name="myPin"/>
                 </map:Map>
                <!-- <StackPanel Style="{StaticResource stackPanelStyle}" Grid.Row="2" Grid.Column="8" Grid.ColumnSpan="6" Margin="10,10,10,10" Grid.RowSpan="4">
                 </StackPanel> -->
