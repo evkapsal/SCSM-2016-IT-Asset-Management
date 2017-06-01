@@ -162,6 +162,27 @@
     <Compile Include="AzureConnectorForm.xaml.cs">
       <DependentUpon>AzureConnectorForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AzureConsumptionForm.xaml.cs">
+      <DependentUpon>AzureConsumptionForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AzureGatewayForm.xaml.cs">
+      <DependentUpon>AzureGatewayForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AzureNetworkForm.xaml.cs">
+      <DependentUpon>AzureNetworkForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AzureResourceGroupForm.xaml.cs">
+      <DependentUpon>AzureResourceGroupForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AzureSubnetForm.xaml.cs">
+      <DependentUpon>AzureSubnetForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AzureSubscriptionForm.xaml.cs">
+      <DependentUpon>AzureSubscriptionForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AzureVMForm.xaml.cs">
+      <DependentUpon>AzureVMForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="BaseSettingsForm.xaml.cs">
       <DependentUpon>BaseSettingsForm.xaml</DependentUpon>
     </Compile>
@@ -317,6 +338,34 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AzureConnectorForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AzureConsumptionForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AzureGatewayForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AzureNetworkForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AzureResourceGroupForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AzureSubnetForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AzureSubscriptionForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AzureVMForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -579,6 +628,38 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Pictures\ic_public_company.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\azuregateway.png" />
+    <Resource Include="Pictures\AzureLocation.png" />
+    <Resource Include="Pictures\AzureVM.png" />
+    <Resource Include="Pictures\azure_icon.png" />
+    <Resource Include="Pictures\Azure_Virtual_Network.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\AzureSubscription.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\AzureResource.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\azuresubnet.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\Azure Cloud Service.png" />
+    <Resource Include="Pictures\Azure VM Scale.png" />
+    <Resource Include="Pictures\azuregateway_2.png" />
+    <Resource Include="Pictures\AzureResource_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\AzureVM_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\AzureConsumption.png" />
+    <Resource Include="Pictures\AzureDatabase.png" />
+    <Resource Include="Pictures\AzureManagement.png" />
+    <Resource Include="Pictures\AzureNetworking.png" />
+    <Resource Include="Pictures\Azure_3.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

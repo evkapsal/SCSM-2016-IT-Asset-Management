@@ -697,6 +697,120 @@
     <EmbeddedResource Include="Pictures\icmon24x24.png">
       <SubType>Content</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\AzureLocation16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\AzureLocation24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\AzureResource16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\AzureResource24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\azuresubnet16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\azuresubnet24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\AzureSubscription16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\AzureSubscription24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\AzureVM16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\AzureVM24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\AzureVNet16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\AzureVNet24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\azure_icon16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\azure_icon24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\azuregateway16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\azuregateway24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\AzureCloudService16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\AzureCloudService24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\azuregateway_2_16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\azuregateway_2_24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\AzureResource_2_16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\AzureResource_2_24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\AzureVMScale16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\AzureVMScale24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\AzureVM_2_16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\AzureVM_2_24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\AzureAppService16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\AzureAppService24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\AzureConsumption16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\AzureConsumption24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\AzureDatabase16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\AzureDatabase24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\Azure_3_16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\Azure_3_24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\AzureManagement16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\AzureManagement24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\AzureNetworking16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\AzureNetworking24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
     <Content Include="Pictures\ic_administrator_gear.png">
       <SubType>Content</SubType>
     </Content>

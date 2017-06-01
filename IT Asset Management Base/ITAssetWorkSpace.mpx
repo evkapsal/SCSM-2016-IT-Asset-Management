@@ -50,8 +50,8 @@
         <ImageReference ElementID="AssetWorkSpace.HardwareManagement" ImageID="hwm24x24.png" />
         <ImageReference ElementID="AssetWorkSpace.SoftwareManagement" ImageID="softmain16x16.png" />
         <ImageReference ElementID="AssetWorkSpace.SoftwareManagement" ImageID="softmain24x24.png" />
-        <ImageReference ElementID="AssetWorkSpace.CloudManagement" ImageID="cloud16x16.png" />
-        <ImageReference ElementID="AssetWorkSpace.CloudManagement" ImageID="cloud24x24.png" />
+        <ImageReference ElementID="AssetWorkSpace.CloudManagement" ImageID="Azure_3_16x16.png" />
+        <ImageReference ElementID="AssetWorkSpace.CloudManagement" ImageID="Azure_3_24x24.png" />
       </ImageReferences>
     </Presentation>
     <LanguagePacks>

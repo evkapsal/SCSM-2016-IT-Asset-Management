@@ -58,23 +58,6 @@
     <Form ID="Form.SKU" Accessibility="Public" Target="Projection.SKU" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.SKUForm">
       <Category>Form</Category>
     </Form>
-	<!--
-    <Form ID="Form.UserRole" Accessibility="Public" Target="Projection.UserRole" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.UserRoleForm">
-      <Category>Form</Category>
-    </Form>
-    <Form ID="Form.Shortcut" Accessibility="Public" Target="Projection.Shortcut" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.UserShortCutForm">
-      <Category>Form</Category>
-    </Form>
-    <Form ID="Form.Setting" Accessibility="Public" Target="Projection.Setting" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.BaseSettingsForm">
-      <Category>Form</Category>
-    </Form>
-    <Form ID="Form.OtherSetting" Accessibility="Public" Target="Projection.OtherSetting" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.OtherSettingForm">
-      <Category>Form</Category>
-    </Form>
-	 <Form ID="Form.ADGroupSyncConnector" Accessibility="Public" Target="Projection.ADGroupSyncConnector" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.AdGroupSyncConnectorForm">
-      <Category>Form</Category>
-    </Form>
-	-->
     <Form ID="Form.HardwareConnector" Accessibility="Public" Target="Projection.HardwareConnector" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.HardwareConnectorForm">
       <Category>Form</Category>
     </Form>
@@ -127,6 +110,27 @@
       <Category>Form</Category>
     </Form>
     <Form ID="Form.OfficeDesk" Accessibility="Public" Target="Projection.OfficeDesk" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.OfficeDesk">
+      <Category>Form</Category>
+    </Form>
+      <Form ID="Form.AzureSubscription" Accessibility="Public" Target="Projection.AzureSubscription" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.AzureSubscriptionForm">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.AzureNetwork" Accessibility="Public" Target="Projection.AzureNnet" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.AzureNetworkForm">
+      <Category>Form</Category>
+    </Form>
+        <Form ID="Form.AzureSubnet" Accessibility="Public" Target="Projection.AzureSubnet" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.AzureSubnetForm">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.AzureVM" Accessibility="Public" Target="Projection.AzureVM" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.AzureVMForm">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.AzureResourceGroup" Accessibility="Public" Target="Projection.AzureResourceGroup" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.AzureResourceGroupForm">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.AzureGatewayForm" Accessibility="Public" Target="Projection.AzureVNetGateway" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.AzureGatewayForm">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.AzureConsumptionForm" Accessibility="Public" Target="Projection.AzureConsumption" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.AzureConsumptionForm">
       <Category>Form</Category>
     </Form>
   </Forms>

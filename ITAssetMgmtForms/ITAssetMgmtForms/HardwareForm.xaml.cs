@@ -74,7 +74,7 @@ namespace ITAssetMgmtForms
             headeredContentControlr.OverridesDefaultStyle = true;
             headeredContentControlr.Foreground = Brushes.Black;
             headeredContentControlr.Header = "References";
-            this.expMain.Header = headeredContentControlr;
+            this.expDetails.Header = headeredContentControlr;
         }
         private void InstancePicker_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {

@@ -67,17 +67,7 @@ namespace ITAssetMgmtForms
             headeredContentControl.Header = "Main";
             this.expMain.Header = headeredContentControl;
         }
-        private void expDetails_Loaded(object sender, RoutedEventArgs e)
-        {
-            HeaderedContentControl headeredContentControl = new HeaderedContentControl();
-            headeredContentControl.OverridesDefaultStyle = true;
-            headeredContentControl.Foreground = Brushes.Black;
-            headeredContentControl.Header = "References";
-            this.expMain.Header = headeredContentControl;
-        }
-
-
-
+     
         //
 
 

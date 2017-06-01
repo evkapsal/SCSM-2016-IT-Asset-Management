@@ -123,6 +123,16 @@ namespace ITAssetMgmtForms
         public static Guid guidWindowsDiskClass = new Guid("d6cb51c3-66a7-165d-ebfb-2fc8b525967d");
         public static Guid guidWindowsVolumeClass = new Guid("abf81a57-0a02-f2d9-e240-7dfd9cd58dda");
         public static Guid guidMonitorClass = new Guid("487aa8c7-dbcf-645c-28b1-9da18ed47660");
+        public static Guid guidAzureSubscrtiptionClass = new Guid("59b58bb0-6280-5fc9-d98a-939db98fe61a");
+        public static Guid guidAzureResourceGroup = new Guid("77a4a25b-df90-9b6d-de25-b8b7c12de1e3");
+        public static Guid guidAzureNet = new Guid("c55c095f-c458-b3c7-9baf-1a42c2bcdffd");
+        public static Guid guidAzureSubnet = new Guid("3eb8daf9-5794-c949-5b39-aaeeedd621c5");
+        public static Guid guidAzureVM = new Guid("518f907b-b6aa-9c91-76e4-7218985944fd");
+        public static Guid guidAzureVNetGateway = new Guid("4a487e44-a232-fd33-7316-0bf2db3fb823");
+        public static Guid guidAzureLocation = new Guid("69a29a53-f423-5cf9-1b19-d3028cd880c1");
+        public static Guid guidAzureConsumption = new Guid("7b401fc8-4d6e-cf24-3cfa-c6fa8884dc5a");
+
+
 
 
         public Resources()

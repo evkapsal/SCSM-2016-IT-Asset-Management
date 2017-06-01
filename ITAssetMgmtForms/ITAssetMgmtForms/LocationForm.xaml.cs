@@ -128,7 +128,7 @@ namespace ITAssetMgmtForms
             headeredContentControl.OverridesDefaultStyle = true;
             headeredContentControl.Foreground = Brushes.Black;
             headeredContentControl.Header = "References";
-            this.expMain.Header = headeredContentControl;
+            this.expDetails.Header = headeredContentControl;
         }
         
         //

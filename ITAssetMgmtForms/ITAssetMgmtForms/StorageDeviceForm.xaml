@@ -1,5 +1,5 @@
 ﻿<UserControl x:Class="ITAssetMgmtForms.StorageDeviceForm"
-                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
@@ -140,14 +140,14 @@
                                 <Label Content="Model"/>
                                 <smcontrols:SingleInstancePicker Style="{StaticResource sipStyle}" BaseClassId="{Binding Source={x:Static local:Resources.guidDeviceModelClass},Mode=OneWay}"
                                                                  Instance="{Binding Path=Model, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="InstancePicker_MouseDoubleClick"/>
-                                
+
                                 <Label Content="Asset Tag"/>
                                 <TextBox Style="{StaticResource textBoxStyle}"  Text="{Binding Path=AssetTag, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                                 <Label Content="Used Capacity GB"/>
                                 <TextBox Style="{StaticResource textBoxStyle}"  Text="{Binding Path=UsedCapacity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                                 <Label Content="SNMP Version"/>
                                 <TextBox Style="{StaticResource textBoxStyle}"  Text="{Binding Path=SNMPVersion, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                               
+
                                 <Label Content="Storage Device Status"/>
                                 <scwpf:ListPicker Style="{StaticResource listPickerStyle}" ParentCategoryId="{Binding Mode=OneWay, Source={x:Static local:Resources.guidNetDeviceStatusEnumRoot}}" 
                                 	SelectedItem="{Binding Path=Status, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="23" />
@@ -182,9 +182,7 @@
                 <smcontrols:HistoryTab></smcontrols:HistoryTab>
             </TabItem>
         </TabControl>
-
         <Grid>
-
         </Grid>
     </Grid>
 </UserControl>

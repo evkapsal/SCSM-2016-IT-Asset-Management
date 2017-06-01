@@ -163,7 +163,6 @@
                                     <smcontrols:SingleInstancePicker Style="{StaticResource sipStyle}" BaseClassId="{Binding Source={x:Static local:Resources.guidOtherHWClass},Mode=OneWay}"
                                                                  Instance="{Binding Path=OtherDevice, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="InstancePicker_MouseDoubleClick"/>
                                 </StackPanel>
-
                                 <StackPanel Style="{StaticResource stackPanelStyle}" Grid.Row="2"  Grid.ColumnSpan="4">
                                     <Label Content="Cost"/>
                                     <TextBox Style="{StaticResource textBoxStyle}" Text="{Binding Path=Cost, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
@@ -173,7 +172,6 @@
                                     <scwpf:ListPicker Style="{StaticResource listPickerStyle}" ParentCategoryId="{Binding Mode= OneWay, Source={x:Static local:Resources.guidCurrencyEnumRoot}}" 
                                 	SelectedItem="{Binding Path=CostCurrency, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="23" />
                                 </StackPanel>
-
                                 <StackPanel Style="{StaticResource stackPanelStyle}" Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="3">
                                     <Label Content="Readiness Status"/>
                                     <scwpf:ListPicker Style="{StaticResource listPickerStyle}" ParentCategoryId="{Binding Mode=OneWay, Source={x:Static local:Resources.guidReadinessEnumRoot}}" 
@@ -185,15 +183,11 @@
                                 	SelectedItem="{Binding Path=DesignatedUse, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="23" />
 
                                 </StackPanel>
-
                                 <StackPanel Style="{StaticResource stackPanelStyle}" Grid.Row="5" Grid.Column="4" Grid.ColumnSpan="2">
                                     <Label Content="Type"/>
                                     <nsmcontrols:ListPicker Style="{StaticResource listPickerStyle}" ParentCategoryId="{Binding Source={x:Static local:Resources.guidTypeEnumRoot},Mode=OneWay}" 
                                      SelectedItem="{Binding Path=Type, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                                 </StackPanel>
-
-
-
                                 <StackPanel Style="{StaticResource stackPanelStyle}" Grid.Row="5" Grid.Column="6" Grid.ColumnSpan="3">
                                     <Label Content="Ownership Type"/>
                                     <nsmcontrols:ListPicker Style="{StaticResource listPickerStyle}" ParentCategoryId="{Binding Source={x:Static local:Resources.guidOwnershipEnumRoot},Mode=OneWay}" 

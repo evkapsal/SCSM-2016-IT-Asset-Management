@@ -30,44 +30,54 @@
           <Source ID="OfficeDesk" Type="OfficeDesk" />
           <Target ID="HardwareAsset" Type="HardwareAsset" />
         </RelationshipType>
-        <!--
-       <RelationshipType ID="Relationship.UserRoleHasMember" Accessibility="Public" Abstract="false" Base="System!System.Reference">
-          <Source ID="Role" Type="Role" />
-          <Target ID="IsMember" Type="System!System.Domain.User" />
+        <RelationshipType ID="Relationship.AzureSubscriptionHasResourceGroup" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="AzureSubscription" Type="AzureSubscription" />
+          <Target ID="AzureResourceGroup" Type="AzureResourceGroup" />
         </RelationshipType>
-        <RelationshipType ID="Relationship.UserRoleHasSetting" Accessibility="Public" Abstract="false" Base="System!System.Reference">
-          <Source ID="Role" Type="Role" />
-          <Target ID="Setting" Type="Setting"/>
+        <RelationshipType ID="Relationship.AzureSubscriptionHaAdminUser" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="AzureSubscription" Type="AzureSubscription" />
+          <Target ID="User" Type="System!System.Domain.User" MinCardinality="0" MaxCardinality="1"/>
         </RelationshipType>
-        <RelationshipType ID="Relationship.UserRoleHasOtherSetting" Accessibility="Public" Abstract="false" Base="System!System.Reference">
-          <Source ID="Role" Type="Role" />
-          <Target ID="OtherSetting" Type="OtherSetting"/>
+         <RelationshipType ID="Relationship.AzureResourceGroupHasLocation" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="AzureResourceGroup" Type="AzureResourceGroup" />
+          <Target ID="AzureLocation" Type="AzureLocation" MinCardinality="0" MaxCardinality="1" />
         </RelationshipType>
-        <RelationshipType ID="Relationship.UserRoleHasShortcut" Accessibility="Public" Abstract="false" Base="System!System.Reference">
-          <Source ID="Role" Type="Role" />
-          <Target ID="Shortcut" Type="Shortcut" />
+        <RelationshipType ID="Relationship.AzureResourceGroupHasAzureVMs" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="AzureResourceGroup" Type="AzureResourceGroup" MinCardinality="0" MaxCardinality="1" />
+          <Target ID="AzureVM" Type="AzureVM"  />
         </RelationshipType>
-		  <RelationshipType ID="Relationship.ADGroupHasUser" Accessibility="Public" Abstract="false" Base="System!System.Reference">
-          <Source ID="ADGroupMembership" Type="ADGroupMembership" />
-          <Target ID="User" Type="System!System.Domain.User" MinCardinality="0" MaxCardinality="2147483647" />
+        <RelationshipType ID="Relationship.AzureVMsHasSubnet" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="AzureVM" Type="AzureVM"  />
+          <Target ID="AzureSubnet" Type="AzureSubnet" MinCardinality="0" MaxCardinality="1" />
         </RelationshipType>
-        <RelationshipType ID="Relationship.ADGroupAssignJobRole" Accessibility="Public" Abstract="false" Base="System!System.Reference">
-          <Source ID="ADGroupMembership" Type="ADGroupMembership" />
-          <Target ID="Role" Type="Role" MinCardinality="0" MaxCardinality="2147483647" />
+        <RelationshipType ID="Relationship.AzureNetHasSubnet" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="AzureNet" Type="AzureNet" MinCardinality="0" MaxCardinality="1"  />
+          <Target ID="AzureSubnet" Type="AzureSubnet" />
         </RelationshipType>
-        <RelationshipType ID="Relationship.ADGroupHasSettings" Accessibility="Public" Abstract="false" Base="System!System.Reference">
-          <Source ID="ADGroupMembership" Type="ADGroupMembership" />
-          <Target ID="Setting" Type="Setting" MinCardinality="0" MaxCardinality="2147483647" />
+        <RelationshipType ID="Relationship.AzureNetHasGatewaySubnet" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="AzureNet" Type="AzureNet"  />
+          <Target ID="AzureVNetGateway" Type="AzureVNetGateway" />
         </RelationshipType>
-        <RelationshipType ID="Relationship.SettingHasShortcut" Accessibility="Public" Abstract="false" Base="System!System.Reference">
-          <Source ID="Setting" Type="Setting" />
-          <Target ID="Shortcut" Type="Shortcut" MinCardinality="0" MaxCardinality="2147483647" />
+        <RelationshipType ID="Relationship.AzureLocationHasNLocation" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="AzureLocation" Type="AzureLocation"  />
+          <Target ID="NLocation" Type="NLocation" MinCardinality="0" MaxCardinality="1" />
         </RelationshipType>
-        <RelationshipType ID="Relationship.SettingHasOtherSetting" Accessibility="Public" Abstract="false" Base="System!System.Reference">
-          <Source ID="Setting" Type="Setting" />
-          <Target ID="OtherSetting" Type="OtherSetting" MinCardinality="0" MaxCardinality="2147483647" />
+        <RelationshipType ID="Relationship.AzureResourceGroupHasNetwork" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="AzureResourceGroup" Type="AzureResourceGroup"  />
+          <Target ID="AzureNet" Type="AzureNet" />
         </RelationshipType>
-		-->
+        <RelationshipType ID="Relationship.AzureVMHasConsumption" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="AzureVM" Type="AzureVM" MinCardinality="0" MaxCardinality="1"  />
+          <Target ID="AzureConsumption" Type="AzureConsumption" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.AzureGatewayHasConsumption" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="AzureVNetGateway" Type="AzureVNetGateway" MinCardinality="0" MaxCardinality="1"  />
+          <Target ID="AzureConsumption" Type="AzureConsumption" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.AzureSubscriptionHasConsumption" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="AzureSubscription" Type="AzureSubscription" MinCardinality="0" MaxCardinality="1"  />
+          <Target ID="AzureConsumption" Type="AzureConsumption" />
+        </RelationshipType>
         <RelationshipType ID="Relationship.HWAgreementHasPurchaseOrder" Accessibility="Public" Abstract="false" Base="System!System.Reference">
           <Source ID="HardwareAgreement" Type="HardwareAgreement" />
           <Target ID="PurchaseOrder" Type="PurchaseOrder" />
@@ -347,8 +357,7 @@
         <RelationshipType ID="Relationship.MonitorHasUser" Accessibility="Public" Abstract="false" Base="System!System.Reference">
           <Source ID="Monitor" Type="Monitor" />
           <Target ID="User" Type="System!System.Domain.User" MinCardinality="0" MaxCardinality="1" />
-        </RelationshipType>
-        
+        </RelationshipType>      
         <RelationshipType ID="Relationship.HardwareContainsDisks" Accessibility="Public" Abstract="false" Base="System!System.Reference">
           <Source ID="Hardware" Type="Hardware" />
           <Target ID="Disk" Type="WindowsPeripheral!Microsoft.Windows.Peripheral.PhysicalDisk" />
@@ -585,35 +594,6 @@
           <Source ID="LeaseAgreement" Type="LeaseAgreement" />
           <Target ID="CostCenter" Type="CostCenter" MinCardinality="0" MaxCardinality="1" />
         </RelationshipType>	
-        <!--
-		#For Delete
-		<RelationshipType ID="Relationship.HardwareAssetHasTag" Accessibility="Public" Abstract="false" Base="System!System.Reference">
-          <Property ID="AssetTag" Type="string" />
-          <Source ID="HardwareAsset" Type="HardwareAsset" />
-          <Target ID="Hardware" Type="Hardware" MinCardinality="0" MaxCardinality="1" />
-        </RelationshipType>
-        <RelationshipType ID="Relationship.HardwareAssetHasEffDate" Accessibility="Public" Abstract="false" Base="System!System.Reference">
-          <Property ID="EffectiveDate" Type="datetime" />
-          <Source ID="HardwareAsset" Type="HardwareAsset" />
-          <Target ID="Agreement" Type="Agreement" MinCardinality="0" MaxCardinality="1" />
-        </RelationshipType>
-        <RelationshipType ID="Relationship.HardwareAssethasExpDate" Accessibility="Public" Abstract="false" Base="System!System.Reference">
-          <Property ID="ExpirationDate" Type="datetime" />
-          <Source ID="HardwareAsset" Type="HardwareAsset" />
-          <Target ID="Agreement" Type="Agreement" MinCardinality="0" MaxCardinality="1" />
-        </RelationshipType>
-        <RelationshipType ID="Relationship.HardwareAssetHasSerial" Accessibility="Public" Abstract="false" Base="System!System.Reference">
-          <Property ID="SerialNumber" Type="string" />
-          <Source ID="HardwareAsset" Type="HardwareAsset" />
-          <Target ID="Hardware" Type="Hardware" MinCardinality="0" MaxCardinality="1" />
-        </RelationshipType>
-        <RelationshipType ID="Relationship.HardwareAssetHasAssetTag" Accessibility="Public" Abstract="false" Base="System!System.Reference">
-          <Property ID="AssetTag" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
-          <Source ID="Hardware" Type="Hardware" />
-          <Target ID="HardwareAsset" Type="HardwareAsset" />
-        </RelationshipType>
-		For Delete#
-		-->
       </RelationshipTypes>
     </EntityTypes>
   </TypeDefinitions>
@@ -744,6 +724,54 @@
           <Name>Software Asset Has Invoice Relationship </Name>
           <Description>Software Asset Has Invoice Relationship</Description>
         </DisplayString>
+        <DisplayString ElementID="Relationship.AzureVMsHasSubnet" >
+          <Name>Azure Virtual Machine Has Subnet Relationship</Name>
+          <Description>Azure Virtual Machine Has Subnet Relationship</Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.AzureSubscriptionHasResourceGroup" >
+          <Name>Azure Subscription Has Resource Group Relationship</Name>
+          <Description>Azure Subscription HasResource Group Relationship</Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.AzureSubscriptionHaAdminUser" >
+          <Name>Azure Subscription Has Admin User Relationship </Name>
+          <Description>Azure Subscription Has Admin User Relationship </Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.AzureResourceGroupHasLocation" >
+          <Name>Azure Resource Group Has Location Relationship</Name>
+          <Description>Azure Resource Group Has Location Relationship</Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.AzureResourceGroupHasAzureVMs" >
+          <Name>Azure Resource Group Has Azure Virtual Machine Relationship</Name>
+          <Description>Azure Resource Group Has Azure Virtual Machine Relationship</Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.AzureNetHasSubnet" >
+          <Name>Azure Network Has Subnet Relationship</Name>
+          <Description>Azure Network Has Subnet Relationship </Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.AzureNetHasGatewaySubnet" >
+          <Name>Azure Network Has Network Gateway Subnet Relationship </Name>
+          <Description>Azure Network Has Network Gateway Subnet Relationship</Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.AzureLocationHasNLocation" >
+          <Name>Azure Location Has Asset Location Relationship</Name>
+          <Description>Azure Location Has Asset Location Relationship</Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.AzureResourceGroupHasNetwork" >
+          <Name>Azure Resource Group Has Azure Network Relationship</Name>
+          <Description>Azure Resource Group Has Azure Network Relationship </Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.AzureVMHasConsumption" >
+          <Name>Azure Virtual Machine Has Consumption Relationship</Name>
+          <Description>Azure Virtual Machine Has Consumption Relationship</Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.AzureGatewayHasConsumption" >
+          <Name>Azure Gateway Has Consumption Relationship </Name>
+          <Description>Azure Gateway Has Consumption Relationship  </Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.AzureSubscriptionHasConsumption" >
+          <Name>Azure Subscription Has Consumption Relationship </Name>
+          <Description>Azure Subscription Has Consumption Relationship</Description>
+        </DisplayString>
         <DisplayString ElementID="Relationship.OfficeDeskHasLocation">
           <Name>Office Desk Has Location Relationship </Name>
           <Description>Office Desk Has Location Relationship</Description>
@@ -760,25 +788,6 @@
           <Name>Office Desk Has Hardware Asset Relationship </Name>
           <Description>Office Desk Has Hardware Asset Relationship</Description>
         </DisplayString>
-        <!--
-        <DisplayString ElementID="Relationship.UserRoleHasMember">
-          <Name>User Role Has Member Relationship </Name>
-          <Description>User Role Has Member Relationship</Description>
-        </DisplayString>
-        <DisplayString ElementID="Relationship.UserRoleHasSetting">
-          <Name>User Role Has Setting Relationship </Name>
-          <Description>User Role Has Setting Relationship</Description>
-        </DisplayString>
-        <DisplayString ElementID="Relationship.UserRoleHasOtherSetting">
-          <Name>User Role Has Other Setting Relationship </Name>
-          <Description>User Role Has Other Setting Relationship</Description>
-        </DisplayString>
-        <DisplayString ElementID="Relationship.UserRoleHasShortcut">
-          <Name>User Role Has Shortcut Relationship </Name>
-          <Description>User Role Has Shortcut Relationship</Description>
-        </DisplayString>
-		
-		-->
         <DisplayString ElementID="Relationship.SoftwareAssetHasUser">
           <Name>Software Asset Has Assigned User </Name>
           <Description>Software Asset Has Assigned User</Description>

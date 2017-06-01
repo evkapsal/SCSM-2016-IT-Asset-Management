@@ -66,7 +66,7 @@ namespace ITAssetMgmtForms
             headeredContentControl.OverridesDefaultStyle = true;
             headeredContentControl.Foreground = Brushes.Black;
             headeredContentControl.Header = "Main";
-            this.expMain.Header = headeredContentControl;
+            this.expDetails.Header = headeredContentControl;
         }
         private void expDetails_Loaded(object sender, RoutedEventArgs e)
         {

@@ -81,29 +81,86 @@
           <Component Path="$Context/Path[Relationship='Relationship.LicStatusIsForSoftwareAgreement']$" Alias="SoftwareAgreement" />
           <Component Path="$Context/Path[Relationship='Relationship.LicStatusHasSoftware']$" Alias="Software" />
         </TypeProjection>
-        <!--
-		<TypeProjection ID="Projection.UserRole" Accessibility="Public" Type="Role">
-          <Component Path="$Context/Path[Relationship='Relationship.UserRoleHasMember']$" Alias="IsMember" />
-          <Component Path="$Context/Path[Relationship='Relationship.UserRoleHasSetting']$" Alias="Setting" />
-          <Component Path="$Context/Path[Relationship='Relationship.UserRoleHasOtherSetting']$" Alias="OtherSetting" />
-          <Component Path="$Context/Path[Relationship='Relationship.UserRoleHasShortcut']$" Alias="Shortcut" />      
+
+        <TypeProjection ID="Projection.AzureSubnet" Accessibility="Public" Type="AzureSubnet">
+          <Component Path="$Context/Path[Relationship='Relationship.AzureNetHasSubnet' SeedRole='Target']$" Alias="AzureNet" />
+          <Component Path="$Context/Path[Relationship='Relationship.AzureVMsHasSubnet' SeedRole='Target']$" Alias="AzureVM" />
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemRelatesToConfigItem' SeedRole='Target']$" Alias="ImpactedWorkItem" />
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemAboutConfigItem' SeedRole='Target']$" Alias="RelatedWorkItem" />
+          <Component Path="$Context/Path[Relationship='SupportingItem!System.ConfigItemHasFileAttachment']$" Alias="FileAttachment" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem']$" Alias="RelatedConfigItem" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem' SeedRole='Target']$" Alias="RelatedConfigItemSource" />
+          <Component Path="$Context/Path[Relationship='CoreKnowledge!System.EntityLinksToKnowledgeDocument']$" Alias="RelatedKnowledgeArticles" />
+        </TypeProjection>
+        
+        <TypeProjection ID="Projection.AzureVNetGateway" Accessibility="Public" Type="AzureVNetGateway">
+          <Component Path="$Context/Path[Relationship='Relationship.AzureNetHasGatewaySubnet' SeedRole='Target']$" Alias="AzureNet" />
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemRelatesToConfigItem' SeedRole='Target']$" Alias="ImpactedWorkItem" />
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemAboutConfigItem' SeedRole='Target']$" Alias="RelatedWorkItem" />
+          <Component Path="$Context/Path[Relationship='SupportingItem!System.ConfigItemHasFileAttachment']$" Alias="FileAttachment" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem']$" Alias="RelatedConfigItem" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem' SeedRole='Target']$" Alias="RelatedConfigItemSource" />
+          <Component Path="$Context/Path[Relationship='CoreKnowledge!System.EntityLinksToKnowledgeDocument']$" Alias="RelatedKnowledgeArticles" />
         </TypeProjection>
 
-        <TypeProjection ID="Projection.Shortcut" Accessibility="Public" Type="Shortcut">
-          <Component Path="$Context/Path[Relationship='Relationship.UserRoleHasShortcut' SeedRole='Target']$" Alias="Role" />
+        <TypeProjection ID="Projection.AzureLocation" Accessibility="Public" Type="AzureLocation">
+          <Component Path="$Context/Path[Relationship='Relationship.AzureResourceGroupHasLocation' SeedRole='Target']$" Alias="ResourceGroup" />
+          <Component Path="$Context/Path[Relationship='Relationship.AzureLocationHasNLocation']$" Alias="NLocation" />
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemRelatesToConfigItem' SeedRole='Target']$" Alias="ImpactedWorkItem" />
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemAboutConfigItem' SeedRole='Target']$" Alias="RelatedWorkItem" />
+          <Component Path="$Context/Path[Relationship='SupportingItem!System.ConfigItemHasFileAttachment']$" Alias="FileAttachment" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem']$" Alias="RelatedConfigItem" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem' SeedRole='Target']$" Alias="RelatedConfigItemSource" />
+          <Component Path="$Context/Path[Relationship='CoreKnowledge!System.EntityLinksToKnowledgeDocument']$" Alias="RelatedKnowledgeArticles" />
         </TypeProjection>
 
-        <TypeProjection ID="Projection.Setting" Accessibility="Public" Type="Setting">
-          <Component Path="$Context/Path[Relationship='Relationship.UserRoleHasSetting' SeedRole='Target']$" Alias="Role" />
+        <TypeProjection ID="Projection.AzureNnet" Accessibility="Public" Type="AzureNet">
+          <Component Path="$Context/Path[Relationship='Relationship.AzureNetHasSubnet']$" Alias="Subnet" />
+          <Component Path="$Context/Path[Relationship='Relationship.AzureNetHasGatewaySubnet']$" Alias="GatewaySubnet" />
+          <Component Path="$Context/Path[Relationship='Relationship.AzureResourceGroupHasNetwork' SeedRole='Target']$" Alias="AzureResourceGroup" />
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemRelatesToConfigItem' SeedRole='Target']$" Alias="ImpactedWorkItem" />
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemAboutConfigItem' SeedRole='Target']$" Alias="RelatedWorkItem" />
+          <Component Path="$Context/Path[Relationship='SupportingItem!System.ConfigItemHasFileAttachment']$" Alias="FileAttachment" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem']$" Alias="RelatedConfigItem" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem' SeedRole='Target']$" Alias="RelatedConfigItemSource" />
+          <Component Path="$Context/Path[Relationship='CoreKnowledge!System.EntityLinksToKnowledgeDocument']$" Alias="RelatedKnowledgeArticles" />
         </TypeProjection>
 
-        <TypeProjection ID="Projection.OtherSetting" Accessibility="Public" Type="OtherSetting">
-          <Component Path="$Context/Path[Relationship='Relationship.UserRoleHasOtherSetting' SeedRole='Target']$" Alias="Role" />
+        <TypeProjection ID="Projection.AzureSubscription" Accessibility="Public" Type="AzureSubscription">
+          <Component Path="$Context/Path[Relationship='Relationship.AzureSubscriptionHaAdminUser']$" Alias="HasUser"/>
+          <Component Path="$Context/Path[Relationship='Relationship.AzureSubscriptionHasResourceGroup']$" Alias="ResourceGroup"/>
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemRelatesToConfigItem' SeedRole='Target']$" Alias="ImpactedWorkItem" />
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemAboutConfigItem' SeedRole='Target']$" Alias="RelatedWorkItem" />
+          <Component Path="$Context/Path[Relationship='SupportingItem!System.ConfigItemHasFileAttachment']$" Alias="FileAttachment" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem']$" Alias="RelatedConfigItem" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem' SeedRole='Target']$" Alias="RelatedConfigItemSource" />
+          <Component Path="$Context/Path[Relationship='CoreKnowledge!System.EntityLinksToKnowledgeDocument']$" Alias="RelatedKnowledgeArticles" />
         </TypeProjection>
-		
-		<TypeProjection ID="Projection.ADGroupSyncConnector" Accessibility="Public" Type="ADGroupSyncConnector">
+
+        <TypeProjection ID="Projection.AzureResourceGroup" Accessibility="Public" Type="AzureResourceGroup">
+          <Component Path="$Context/Path[Relationship='Relationship.AzureResourceGroupHasAzureVMs']$" Alias="VMs" />
+          <Component Path="$Context/Path[Relationship='Relationship.AzureResourceGroupHasLocation']$" Alias="Location" />
+          <Component Path="$Context/Path[Relationship='Relationship.AzureResourceGroupHasNetwork']$" Alias="AzureNetwork" />
+          <Component Path="$Context/Path[Relationship='Relationship.AzureSubscriptionHasResourceGroup' SeedRole='Target']$" Alias="Subscription"/>
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemRelatesToConfigItem' SeedRole='Target']$" Alias="ImpactedWorkItem" />
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemAboutConfigItem' SeedRole='Target']$" Alias="RelatedWorkItem" />
+          <Component Path="$Context/Path[Relationship='SupportingItem!System.ConfigItemHasFileAttachment']$" Alias="FileAttachment" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem']$" Alias="RelatedConfigItem" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem' SeedRole='Target']$" Alias="RelatedConfigItemSource" />
+          <Component Path="$Context/Path[Relationship='CoreKnowledge!System.EntityLinksToKnowledgeDocument']$" Alias="RelatedKnowledgeArticles" />
         </TypeProjection>
-        -->
+        <TypeProjection ID="Projection.AzureVM" Accessibility="Public" Type="AzureVM">
+          <Component Path="$Context/Path[Relationship='Relationship.AzureVMsHasSubnet']$" Alias="Subnet" />
+          <Component Path="$Context/Path[Relationship='Relationship.AzureResourceGroupHasAzureVMs' SeedRole='Target']$" Alias="ResourceGroup" />
+          <Component Path="$Context/Path[Relationship='Relationship.AzureVMHasConsumption']$" Alias="AzureConsumption" />
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemRelatesToConfigItem' SeedRole='Target']$" Alias="ImpactedWorkItem" />
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemAboutConfigItem' SeedRole='Target']$" Alias="RelatedWorkItem" />
+          <Component Path="$Context/Path[Relationship='SupportingItem!System.ConfigItemHasFileAttachment']$" Alias="FileAttachment" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem']$" Alias="RelatedConfigItem" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem' SeedRole='Target']$" Alias="RelatedConfigItemSource" />
+          <Component Path="$Context/Path[Relationship='CoreKnowledge!System.EntityLinksToKnowledgeDocument']$" Alias="RelatedKnowledgeArticles" />
+        </TypeProjection>
+        
         
         <TypeProjection ID="Projection.CostCenter" Accessibility="Public" Type="CostCenter">
           <Component Path="$Context/Path[Relationship='Relationship.CostHasCostCenter' SeedRole='Target']$" Alias="Cost"/>
@@ -376,6 +433,19 @@
           <Component Path="$Context/Path[Relationship='Relationship.SoftwareHasLicenseKey' SeedRole='Target']$" Alias="Software" />
           <Component Path="$Context/Path[Relationship='Relationship.SoftwareLicenseKeyHasOwner']$" Alias="Owner" />
         </TypeProjection>
+
+        <TypeProjection ID="Projection.AzureConsumption" Accessibility="Public" Type="AzureConsumption">
+          <Component Path="$Context/Path[Relationship='Relationship.AzureVMHasConsumption' SeedRole='Target']$" Alias="AzureVM" />
+          <Component Path="$Context/Path[Relationship='Relationship.AzureGatewayHasConsumption' SeedRole='Target']$" Alias="AzureGateway" />
+          <Component Path="$Context/Path[Relationship='Relationship.AzureSubscriptionHasConsumption' SeedRole='Target']$" Alias="AzureSubscription"/>
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemRelatesToConfigItem' SeedRole='Target']$" Alias="ImpactedWorkItem" />
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemAboutConfigItem' SeedRole='Target']$" Alias="RelatedWorkItem" />
+          <Component Path="$Context/Path[Relationship='SupportingItem!System.ConfigItemHasFileAttachment']$" Alias="FileAttachment" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem']$" Alias="RelatedConfigItem" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem' SeedRole='Target']$" Alias="RelatedConfigItemSource" />
+          <Component Path="$Context/Path[Relationship='CoreKnowledge!System.EntityLinksToKnowledgeDocument']$" Alias="RelatedKnowledgeArticles" />
+        </TypeProjection>
+
         <TypeProjection ID="Projection.SKU" Accessibility="Public" Type="SKU">
           <Component Path="$Context/Path[Relationship='Relationship.SoftwareHasSKU' SeedRole='Target']$" Alias="Software" />
           <Component Path="$Context/Path[Relationship='Relationship.SkuHasPurchaseOrder']$" Alias="PurchaseOrder" />
@@ -501,34 +571,42 @@
           <Name> Software Projection </Name>
           <Description> Software Projection </Description>
         </DisplayString>
-		<!--
-        <DisplayString ElementID="Projection.UserRole">
-          <Name> User Role Projection </Name>
-          <Description> User Role Projection </Description>
-        </DisplayString>
-		        <DisplayString ElementID="Projection.Shortcut">
-          <Name> Shortcut Projection </Name>
-          <Description> Shortcut Projection</Description>
-        </DisplayString>
-		 <DisplayString ElementID="Projection.Setting">
-          <Name> Setting Projection </Name>
-          <Description> Setting Projection </Description>
-        </DisplayString>
-        <DisplayString ElementID="Projection.OtherSetting">
-          <Name> Other Setting Projection </Name>
-          <Description> Other Setting Projection </Description>
-        </DisplayString>
-		
-        <DisplayString ElementID="Projection.SoftwareVersion">
-          <Name> Software Version Projection </Name>
-          <Description> Software Version Projection </Description>
-        </DisplayString>
-       -->
         <DisplayString ElementID="Projection.SupportAgreement">
           <Name>Support Agreement Projection </Name>
           <Description> Support Agreement Projection </Description>
         </DisplayString>
-        
+        <DisplayString ElementID="Projection.AzureConsumption" >
+          <Name>Azure Consumption Plan Projection</Name>
+          <Description>Azure Consumption Plan Projection</Description>
+        </DisplayString>
+        <DisplayString ElementID="Projection.AzureSubnet" >
+          <Name>Azure Network Subnet Projection</Name>
+          <Description>Azure Network Subnet Projection</Description>
+        </DisplayString>
+        <DisplayString ElementID="Projection.AzureVNetGateway" >
+          <Name>Azure Network Gateway Projection </Name>
+          <Description>Azure Network Gateway Projection</Description>
+        </DisplayString>
+        <DisplayString ElementID="Projection.AzureLocation" >
+          <Name>Azure Location Projection</Name>
+          <Description>Azure Location Projection</Description>
+        </DisplayString>
+        <DisplayString ElementID="Projection.AzureNnet" >
+          <Name>Azure Network Projection</Name>
+          <Description>Azure Network Projection</Description>
+        </DisplayString>
+        <DisplayString ElementID="Projection.AzureSubscription" >
+          <Name>Azure Subscription Projection</Name>
+          <Description>Azure Subscription Projection</Description>
+        </DisplayString>
+        <DisplayString ElementID="Projection.AzureResourceGroup" >
+          <Name>Azure Resource Group Projection </Name>
+          <Description>Azure Resource Group Projection </Description>
+        </DisplayString>
+        <DisplayString ElementID="Projection.AzureVM" >
+          <Name>Azure Virtual Machine Projection</Name>
+          <Description>Azure Virtual Machine Projection</Description>
+        </DisplayString>
         <DisplayString ElementID="Projection.OfficeDesk">
         <Name>Office Desk Projection </Name>
         <Description> Office Desk Projection </Description>

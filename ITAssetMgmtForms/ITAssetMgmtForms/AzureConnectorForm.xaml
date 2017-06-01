@@ -12,7 +12,7 @@
              xmlns:local="clr-namespace:ITAssetMgmtForms"
              mc:Ignorable="d" 
              Loaded="UserControl_Loaded"
-             d:DesignHeight="300" d:DesignWidth="500">
+             d:DesignHeight="400" d:DesignWidth="500">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -96,15 +96,19 @@
                         <wpfToolKit:DatePicker Style="{StaticResource datePickerStyle}" SelectedDate="{Binding Path=LastSynced, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
                     <StackPanel Style="{StaticResource stackPanelStyle}" Grid.Row="1"  Grid.ColumnSpan="8">
-                        <Label Content="Credentials Path"/>
+                        <Label Content="Tenant ID"/>
+                        <TextBox Style="{StaticResource textBoxStyle}" Text="{Binding Path=TenantID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        <Label Content="Application ID"/>
                         <TextBox Style="{StaticResource textBoxStyle}" Text="{Binding Path=CredentialsPath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        <Label Content="Key" />
+                        <PasswordBox  
+                                      local:PasswordHelper.Attach="True"
+                                      local:PasswordHelper.Password="{Binding Text, ElementName=plain, Mode=TwoWay}" Height="23" />
+                        <TextBlock x:Name="plain" Text="{Binding CredentialsKey, Mode=TwoWay}" Visibility="Hidden"/>
+
                         <Label Content="Description"/>
                         <TextBox Style="{StaticResource textBoxMediumStyle}" Text="{Binding Path=Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
-                    
-                        
-              
-
                 </Grid>
             </TabItem>
         </TabControl>

@@ -58,6 +58,8 @@
           <Property ID="Type" Type="enum" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" EnumType="ITSMConnectorType" DefaultValue="ITSMConnectorType.AzureSyncronization" />
           <Property ID="ConnectorName" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" DefaultValue="Azure Connector" />
           <Property ID="CredentialsPath" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0"/>
+          <Property ID="CredentialsKey" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0"/>
+          <Property ID="TenantID" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0"/>
           <Property ID="IsActive" Type="bool" DefaultValue="0" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0"/>
         </ClassType>
         <ClassType ID="AmazonConnector" Accessibility="Public" Abstract="false" Base="AdminItem!System.SolutionSettings" Hosted="false" Singleton="true" Extension="false">
@@ -70,45 +72,6 @@
           <Property ID="Secret" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
           <Property ID="IsActive" Type="bool" DefaultValue="0" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0"/>
         </ClassType>
-        <!--
-		#Version with Settings
-		<ClassType ID="ADGroupSyncConnector" Accessibility="Public" Abstract="false" Base="AdminItem!System.SolutionSettings" Hosted="false" Singleton="true" Extension="false">
-          <Property ID="Description" Type="richtext" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
-          <Property ID="LastSynced" Type="datetime" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
-          <Property ID="Status" Type="enum" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" EnumType="ITSMConnectorStatus" />
-          <Property ID="Type" Type="enum" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" EnumType="ITSMConnectorType" DefaultValue="ITSMConnectorType.ADGroupSyncronization" />
-          <Property ID="ConnectorName" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" DefaultValue="AD Group AD Connector" />
-          <Property ID="IsActive" Type="bool" DefaultValue="0" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0"/>
-		   <ClassType ID="ADGroupMembership" Accessibility="Public" Abstract="false" Base="Windows!Microsoft.AD.Group" Hosted="false" Singleton="false" Extension="true">
-		   </ClassType>
-        <ClassType ID="Setting" Accessibility="Public" Abstract="false" Base="System!System.ConfigItem" Hosted="false" Singleton="false" Extension="false">
-          <Property ID="SettingID" Type="string" AutoIncrement="true" Key="true" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" DefaultValue="SetID{0}" />
-          <Property ID="Description" Type="richtext" MinLength="0" MaxLength="2000" AutoIncrement="false" />
-          <Property ID="SettingName" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
-          <Property ID="SettingValue" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
-          <Property ID="SettingClassification" Type="enum" EnumType="SettingClassificationEnum" />
-        </ClassType>
-        <ClassType ID="Shortcut" Accessibility="Public" Abstract="false" Base="System!System.ConfigItem" Hosted="false" Singleton="false" Extension="false">
-          <Property ID="ShortcutID" Type="string" AutoIncrement="true" Key="true" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" DefaultValue="SortID{0}" />
-          <Property ID="Shortcut" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
-          <Property ID="Value" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
-          <Property ID="Description" Type="richtext" MinLength="0" MaxLength="2000" AutoIncrement="false" />
-        </ClassType>
-        <ClassType ID="Role" Accessibility="Public" Abstract="false" Base="System!System.ConfigItem" Hosted="false" Singleton="false" Extension="false">
-          <Property ID="RoleID" Type="string" AutoIncrement="true" Key="true" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" DefaultValue="RoleID{0}" />
-          <Property ID="Description" Type="richtext" MinLength="0" MaxLength="2000" AutoIncrement="false" />
-          <Property ID="Name" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
-          <Property ID="RoleClassification" Type="enum" EnumType="RoleClassificationEnum" />
-        </ClassType>      
-        <ClassType ID="OtherSetting" Accessibility="Public" Abstract="false" Base="System!System.ConfigItem" Hosted="false" Singleton="false" Extension="false">
-          <Property ID="OSettingID" Type="string" AutoIncrement="true" Key="true" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" DefaultValue="OSetID{0}" />
-          <Property ID="Description" Type="richtext" MinLength="0" MaxLength="2000" AutoIncrement="false" />
-          <Property ID="OSettingName" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
-          <Property ID="OSettingValue" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
-          <Property ID="OSettingClassification" Type="enum" EnumType="OSettingClassificationEnum" />
-        </ClassType>
-		Version with Settings#
-		-->		
         <ClassType ID="LicenseStatus" Accessibility="Public" Abstract="false" Base="System!System.ConfigItem" Hosted="false" Singleton="false" Extension="false">
             <Property ID="Description" Type="richtext" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
             <Property ID="LastUpdate" Type="datetime" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
@@ -504,6 +467,13 @@
           <Property ID="Environment" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
           <Property ID="IsDefault" Type="bool" />
         </ClassType>
+         <ClassType ID="AzureResourceGroup" Accessibility="Public" Abstract="false" Base="System!System.ConfigItem" Hosted="false" Singleton="false" Extension="false">
+          <Property ID="AZRGID" Type="string" AutoIncrement="true" Key="true" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" DefaultValue="AzRgID{0}" />
+          <Property ID="Description" Type="richtext" MinLength="0" MaxLength="2000" AutoIncrement="false" />
+          <Property ID="ResourceType" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
+          <Property ID="ResourceName" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
+          <Property ID="ResourceId" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
+        </ClassType>
         <ClassType ID="AzureService" Accessibility="Public" Abstract="false" Base="System!System.ConfigItem" Hosted="false" Singleton="false" Extension="false">
           <Property ID="ServID" Type="string" AutoIncrement="true" Key="true" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" DefaultValue="ServID{0}" />
           <Property ID="Description" Type="richtext" MinLength="0" MaxLength="2000" AutoIncrement="false" />
@@ -524,6 +494,7 @@
           <Property ID="DeploymentName" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
           <Property ID="VMName" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
           <Property ID="IPAddress" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
+          <Property ID="PublicIPAddress" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
           <Property ID="PowerState" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
           <Property ID="InstanceStatus" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
           <Property ID="InstanceName" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
@@ -532,6 +503,8 @@
           <Property ID="AvailabilitySetName" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
           <Property ID="DNSName" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
           <Property ID="Status" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
+          <Property ID="OperatingSystem" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
+          <Property ID="VMHDPath" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />        
         </ClassType>
         <ClassType ID="AzureNet" Accessibility="Public" Abstract="false" Base="System!System.ConfigItem" Hosted="false" Singleton="false" Extension="false">
           <Property ID="AzNetID" Type="string" AutoIncrement="true" Key="true" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" DefaultValue="AzNetID{0}" />
@@ -554,23 +527,37 @@
           <Property ID="LastEventMessage" Type="richtext" MinLength="0" MaxLength="2000" AutoIncrement="false" />
           <Property ID="State" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
           <Property ID="VIPAddress" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
+          <Property ID="Description" Type="richtext" MinLength="0" MaxLength="2000" AutoIncrement="false" />
           <Property ID="DefaultSite" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
           <Property ID="GatewaySKU" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
           <Property ID="OperationStatus" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
+          <Property ID="GatewayName" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
           <Property ID="LastEventTimeStamp" Type="datetime" />
+          <Property ID="Connected" Type="bool" />
         </ClassType>
         <ClassType ID="AzureSubnet" Accessibility="Public" Abstract="false" Base="System!System.ConfigItem" Hosted="false" Singleton="false" Extension="false">
           <Property ID="AzSubID" Type="string" AutoIncrement="true" Key="true" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" DefaultValue="AzSubID{0}" />
           <Property ID="Description" Type="richtext" MinLength="0" MaxLength="2000" AutoIncrement="false" />
           <Property ID="SubnetName" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
           <Property ID="AddressPrefix" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
+          <Property ID="IsGatewaySubnet" Type="bool" />
         </ClassType>
         <ClassType ID="AzureLocation" Accessibility="Public" Abstract="false" Base="System!System.ConfigItem" Hosted="false" Singleton="false" Extension="false">
           <Property ID="AzLocID" Type="string" AutoIncrement="true" Key="true" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" DefaultValue="AzLocID{0}" />
           <Property ID="Description" Type="richtext" MinLength="0" MaxLength="2000" AutoIncrement="false" />
           <Property ID="LocationName" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
         </ClassType>
-        
+        <ClassType ID="AzureConsumption" Accessibility="Public" Abstract="false" Base="System!System.ConfigItem" Hosted="false" Singleton="false" Extension="false">
+          <Property ID="AzConID" Type="string" AutoIncrement="true" Key="true" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" DefaultValue="AzConID{0}" />
+          <Property ID="Description" Type="richtext" MinLength="0" MaxLength="2000" AutoIncrement="false" />
+          <Property ID="ConsumptionName" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
+          <Property ID="ConsumptionStartDate" Type="datetime" />
+          <Property ID="ConsumptionEndDate" Type="datetime" />
+          <Property ID="ConsumptionCost" Type="double" DefaultValue="0.0" />
+          <Property ID="HasOverageCost" Type="bool" />
+          <Property ID="OverageCost" Type="double" DefaultValue="0.0" />
+          <Property ID="CostCurrency" Type="enum" EnumType="Currency" />
+        </ClassType>
       </ClassTypes>
     <EnumerationTypes>
       <EnumerationValue ID="ODeskType" Accessibility="Public" />
@@ -987,16 +974,10 @@
       <EnumerationValue ID="ContactRole.General" Accessibility="Public" Parent="ContactRole" Ordinal="15" />
       <EnumerationValue ID="ContactRole.Sales" Accessibility="Public" Parent="ContactRole" Ordinal="5" />
       <EnumerationValue ID="ContactRole.Support" Accessibility="Public" Parent="ContactRole" Ordinal="10" />
-      <!--
-      <EnumerationValue ID="UserRole" Accessibility="Public" />
-      <EnumerationValue ID="UserRole.Primary" Accessibility="Public" Parent="UserRole" Ordinal="5" />
-      <EnumerationValue ID="UserRole.Secondary" Accessibility="Public" Parent="UserRole" Ordinal="10" />
-      -->
   </EnumerationTypes>
     </EntityTypes>
   </TypeDefinitions>
   <Categories>
-
     <Category ID="List.MobileDeviceType" Target="MobileDeviceType" Value="SCSMUIAuth!Microsoft.EnterpriseManagement.ServiceManager.UI.Authoring.EnumerationViewTasks" />
     <Category ID="List.MobileDeviceType.Visible" Target="MobileDeviceType" Value="System!VisibleToUser" />
     <Category ID="List.NetDeviceType" Target="NetDeviceType" Value="SCSMUIAuth!Microsoft.EnterpriseManagement.ServiceManager.UI.Authoring.EnumerationViewTasks" />
@@ -1021,13 +1002,6 @@
     <Category ID="List.OrganizationType.Visible" Target="OrganizationType" Value="System!VisibleToUser" />
     <Category ID="List.AgreementStatus" Target="AgreementStatus" Value="SCSMUIAuth!Microsoft.EnterpriseManagement.ServiceManager.UI.Authoring.EnumerationViewTasks" />
     <Category ID="List.AgreementStatus.Visible" Target="AgreementStatus" Value="System!VisibleToUser" />
-   <!-- <Category ID="List.SettingClassificationEnum" Target="SettingClassificationEnum" Value="SCSMUIAuth!Microsoft.EnterpriseManagement.ServiceManager.UI.Authoring.EnumerationViewTasks" />
-    <Category ID="List.SettingClassificationEnum.Visible" Target="SettingClassificationEnum" Value="System!VisibleToUser" />
-    <Category ID="List.OSettingClassificationEnum" Target="OSettingClassificationEnum" Value="SCSMUIAuth!Microsoft.EnterpriseManagement.ServiceManager.UI.Authoring.EnumerationViewTasks" />
-    <Category ID="List.OSettingClassificationEnum.Visible" Target="OSettingClassificationEnum" Value="System!VisibleToUser" />
-    <Category ID="List.RoleClassificationEnum" Target="RoleClassificationEnum" Value="SCSMUIAuth!Microsoft.EnterpriseManagement.ServiceManager.UI.Authoring.EnumerationViewTasks" />
-    <Category ID="List.RoleClassificationEnum.Visible" Target="RoleClassificationEnum" Value="System!VisibleToUser" />
-    -->
     <Category ID="List.ITSMConnectorStatus" Target="ITSMConnectorStatus" Value="SCSMUIAuth!Microsoft.EnterpriseManagement.ServiceManager.UI.Authoring.EnumerationViewTasks" />
     <Category ID="List.ITSMConnectorStatus.Visible" Target="ITSMConnectorStatus" Value="System!VisibleToUser" />
     <Category ID="List.ITSMConnectorType" Target="ITSMConnectorType" Value="SCSMUIAuth!Microsoft.EnterpriseManagement.ServiceManager.UI.Authoring.EnumerationViewTasks" />
@@ -1114,10 +1088,6 @@
     <Category ID="List.OConnectivityType.Visible" Target="OConnectivityType" Value="System!VisibleToUser" />
     <Category ID="List.ODeskType" Target="ODeskType" Value="SCSMUIAuth!Microsoft.EnterpriseManagement.ServiceManager.UI.Authoring.EnumerationViewTasks" />
     <Category ID="List.ODeskType.Visible" Target="ODeskType" Value="System!VisibleToUser" />
-    <!-- 
-    <Category ID="List.UserRole" Target="UserRole" Value="SCSMUIAuth!Microsoft.EnterpriseManagement.ServiceManager.UI.Authoring.EnumerationViewTasks" />
-    <Category ID="List.UserRole.Visible" Target="UserRole" Value="System!VisibleToUser" />
-    -->
   </Categories>
   <LanguagePacks>
     <LanguagePack ID="ENU" IsDefault="true">
@@ -1126,74 +1096,6 @@
           <Name> Company </Name>
           <Description> Company - Supplier </Description>
         </DisplayString>
-        <!--  
-	  #Settings Display String
-	  <DisplayString ElementID="ADGroupMembership" >
-          <Name> AD Group Membership </Name>
-          <Description> AD Group Membership </Description>
-        </DisplayString>
-        <DisplayString ElementID="Setting" >
-          <Name> Setting </Name>
-          <Description> Setting </Description>
-        </DisplayString>
-        <DisplayString ElementID="Setting" SubElementID="SettingID" >
-          <Name> Setting ID </Name>
-          <Description> Setting ID </Description>
-        </DisplayString>
-        <DisplayString ElementID="Setting" SubElementID="SettingName" >
-          <Name> Name </Name>
-          <Description> Name </Description>
-        </DisplayString>
-        <DisplayString ElementID="Setting" SubElementID="SettingClassification" >
-          <Name> Setting Classification </Name>
-          <Description> Setting Classification </Description>
-        </DisplayString>
-        <DisplayString ElementID="Shortcut" >
-          <Name> Shortcut </Name>
-          <Description> Shortcut </Description>
-        </DisplayString>
-        <DisplayString ElementID="Shortcut" SubElementID="ShortcutID" >
-          <Name> Shortcut ID </Name>
-          <Description> Shortcut ID </Description>
-        </DisplayString>
-        <DisplayString ElementID="Shortcut" SubElementID="Shortcut" >
-          <Name> Shortcut</Name>
-          <Description> Shortcut </Description>
-        </DisplayString>
-        <DisplayString ElementID="Role" >
-          <Name> Role </Name>
-          <Description> Role </Description>
-        </DisplayString>
-        <DisplayString ElementID="Role" SubElementID="RoleID" >
-          <Name> Role ID </Name>
-          <Description> Role ID </Description>
-        </DisplayString>
-        <DisplayString ElementID="Role" SubElementID="Name" >
-          <Name> Name </Name>
-          <Description> Name </Description>
-        </DisplayString>
-        <DisplayString ElementID="Role" SubElementID="RoleClassification" >
-          <Name> Role Classification </Name>
-          <Description> Role Classification </Description>
-        </DisplayString>
-        <DisplayString ElementID="OtherSetting">
-          <Name> Other Setting </Name>
-          <Description> Other Setting </Description>
-        </DisplayString>
-        <DisplayString ElementID="OtherSetting" SubElementID="OSettingID" >
-          <Name> Other Setting ID </Name>
-          <Description> Other Setting ID  </Description>
-        </DisplayString>
-        <DisplayString ElementID="OtherSetting" SubElementID="OSettingName" >
-          <Name> Other Setting Name </Name>
-          <Description> Other Setting Name </Description>
-        </DisplayString>
-        <DisplayString ElementID="OtherSetting" SubElementID="OSettingClassification">
-          <Name> Other Setting Classification </Name>
-          <Description> Other Setting Classification </Description>
-        </DisplayString>     
-			Settings Display Strings#
-		-->
         <DisplayString ElementID="Company" SubElementID="Description">
           <Name> Description </Name>
           <Description> Description </Description>
@@ -1265,6 +1167,358 @@
         <DisplayString ElementID="Monitor">
           <Name>Monitor </Name>
           <Description>Monitor </Description>
+        </DisplayString>
+        	<DisplayString ElementID="AzureSubscription" >
+	<Name>Azure Subscription </Name>
+     <Description> Azure Subscription</Description>
+     </DisplayString>
+          <DisplayString ElementID= "AzureSubscription" SubElementID="SubID" >
+		  <Name>SubID </Name>
+     <Description>SubID </Description>
+     </DisplayString>
+          <DisplayString ElementID= "AzureSubscription" SubElementID="Description"  >
+		  <Name> Description</Name>
+     <Description> Description</Description>
+     </DisplayString>
+          <DisplayString ElementID= "AzureSubscription" SubElementID="SubscriptionId"  >
+		  <Name> Subscription ID</Name>
+     <Description> Subscription ID</Description>
+     </DisplayString>
+          <DisplayString ElementID= "AzureSubscription" SubElementID="SubscriptionName"  >
+		  <Name> Subscription Name</Name>
+     <Description> Subscription Name</Description>
+     </DisplayString>
+          <DisplayString ElementID= "AzureSubscription" SubElementID="Environment"  >
+		  <Name> Environment</Name>
+     <Description> Environment</Description>
+     </DisplayString>
+          <DisplayString ElementID= "AzureSubscription" SubElementID="IsDefault" >
+		  <Name> Is Default </Name>
+     <Description> Is Default</Description>
+     </DisplayString>
+          <DisplayString ElementID="AzureResourceGroup" >
+		  <Name>Azure Resource Group </Name>
+     <Description> Azure Resource Group</Description>
+     </DisplayString>
+          <DisplayString ElementID= "AzureResourceGroup" SubElementID="AZRGID"  >
+		  <Name>AZRGID </Name>
+     <Description> AZRGID</Description>
+     </DisplayString>
+          <DisplayString ElementID= "AzureResourceGroup" SubElementID="Description"  >
+		  <Name>Description </Name>
+     <Description> Description</Description>
+     </DisplayString>
+          <DisplayString ElementID= "AzureResourceGroup" SubElementID="ResourceType"  >
+		  <Name> Resource Type</Name>
+     <Description>Resource Type </Description>
+     </DisplayString>
+          <DisplayString ElementID= "AzureResourceGroup" SubElementID="ResourceName"  >
+		  <Name>Resource Name </Name>
+     <Description>Resource Name </Description>
+     </DisplayString>
+          <DisplayString ElementID= "AzureResourceGroup" SubElementID="ResourceId"  >
+		  <Name>Resource ID </Name>
+     <Description> Resource ID</Description>
+     </DisplayString>
+          <DisplayString ElementID="AzureService" >
+		  <Name>Azure Service </Name>
+     <Description>Azure Service </Description>
+     </DisplayString>
+          <DisplayString ElementID= "AzureService" SubElementID="ServID" >
+		  <Name>ServID </Name>
+     <Description>ServID </Description>
+     </DisplayString>
+          <DisplayString ElementID= "AzureService" SubElementID="Description"  >
+		  <Name> Description</Name>
+     <Description> Description</Description>
+     </DisplayString>
+          <DisplayString ElementID= "AzureService" SubElementID="ServiceName"  >
+		  <Name>Service Name</Name>
+     <Description> </Description>
+     </DisplayString>
+          <DisplayString ElementID= "AzureService" SubElementID="ServiceLabel"  >
+		  <Name> Service Label</Name>
+     <Description>Service Label </Description>
+     </DisplayString>
+          <DisplayString ElementID= "AzureService" SubElementID="ServiceURL"  >
+		  <Name>Service URL </Name>
+     <Description>Service URL</Description>
+     </DisplayString>
+          <DisplayString ElementID= "AzureService" SubElementID="ServiceLocation"  >
+		  <Name>Service Location </Name>
+     <Description>Service Location </Description>
+     </DisplayString>
+          <DisplayString ElementID= "AzureService" SubElementID="AffinityGroup"  >
+		  <Name>Affinity Group </Name>
+     <Description>Affinity Group </Description>
+     </DisplayString>
+          <DisplayString ElementID= "AzureService" SubElementID="ServiceStatus"  >
+		  <Name>Service Status </Name>
+     <Description>Service Status</Description>
+     </DisplayString>
+          <DisplayString ElementID= "AzureService" SubElementID="DateCreated" >
+		  <Name>Date Created</Name>
+     <Description>Date Created</Description>
+     </DisplayString>
+          <DisplayString ElementID= "AzureService" SubElementID="DateModified" >
+		  <Name>Date Modified </Name>
+     <Description>Date Modified </Description>
+     </DisplayString>
+          <DisplayString ElementID= "AzureService" SubElementID="ReverseDNSFQDN"  >
+		  <Name>Reverse DNS FQDN </Name>
+     <Description>Reverse DNS FQDN </Description>
+     </DisplayString>
+          <DisplayString ElementID= "AzureService" SubElementID="OperationStatus" >
+		  <Name>Operation Status </Name>
+     <Description>Operation Status </Description>
+     </DisplayString>
+          <DisplayString ElementID="AzureVM" >
+		  <Name>Azure Virtual Machine</Name>
+     <Description>Azure Virtual Machine</Description>
+     </DisplayString>
+          <DisplayString ElementID= "AzureVM" SubElementID="AzVMID" >
+		  <Name>AzVMID </Name>
+     <Description>AzVMID </Description>
+     </DisplayString>
+          <DisplayString ElementID= "AzureVM" SubElementID="Description"  >
+		  <Name>Description </Name>
+     <Description>Description </Description>
+     </DisplayString>
+          <DisplayString ElementID= "AzureVM" SubElementID="DeploymentName"  >
+		  <Name>Deployment Name </Name>
+     <Description>Deployment Name </Description>
+     </DisplayString>
+          <DisplayString ElementID= "AzureVM" SubElementID="VMName"  >
+		  <Name>VM Name </Name>
+     <Description>VM Name </Description>
+     </DisplayString>
+          <DisplayString ElementID= "AzureVM" SubElementID="IPAddress"  >
+		  <Name>Private IP Address </Name>
+     <Description>Private IP Address </Description>
+     </DisplayString>
+          <DisplayString ElementID= "AzureVM" SubElementID="PublicIPAddress"  >
+		  <Name>Public IP Address </Name>
+     <Description>Public IP Address  </Description>
+     </DisplayString>
+          <DisplayString ElementID= "AzureVM" SubElementID="PowerState"  >
+		  <Name>Power State </Name>
+     <Description>Power State </Description>
+     </DisplayString>
+          <DisplayString ElementID= "AzureVM" SubElementID="InstanceStatus" >
+		  <Name>Instance Status </Name>
+     <Description>Instance Status </Description>
+     </DisplayString>
+          <DisplayString ElementID= "AzureVM" SubElementID="InstanceName" >
+		  <Name>Instance Name </Name>
+     <Description>Instance Name </Description>
+     </DisplayString>
+          <DisplayString ElementID= "AzureVM" SubElementID="InstanceUpgradeDomain"  >
+		  <Name>Instance Upgrade Domain </Name>
+     <Description>Instance Upgrade Domain </Description>
+     </DisplayString>
+          <DisplayString ElementID= "AzureVM" SubElementID="InstanceSize">
+		  <Name>Instance Size </Name>
+     <Description>Instance Size </Description>
+     </DisplayString>
+          <DisplayString ElementID= "AzureVM" SubElementID="AvailabilitySetName" >
+		  <Name>Availability Set Name </Name>
+     <Description>Availability Set Name </Description>
+     </DisplayString>
+          <DisplayString ElementID= "AzureVM" SubElementID="DNSName"  >
+		  <Name>DNS Name </Name>
+     <Description>DNS Name </Description>
+     </DisplayString>
+          <DisplayString ElementID= "AzureVM" SubElementID="Status"  >
+		  <Name>Status </Name>
+     <Description>Status </Description>
+     </DisplayString>
+          <DisplayString ElementID= "AzureVM" SubElementID="OperatingSystem" >
+		  <Name>Operating System </Name>
+     <Description>Operating System </Description>
+     </DisplayString>
+          <DisplayString ElementID= "AzureVM" SubElementID="VMHDPath"  >
+	<Name>VM Hard Disk Path</Name>
+     <Description>VM Hard Disk Path</Description>
+     </DisplayString>		  
+          <DisplayString ElementID="AzureNet" >
+		    <Name>Azure Network </Name>
+     <Description>Azure Network </Description>
+     </DisplayString>
+          <DisplayString ElementID= "AzureNet" SubElementID="AzNetID" >
+		  <Name>AzNetID </Name>
+     <Description>AzNetID </Description>
+     </DisplayString>
+        <DisplayString ElementID= "AzureNet" SubElementID="Description" >
+          <Name>Description </Name>
+          <Description> Description</Description>
+        </DisplayString>
+        <DisplayString ElementID= "AzureNet" SubElementID="AddressSpacePrefixes"  >
+          <Name>Address Space </Name>
+          <Description>Address Space </Description>
+        </DisplayString>
+        <DisplayString ElementID= "AzureNet" SubElementID="Location"  >
+          <Name>Location </Name>
+          <Description>Location </Description>
+        </DisplayString>
+        <DisplayString ElementID= "AzureNet" SubElementID="AffinityGroup"  >
+          <Name>Affinity Group </Name>
+          <Description>Affinity Group </Description>
+        </DisplayString>
+        <DisplayString ElementID= "AzureNet" SubElementID="DnsServers" >
+          <Name>DNS Servers </Name>
+          <Description>DNS Servers </Description>
+        </DisplayString>
+        <DisplayString ElementID= "AzureNet" SubElementID="Id"  >
+          <Name>Azure Network ID</Name>
+          <Description>Azure Network ID</Description>
+        </DisplayString>
+        <DisplayString ElementID= "AzureNet" SubElementID="InstanceUpgradeDomain"  >
+          <Name>Instance Upgrade Domain </Name>
+          <Description>Instance Upgrade Domain </Description>
+        </DisplayString>
+        <DisplayString ElementID= "AzureNet" SubElementID="InstanceSize"  >
+          <Name>Instance Size</Name>
+          <Description>Instance Size</Description>
+        </DisplayString>
+        <DisplayString ElementID= "AzureNet" SubElementID="AvailabilitySetName"  >
+          <Name>Availability Set Name </Name>
+          <Description>Availability Set Name </Description>
+        </DisplayString>
+        <DisplayString ElementID= "AzureNet" SubElementID="NetworkName"  >
+          <Name>Network Name </Name>
+          <Description>Network Name </Description>
+        </DisplayString>
+        <DisplayString ElementID= "AzureNet" SubElementID="State"  >
+          <Name>State </Name>
+          <Description>State </Description>
+        </DisplayString>
+        <DisplayString ElementID= "AzureNet" SubElementID="OperationStatus" >
+          <Name>Operation Status </Name>
+          <Description>Operation Status </Description>
+        </DisplayString>
+        <DisplayString ElementID= "AzureNet" SubElementID="InUse">
+          <Name>In Use </Name>
+          <Description>In Use </Description>
+        </DisplayString>
+        <DisplayString ElementID="AzureVNetGateway" >
+          <Name>Azure Network Gateway</Name>
+          <Description>Azure Network Gateway</Description>
+        </DisplayString>
+        <DisplayString ElementID= "AzureVNetGateway" SubElementID="AzVNetGwID" >
+          <Name>AzVNetGwID </Name>
+          <Description>AzVNetGwID </Description>
+        </DisplayString>
+        <DisplayString ElementID= "AzureVNetGateway" SubElementID="GatewayName" >
+          <Name>Gateway Name </Name>
+          <Description>Gateway Name </Description>
+        </DisplayString>
+        <DisplayString ElementID= "AzureVNetGateway" SubElementID="LastEventMessage" >
+          <Name>Last Event Message </Name>
+          <Description>Last Event Message </Description>
+        </DisplayString>
+        <DisplayString ElementID= "AzureVNetGateway" SubElementID="State">
+          <Name>State </Name>
+          <Description>State </Description>
+        </DisplayString>
+        <DisplayString ElementID= "AzureVNetGateway" SubElementID="VIPAddress">
+          <Name>IP Address </Name>
+          <Description>IP Address </Description>
+        </DisplayString>
+        <DisplayString ElementID= "AzureVNetGateway" SubElementID="DefaultSite" >
+          <Name>Default Site </Name>
+          <Description>Default Site </Description>
+        </DisplayString>
+        <DisplayString ElementID= "AzureVNetGateway" SubElementID="GatewaySKU" >
+          <Name>Gateway Size </Name>
+          <Description>Gateway Size </Description>
+        </DisplayString>
+        <DisplayString ElementID= "AzureVNetGateway" SubElementID="OperationStatus" >
+          <Name>Operation Status </Name>
+          <Description>Operation Status </Description>
+        </DisplayString>
+        <DisplayString ElementID= "AzureVNetGateway" SubElementID="LastEventTimeStamp" >
+          <Name>Last Event Time Stamp </Name>
+          <Description>Last Event Time Stamp </Description>
+        </DisplayString>
+        <DisplayString ElementID="AzureSubnet" >
+          <Name>Azure Network Subnet </Name>
+          <Description>Azure Network Subnet </Description>
+        </DisplayString>
+        <DisplayString ElementID= "AzureSubnet" SubElementID="AzSubID"  >
+          <Name>AzSubID </Name>
+          <Description> AzSubID</Description>
+        </DisplayString>
+        <DisplayString ElementID= "AzureSubnet" SubElementID="Description"  >
+          <Name>Description </Name>
+          <Description>Description </Description>
+        </DisplayString>
+        <DisplayString ElementID= "AzureSubnet" SubElementID="SubnetName"  >
+          <Name>Subnet Name </Name>
+          <Description>Subnet Name </Description>
+        </DisplayString>
+        <DisplayString ElementID= "AzureSubnet" SubElementID="AddressPrefix" >
+          <Name>Address Space </Name>
+          <Description>Address Space </Description>
+        </DisplayString>
+        <DisplayString ElementID= "AzureSubnet" SubElementID="IsGatewaySubnet" >
+          <Name>Is Gateway Subnet </Name>
+          <Description>Is Gateway Subnet </Description>
+        </DisplayString>
+        <DisplayString ElementID="AzureLocation" >
+          <Name>Azure Location</Name>
+          <Description>Azure Location</Description>
+        </DisplayString>
+        <DisplayString ElementID= "AzureLocation" SubElementID="AzLocID" >
+        <Name>AzLocID</Name>
+        <Description>AzLocID</Description>
+        </DisplayString>
+        <DisplayString ElementID= "AzureLocation" SubElementID="Description"  >
+          <Name>Description </Name>
+          <Description>Description </Description>
+        </DisplayString>
+        <DisplayString ElementID= "AzureLocation" SubElementID="LocationName"  >
+          <Name>Location Name </Name>
+          <Description>Location Name </Description>
+        </DisplayString>
+        <DisplayString ElementID="AzureConsumption" >
+          <Name>Azure Consumption Plan </Name>
+          <Description>Azure Consumption Plan </Description>
+        </DisplayString>
+        <DisplayString ElementID= "AzureConsumption" SubElementID="AzConID"  >
+          <Name>AzConID </Name>
+          <Description>AzConID </Description>
+        </DisplayString>
+        <DisplayString ElementID= "AzureConsumption" SubElementID="Description"  >
+          <Name>Description </Name>
+          <Description>Description </Description>
+        </DisplayString>
+        <DisplayString ElementID= "AzureConsumption" SubElementID="ConsumptionName" >
+          <Name>Consumption Plan Name </Name>
+          <Description>ConsumptionPlan Name </Description>
+        </DisplayString>
+        <DisplayString ElementID= "AzureConsumption" SubElementID="ConsumptionStartDate" >
+          <Name>Consumption Start Date </Name>
+          <Description>Consumption Start Date </Description>
+        </DisplayString>
+        <DisplayString ElementID= "AzureConsumption" SubElementID="ConsumptionEndDate">
+          <Name>Consumption End Date </Name>
+          <Description>Consumption End Date </Description>
+        </DisplayString>
+        <DisplayString ElementID= "AzureConsumption" SubElementID="ConsumptionCost" >
+          <Name>Consumption Cost </Name>
+          <Description>Consumption Cost</Description>
+        </DisplayString>
+        <DisplayString ElementID= "AzureConsumption" SubElementID="HasOverageCost" >
+          <Name>Has Overage Cost </Name>
+          <Description>Has Overage Cost </Description>
+        </DisplayString>
+        <DisplayString ElementID= "AzureConsumption" SubElementID="OverageCost" >
+          <Name>Overage Cost </Name>
+          <Description>Overage Cost </Description>
+        </DisplayString>
+        <DisplayString ElementID= "AzureConsumption" SubElementID="CostCurrency" >
+          <Name>Cost Currency </Name>
+          <Description>Cost Currency </Description>
         </DisplayString>
         <DisplayString ElementID="Monitor" SubElementID= "DeviceName">
           <Name>Device Name </Name>

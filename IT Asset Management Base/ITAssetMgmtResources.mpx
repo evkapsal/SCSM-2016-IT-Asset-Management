@@ -170,6 +170,44 @@
     <Image ID="scanner24x24.png" Accessibility="Public" FileName="scanner24x24.png" HasNullStream="false" />
     <Image ID="officedesk16x16.png" Accessibility="Public" FileName="officedesk16x16.png" HasNullStream="false" />
     <Image ID="officedesk24x24.png" Accessibility="Public" FileName="officedesk24x24.png" HasNullStream="false" />
+    <Image ID="azure_icon16x16.png" Accessibility="Public" FileName="azure_icon16x16.png" HasNullStream="false" />
+    <Image ID="azure_icon24x24.png" Accessibility="Public" FileName="azure_icon24x24.png" HasNullStream="false" />
+    <Image ID="AzureLocation16x16.png" Accessibility="Public" FileName="AzureLocation16x16.png" HasNullStream="false" />
+    <Image ID="AzureLocation24x24.png" Accessibility="Public" FileName="AzureLocation24x24.png" HasNullStream="false" />
+    <Image ID="AzureResource16x16.png" Accessibility="Public" FileName="AzureResource16x16.png" HasNullStream="false" />
+    <Image ID="AzureResource24x24.png" Accessibility="Public" FileName="AzureResource24x24.png" HasNullStream="false" />
+    <Image ID="azuresubnet16x16.png" Accessibility="Public" FileName="azuresubnet16x16.png" HasNullStream="false" />
+    <Image ID="azuresubnet24x24.png" Accessibility="Public" FileName="azuresubnet24x24.png" HasNullStream="false" />
+    <Image ID="AzureSubscription16x16.png" Accessibility="Public" FileName="AzureSubscription16x16.png" HasNullStream="false" />
+    <Image ID="AzureSubscription24x24.png" Accessibility="Public" FileName="AzureSubscription24x24.png" HasNullStream="false" />
+    <Image ID="AzureVM16x16.png" Accessibility="Public" FileName="AzureVM16x16.png" HasNullStream="false" />
+    <Image ID="AzureVM24x24.png" Accessibility="Public" FileName="AzureVM24x24.png" HasNullStream="false" />
+    <Image ID="AzureVNet16x16.png" Accessibility="Public" FileName="AzureVNet16x16.png" HasNullStream="false" />
+    <Image ID="AzureVNet24x24.png" Accessibility="Public" FileName="AzureVNet24x24.png" HasNullStream="false" />
+    <Image ID="azuregateway16x16.png" Accessibility="Public" FileName="azuregateway16x16.png" HasNullStream="false" />
+    <Image ID="azuregateway24x24.png" Accessibility="Public" FileName="azuregateway24x24.png" HasNullStream="false" />
+    <Image ID="AzureCloudService16x16.png" Accessibility="Public" FileName="AzureCloudService16x16.png" HasNullStream="false" />
+    <Image ID="AzureCloudService24x24.png" Accessibility="Public" FileName="AzureCloudService24x24.png" HasNullStream="false" />
+    <Image ID="azuregateway_2_16x16.png" Accessibility="Public" FileName="azuregateway_2_16x16.png" HasNullStream="false" />
+    <Image ID="azuregateway_2_24x24.png" Accessibility="Public" FileName="azuregateway_2_24x24.png" HasNullStream="false" />
+    <Image ID="AzureResource_2_16x16.png" Accessibility="Public" FileName="AzureResource_2_16x16.png" HasNullStream="false" />
+    <Image ID="AzureResource_2_24x24.png" Accessibility="Public" FileName="AzureResource_2_24x24.png" HasNullStream="false" />
+    <Image ID="AzureVM_2_16x16.png" Accessibility="Public" FileName="AzureVM_2_16x16.png" HasNullStream="false" />
+    <Image ID="AzureVM_2_24x24.png" Accessibility="Public" FileName="AzureVM_2_24x24.png" HasNullStream="false" />
+    <Image ID="AzureVMScale16x16.png" Accessibility="Public" FileName="AzureVMScale16x16.png" HasNullStream="false" />
+    <Image ID="AzureVMScale24x24.png" Accessibility="Public" FileName="AzureVMScale24x24.png" HasNullStream="false" />
+    <Image ID="Azure_3_16x16.png" Accessibility="Public" FileName="Azure_3_16x16.png" HasNullStream="false" />
+    <Image ID="Azure_3_24x24.png" Accessibility="Public" FileName="Azure_3_24x24.png" HasNullStream="false" />
+    <Image ID="AzureAppService16x16.png" Accessibility="Public" FileName="AzureAppService16x16.png" HasNullStream="false" />
+    <Image ID="AzureAppService24x24.png" Accessibility="Public" FileName="AzureAppService24x24.png" HasNullStream="false" />
+    <Image ID="AzureConsumption16x16.png" Accessibility="Public" FileName="AzureConsumption16x16.png" HasNullStream="false" />
+    <Image ID="AzureConsumption24x24.png" Accessibility="Public" FileName="AzureConsumption24x24.png" HasNullStream="false" />
+    <Image ID="AzureDatabase16x16.png" Accessibility="Public" FileName="AzureDatabase16x16.png" HasNullStream="false" />
+    <Image ID="AzureDatabase24x24.png" Accessibility="Public" FileName="AzureDatabase24x24.png" HasNullStream="false" />
+    <Image ID="AzureManagement16x16.png" Accessibility="Public" FileName="AzureManagement16x16.png" HasNullStream="false" />
+    <Image ID="AzureManagement24x24.png" Accessibility="Public" FileName="AzureManagement24x24.png" HasNullStream="false" />
+    <Image ID="AzureNetworking16x16.png" Accessibility="Public" FileName="AzureNetworking16x16.png" HasNullStream="false" />
+    <Image ID="AzureNetworking24x24.png" Accessibility="Public" FileName="AzureNetworking24x24.png" HasNullStream="false" />
   </Resources>
   
 </ManagementPackFragment>
