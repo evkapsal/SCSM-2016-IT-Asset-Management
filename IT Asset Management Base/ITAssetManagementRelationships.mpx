@@ -46,6 +46,18 @@
           <Source ID="AzureResourceGroup" Type="AzureResourceGroup" MinCardinality="0" MaxCardinality="1" />
           <Target ID="AzureVM" Type="AzureVM"  />
         </RelationshipType>
+        <RelationshipType ID="Relationship.AzureResourceGroupHasWebApplication" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="AzureResourceGroup" Type="AzureResourceGroup" MinCardinality="0" MaxCardinality="1" />
+          <Target ID="AzureWebApp" Type="AzureWebApp"  />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.AzureWebApplicationHasLocation" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="AzureWebApp" Type="AzureWebApp"  />
+          <Target ID="AzureLocation" Type="AzureLocation" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.AzureWebApplicationHasConsumption" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="AzureWebApp" Type="AzureWebApp" MinCardinality="0" MaxCardinality="1" />
+          <Target ID="AzureConsumption" Type="AzureConsumption"  />
+        </RelationshipType>
         <RelationshipType ID="Relationship.AzureVMsHasSubnet" Accessibility="Public" Abstract="false" Base="System!System.Reference">
           <Source ID="AzureVM" Type="AzureVM"  />
           <Target ID="AzureSubnet" Type="AzureSubnet" MinCardinality="0" MaxCardinality="1" />
@@ -61,6 +73,22 @@
         <RelationshipType ID="Relationship.AzureLocationHasNLocation" Accessibility="Public" Abstract="false" Base="System!System.Reference">
           <Source ID="AzureLocation" Type="AzureLocation"  />
           <Target ID="NLocation" Type="NLocation" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.AzureSQLServerHasLocation" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="AzureSQLServer" Type="AzureSQLServer" />
+          <Target ID="AzureLocation" Type="AzureLocation" MinCardinality="0" MaxCardinality="1" />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.AzureResourceGroupHasSQLServer" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="AzureResourceGroup" Type="AzureResourceGroup" MinCardinality="0" MaxCardinality="1" />
+          <Target ID="AzureSQLServer" Type="AzureSQLServer"  />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.AzureSQLServerHasDatabase" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="AzureSQLServer" Type="AzureSQLServer" MinCardinality="0" MaxCardinality="1" />
+          <Target ID="AzureSQLDatabase" Type="AzureSQLDatabase"  />
+        </RelationshipType>
+        <RelationshipType ID="Relationship.AzureSQLDatabaseHasConsumption" Accessibility="Public" Abstract="false" Base="System!System.Reference">
+          <Source ID="AzureSQLDatabase" Type="AzureSQLDatabase" MinCardinality="0" MaxCardinality="1" />
+          <Target ID="AzureConsumption" Type="AzureConsumption"  />
         </RelationshipType>
         <RelationshipType ID="Relationship.AzureResourceGroupHasNetwork" Accessibility="Public" Abstract="false" Base="System!System.Reference">
           <Source ID="AzureResourceGroup" Type="AzureResourceGroup"  />
@@ -743,6 +771,34 @@
         <DisplayString ElementID="Relationship.AzureResourceGroupHasAzureVMs" >
           <Name>Azure Resource Group Has Azure Virtual Machine Relationship</Name>
           <Description>Azure Resource Group Has Azure Virtual Machine Relationship</Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.AzureSQLServerHasLocation"  >
+          <Name>Azure SQL Server Has Location Relationship</Name>
+          <Description>Azure SQL Server Has Location Relationship</Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.AzureResourceGroupHasSQLServer"  >
+          <Name>Azure Resource Group Has SQLServer Relationship</Name>
+          <Description>Azure Resource Group Has SQLServer Relationship</Description>
+        </DisplayString>
+         <DisplayString ElementID="Relationship.AzureResourceGroupHasWebApplication"  >
+          <Name>Azure Resource Group Has Web Application Relationship</Name>
+          <Description>Azure Resource Group Has Web Application Relationship</Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.AzureWebApplicationHasLocation"  >
+          <Name>Azure Web Application Has Location Relationship</Name>
+          <Description>Azure Web Application Has Location Relationship</Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.AzureWebApplicationHasConsumption"  >
+          <Name>Azure Web Application Has Consumption Relationship</Name>
+          <Description>Azure Web Application Has Consumption Relationship</Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.AzureSQLServerHasDatabase" >
+          <Name>Azure SQL Server Has Database Relationship</Name>
+          <Description>Azure SQL Server Has Database Relationship</Description>
+        </DisplayString>
+        <DisplayString ElementID="Relationship.AzureSQLDatabaseHasConsumption" >
+          <Name>Azure SQL Database Has Consumption Relationship</Name>
+          <Description> Azure SQL Database Has Consumption Relationship</Description>
         </DisplayString>
         <DisplayString ElementID="Relationship.AzureNetHasSubnet" >
           <Name>Azure Network Has Subnet Relationship</Name>

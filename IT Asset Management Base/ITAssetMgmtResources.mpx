@@ -208,6 +208,12 @@
     <Image ID="AzureManagement24x24.png" Accessibility="Public" FileName="AzureManagement24x24.png" HasNullStream="false" />
     <Image ID="AzureNetworking16x16.png" Accessibility="Public" FileName="AzureNetworking16x16.png" HasNullStream="false" />
     <Image ID="AzureNetworking24x24.png" Accessibility="Public" FileName="AzureNetworking24x24.png" HasNullStream="false" />
+    <Image ID="AzureSQLDatabase16x16.png" Accessibility="Public" FileName="AzureSQLDatabase16x16.png" HasNullStream="false" />
+    <Image ID="AzureSQLDatabase24x24.png" Accessibility="Public" FileName="AzureSQLDatabase24x24.png" HasNullStream="false" />
+    <Image ID="AzureSQLServer16x16.png" Accessibility="Public" FileName="AzureSQLServer16x16.png" HasNullStream="false" />
+    <Image ID="AzureSQLServer24x24.png" Accessibility="Public" FileName="AzureSQLServer24x24.png" HasNullStream="false" />
+    <Image ID="AzureWebApp16x16.png" Accessibility="Public" FileName="AzureWebApp16x16.png" HasNullStream="false" />
+    <Image ID="AzureWebApp24x24.png" Accessibility="Public" FileName="AzureWebApp24x24.png" HasNullStream="false" />
   </Resources>
   
 </ManagementPackFragment>

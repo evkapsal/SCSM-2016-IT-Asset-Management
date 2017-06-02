@@ -133,9 +133,20 @@
     <Form ID="Form.AzureConsumptionForm" Accessibility="Public" Target="Projection.AzureConsumption" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.AzureConsumptionForm">
       <Category>Form</Category>
     </Form>
+    <Form ID="Form.AzureLocationForm" Accessibility="Public" Target="Projection.AzureLocation" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.AzureLocationForm">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.AzureSQLDatabaseForm" Accessibility="Public" Target="Projection.AzureSQLDatabase" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.AzureSQLDatabaseForm">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.AzureSQLServerForm" Accessibility="Public" Target="Projection.AzureSQLServer" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.AzureSQLServerForm">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.AzureWebAppForm" Accessibility="Public" Target="Projection.AzureWebApp" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.AzureWebAppForm">
+      <Category>Form</Category>
+    </Form>
   </Forms>
   </Presentation>
-
   <Resources>
     <Assembly ID="ITAssetMgmtForms" Accessibility="Public" FileName="ITAssetMgmtForms.dll" HasNullStream="false" QualifiedName="ITAssetMgmtForms, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
     <Assembly ID="ITAssetManagementTasks" Accessibility="Public" FileName="ITAssetManagementTasks.dll" HasNullStream="false" QualifiedName="ITAssetManagementTasks, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />

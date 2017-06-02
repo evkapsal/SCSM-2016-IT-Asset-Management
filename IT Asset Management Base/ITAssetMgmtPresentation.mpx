@@ -26,6 +26,10 @@
     <Category ID="Category.f0a85b1699134eaaaae4eaf0e70db43c" Target="Folder.16560765e30d4fd98f9ad2cadb019243" Value="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.FolderTasks" /> -->
     <Category ID="Category.e5d66ab7f1c64a5e8b815609be273c04" Target="Folder.39e553a749564edb93140e6b076576f9" Value="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.FolderTasks" />
     <Category ID="Category.390d5131a897442e9c0c3368e5b610ed" Target="View.fa3af164f5d3412ba37c78bdf1fbf495" Value="SCSMUIAuth!Microsoft.EnterpriseManagement.ServiceManager.UI.Authoring.CreateTypeCategory" />
+    <Category ID="Category.66427d12a59445eca588c5f7a5f9a758" Target="View.f590890dcc02442387f1f61b5e16318e" Value="SCSMUIAuth!Microsoft.EnterpriseManagement.ServiceManager.UI.Authoring.CreateTypeCategory" />
+    <Category ID="Category.53523a590364484e8dfb2c62dd69bb27" Target="View.e35bd355904b4099bb3c506681916fed" Value="SCSMUIAuth!Microsoft.EnterpriseManagement.ServiceManager.UI.Authoring.CreateTypeCategory" />
+    <Category ID="Category.32fe58fb6da74dc8a459c49a2b344df6" Target="View.5b9032fbca2348f8a54b1ae32ff1a19c" Value="SCSMUIAuth!Microsoft.EnterpriseManagement.ServiceManager.UI.Authoring.CreateTypeCategory" />
+    <Category ID="Category.f1155b97df7f430db298cc16eb1bea30" Target="View.5b9032fbca2348f8a54b1ae32ff1a19c" Value="SCSMUIAuth!Microsoft.EnterpriseManagement.ServiceManager.UI.Authoring.CreateTypeCategory" />
     <Category ID="Category.11a363342f194d15b5767f354f96cece" Target="View.9e34470a2a094c46af199b9ed3534e34" Value="SCSMUIAuth!Microsoft.EnterpriseManagement.ServiceManager.UI.Authoring.CreateTypeCategory" />
     <Category ID="Category.2a0b48b8fd1a4d4ba8a7d830f787582a" Target="View.13e0b9cfa15a4008af1aa36454ebe7c1" Value="SCSMUIAuth!Microsoft.EnterpriseManagement.ServiceManager.UI.Authoring.CreateTypeCategory" />
     <Category ID="Category.5af024d9976d48939eb8b33e2d0e1bf2" Target="View.c745acce989a4d34a871b5081074d399" Value="SCSMUIAuth!Microsoft.EnterpriseManagement.ServiceManager.UI.Authoring.CreateTypeCategory" />
@@ -257,7 +261,72 @@
           </ViewStrings>
         </Presentation>
       </View>
-
+      <View ID="View.f590890dcc02442387f1f61b5e16318e" Accessibility="Public" Enabled="true" Target="AzureWebApp" TypeID="Console!GridViewType" Visible="true">
+        <Category>NotUsed</Category>
+        <Data>
+          <Adapters>
+            <Adapter AdapterName="dataportal:EnterpriseManagementObjectProjectionAdapter">
+              <AdapterAssembly>Microsoft.EnterpriseManagement.UI.SdkDataAccess</AdapterAssembly>
+              <AdapterType>Microsoft.EnterpriseManagement.UI.SdkDataAccess.DataAdapters.EnterpriseManagementObjectProjectionAdapter</AdapterType>
+            </Adapter>
+            <Adapter AdapterName="viewframework://Adapters/AdvancedList">
+              <AdapterAssembly>Microsoft.EnterpriseManagement.UI.ViewFramework</AdapterAssembly>
+              <AdapterType>Microsoft.EnterpriseManagement.UI.ViewFramework.AdvancedListSupportAdapter</AdapterType>
+            </Adapter>
+            <Adapter AdapterName="omsdk://Adapters/Criteria">
+              <AdapterAssembly>Microsoft.EnterpriseManagement.UI.SdkDataAccess</AdapterAssembly>
+              <AdapterType>Microsoft.EnterpriseManagement.UI.SdkDataAccess.DataAdapters.SdkCriteriaAdapter</AdapterType>
+            </Adapter>
+          </Adapters>
+          <ItemsSource>
+            <AdvancedListSupportClass DataTypeName="" AdapterName="viewframework://Adapters/AdvancedList" FullUpdateAdapter="dataportal:EnterpriseManagementObjectProjectionAdapter" DataSource="mom:ManagementGroup" FullUpdateFrequency="1" Streaming="true" IsRecurring="true" RecurrenceFrequency="{x:Static s:Int32.MaxValue}" xmlns="clr-namespace:Microsoft.EnterpriseManagement.UI.ViewFramework;assembly=Microsoft.EnterpriseManagement.UI.ViewFramework" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib">
+              <AdvancedListSupportClass.Parameters>
+                <QueryParameter Parameter="TypeProjectionId" Value="$MPElement[Name='Projection.AzureWebApp']$" />
+              </AdvancedListSupportClass.Parameters>
+            </AdvancedListSupportClass>
+          </ItemsSource>
+          <Criteria>
+            <QueryCriteria Adapter="omsdk://Adapters/Criteria" xmlns="http://tempuri.org/Criteria.xsd">
+              <Criteria>
+                <FreeformCriteria>
+                  <Freeform>
+                    <Criteria xmlns="http://Microsoft.EnterpriseManagement.Core.Criteria/">
+                      <Expression>
+                        <SimpleExpression>
+                          <ValueExpressionLeft>
+                            <Property>$Context/Property[Type='System!System.ConfigItem']/ObjectStatus$</Property>
+                          </ValueExpressionLeft>
+                          <Operator>NotEqual</Operator>
+                          <ValueExpressionRight>
+                            <Value>{47101e64-237f-12c8-e3f5-ec5a665412fb}</Value>
+                          </ValueExpressionRight>
+                        </SimpleExpression>
+                      </Expression>
+                    </Criteria>
+                  </Freeform>
+                </FreeformCriteria>
+              </Criteria>
+            </QueryCriteria>
+          </Criteria>
+        </Data>
+        <Presentation>
+          <Columns>
+            <mux:ColumnCollection xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mux="http://schemas.microsoft.com/SystemCenter/Common/UI/Views/GridView" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:datebinding="clr-namespace:Microsoft.EnterpriseManagement.UI.Extensions;assembly=Microsoft.EnterpriseManagement.UI.Extensions" xmlns:data="clr-namespace:Microsoft.EnterpriseManagement.UI.Extensions;assembly=Microsoft.EnterpriseManagement.UI.Extensions" xmlns:appCommon="clr-namespace:Microsoft.EnterpriseManagement.ServiceManager.Application.Common;assembly=Microsoft.EnterpriseManagement.ServiceManager.Application.Common" xmlns:toolbox="clr-namespace:Microsoft.EnterpriseManagement.UI.WpfToolbox;assembly=Microsoft.EnterpriseManagement.UI.FormsInfra" xmlns:slaBinding="clr-namespace:Microsoft.EnterpriseManagement.ServiceManager.SLA.Common;assembly=Microsoft.EnterpriseManagement.ServiceManager.SLA.Common">
+              <mux:Column Name="SiteName" DisplayMemberBinding="{Binding Path=SiteName}" DisplayName="SiteName.621f55b834bb4afbbc844495392d7f7e" Property="SiteName" DataType="s:String" IsVisible="True" />
+              <mux:Column Name="HostNames" DisplayMemberBinding="{Binding Path=HostNames}" DisplayName="HostNames.8f5c5f134dde403fae550754b512ad38" Property="HostNames" DataType="s:String" IsVisible="True" />
+              <mux:Column Name="State" DisplayMemberBinding="{Binding Path=State}" DisplayName="State.3815fe959d1b41d7a81eafc955e6a924" Property="State" DataType="s:String" IsVisible="True" />
+              <mux:Column Name="ResourceGroupResourceName" DisplayMemberBinding="{Binding Path=ResourceGroup.ResourceName}" DisplayName="ResourceName.5053095f4f5f422c9e0f32cd9cf8650c" Property="ResourceGroup.ResourceName" DataType="s:String" IsVisible="True" />
+            </mux:ColumnCollection>
+          </Columns>
+          <AdditonalProperties />
+          <ViewStrings>
+            <ViewString ID="SiteName.621f55b834bb4afbbc844495392d7f7e">$MPElement[Name="SiteName.efc2be322b1d428bb2716bf839f29ea1"]$</ViewString>
+            <ViewString ID="HostNames.8f5c5f134dde403fae550754b512ad38">$MPElement[Name="HostNames.4f3a4b9164c947f7bc3118fb66764817"]$</ViewString>
+            <ViewString ID="State.3815fe959d1b41d7a81eafc955e6a924">$MPElement[Name="State.f99e6f55c24646c8bec35c297319a60c"]$</ViewString>
+            <ViewString ID="ResourceName.5053095f4f5f422c9e0f32cd9cf8650c">$MPElement[Name="ResourceName.e8fba064447849c2b366a6863af0a22f"]$</ViewString>
+          </ViewStrings>
+        </Presentation>
+      </View>
       <View ID="View.a750dcdc91474e2ea18deb1879317dff" Accessibility="Public" Enabled="true" Target="AzureSubscription" TypeID="Console!GridViewType" Visible="true">
         <Category>NotUsed</Category>
         <Data>
@@ -778,10 +847,142 @@
           </ViewStrings>
         </Presentation>
       </View>
-
-
-
-
+      <View ID="View.e35bd355904b4099bb3c506681916fed" Accessibility="Public" Enabled="true" Target="AzureSQLServer" TypeID="Console!GridViewType" Visible="true">
+        <Category>NotUsed</Category>
+        <Data>
+          <Adapters>
+            <Adapter AdapterName="dataportal:EnterpriseManagementObjectProjectionAdapter">
+              <AdapterAssembly>Microsoft.EnterpriseManagement.UI.SdkDataAccess</AdapterAssembly>
+              <AdapterType>Microsoft.EnterpriseManagement.UI.SdkDataAccess.DataAdapters.EnterpriseManagementObjectProjectionAdapter</AdapterType>
+            </Adapter>
+            <Adapter AdapterName="viewframework://Adapters/AdvancedList">
+              <AdapterAssembly>Microsoft.EnterpriseManagement.UI.ViewFramework</AdapterAssembly>
+              <AdapterType>Microsoft.EnterpriseManagement.UI.ViewFramework.AdvancedListSupportAdapter</AdapterType>
+            </Adapter>
+            <Adapter AdapterName="omsdk://Adapters/Criteria">
+              <AdapterAssembly>Microsoft.EnterpriseManagement.UI.SdkDataAccess</AdapterAssembly>
+              <AdapterType>Microsoft.EnterpriseManagement.UI.SdkDataAccess.DataAdapters.SdkCriteriaAdapter</AdapterType>
+            </Adapter>
+          </Adapters>
+          <ItemsSource>
+            <AdvancedListSupportClass DataTypeName="" AdapterName="viewframework://Adapters/AdvancedList" FullUpdateAdapter="dataportal:EnterpriseManagementObjectProjectionAdapter" DataSource="mom:ManagementGroup" FullUpdateFrequency="1" Streaming="true" IsRecurring="true" RecurrenceFrequency="{x:Static s:Int32.MaxValue}" xmlns="clr-namespace:Microsoft.EnterpriseManagement.UI.ViewFramework;assembly=Microsoft.EnterpriseManagement.UI.ViewFramework" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib">
+              <AdvancedListSupportClass.Parameters>
+                <QueryParameter Parameter="TypeProjectionId" Value="$MPElement[Name='Projection.AzureSQLServer']$" />
+              </AdvancedListSupportClass.Parameters>
+            </AdvancedListSupportClass>
+          </ItemsSource>
+          <Criteria>
+            <QueryCriteria Adapter="omsdk://Adapters/Criteria" xmlns="http://tempuri.org/Criteria.xsd">
+              <Criteria>
+                <FreeformCriteria>
+                  <Freeform>
+                    <Criteria xmlns="http://Microsoft.EnterpriseManagement.Core.Criteria/">
+                      <Expression>
+                        <SimpleExpression>
+                          <ValueExpressionLeft>
+                            <Property>$Context/Property[Type='System!System.ConfigItem']/ObjectStatus$</Property>
+                          </ValueExpressionLeft>
+                          <Operator>NotEqual</Operator>
+                          <ValueExpressionRight>
+                            <Value>{47101e64-237f-12c8-e3f5-ec5a665412fb}</Value>
+                          </ValueExpressionRight>
+                        </SimpleExpression>
+                      </Expression>
+                    </Criteria>
+                  </Freeform>
+                </FreeformCriteria>
+              </Criteria>
+            </QueryCriteria>
+          </Criteria>
+        </Data>
+        <Presentation>
+          <Columns>
+            <mux:ColumnCollection xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mux="http://schemas.microsoft.com/SystemCenter/Common/UI/Views/GridView" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:datebinding="clr-namespace:Microsoft.EnterpriseManagement.UI.Extensions;assembly=Microsoft.EnterpriseManagement.UI.Extensions" xmlns:data="clr-namespace:Microsoft.EnterpriseManagement.UI.Extensions;assembly=Microsoft.EnterpriseManagement.UI.Extensions" xmlns:appCommon="clr-namespace:Microsoft.EnterpriseManagement.ServiceManager.Application.Common;assembly=Microsoft.EnterpriseManagement.ServiceManager.Application.Common" xmlns:toolbox="clr-namespace:Microsoft.EnterpriseManagement.UI.WpfToolbox;assembly=Microsoft.EnterpriseManagement.UI.FormsInfra" xmlns:slaBinding="clr-namespace:Microsoft.EnterpriseManagement.ServiceManager.SLA.Common;assembly=Microsoft.EnterpriseManagement.ServiceManager.SLA.Common">
+              <mux:Column Name="SQLServerName" DisplayMemberBinding="{Binding Path=SQLServerName}" DisplayName="SQLServerName.bae140e6f7b644cbb04185436910a8ce" Property="SQLServerName" DataType="s:String" IsVisible="True" />
+              <mux:Column Name="ServerVersion" DisplayMemberBinding="{Binding Path=ServerVersion}" DisplayName="ServerVersion.defb89c906ec4ed0b669c6746f71c258" Property="ServerVersion" DataType="s:String" IsVisible="True" />
+              <mux:Column Name="AzureLocationLocationName" DisplayMemberBinding="{Binding Path=AzureLocation.LocationName}" DisplayName="LocationName.6b7318b685364a789aa4964e51d01331" Property="AzureLocation.LocationName" DataType="s:String" IsVisible="True" />
+              <mux:Column Name="AzureResourceGroupResourceName" DisplayMemberBinding="{Binding Path=AzureResourceGroup.ResourceName}" DisplayName="ResourceName.9c880f06c3cc428d8c69e49212d12870" Property="AzureResourceGroup.ResourceName" DataType="s:String" IsVisible="True" />
+            </mux:ColumnCollection>
+          </Columns>
+          <AdditonalProperties />
+          <ViewStrings>
+            <ViewString ID="SQLServerName.bae140e6f7b644cbb04185436910a8ce">$MPElement[Name="SQLServerName.619b7a5ccd5546f8ba7db07e693112aa"]$</ViewString>
+            <ViewString ID="ServerVersion.defb89c906ec4ed0b669c6746f71c258">$MPElement[Name="ServerVersion.29245368c7b44abaac800d3d0e6dce25"]$</ViewString>
+            <ViewString ID="LocationName.6b7318b685364a789aa4964e51d01331">$MPElement[Name="LocationName.a00693b073b14b269ec4e561d2fa9c98"]$</ViewString>
+            <ViewString ID="ResourceName.9c880f06c3cc428d8c69e49212d12870">$MPElement[Name="ResourceName.afb4bc9801b844ebab97a1ad4403f999"]$</ViewString>
+          </ViewStrings>
+        </Presentation>
+      </View>
+      <View ID="View.5b9032fbca2348f8a54b1ae32ff1a19c" Accessibility="Public" Enabled="true" Target="AzureSQLDatabase" TypeID="Console!GridViewType" Visible="true">
+        <Category>NotUsed</Category>
+        <Data>
+          <Adapters>
+            <Adapter AdapterName="dataportal:EnterpriseManagementObjectProjectionAdapter">
+              <AdapterAssembly>Microsoft.EnterpriseManagement.UI.SdkDataAccess</AdapterAssembly>
+              <AdapterType>Microsoft.EnterpriseManagement.UI.SdkDataAccess.DataAdapters.EnterpriseManagementObjectProjectionAdapter</AdapterType>
+            </Adapter>
+            <Adapter AdapterName="viewframework://Adapters/AdvancedList">
+              <AdapterAssembly>Microsoft.EnterpriseManagement.UI.ViewFramework</AdapterAssembly>
+              <AdapterType>Microsoft.EnterpriseManagement.UI.ViewFramework.AdvancedListSupportAdapter</AdapterType>
+            </Adapter>
+            <Adapter AdapterName="omsdk://Adapters/Criteria">
+              <AdapterAssembly>Microsoft.EnterpriseManagement.UI.SdkDataAccess</AdapterAssembly>
+              <AdapterType>Microsoft.EnterpriseManagement.UI.SdkDataAccess.DataAdapters.SdkCriteriaAdapter</AdapterType>
+            </Adapter>
+          </Adapters>
+          <ItemsSource>
+            <AdvancedListSupportClass DataTypeName="" AdapterName="viewframework://Adapters/AdvancedList" FullUpdateAdapter="dataportal:EnterpriseManagementObjectProjectionAdapter" DataSource="mom:ManagementGroup" FullUpdateFrequency="100" Streaming="true" IsRecurring="true" RecurrenceFrequency="{x:Static s:Int32.MaxValue}" UpdateItemsAdapter="dataportal:EnterpriseManagementObjectProjectionAdapter" AppendItemsAdapter="dataportal:EnterpriseManagementObjectProjectionAdapter" RemoveItemsAdapter="dataportal:EnterpriseManagementObjectProjectionAdapter" xmlns="clr-namespace:Microsoft.EnterpriseManagement.UI.ViewFramework;assembly=Microsoft.EnterpriseManagement.UI.ViewFramework" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib">
+              <AdvancedListSupportClass.Parameters>
+                <QueryParameter Parameter="TypeProjectionId" Value="$MPElement[Name='Projection.AzureSQLDatabase']$" />
+              </AdvancedListSupportClass.Parameters>
+            </AdvancedListSupportClass>
+          </ItemsSource>
+          <Criteria>
+            <QueryCriteria Adapter="omsdk://Adapters/Criteria" xmlns="http://tempuri.org/Criteria.xsd">
+              <Criteria>
+                <FreeformCriteria>
+                  <Freeform>
+                    <Criteria xmlns="http://Microsoft.EnterpriseManagement.Core.Criteria/">
+                      <Expression>
+                        <SimpleExpression>
+                          <ValueExpressionLeft>
+                            <Property>$Context/Property[Type='System!System.ConfigItem']/ObjectStatus$</Property>
+                          </ValueExpressionLeft>
+                          <Operator>NotEqual</Operator>
+                          <ValueExpressionRight>
+                            <Value>{47101e64-237f-12c8-e3f5-ec5a665412fb}</Value>
+                          </ValueExpressionRight>
+                        </SimpleExpression>
+                      </Expression>
+                    </Criteria>
+                  </Freeform>
+                </FreeformCriteria>
+              </Criteria>
+            </QueryCriteria>
+          </Criteria>
+        </Data>
+        <Presentation>
+          <Columns>
+            <mux:ColumnCollection xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mux="http://schemas.microsoft.com/SystemCenter/Common/UI/Views/GridView" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:datebinding="clr-namespace:Microsoft.EnterpriseManagement.UI.Extensions;assembly=Microsoft.EnterpriseManagement.UI.Extensions" xmlns:data="clr-namespace:Microsoft.EnterpriseManagement.UI.Extensions;assembly=Microsoft.EnterpriseManagement.UI.Extensions" xmlns:appCommon="clr-namespace:Microsoft.EnterpriseManagement.ServiceManager.Application.Common;assembly=Microsoft.EnterpriseManagement.ServiceManager.Application.Common" xmlns:toolbox="clr-namespace:Microsoft.EnterpriseManagement.UI.WpfToolbox;assembly=Microsoft.EnterpriseManagement.UI.FormsInfra" xmlns:slaBinding="clr-namespace:Microsoft.EnterpriseManagement.ServiceManager.SLA.Common;assembly=Microsoft.EnterpriseManagement.ServiceManager.SLA.Common" xmlns:converters="clr-namespace:itnetX.SCSM.AdvancedViewEditor.Converters;assembly=itnetX.SCSM.AdvancedViewEditor">
+              <mux:Column Name="DatabaseName" DisplayMemberBinding="{Binding Path=DatabaseName}" DisplayName="DatabaseName.134452b97e774021ab577162b401b73b" Property="DatabaseName" DataType="s:String" IsVisible="True" />
+              <mux:Column Name="AzureSQLServerSQLServerName" DisplayMemberBinding="{Binding Path=AzureSQLServer.SQLServerName}" DisplayName="SQLServerName.c69285d790704bc389037f000615b253" Property="AzureSQLServer.SQLServerName" DataType="s:String" IsVisible="True" />
+              <mux:Column Name="ProxyDnsName" DisplayMemberBinding="{Binding Path=ProxyDnsName}" DisplayName="ProxyDnsName.1122cf888b1a445491d0d7a9615406f3" Property="ProxyDnsName" DataType="s:String" IsVisible="True" />
+              <mux:Column Name="CollationName" DisplayMemberBinding="{Binding Path=CollationName}" DisplayName="CollationName.c418e0a10b6f4ff694c32daa7163715f" Property="CollationName" DataType="s:String" IsVisible="True" />
+              <mux:Column Name="Edition" DisplayMemberBinding="{Binding Path=Edition}" DisplayName="Edition.03748a1434ee423680ee748af97ddcec" Property="Edition" DataType="s:String" IsVisible="True" />
+              <mux:Column Name="Status" DisplayMemberBinding="{Binding Path=Status}" DisplayName="Status.5d8d85e4c9934191b82b191a92e60597" Property="Status" DataType="s:String" IsVisible="True" />
+            </mux:ColumnCollection>
+          </Columns>
+          <AdditonalProperties />
+          <ViewStrings>
+            <ViewString ID="DatabaseName.134452b97e774021ab577162b401b73b">$MPElement[Name="DatabaseName.70dbfd0f7c7e489493e2e60e8f6b1190"]$</ViewString>
+            <ViewString ID="SQLServerName.c69285d790704bc389037f000615b253">$MPElement[Name="SQLServerName.824de546732140959aec0c3ba2d47061"]$</ViewString>
+            <ViewString ID="ProxyDnsName.1122cf888b1a445491d0d7a9615406f3">$MPElement[Name="ProxyDnsName.e73603c1fdd5416daa12e4ed77d25069"]$</ViewString>
+            <ViewString ID="CollationName.c418e0a10b6f4ff694c32daa7163715f">$MPElement[Name="CollationName.94fc76e6b97b41aaa507a6b107fd5976"]$</ViewString>
+            <ViewString ID="Edition.03748a1434ee423680ee748af97ddcec">$MPElement[Name="Edition.f37ff6c23bbe49baa36017a41fac6426"]$</ViewString>
+            <ViewString ID="Status.5d8d85e4c9934191b82b191a92e60597">$MPElement[Name="Status.60f42ea5e7454f50a05e4fdc6dc9d09b"]$</ViewString>
+          </ViewStrings>
+        </Presentation>
+      </View>
       <View ID="View.3db36828050448aaad47220ca25f98bc" Accessibility="Public" Enabled="true" Target="Monitor" TypeID="Console!GridViewType" Visible="true">
         <Category>NotUsed</Category>
         <Data>
@@ -5675,6 +5876,7 @@
       <Folder ID="Folder.fccedf6d8b374c95a35942c8ef8adae6" Accessibility="Public" ParentFolder="Folder.55d0298cf0cd4ab4842a4856fd06e182" />
       <Folder ID="Folder.94dd235938964c6d8057948572f4d2b9" Accessibility="Public" ParentFolder="Folder.55d0298cf0cd4ab4842a4856fd06e182" />
       <Folder ID="Folder.1ef862890df44c4597357d9c13401d04" Accessibility="Public" ParentFolder="Folder.55d0298cf0cd4ab4842a4856fd06e182" />
+      
    <!--   <Folder ID="Folder.c1d36619067a4ac6af8fe83575547835" Accessibility="Public" ParentFolder="AssetWorkSpace.CloudManagement" />
       <Folder ID="Folder.e490ba87a894448ba80597ef78bf310a" Accessibility="Public" ParentFolder="Folder.c1d36619067a4ac6af8fe83575547835" />
       <Folder ID="Folder.d62825058ca44dae963074ffa16f20aa" Accessibility="Public" ParentFolder="Folder.c1d36619067a4ac6af8fe83575547835" />
@@ -5684,6 +5886,9 @@
     </Folders>
     <FolderItems>
       <FolderItem ElementID="View.13e0b9cfa15a4008af1aa36454ebe7c1" ID="FolderItem.b9890f62216640b8a5f9a0c1f111b2d3" Folder="Folder.730776261ba1477486cb8fa0a49beba5" />
+      <FolderItem ElementID="View.f590890dcc02442387f1f61b5e16318e" ID="FolderItem.5195db42e6a1449bbf5870f1210ac590" Folder="Folder.1ef862890df44c4597357d9c13401d04" />
+      <FolderItem ElementID="View.e35bd355904b4099bb3c506681916fed" ID="FolderItem.b5de8d49696a4653b5091065ebbc4380" Folder="Folder.94dd235938964c6d8057948572f4d2b9" />
+      <FolderItem ElementID="View.5b9032fbca2348f8a54b1ae32ff1a19c" ID="FolderItem.0fd1632fef1d4cb48125846741170f9c" Folder="Folder.94dd235938964c6d8057948572f4d2b9" />
       <FolderItem ElementID="View.a750dcdc91474e2ea18deb1879317dff" ID="FolderItem.629d3e3fe32441cf96f38aaf496e62b0" Folder="Folder.37b158ecb4684080bd60804aa4ad5c3d" />
       <FolderItem ElementID="View.127f29e80413460f9edf7683d9dfbd6a" ID="FolderItem.b759a5341c2c46ce80e484aa6217d809" Folder="Folder.37b158ecb4684080bd60804aa4ad5c3d" />
       <FolderItem ElementID="View.e7764eed09a14d6884047bc3bd8afb72" ID="FolderItem.ef09547e3fc047e28c07b50d62f6c86f" Folder="Folder.37b158ecb4684080bd60804aa4ad5c3d" />
@@ -5920,6 +6125,7 @@
     </FolderItems>
     <ImageReferences>
       <ImageReference ElementID="Folder.39e553a749564edb93140e6b076576f9" ImageID="officedesk16x16.png" />
+      <ImageReference ElementID="View.f590890dcc02442387f1f61b5e16318e" ImageID="AzureWebApp16x16.png" />
       <ImageReference ElementID="View.9e34470a2a094c46af199b9ed3534e34" ImageID="officedesk16x16.png" />
       <ImageReference ElementID="View.13e0b9cfa15a4008af1aa36454ebe7c1" ImageID="mobiledevice16x16.png" />
       <ImageReference ElementID="View.3db36828050448aaad47220ca25f98bc" ImageID="icmon16x16.png" />
@@ -5953,6 +6159,8 @@
       <ImageReference ElementID="View.44dee82b77e649a79a7b2971f3841a97" ImageID="AzureVM_2_16x16.png" />
       <ImageReference ElementID="View.b0160f7541b44b51b45d90dfa7f7eacd" ImageID="azuresubnet16x16.png" />
       <ImageReference ElementID="View.60a36d1cd5c944e5adb19a267a64e4ed" ImageID="AzureConsumption16x16.png" />
+      <ImageReference ElementID="View.e35bd355904b4099bb3c506681916fed" ImageID="AzureSQLServer16x16.png" />
+      <ImageReference ElementID="View.5b9032fbca2348f8a54b1ae32ff1a19c" ImageID="AzureSQLDatabase16x16.png" />
       
       
       <!--
@@ -6066,6 +6274,10 @@
       <StringResource ID="SubnetName.4f7a45555bb842f38f8ba3e3620cf126" />
       <StringResource ID="AddressPrefix.0d0e2f628f614d01b24c172f7a7100c7" />
       <StringResource ID="NetworkName.d7234796f3dc4869ba6ec72e24eb091d" />
+      <StringResource ID="SiteName.efc2be322b1d428bb2716bf839f29ea1" />
+      <StringResource ID="HostNames.4f3a4b9164c947f7bc3118fb66764817" />
+      <StringResource ID="State.f99e6f55c24646c8bec35c297319a60c" />
+      <StringResource ID="ResourceName.e8fba064447849c2b366a6863af0a22f" />
       <StringResource ID="ConsumptionName.c2a474850d664b6b959c381d453adff6" />
       <StringResource ID="ConsumptionStartDate.02b9c10cde57497cab69657675887091" />
       <StringResource ID="ConsumptionEndDate.50f608ee13614d90a9a3e2c452b97ec6" />
@@ -6123,6 +6335,16 @@
       <StringResource ID="DisplayName.ce7c56d9cbb64d7aadf943c148f40144" />
       <StringResource ID="DisplayName.ebfcbee4246a4b41ad26d58ca31e132a" />
       <StringResource ID="DisplayName.77cce1cec43d49cc8becb8b5e1e98046" />
+      <StringResource ID="SQLServerName.619b7a5ccd5546f8ba7db07e693112aa" />
+      <StringResource ID="ServerVersion.29245368c7b44abaac800d3d0e6dce25" />
+      <StringResource ID="LocationName.a00693b073b14b269ec4e561d2fa9c98" />
+      <StringResource ID="ResourceName.afb4bc9801b844ebab97a1ad4403f999" />
+      <StringResource ID="DatabaseName.70dbfd0f7c7e489493e2e60e8f6b1190" />
+      <StringResource ID="ProxyDnsName.e73603c1fdd5416daa12e4ed77d25069" />
+      <StringResource ID="CollationName.94fc76e6b97b41aaa507a6b107fd5976" />
+      <StringResource ID="Edition.f37ff6c23bbe49baa36017a41fac6426" />
+      <StringResource ID="Status.60f42ea5e7454f50a05e4fdc6dc9d09b" />
+      <StringResource ID="SQLServerName.824de546732140959aec0c3ba2d47061" />
       <StringResource ID="DisplayName.7ea1b400ea6f49b2a7407a68be578fc5" />
       <StringResource ID="InvoiceNumber.4c0adac3b8cf4224ae29d44a81cdec36" />
       <StringResource ID="Type.6af2380d4087486eb6d6d16c7556ccc2" />
@@ -6624,6 +6846,26 @@
         <DisplayString ElementID="Type.d3bd1431284b4a4d98a52d876c09e5b0">
           <Name>Monitor Type</Name>
           <Description>Monitor Type</Description>
+        </DisplayString>
+        <DisplayString ElementID="SiteName.efc2be322b1d428bb2716bf839f29ea1">
+          <Name>Azure Web Site Name</Name>
+          <Description>Azure Web Site Name</Description>
+        </DisplayString>
+        <DisplayString ElementID="HostNames.4f3a4b9164c947f7bc3118fb66764817">
+          <Name>Azure Web Application Host Name</Name>
+          <Description>Azure Web Application Host Name</Description>
+        </DisplayString>
+        <DisplayString ElementID="State.f99e6f55c24646c8bec35c297319a60c">
+          <Name>Azure Web Application State</Name>
+          <Description>Azure Web Application State</Description>
+        </DisplayString>
+        <DisplayString ElementID="ResourceName.e8fba064447849c2b366a6863af0a22f">
+          <Name>Resource Group Name</Name>
+          <Description>Resource Name</Description>
+        </DisplayString>
+        <DisplayString ElementID="View.f590890dcc02442387f1f61b5e16318e">
+          <Name>Azure Web Applications</Name>
+          <Description>Azure Web Applications</Description>
         </DisplayString>
         <DisplayString ElementID="UseType.1c0defa2a456413f95c78285e967d571">
           <Name>Monitor Use Type</Name>
@@ -9268,6 +9510,54 @@
         <DisplayString ElementID="View.4033955e0664486481ce29c19f7ac77a">
           <Name>License Status Error</Name>
           <Description>License Status Error</Description>
+        </DisplayString>
+        <DisplayString ElementID="SQLServerName.619b7a5ccd5546f8ba7db07e693112aa">
+          <Name>Azure SQL Server Name</Name>
+          <Description>Azure SQL Server Name</Description>
+        </DisplayString>
+        <DisplayString ElementID="ServerVersion.29245368c7b44abaac800d3d0e6dce25">
+          <Name>Azure SQL Server Version</Name>
+          <Description>Azure SQL Server Version</Description>
+        </DisplayString>
+        <DisplayString ElementID="LocationName.a00693b073b14b269ec4e561d2fa9c98">
+          <Name>Azure Location Name</Name>
+          <Description>Location Name</Description>
+        </DisplayString>
+        <DisplayString ElementID="ResourceName.afb4bc9801b844ebab97a1ad4403f999">
+          <Name>Resource Group Name</Name>
+          <Description>Resource Name</Description>
+        </DisplayString>
+        <DisplayString ElementID="View.e35bd355904b4099bb3c506681916fed">
+          <Name>Azure SQL Servers</Name>
+          <Description>Azure SQL Servers</Description>
+        </DisplayString>
+        <DisplayString ElementID="DatabaseName.70dbfd0f7c7e489493e2e60e8f6b1190">
+          <Name>Azure SQL Database Name</Name>
+          <Description>Azure SQL Database Name</Description>
+        </DisplayString>
+        <DisplayString ElementID="ProxyDnsName.e73603c1fdd5416daa12e4ed77d25069">
+          <Name>Database Proxy Dns Name</Name>
+          <Description>Database Proxy Dns Name</Description>
+        </DisplayString>
+        <DisplayString ElementID="CollationName.94fc76e6b97b41aaa507a6b107fd5976">
+          <Name>SQL Collation Name</Name>
+          <Description>SQL Collation Name</Description>
+        </DisplayString>
+        <DisplayString ElementID="Edition.f37ff6c23bbe49baa36017a41fac6426">
+          <Name>SQL Database Edition</Name>
+          <Description>SQL Database Edition</Description>
+        </DisplayString>
+        <DisplayString ElementID="Status.60f42ea5e7454f50a05e4fdc6dc9d09b">
+          <Name>Status</Name>
+          <Description>Status</Description>
+        </DisplayString>
+        <DisplayString ElementID="View.5b9032fbca2348f8a54b1ae32ff1a19c">
+          <Name>Azure SQL Databases</Name>
+          <Description>Azure SQL Databases</Description>
+        </DisplayString>
+        <DisplayString ElementID="SQLServerName.824de546732140959aec0c3ba2d47061">
+          <Name>Azure SQL Server Name</Name>
+          <Description>Azure SQL Server Name</Description>
         </DisplayString>
       </DisplayStrings>
     </LanguagePack>

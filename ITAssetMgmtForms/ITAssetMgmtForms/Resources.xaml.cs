@@ -131,9 +131,9 @@ namespace ITAssetMgmtForms
         public static Guid guidAzureVNetGateway = new Guid("4a487e44-a232-fd33-7316-0bf2db3fb823");
         public static Guid guidAzureLocation = new Guid("69a29a53-f423-5cf9-1b19-d3028cd880c1");
         public static Guid guidAzureConsumption = new Guid("7b401fc8-4d6e-cf24-3cfa-c6fa8884dc5a");
-
-
-
+        public static Guid guidAzureSQlServerClass = new Guid("6a10a6ea-9dcc-dac7-f039-74170936fc5f");
+        public static Guid guidAzureSQLDatabaseClass = new Guid("0f5069c1-48a4-e41c-9a0c-0e1de18351a7");
+        public static Guid guidAzureWebAppClass = new Guid("2bb5bb3a-ec05-50ba-5f3c-81c585190753");
 
         public Resources()
         {

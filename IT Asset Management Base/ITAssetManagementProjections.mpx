@@ -105,6 +105,7 @@
 
         <TypeProjection ID="Projection.AzureLocation" Accessibility="Public" Type="AzureLocation">
           <Component Path="$Context/Path[Relationship='Relationship.AzureResourceGroupHasLocation' SeedRole='Target']$" Alias="ResourceGroup" />
+          <Component Path="$Context/Path[Relationship='Relationship.AzureSQLServerHasLocation' SeedRole='Target']$" Alias="SQLServer" />
           <Component Path="$Context/Path[Relationship='Relationship.AzureLocationHasNLocation']$" Alias="NLocation" />
           <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemRelatesToConfigItem' SeedRole='Target']$" Alias="ImpactedWorkItem" />
           <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemAboutConfigItem' SeedRole='Target']$" Alias="RelatedWorkItem" />
@@ -139,8 +140,10 @@
 
         <TypeProjection ID="Projection.AzureResourceGroup" Accessibility="Public" Type="AzureResourceGroup">
           <Component Path="$Context/Path[Relationship='Relationship.AzureResourceGroupHasAzureVMs']$" Alias="VMs" />
+          <Component Path="$Context/Path[Relationship='Relationship.AzureResourceGroupHasSQLServer']$" Alias="SQLServer" />
           <Component Path="$Context/Path[Relationship='Relationship.AzureResourceGroupHasLocation']$" Alias="Location" />
           <Component Path="$Context/Path[Relationship='Relationship.AzureResourceGroupHasNetwork']$" Alias="AzureNetwork" />
+          <Component Path="$Context/Path[Relationship='Relationship.AzureResourceGroupHasWebApplication']$" Alias="AzureWebApplication" />
           <Component Path="$Context/Path[Relationship='Relationship.AzureSubscriptionHasResourceGroup' SeedRole='Target']$" Alias="Subscription"/>
           <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemRelatesToConfigItem' SeedRole='Target']$" Alias="ImpactedWorkItem" />
           <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemAboutConfigItem' SeedRole='Target']$" Alias="RelatedWorkItem" />
@@ -160,7 +163,18 @@
           <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem' SeedRole='Target']$" Alias="RelatedConfigItemSource" />
           <Component Path="$Context/Path[Relationship='CoreKnowledge!System.EntityLinksToKnowledgeDocument']$" Alias="RelatedKnowledgeArticles" />
         </TypeProjection>
-        
+
+        <TypeProjection ID="Projection.AzureWebApp" Accessibility="Public" Type="AzureWebApp">
+          <Component Path="$Context/Path[Relationship='Relationship.AzureWebApplicationHasLocation']$" Alias="AzureLocation" />
+          <Component Path="$Context/Path[Relationship='Relationship.AzureResourceGroupHasWebApplication' SeedRole='Target']$" Alias="ResourceGroup" />
+          <Component Path="$Context/Path[Relationship='Relationship.AzureWebApplicationHasConsumption']$" Alias="AzureConsumption" />
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemRelatesToConfigItem' SeedRole='Target']$" Alias="ImpactedWorkItem" />
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemAboutConfigItem' SeedRole='Target']$" Alias="RelatedWorkItem" />
+          <Component Path="$Context/Path[Relationship='SupportingItem!System.ConfigItemHasFileAttachment']$" Alias="FileAttachment" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem']$" Alias="RelatedConfigItem" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem' SeedRole='Target']$" Alias="RelatedConfigItemSource" />
+          <Component Path="$Context/Path[Relationship='CoreKnowledge!System.EntityLinksToKnowledgeDocument']$" Alias="RelatedKnowledgeArticles" />
+        </TypeProjection>
         
         <TypeProjection ID="Projection.CostCenter" Accessibility="Public" Type="CostCenter">
           <Component Path="$Context/Path[Relationship='Relationship.CostHasCostCenter' SeedRole='Target']$" Alias="Cost"/>
@@ -436,8 +450,33 @@
 
         <TypeProjection ID="Projection.AzureConsumption" Accessibility="Public" Type="AzureConsumption">
           <Component Path="$Context/Path[Relationship='Relationship.AzureVMHasConsumption' SeedRole='Target']$" Alias="AzureVM" />
+          <Component Path="$Context/Path[Relationship='Relationship.AzureSQLDatabaseHasConsumption' SeedRole='Target']$" Alias="AzureSQLDatabase" />
+          <Component Path="$Context/Path[Relationship='Relationship.AzureWebApplicationHasConsumption' SeedRole='Target']$" Alias="AzureWebApplication" />
           <Component Path="$Context/Path[Relationship='Relationship.AzureGatewayHasConsumption' SeedRole='Target']$" Alias="AzureGateway" />
           <Component Path="$Context/Path[Relationship='Relationship.AzureSubscriptionHasConsumption' SeedRole='Target']$" Alias="AzureSubscription"/>
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemRelatesToConfigItem' SeedRole='Target']$" Alias="ImpactedWorkItem" />
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemAboutConfigItem' SeedRole='Target']$" Alias="RelatedWorkItem" />
+          <Component Path="$Context/Path[Relationship='SupportingItem!System.ConfigItemHasFileAttachment']$" Alias="FileAttachment" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem']$" Alias="RelatedConfigItem" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem' SeedRole='Target']$" Alias="RelatedConfigItemSource" />
+          <Component Path="$Context/Path[Relationship='CoreKnowledge!System.EntityLinksToKnowledgeDocument']$" Alias="RelatedKnowledgeArticles" />
+        </TypeProjection>
+
+        <TypeProjection ID="Projection.AzureSQLServer" Accessibility="Public" Type="AzureSQLServer">
+          <Component Path="$Context/Path[Relationship='Relationship.AzureSQLServerHasLocation']$" Alias="AzureLocation" />
+          <Component Path="$Context/Path[Relationship='Relationship.AzureResourceGroupHasSQLServer' SeedRole='Target']$" Alias="AzureResourceGroup" />
+          <Component Path="$Context/Path[Relationship='Relationship.AzureSQLServerHasDatabase']$" Alias="AzureSQLDatabase" />
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemRelatesToConfigItem' SeedRole='Target']$" Alias="ImpactedWorkItem" />
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemAboutConfigItem' SeedRole='Target']$" Alias="RelatedWorkItem" />
+          <Component Path="$Context/Path[Relationship='SupportingItem!System.ConfigItemHasFileAttachment']$" Alias="FileAttachment" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem']$" Alias="RelatedConfigItem" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem' SeedRole='Target']$" Alias="RelatedConfigItemSource" />
+          <Component Path="$Context/Path[Relationship='CoreKnowledge!System.EntityLinksToKnowledgeDocument']$" Alias="RelatedKnowledgeArticles" />
+        </TypeProjection>
+
+        <TypeProjection ID="Projection.AzureSQLDatabase" Accessibility="Public" Type="AzureSQLDatabase">
+          <Component Path="$Context/Path[Relationship='Relationship.AzureSQLDatabaseHasConsumption']$" Alias="ConsumptionPlan" />
+          <Component Path="$Context/Path[Relationship='Relationship.AzureSQLServerHasDatabase' SeedRole='Target']$" Alias="AzureSQLServer" />
           <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemRelatesToConfigItem' SeedRole='Target']$" Alias="ImpactedWorkItem" />
           <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemAboutConfigItem' SeedRole='Target']$" Alias="RelatedWorkItem" />
           <Component Path="$Context/Path[Relationship='SupportingItem!System.ConfigItemHasFileAttachment']$" Alias="FileAttachment" />
@@ -583,6 +622,10 @@
           <Name>Azure Network Subnet Projection</Name>
           <Description>Azure Network Subnet Projection</Description>
         </DisplayString>
+        <DisplayString ElementID="Projection.AzureWebApp" >
+          <Name>Azure Web Application Projection</Name>
+          <Description>Azure Web Application Projection</Description>
+        </DisplayString>
         <DisplayString ElementID="Projection.AzureVNetGateway" >
           <Name>Azure Network Gateway Projection </Name>
           <Description>Azure Network Gateway Projection</Description>
@@ -590,6 +633,14 @@
         <DisplayString ElementID="Projection.AzureLocation" >
           <Name>Azure Location Projection</Name>
           <Description>Azure Location Projection</Description>
+        </DisplayString>
+        <DisplayString ElementID="Projection.AzureSQLServer" >
+          <Name>Azure SQL Server Projection</Name>
+          <Description>Azure SQL Server Projection</Description>
+        </DisplayString>
+        <DisplayString ElementID="Projection.AzureSQLDatabase" >
+          <Name>Azure SQL Database Projection</Name>
+          <Description>Azure SQL Database Projection</Description>
         </DisplayString>
         <DisplayString ElementID="Projection.AzureNnet" >
           <Name>Azure Network Projection</Name>

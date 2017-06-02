@@ -37,7 +37,6 @@
         <FolderItem ElementID="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.Task.CreateGridView" ID="AssetWorkSpace.CloudManagement.folderitem.createview" Folder="AssetWorkSpace.CloudManagement" />
         <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.CreateFolderAdvanced" ID="AssetWorkSpace.SoftwareManagement.createfolder.Advance" Folder="AssetWorkSpace.CloudManagement" />
         <FolderItem ElementID="ViewEditor!AdvancedViewEditor.Tasks.GroupViewTask" ID="AssetWorkSpace.SoftwareManagement.createview.Advance" Folder="AssetWorkSpace.CloudManagement" />
-      
       </FolderItems>
       <ImageReferences>
         <ImageReference ElementID="AssetWorkSpace.ITAssetFolder" ImageID="itmain16x16.png" />

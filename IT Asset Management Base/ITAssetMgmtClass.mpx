@@ -19,8 +19,7 @@
           <Property ID="IsActive" Type="bool" DefaultValue="0" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0"/>
           <Property ID="SyncNow" Type="bool" DefaultValue="0" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0"/>
           <Property ID="Searchkey" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0"/>
-          <Property ID="Mapkey" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0"/>
-          
+          <Property ID="Mapkey" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0"/>         
           </ClassType>
         <ClassType ID="SoftwareConnector" Accessibility="Public" Abstract="false" Base="AdminItem!System.SolutionSettings" Hosted="false" Singleton="true" Extension="false">
           <Property ID="Description" Type="richtext" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
@@ -558,6 +557,44 @@
           <Property ID="OverageCost" Type="double" DefaultValue="0.0" />
           <Property ID="CostCurrency" Type="enum" EnumType="Currency" />
         </ClassType>
+        <ClassType ID="AzureSQLServer" Accessibility="Public" Abstract="false" Base="System!System.ConfigItem" Hosted="false" Singleton="false" Extension="false">
+          <Property ID="AzSqlSrvID" Type="string" AutoIncrement="true" Key="true" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" DefaultValue="AzSqlSrvID{0}" />
+          <Property ID="Description" Type="richtext" MinLength="0" MaxLength="2000" AutoIncrement="false" />
+          <Property ID="SQLServerName" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
+          <Property ID="SqlAdministratorLogin" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
+          <Property ID="ServerVersion" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />   
+        </ClassType>
+        <ClassType ID="AzureSQLDatabase" Accessibility="Public" Abstract="false" Base="System!System.ConfigItem" Hosted="false" Singleton="false" Extension="false">
+          <Property ID="AzSqlDBID" Type="string" AutoIncrement="true" Key="true" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" DefaultValue="AzSqlDBID{0}" />
+          <Property ID="Description" Type="richtext" MinLength="0" MaxLength="2000" AutoIncrement="false" />
+          <Property ID="DatabaseName" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
+          <Property ID="DatabaseId" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
+          <Property ID="Edition" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
+          <Property ID="CollationName" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
+          <Property ID="MaxSizeBytes" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
+          <Property ID="Status" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
+          <Property ID="CreationDate" Type="datetime" />
+          <Property ID="ReadScale" Type="bool" />
+          <Property ID="DataMaskingState" Type="bool" />
+          <Property ID="ProxyDnsName" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
+          <Property ID="ConnectionStrings" Type="richtext" MinLength="0" MaxLength="2000" AutoIncrement="false" />
+          <Property ID="ProxyPort" Type="int" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0"/>
+        </ClassType>
+        <ClassType ID="AzureWebApp" Accessibility="Public" Abstract="false" Base="System!System.ConfigItem" Hosted="false" Singleton="false" Extension="false">
+          <Property ID="AzWebAppID" Type="string" AutoIncrement="true" Key="true" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" DefaultValue="AzWebAppID{0}" />
+          <Property ID="Description" Type="richtext" MinLength="0" MaxLength="2000" AutoIncrement="false" />
+          <Property ID="SiteName" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
+          <Property ID="HostNames" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
+          <Property ID="RepositorySiteName" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
+          <Property ID="UsageState" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
+          <Property ID="AvailabilityState" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
+          <Property ID="State" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
+          <Property ID="LastModifiedTimeUtc" Type="datetime" />
+          <Property ID="Enabled" Type="bool" />
+          <Property ID="ClientAffinityEnabled" Type="bool" />
+          <Property ID="OutboundIpAddresses" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
+          <Property ID="DefaultHostName" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false"/>
+        </ClassType>
       </ClassTypes>
     <EnumerationTypes>
       <EnumerationValue ID="ODeskType" Accessibility="Public" />
@@ -693,36 +730,6 @@
       <EnumerationValue ID="AgreementStatus.Pending" Parent="AgreementStatus" Accessibility="Public" Ordinal="10"/>
       <EnumerationValue ID="AgreementStatus.Retired" Parent="AgreementStatus" Accessibility="Public" Ordinal="15"/>
       <EnumerationValue ID="AgreementStatus.Inactive" Parent="AgreementStatus" Accessibility="Public" Ordinal="20"/>
-    <!--  <EnumerationValue ID="SettingClassificationEnum" Accessibility="Public" />
-      <EnumerationValue ID="SettingClassificationEnum.mandatory" Parent="SettingClassificationEnum" Accessibility="Public" Ordinal="5"/>
-      <EnumerationValue ID="SettingClassificationEnum.optional" Parent="SettingClassificationEnum" Accessibility="Public" Ordinal="10"/>
-      <EnumerationValue ID="SettingClassificationEnum.required" Parent="SettingClassificationEnum" Accessibility="Public" Ordinal="15"/>
-      <EnumerationValue ID="SettingClassificationEnum.requested" Parent="SettingClassificationEnum" Accessibility="Public" Ordinal="20"/>
-      <EnumerationValue ID="SettingClassificationEnum.obsolete" Parent="SettingClassificationEnum" Accessibility="Public" Ordinal="25"/>
-      <EnumerationValue ID="OSettingClassificationEnum" Accessibility="Public" />
-      <EnumerationValue ID="OSettingClassificationEnum.Membership" Parent="OSettingClassificationEnum" Accessibility="Public" Ordinal="5"/>
-      <EnumerationValue ID="OSettingClassificationEnum.LogonScript" Parent="OSettingClassificationEnum" Accessibility="Public" Ordinal="10"/>
-      <EnumerationValue ID="OSettingClassificationEnum.Other" Parent="OSettingClassificationEnum" Accessibility="Public" Ordinal="15"/>
-      
-      <EnumerationValue ID="RoleClassificationEnum" Accessibility="Public" />
-      <EnumerationValue ID="RoleClassificationEnum.Operations" Parent="RoleClassificationEnum" Accessibility="Public" Ordinal="5"/>
-      <EnumerationValue ID="RoleClassificationEnum.Support" Parent="RoleClassificationEnum" Accessibility="Public" Ordinal="10"/>
-      <EnumerationValue ID="RoleClassificationEnum.Finance" Parent="RoleClassificationEnum" Accessibility="Public" Ordinal="15"/>
-      <EnumerationValue ID="RoleClassificationEnum.ManagementTeam" Parent="RoleClassificationEnum" Accessibility="Public" Ordinal="20"/>
-      <EnumerationValue ID="RoleClassificationEnum.Sales" Parent="RoleClassificationEnum" Accessibility="Public" Ordinal="25"/>
-      <EnumerationValue ID="RoleClassificationEnum.Marketing" Parent="RoleClassificationEnum" Accessibility="Public" Ordinal="30"/>
-      <EnumerationValue ID="RoleClassificationEnum.Auditing" Parent="RoleClassificationEnum" Accessibility="Public" Ordinal="35"/>
-      <EnumerationValue ID="RoleClassificationEnum.Compliance" Parent="RoleClassificationEnum" Accessibility="Public" Ordinal="40"/>
-      <EnumerationValue ID="RoleClassificationEnum.Security" Parent="RoleClassificationEnum" Accessibility="Public" Ordinal="45"/>
-      <EnumerationValue ID="RoleClassificationEnum.HumanResources" Parent="RoleClassificationEnum" Accessibility="Public" Ordinal="50"/>
-      <EnumerationValue ID="RoleClassificationEnum.Executives" Parent="RoleClassificationEnum" Accessibility="Public" Ordinal="55"/>
-      <EnumerationValue ID="RoleClassificationEnum.IT" Parent="RoleClassificationEnum" Accessibility="Public" Ordinal="45"/>
-      <EnumerationValue ID="RoleClassificationEnum.IT.Server" Parent="RoleClassificationEnum.IT" Accessibility="Public" Ordinal="5"/>
-      <EnumerationValue ID="RoleClassificationEnum.IT.Datacenter" Parent="RoleClassificationEnum.IT" Accessibility="Public" Ordinal="10"/>
-      <EnumerationValue ID="RoleClassificationEnum.IT.Network" Parent="RoleClassificationEnum.IT" Accessibility="Public" Ordinal="15"/>
-      <EnumerationValue ID="RoleClassificationEnum.IT.Security" Parent="RoleClassificationEnum.IT" Accessibility="Public" Ordinal="20"/>
-      <EnumerationValue ID="RoleClassificationEnum.IT.Software" Parent="RoleClassificationEnum.IT" Accessibility="Public" Ordinal="25
-      -->
       <EnumerationValue ID="ITSMConnectorStatus" Accessibility="Public" />
       <EnumerationValue ID="ITSMConnectorStatus.Active" Parent="ITSMConnectorStatus" Accessibility="Public" Ordinal="5"/>
       <EnumerationValue ID="ITSMConnectorStatus.Running" Parent="ITSMConnectorStatus" Accessibility="Public" Ordinal="10"/>
@@ -735,7 +742,6 @@
       <EnumerationValue ID="ITSMConnectorType.AzureSyncronization" Parent="ITSMConnectorType" Accessibility="Public" Ordinal="20"/>
       <EnumerationValue ID="ITSMConnectorType.AmazonSyncronization" Parent="ITSMConnectorType" Accessibility="Public" Ordinal="25"/>
       <EnumerationValue ID="ITSMConnectorType.OMSConnector" Parent="ITSMConnectorType" Accessibility="Public" Ordinal="25"/>
-     <!-- <EnumerationValue ID="ITSMConnectorType.ADGroupSyncronization" Parent="ITSMConnectorType" Accessibility="Public" Ordinal="35"/> -->
       <EnumerationValue ID="LicStatus" Accessibility="Public" />
       <EnumerationValue ID="LicStatus.Healthy" Parent="LicStatus" Accessibility="Public" Ordinal="5"/>
       <EnumerationValue ID="LicStatus.Error" Parent="LicStatus" Accessibility="Public" Ordinal="10"/>
@@ -1148,6 +1154,90 @@
           <Name>Agreement Number</Name>
           <Description>Agreement Number</Description>
         </DisplayString>
+        <DisplayString ElementID="AzureSQLServer" >
+		   <Name>Azure SQL Server</Name>
+          <Description>Azure SQL Server</Description>
+        </DisplayString>
+         <DisplayString ElementID="AzureSQLServer" SubElementID="AzSqlSrvID" >
+		   <Name>AzSqlSrvID</Name>
+          <Description>AzSqlSrvID</Description>
+        </DisplayString>
+          <DisplayString  ElementID="AzureSQLServer" SubElementID="Description" >
+		   <Name>Description</Name>
+          <Description>Description</Description>
+        </DisplayString>
+          <DisplayString  ElementID="AzureSQLServer" SubElementID="SQLServerName" >
+		   <Name>Azure SQL Server Name</Name>
+          <Description>Azure SQL Server Name</Description>
+        </DisplayString>
+          <DisplayString  ElementID="AzureSQLServer" SubElementID="SqlAdministratorLogin"  >
+		   <Name>Azure Sql Administrator Login</Name>
+          <Description>Azure Sql Administrator Login</Description>
+        </DisplayString>
+          <DisplayString  ElementID="AzureSQLServer" SubElementID="ServerVersion"  >
+		  <Name>Azure SQL Server Version</Name>
+          <Description>Azure SQL Server Version</Description>
+        </DisplayString>		  
+          <DisplayString  ElementID="AzureSQLDatabase" >
+		   <Name>Azure SQL Database</Name>
+          <Description>Azure SQL Database</Description>
+        </DisplayString>
+          <DisplayString  ElementID="AzureSQLDatabase" SubElementID="AzSqlDBID"  >
+		   <Name>AzSqlDBID</Name>
+          <Description>AzSqlDBID</Description>
+        </DisplayString>
+          <DisplayString ElementID="AzureSQLDatabase" SubElementID="Description"  >
+		   <Name>Description</Name>
+          <Description>Description</Description>
+        </DisplayString>
+          <DisplayString ElementID="AzureSQLDatabase" SubElementID="DatabaseName"  >
+		   <Name>Azure SQL Database Name</Name>
+          <Description>Azure SQL Database Name</Description>
+        </DisplayString>
+          <DisplayString ElementID="AzureSQLDatabase" SubElementID="DatabaseId"  >
+		   <Name>Azure SQL Database ID</Name>
+          <Description>Azure SQL Database ID</Description>
+        </DisplayString>
+          <DisplayString ElementID="AzureSQLDatabase" SubElementID="Edition"  >
+		    <Name>SQL Database Edition</Name>
+          <Description>SQL Database Edition</Description>
+        </DisplayString>
+          <DisplayString ElementID="AzureSQLDatabase" SubElementID="CollationName"  >
+		    <Name>SQL Collation Name</Name>
+          <Description>SQL Collation Name</Description>
+        </DisplayString>
+          <DisplayString ElementID="AzureSQLDatabase" SubElementID="MaxSizeBytes"  >
+		    <Name>Database Max Size Bytes</Name>
+          <Description>Database Max Size Bytes</Description>
+        </DisplayString>
+          <DisplayString ElementID="AzureSQLDatabase" SubElementID="Status"  >
+		    <Name>Status</Name>
+          <Description>Status</Description>
+        </DisplayString>
+          <DisplayString ElementID="AzureSQLDatabase" SubElementID="CreationDate"  >
+		    <Name>Database Creation Date</Name>
+          <Description>Database Creation Date</Description>
+        </DisplayString>
+          <DisplayString ElementID="AzureSQLDatabase" SubElementID="ReadScale" >
+		    <Name>Database Read Scale</Name>
+          <Description>Database Read Scale</Description>
+        </DisplayString>
+          <DisplayString ElementID="AzureSQLDatabase" SubElementID="DataMaskingState" >
+		    <Name>Data Masking State</Name>
+          <Description>Data Masking State</Description>
+        </DisplayString>
+          <DisplayString ElementID="AzureSQLDatabase" SubElementID="ProxyDnsName"  >
+		    <Name>Database Proxy Dns Name</Name>
+          <Description>Database Proxy Dns Name</Description>
+        </DisplayString>
+          <DisplayString ElementID="AzureSQLDatabase" SubElementID="ConnectionStrings" >
+		    <Name>Database Connection Strings</Name>
+          <Description>Databse Connection Strings</Description>
+        </DisplayString>
+          <DisplayString ElementID="AzureSQLDatabase" SubElementID="ProxyPort" >
+		    <Name>Database Proxy Port</Name>
+          <Description>Database Proxy Port</Description>
+        </DisplayString>
         <DisplayString ElementID="Agreement" SubElementID="Status">
           <Name>Agreement Status</Name>
           <Description>Agreement Status</Description>
@@ -1196,6 +1286,62 @@
 		  <Name> Is Default </Name>
      <Description> Is Default</Description>
      </DisplayString>
+        <DisplayString ElementID="AzureWebApp" >
+          <Name>Azure Web Application</Name>
+          <Description>Azure Web Application</Description>
+        </DisplayString>
+        <DisplayString ElementID="AzureWebApp" SubElementID="AzWebAppID" >
+          <Name>Azure Web Application ID</Name>
+          <Description>Azure Web Application ID</Description>
+        </DisplayString>
+        <DisplayString ElementID="AzureWebApp" SubElementID="Description" >
+          <Name>Description</Name>
+          <Description>Description</Description>
+        </DisplayString>
+        <DisplayString ElementID="AzureWebApp" SubElementID="SiteName" >
+          <Name>Azure Web Site Name</Name>
+          <Description>Azure Web Site Name</Description>
+        </DisplayString>
+        <DisplayString ElementID="AzureWebApp" SubElementID="HostNames" >
+          <Name>Azure Web Application Host Name</Name>
+          <Description>Azure Web Application Host Name</Description>
+        </DisplayString>
+        <DisplayString ElementID="AzureWebApp" SubElementID="RepositorySiteName" >
+          <Name>Azure Web Repository Site Name</Name>
+          <Description>Azure Web Repository Site Name</Description>
+        </DisplayString>
+        <DisplayString ElementID="AzureWebApp" SubElementID="UsageState" >
+          <Name>Azure Web Application Usage State</Name>
+          <Description>Azure Web ApplicationUsage State</Description>
+        </DisplayString>
+        <DisplayString ElementID="AzureWebApp" SubElementID="AvailabilityState" >
+          <Name>Azure Web Application Availability State</Name>
+          <Description>Azure Web Application Availability State</Description>
+        </DisplayString>
+        <DisplayString ElementID="AzureWebApp" SubElementID="State" >
+          <Name>Azure Web Application State</Name>
+          <Description>Azure Web Application State</Description>
+        </DisplayString>
+        <DisplayString ElementID="AzureWebApp" SubElementID="LastModifiedTimeUtc" >
+          <Name>Azure Web Application Last Modified Time Utc</Name>
+          <Description>Azure Web Application Last Modified Time Utc</Description>
+        </DisplayString>
+        <DisplayString ElementID="AzureWebApp" SubElementID="Enabled" >
+          <Name>Azure Web Application Enabled</Name>
+          <Description>Azure Web Application Enabled</Description>
+        </DisplayString>
+        <DisplayString ElementID="AzureWebApp" SubElementID="ClientAffinityEnabled" >
+          <Name>Azure Web Application Client Affinity Enabled</Name>
+          <Description>Azure Web Application Client Affinity Enabled</Description>
+        </DisplayString>
+        <DisplayString ElementID="AzureWebApp" SubElementID="OutboundIpAddresses" >
+          <Name>Azure Web Application Outbound Ip Addresses</Name>
+          <Description>Azure Web Application Outbound Ip Addresses</Description>
+        </DisplayString>
+        <DisplayString ElementID="AzureWebApp" SubElementID="DefaultHostName" >
+          <Name>Azure Web Application Default Host Name</Name>
+          <Description>Azure Web Application Default Host Name</Description>
+        </DisplayString>
           <DisplayString ElementID="AzureResourceGroup" >
 		  <Name>Azure Resource Group </Name>
      <Description> Azure Resource Group</Description>

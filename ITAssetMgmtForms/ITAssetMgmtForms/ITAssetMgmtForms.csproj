@@ -168,11 +168,20 @@
     <Compile Include="AzureGatewayForm.xaml.cs">
       <DependentUpon>AzureGatewayForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AzureLocationForm.xaml.cs">
+      <DependentUpon>AzureLocationForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AzureNetworkForm.xaml.cs">
       <DependentUpon>AzureNetworkForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="AzureResourceGroupForm.xaml.cs">
       <DependentUpon>AzureResourceGroupForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AzureSQLDatabaseForm.xaml.cs">
+      <DependentUpon>AzureSQLDatabaseForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AzureSQLServerForm.xaml.cs">
+      <DependentUpon>AzureSQLServerForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="AzureSubnetForm.xaml.cs">
       <DependentUpon>AzureSubnetForm.xaml</DependentUpon>
@@ -182,6 +191,9 @@
     </Compile>
     <Compile Include="AzureVMForm.xaml.cs">
       <DependentUpon>AzureVMForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AzureWebAppForm.xaml.cs">
+      <DependentUpon>AzureWebAppForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="BaseSettingsForm.xaml.cs">
       <DependentUpon>BaseSettingsForm.xaml</DependentUpon>
@@ -349,11 +361,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AzureLocationForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AzureNetworkForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AzureResourceGroupForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AzureSQLDatabaseForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AzureSQLServerForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -366,6 +390,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AzureVMForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AzureWebAppForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -660,6 +688,11 @@
     <Resource Include="Pictures\AzureManagement.png" />
     <Resource Include="Pictures\AzureNetworking.png" />
     <Resource Include="Pictures\Azure_3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\AzureSQLDatabase.png" />
+    <Resource Include="Pictures\AzureSQLServer.png" />
+    <Resource Include="Pictures\AzureWebApp.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

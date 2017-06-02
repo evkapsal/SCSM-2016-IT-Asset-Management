@@ -811,6 +811,24 @@
     <EmbeddedResource Include="Pictures\AzureNetworking24x24.png">
       <SubType>Content</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\AzureSQLDatabase16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\AzureSQLDatabase24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\AzureSQLServer16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\AzureSQLServer24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\AzureWebApp16x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pictures\AzureWebApp24x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
     <Content Include="Pictures\ic_administrator_gear.png">
       <SubType>Content</SubType>
     </Content>

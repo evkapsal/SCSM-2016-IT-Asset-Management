@@ -37,19 +37,17 @@ using Microsoft.EnterpriseManagement.UI.FormsInfra;     //Contains PreviewFormCo
 namespace ITAssetMgmtForms
 {
     /// <summary>
-    /// Interaction logic for AzureResourceGroupForm.xaml
+    /// Interaction logic for AzureSQLServerForm.xaml
     /// </summary>
-    public partial class AzureResourceGroupForm : UserControl
+    public partial class AzureSQLServerForm : UserControl
     {
         private RelatedItemsPane _relatedItemsPane;
-        public AzureResourceGroupForm()
+        public AzureSQLServerForm()
         {
             InitializeComponent();
             _relatedItemsPane = new RelatedItemsPane(new ConfigItemRelatedItemsConfiguration());
             tabItemRelItems.Content = _relatedItemsPane;
         }
-
-
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             this.AddHandler(FormEvents.PreviewSubmitEvent, new EventHandler<PreviewFormCommandEventArgs>(this.OnPreviewSubmit));
@@ -57,10 +55,10 @@ namespace ITAssetMgmtForms
 
         private void OnPreviewSubmit(object sender, PreviewFormCommandEventArgs e)
         {
-            IDataItem ResourceName = this.DataContext as IDataItem;
-            String strResourceName;
-            strResourceName = ResourceName["ResourceName"].ToString();
-            ResourceName["ResourceName"] = strResourceName;
+            IDataItem SQLServerName = this.DataContext as IDataItem;
+            String strSQLServerName;
+            strSQLServerName = SQLServerName["SQLServerName"].ToString();
+            SQLServerName["SQLServerName"] = strSQLServerName;
         }
 
         private void expMain_Loaded(object sender, RoutedEventArgs e)
@@ -71,113 +69,30 @@ namespace ITAssetMgmtForms
             headeredContentControl.Header = "Main";
             this.expMain.Header = headeredContentControl;
         }
-
-        private void expDetails_Loaded(object sender, RoutedEventArgs e)
-        {
-            HeaderedContentControl headeredContentControl = new HeaderedContentControl();
-            headeredContentControl.OverridesDefaultStyle = true;
-            headeredContentControl.Foreground = Brushes.Black;
-            headeredContentControl.Header = "References";
-            this.expDetails.Header = headeredContentControl;
-        }
-        
-        //
-        private void btnAdd_Click_VMs(object sender, RoutedEventArgs e)
-        {
-            AddItemToListView(this.VMs, ITAssetMgmtForms.Resources.guidAzureVM);
-        }
-
-        private void btnRemove_Click_VMs(object sender, RoutedEventArgs e)
-        {
-            RemoveItemFromWorkItemListView(this.VMs);
-        }
-
-        private void btnOpen_Click_VMs(object sender, RoutedEventArgs e)
-        {
-            IDataItem emoProjectionObject = (IDataItem)VMs.SelectedItem;
-            Microsoft.EnterpriseManagement.GenericForm.FormUtilities.Instance.PopoutForm(emoProjectionObject);
-        }
-
-        private void MouseDoubleClick_VMs(object sender, MouseButtonEventArgs e)
-        {
-            IDataItem emoProjectionObject = (IDataItem)VMs.SelectedItem;
-            Microsoft.EnterpriseManagement.GenericForm.FormUtilities.Instance.PopoutForm(emoProjectionObject);
-        }
-
         //
 
-        private void btnAdd_Click_AzureNetwork(object sender, RoutedEventArgs e)
+        private void btnAdd_Click_AzureSQLDatabase(object sender, RoutedEventArgs e)
         {
-            AddItemToListView(this.AzureNetwork, ITAssetMgmtForms.Resources.guidAzureNet);
+            AddItemToListView(this.AzureSQLDatabase, ITAssetMgmtForms.Resources.guidAzureSQLDatabaseClass);
         }
 
-        private void btnRemove_Click_AzureNetwork(object sender, RoutedEventArgs e)
+        private void btnRemove_Click_AzureSQLDatabase(object sender, RoutedEventArgs e)
         {
-            RemoveItemFromWorkItemListView(this.AzureNetwork);
+            RemoveItemFromWorkItemListView(this.AzureSQLDatabase);
         }
 
-        private void btnOpen_Click_AzureNetwork(object sender, RoutedEventArgs e)
+        private void btnOpen_Click_AzureSQLDatabase(object sender, RoutedEventArgs e)
         {
-            IDataItem emoProjectionObject = (IDataItem)AzureNetwork.SelectedItem;
+            IDataItem emoProjectionObject = (IDataItem)AzureSQLDatabase.SelectedItem;
             Microsoft.EnterpriseManagement.GenericForm.FormUtilities.Instance.PopoutForm(emoProjectionObject);
         }
 
-        private void MouseDoubleClick_AzureNetwork(object sender, MouseButtonEventArgs e)
+        private void MouseDoubleClick_AzureSQLDatabase(object sender, MouseButtonEventArgs e)
         {
-            IDataItem emoProjectionObject = (IDataItem)AzureNetwork.SelectedItem;
+            IDataItem emoProjectionObject = (IDataItem)AzureSQLDatabase.SelectedItem;
             Microsoft.EnterpriseManagement.GenericForm.FormUtilities.Instance.PopoutForm(emoProjectionObject);
         }
 
-        //
-
-
-        private void btnAdd_Click_AzureWebApplication(object sender, RoutedEventArgs e)
-        {
-            AddItemToListView(this.AzureWebApplication, ITAssetMgmtForms.Resources.guidAzureWebAppClass);
-        }
-
-        private void btnRemove_Click_AzureWebApplication(object sender, RoutedEventArgs e)
-        {
-            RemoveItemFromWorkItemListView(this.AzureWebApplication);
-        }
-
-        private void btnOpen_Click_AzureWebApplication(object sender, RoutedEventArgs e)
-        {
-            IDataItem emoProjectionObject = (IDataItem)AzureWebApplication.SelectedItem;
-            Microsoft.EnterpriseManagement.GenericForm.FormUtilities.Instance.PopoutForm(emoProjectionObject);
-        }
-
-        private void MouseDoubleClick_AzureWebApplication(object sender, MouseButtonEventArgs e)
-        {
-            IDataItem emoProjectionObject = (IDataItem)AzureWebApplication.SelectedItem;
-            Microsoft.EnterpriseManagement.GenericForm.FormUtilities.Instance.PopoutForm(emoProjectionObject);
-        }
-
-        //
-
-        private void btnAdd_Click_SQLServer(object sender, RoutedEventArgs e)
-        {
-            AddItemToListView(this.SQLServer, ITAssetMgmtForms.Resources.guidAzureSQlServerClass);
-        }
-
-        private void btnRemove_Click_SQLServer(object sender, RoutedEventArgs e)
-        {
-            RemoveItemFromWorkItemListView(this.SQLServer);
-        }
-
-        private void btnOpen_Click_SQLServer(object sender, RoutedEventArgs e)
-        {
-            IDataItem emoProjectionObject = (IDataItem)SQLServer.SelectedItem;
-            Microsoft.EnterpriseManagement.GenericForm.FormUtilities.Instance.PopoutForm(emoProjectionObject);
-        }
-
-        private void MouseDoubleClick_SQLServer(object sender, MouseButtonEventArgs e)
-        {
-            IDataItem emoProjectionObject = (IDataItem)SQLServer.SelectedItem;
-            Microsoft.EnterpriseManagement.GenericForm.FormUtilities.Instance.PopoutForm(emoProjectionObject);
-        }
-
-        //
 
         internal static void AddItemToListView(ListView listView, Guid classId)
         {
@@ -235,21 +150,8 @@ namespace ITAssetMgmtForms
             FormUtilities.Instance.PopoutForm(singleInstancePicker.Instance);
         }
 
-        private void AzureNetwork_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
 
-        }
-
-        private void VMs_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-        private void SQLServer_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void AzureWebApplication_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void AzureSQLDatabase_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
