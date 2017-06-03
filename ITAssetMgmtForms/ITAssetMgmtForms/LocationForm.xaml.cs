@@ -60,9 +60,6 @@ namespace ITAssetMgmtForms
             strDisplayName = DisplayName["DisplayName"].ToString();
             DisplayName["DisplayName"] = strDisplayName;
 
-
-
-
             BindMap();
         }
 

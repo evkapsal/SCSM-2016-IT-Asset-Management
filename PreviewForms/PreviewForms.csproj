@@ -31,18 +31,323 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.EnterpriseManagement.Core, Version=7.0.5000.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Microsoft System Center\Service Manager\SDK Binaries\Microsoft.EnterpriseManagement.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.Core.SdkUtilities">
+      <HintPath>..\..\..\DLL References\2016Tasks\Microsoft.EnterpriseManagement.Core.SdkUtilities.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.Forms.CustomizationControlLibrary">
+      <HintPath>..\..\..\DLL References\2016Tasks\Microsoft.EnterpriseManagement.Forms.CustomizationControlLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.Reporting.Code">
+      <HintPath>..\..\..\DLL References\2016Tasks\Microsoft.EnterpriseManagement.Reporting.Code.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.ServiceManager, Version=7.0.5000.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Microsoft System Center\Service Manager\SDK Binaries\Microsoft.EnterpriseManagement.ServiceManager.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.ServiceManager.Application.Common">
+      <HintPath>..\..\..\DLL References\2016Tasks\Microsoft.EnterpriseManagement.ServiceManager.Application.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.ServiceManager.CommonResources">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Microsoft System Center\Service Manager Authoring\PackagesToLoad\Microsoft.EnterpriseManagement.ServiceManager.CommonResources.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.ServiceManager.SharedResources">
+      <HintPath>..\..\..\DLL References\2016Tasks\Microsoft.EnterpriseManagement.ServiceManager.SharedResources.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.UI.ConsoleFramework">
+      <HintPath>..\..\..\DLL References\2016Tasks\Microsoft.EnterpriseManagement.UI.ConsoleFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.UI.Controls">
+      <HintPath>..\..\..\DLL References\2016Tasks\Microsoft.EnterpriseManagement.UI.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.UI.Core">
+      <HintPath>..\..\..\DLL References\2016Tasks\Microsoft.EnterpriseManagement.UI.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.UI.ExtendedControls">
+      <HintPath>..\..\..\DLL References\2016Tasks\Microsoft.EnterpriseManagement.UI.ExtendedControls.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.UI.FormsInfra">
+      <HintPath>..\..\..\DLL References\2016Tasks\Microsoft.EnterpriseManagement.UI.FormsInfra.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.UI.Foundation">
+      <HintPath>..\..\..\DLL References\2016Tasks\Microsoft.EnterpriseManagement.UI.Foundation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.UI.SdkDataAccess">
+      <HintPath>..\..\..\DLL References\2016Tasks\Microsoft.EnterpriseManagement.UI.SdkDataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.UI.SdkDataAccess.Authoring, Version=7.0.5000.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Microsoft System Center\Service Manager Authoring\PackagesToLoad\Microsoft.EnterpriseManagement.UI.SdkDataAccess.Authoring.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.UI.SdkDataAccess.resources">
+      <HintPath>..\..\..\DLL References\2016\Microsoft.EnterpriseManagement.UI.SdkDataAccess.resources.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.UI.SMControls">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Microsoft System Center\Service Manager Authoring\PackagesToLoad\Microsoft.EnterpriseManagement.UI.SMControls.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.UI.SMCriteria">
+      <HintPath>..\..\..\DLL References\2016\Microsoft.EnterpriseManagement.UI.SMCriteria.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.UI.WpfViews">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Microsoft System Center\Service Manager Authoring\PackagesToLoad\Microsoft.EnterpriseManagement.UI.WpfViews.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.WindowsUtility">
+      <HintPath>..\..\..\DLL References\2016Tasks\Microsoft.EnterpriseManagement.WindowsUtility.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Maps.MapControl.WPF">
+      <HintPath>..\..\..\DLL References\2016\Microsoft.Maps.MapControl.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WPFToolKit">
+      <HintPath>..\..\..\DLL References\2016\WPFToolKit.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PreviewForm.cs" />
+    <Compile Include="CompanyPreview.xaml.cs">
+      <DependentUpon>CompanyPreview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ContactPreview.xaml.cs">
+      <DependentUpon>ContactPreview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CostCenterPreview.xaml.cs">
+      <DependentUpon>CostCenterPreview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LocationPreview.xaml.cs">
+      <DependentUpon>LocationPreview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OfficeDeskPreview.xaml.cs">
+      <DependentUpon>OfficeDeskPreview.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources.xaml.cs">
+      <DependentUpon>Resources.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="CompanyPreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ContactPreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CostCenterPreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LocationPreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OfficeDeskPreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\Azure Cloud Service.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\Azure VM Scale.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\Azure_3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\azure_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\Azure_Virtual_Network.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\AzureConsumption.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\AzureDatabase.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\azuregateway.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\azuregateway_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\AzureLocation.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\AzureManagement.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\AzureNetworking.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\AzureResource.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\AzureResource_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\AzureSQLDatabase.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\AzureSQLServer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\azuresubnet.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\AzureSubscription.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\AzureVM.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\AzureVM_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\AzureWebApp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\header-bg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\header-bg1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\hwm24x24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\ic_access_point.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\ic_acquisition.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\ic_active_rooms_gear.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\ic_administrator_gear.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\ic_atm_euro.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\ic_billboard_comment.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\ic_brochure.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\ic_catalog.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\ic_certificate2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\ic_channel_list.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\ic_check_gear.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\ic_clouds.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\ic_clouds_gear.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\ic_coinstack.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\ic_company.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\ic_company2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\ic_contacts.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\ic_copy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\ic_decision_support_system.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\ic_diskkete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\ic_invoice_checkmark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\ic_key.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\ic_layout_comment.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\ic_monitor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\ic_negotiation.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\ic_newspaper_gear.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\ic_newspaper_info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\ic_newspaper_refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\ic_newspaper_save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\ic_password.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\ic_payment.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\ic_phone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\ic_print.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\ic_public_company.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\ic_random_refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\ic_software_save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\ic_world.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\mobildevice.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

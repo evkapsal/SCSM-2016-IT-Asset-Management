@@ -74,7 +74,7 @@
             <Rectangle RenderTransformOrigin="0.387,0.467" Grid.ColumnSpan="5">
                 <Rectangle.Fill>
                     <LinearGradientBrush EndPoint="0.5,5" StartPoint="0.5,0">
-                        <GradientStop Color="#FF121f1f" Offset="0.025"/>
+                        <GradientStop Color="#012D5A" Offset="0.025"/>
                         <GradientStop Color="#FFFFFFFF" Offset="1"/>
                     </LinearGradientBrush>
                 </Rectangle.Fill>

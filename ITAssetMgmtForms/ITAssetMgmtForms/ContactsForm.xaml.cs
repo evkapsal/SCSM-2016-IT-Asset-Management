@@ -129,10 +129,5 @@ namespace ITAssetMgmtForms
                 }
             }
         }
-
-        private void lsvRelatedMovies_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
     }
 }

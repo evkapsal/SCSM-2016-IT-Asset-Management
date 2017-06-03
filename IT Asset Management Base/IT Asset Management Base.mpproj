@@ -159,6 +159,7 @@
   <ItemGroup>
     <Folder Include="Forms" />
     <Folder Include="Management Packs" />
+    <Folder Include="Preview" />
     <Folder Include="Tasks" />
     <Folder Include="Pictures" />
   </ItemGroup>
@@ -610,6 +611,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Preview\PreviewForms.dll">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Pictures\officedesk16x16.png">
       <SubType>Content</SubType>
     </EmbeddedResource>

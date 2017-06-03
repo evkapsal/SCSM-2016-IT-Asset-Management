@@ -145,10 +145,27 @@
     <Form ID="Form.AzureWebAppForm" Accessibility="Public" Target="Projection.AzureWebApp" Assembly="ITAssetMgmtForms" TypeName="ITAssetMgmtForms.AzureWebAppForm">
       <Category>Form</Category>
     </Form>
+    <Form ID="Form.CompanyPreview" Accessibility="Public" Target="Projection.Company" Assembly="PreviewForms" TypeName="PreviewForms.CompanyPreview">
+     <Category>Form</Category>
+    </Form>
+    <Form ID="Form.ContactPreview" Accessibility="Public" Target="Projection.Contact" Assembly="PreviewForms" TypeName="PreviewForms.ContactPreview">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.CostCenterPreview" Accessibility="Public" Target="Projection.CostCenter" Assembly="PreviewForms" TypeName="PreviewForms.CostCenterPreview">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.LocationPreview" Accessibility="Public" Target="Projection.Location" Assembly="PreviewForms" TypeName="PreviewForms.LocationPreview">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.OfficeDeskPreview" Accessibility="Public" Target="Projection.OfficeDesk" Assembly="PreviewForms" TypeName="PreviewForms.OfficeDeskPreview">
+      <Category>Form</Category>
+    </Form>
   </Forms>
   </Presentation>
   <Resources>
     <Assembly ID="ITAssetMgmtForms" Accessibility="Public" FileName="ITAssetMgmtForms.dll" HasNullStream="false" QualifiedName="ITAssetMgmtForms, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+    <Assembly ID="PreviewForms" Accessibility="Public" FileName="PreviewForms.dll" HasNullStream="false" QualifiedName="PreviewForms, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
     <Assembly ID="ITAssetManagementTasks" Accessibility="Public" FileName="ITAssetManagementTasks.dll" HasNullStream="false" QualifiedName="ITAssetManagementTasks, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+    
   </Resources>
 </ManagementPackFragment>
