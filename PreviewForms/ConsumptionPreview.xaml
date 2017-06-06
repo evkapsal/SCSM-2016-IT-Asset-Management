@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="ITAssetMgmtForms.AzureConsumptionForm"
+﻿<UserControl x:Class="PreviewForms.ConsumptionPreview"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -10,10 +10,10 @@
              xmlns:scwpf="http://schemas.microsoft.com/SystemCenter/Common/UI/Wpf"
              xmlns:views="clr-namespace:Microsoft.EnterpriseManagement.UI.FormsInfra;assembly=Microsoft.EnterpriseManagement.UI.FormsInfra"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
-             xmlns:local="clr-namespace:ITAssetMgmtForms"
+             xmlns:local="clr-namespace:PreviewForms"
              mc:Ignorable="d" 
              Loaded="UserControl_Loaded"
-             d:DesignHeight="1000" d:DesignWidth="600">
+             d:DesignHeight="800" d:DesignWidth="600">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -21,7 +21,6 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-
     <Grid>
         <scwpf:BusinessLogic.Rules>
             <scwpf:RuleCollection>
@@ -79,7 +78,7 @@
                     </LinearGradientBrush>
                 </Rectangle.Fill>
             </Rectangle>
-            <TextBlock Grid.ColumnSpan="4" VerticalAlignment="Center" Text="{Binding Path=ConsumptionName}" Foreground="White" Margin="60,0,0,30" FontSize="16" />
+            <TextBlock Grid.ColumnSpan="3"  VerticalAlignment="Center" Text="{Binding Path= DisplayName}" Foreground="White" Margin="60,0,0,30" FontSize="16" />
             <TextBlock Grid.ColumnSpan="4" VerticalAlignment="Center" Text="{Binding $Class$.DisplayName}" Foreground="White" Margin="60,30,0,0" FontSize="16"/>
             <Image HorizontalAlignment="Left" VerticalAlignment="Stretch" Height="84" Margin="0,0,0,0" Grid.ColumnSpan="5" Source="Pictures/header-bg1.png" Stretch="Fill" Focusable="True"/>
             <Image HorizontalAlignment="Left" VerticalAlignment="Center" Height="50" Margin="5,0,0,15" Grid.Row="0" Source="Pictures/AzureConsumption.png" Stretch="Fill" Width="50" RenderTransformOrigin="0.18,0.468" Focusable="True"/>
@@ -98,7 +97,7 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <Expander Name="expMain"  Grid.Row="0" Grid.ColumnSpan="6" Header="Main" IsExpanded="True" BorderThickness="1,5" Margin="0,10,0,0" Loaded="expMain_Loaded">
+                        <Expander Name="expMain"  Grid.Row="0" Grid.ColumnSpan="6" Header="Main" IsExpanded="True" BorderThickness="1,5" Margin="0,10,0,0" Loaded="expMain_Loaded" >
                             <Grid HorizontalAlignment="Stretch">
                                 <Grid.RowDefinitions>
                                     <RowDefinition/>
@@ -118,53 +117,41 @@
                                 </Grid.ColumnDefinitions>
                                 <StackPanel Style="{StaticResource stackPanelStyle}" Grid.Row="0" Grid.ColumnSpan="5">
                                     <Label Content="Display Name"/>
-                                    <TextBox Style="{StaticResource textBoxStyle}"  Text="{Binding Path=DisplayName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBox Style="{StaticResource textBoxStyle}"  Text="{Binding Path=DisplayName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
                                     <Label Content="Consumption Start Date"/>
-                                    <wpfToolKit:DatePicker Style="{StaticResource datePickerStyle}" SelectedDate="{Binding Path=ConsumptionStartDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                    <Label Content="Currency"/>
-                                    <scwpf:ListPicker Style="{StaticResource listPickerStyle}" ParentCategoryId="{Binding Mode= OneWay, Source={x:Static local:Resources.guidCurrencyEnumRoot}}" 
-                                	SelectedItem="{Binding Path=CostCurrency, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="23" />
-                                    <Label Content="Overage Cost"/>
-                                    <TextBox Style="{StaticResource textBoxStyle}"  Text="{Binding Path=OverageCost, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                  
+                                    <TextBox Style="{StaticResource textBoxStyle}"  Text="{Binding Path=ConsumptionStartDate, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+                                    <Label Content="Azure VM Name"/>
+                                    <TextBox Style="{StaticResource textBoxStyle}"  Text="{Binding Path=AzureVM.DisplayName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+                                    <Label Content="Azure Web Application Name"/>
+                                    <TextBox Style="{StaticResource textBoxStyle}"  Text="{Binding Path=AzureWebApplication.DisplayName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
                                     <Label Content="Azure Subscription"/>
-                                    <smcontrols:SingleInstancePicker Style="{StaticResource sipStyle}" BaseClassId="{Binding Source={x:Static local:Resources.guidAzureSubscrtiptionClass},Mode=OneWay}"
-                                                                 Instance="{Binding Path=AzureSubscription, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="InstancePicker_MouseDoubleClick"/>
-                                    <Label Content="Azure Web Application"/>
-                                    <smcontrols:SingleInstancePicker Style="{StaticResource sipStyle}" BaseClassId="{Binding Source={x:Static local:Resources.guidAzureWebAppClass},Mode=OneWay}"
-                                                                 Instance="{Binding Path=AzureWebApplication, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="InstancePicker_MouseDoubleClick"/>
-                                    <CheckBox Content="Has Overage Cost" IsChecked="{Binding OverageCost, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    <TextBox Style="{StaticResource textBoxStyle}"  Text="{Binding Path=AzureSubscription.DisplayName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
                                 </StackPanel>
                                 <StackPanel Style="{StaticResource stackPanelStyle}" Grid.Column="5"   Grid.Row="0" Grid.ColumnSpan="8">
                                     <Label Content="Consumption Plan Name"/>
-                                    <TextBox Style="{StaticResource textBoxStyle}"  Text="{Binding Path=ConsumptionName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBox Style="{StaticResource textBoxStyle}"  Text="{Binding Path=ConsumptionName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
                                     <Label Content="Consumption End Date"/>
-                                    <wpfToolKit:DatePicker Style="{StaticResource datePickerStyle}" SelectedDate="{Binding Path=ConsumptionEndDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                    <Label Content="Consumption Cost"/>
-                                    <TextBox Style="{StaticResource textBoxStyle}"  Text="{Binding Path=ConsumptionCost, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                    <Label Content="Azure Virtual Machine"/>
-                                    <smcontrols:SingleInstancePicker Style="{StaticResource sipStyle}" BaseClassId="{Binding Source={x:Static local:Resources.guidAzureVM},Mode=OneWay}"
-                                                                 Instance="{Binding Path=AzureVM, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="InstancePicker_MouseDoubleClick"/>
-                                    <Label Content="Azure Network Gateway"/>
-                                    <smcontrols:SingleInstancePicker Style="{StaticResource sipStyle}" BaseClassId="{Binding Source={x:Static local:Resources.guidAzureVNetGateway},Mode=OneWay}"
-                                                                 Instance="{Binding Path=AzureGateway, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="InstancePicker_MouseDoubleClick"/>
-                                    <Label Content="Azure SQL Database"/>
-                                    <smcontrols:SingleInstancePicker Style="{StaticResource sipStyle}" BaseClassId="{Binding Source={x:Static local:Resources.guidAzureSQLDatabaseClass},Mode=OneWay}"
-                                                                 Instance="{Binding Path=AzureSQLDatabase, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="InstancePicker_MouseDoubleClick"/>
+                                    <TextBox Style="{StaticResource textBoxStyle}"  Text="{Binding Path=ConsumptionEndDate, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+                                    <Label Content="Azure Gateway Name"/>
+                                    <TextBox Style="{StaticResource textBoxStyle}"  Text="{Binding Path=AzureGateway.DisplayName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+                                    <Label Content="Azure SQL Database Name"/>
+                                    <TextBox Style="{StaticResource textBoxStyle}"  Text="{Binding Path=AzureSQLDatabase, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+                                    <Label Content="Consumption Amount"/>
+                                    <TextBox Style="{StaticResource textBoxStyle}"  Text="{Binding Path=ConsumptionCost, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
                                 </StackPanel>
                                 <StackPanel Style="{StaticResource stackPanelStyle}" Grid.Row="2"  Grid.ColumnSpan="8">
                                     <Label Content="Description"/>
-                                    <TextBox Style="{StaticResource textBoxLargeStyle}" Text="{Binding Path=Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBox Style="{StaticResource textBoxMediumStyle}" Text="{Binding Path=Description, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+
                                 </StackPanel>
                             </Grid>
                         </Expander>
                     </Grid>
                 </TabItem>
-                <TabItem Header="Related Items" x:Name="tabItemRelItems" />
                 <TabItem Header="History" x:Name="tabItemHistory">
                     <smcontrols:HistoryTab></smcontrols:HistoryTab>
                 </TabItem>
             </TabControl>
         </Grid>
     </Grid>
-    </UserControl>
+</UserControl>

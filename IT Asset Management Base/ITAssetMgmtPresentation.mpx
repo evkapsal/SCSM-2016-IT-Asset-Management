@@ -5,6 +5,19 @@
     <Category ID="Category.CostCenter.Preview" Target="Form.CostCenterPreview" Value="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.OverviewForm"/>
     <Category ID="Category.Location.Preview" Target="Form.LocationPreview" Value="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.OverviewForm"/>
     <Category ID="Category.OfficeDesk.Preview" Target="Form.OfficeDeskPreview" Value="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.OverviewForm"/>
+    <Category ID="Category.Organization.Preview" Target="Form.OrganizationPreview" Value="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.OverviewForm"/>
+    <Category ID="Category.Consumption.Preview" Target="Form.ConsumptionPreview" Value="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.OverviewForm"/>
+    <Category ID="Category.Hardware.Preview" Target="Form.HardwarePreview" Value="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.OverviewForm"/>
+    <Category ID="Category.HardwareAsset.Preview" Target="Form.HardwareAssetPreview" Value="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.OverviewForm"/> 
+    <Category ID="Category.AzureVM.Preview" Target="Form.AzureVMPreview" Value="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.OverviewForm"/>
+    <Category ID="Category.AzureSubscription.Preview" Target="Form.AzureSubscriptionPreview" Value="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.OverviewForm"/>
+    <Category ID="Category.AzureLocation.Preview" Target="Form.AzureLocationPreview" Value="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.OverviewForm"/>
+    <Category ID="Category.AzureResource.Preview" Target="Form.AzureResourcePreview" Value="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.OverviewForm"/>
+    <Category ID="Category.AzureNetGateway.Preview" Target="Form.AzureNetGatewayPreview" Value="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.OverviewForm"/>
+    <Category ID="Category.AzureNetSubnet.Preview" Target="Form.AzureNetSubnetPreview" Value="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.OverviewForm"/>
+    <Category ID="Category.AzureNetwork.Preview" Target="Form.AzureNetworkPreview" Value="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.OverviewForm"/>
+    
+    
     <Category ID="Category.6ce828594a3b4a489de708b1ec4c90fb" Target="Folder.c8f17f47d9524b1ba61a0f70af798b3a" Value="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.FolderTasks" />
     <Category ID="Category.cb3db5687ae24119be8e470a09c06606" Target="Folder.d051a482b501414d84c7a016c5a2e117" Value="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.FolderTasks" />
     <Category ID="Category.84f18fc8dd764dba9482384083e8636d" Target="Folder.7d1d3444f69442c7b72cef7908ade728" Value="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.FolderTasks" />
@@ -7658,12 +7671,12 @@
           <Description>Azure Networking Management</Description>
         </DisplayString>
         <DisplayString ElementID="Folder.94dd235938964c6d8057948572f4d2b9">
-          <Name>Azure PaaS Management</Name>
-          <Description>Azure PaaS Management</Description>
+          <Name>Azure SQL DB Management</Name>
+          <Description>Azure SQL DB Management</Description>
         </DisplayString>
         <DisplayString ElementID="Folder.1ef862890df44c4597357d9c13401d04">
-          <Name>Azure SaaS Management</Name>
-          <Description>Azure SaaS Management</Description>
+          <Name>Azure Web App Management</Name>
+          <Description>Azure Web App Management</Description>
         </DisplayString>
       <!--  <DisplayString ElementID="Folder.c1d36619067a4ac6af8fe83575547835">
           <Name>Amazon Cloud Management</Name>

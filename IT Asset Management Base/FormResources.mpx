@@ -160,6 +160,40 @@
     <Form ID="Form.OfficeDeskPreview" Accessibility="Public" Target="Projection.OfficeDesk" Assembly="PreviewForms" TypeName="PreviewForms.OfficeDeskPreview">
       <Category>Form</Category>
     </Form>
+    <Form ID="Form.OrganizationPreview" Accessibility="Public" Target="Projection.Organization" Assembly="PreviewForms" TypeName="PreviewForms.OrganizationPreview">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.ConsumptionPreview" Accessibility="Public" Target="Projection.AzureConsumption" Assembly="PreviewForms" TypeName="PreviewForms.ConsumptionPreview">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.HardwarePreview" Accessibility="Public" Target="Projection.Hardware" Assembly="PreviewForms" TypeName="PreviewForms.HardwarePreview">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.HardwareAssetPreview" Accessibility="Public" Target="Projection.HardwareAssetView" Assembly="PreviewForms" TypeName="PreviewForms.HardwareAssetPreview">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.AzureVMPreview" Accessibility="Public" Target="Projection.AzureVM" Assembly="PreviewForms" TypeName="PreviewForms.AzureVMPreview">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.AzureSubscriptionPreview" Accessibility="Public" Target="Projection.AzureSubscription" Assembly="PreviewForms" TypeName="PreviewForms.AzureSubscriptionPreview">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.AzureLocationPreview" Accessibility="Public" Target="Projection.AzureLocation" Assembly="PreviewForms" TypeName="PreviewForms.AzureLocationPreview">
+      <Category>Form</Category>
+    </Form>
+  <Form ID="Form.AzureNetGatewayPreview" Accessibility="Public" Target="Projection.AzureVNetGateway" Assembly="PreviewForms" TypeName="PreviewForms.AzureNetGatewayPreview">
+    <Category>Form</Category>
+  </Form>
+    <Form ID="Form.AzureResourcePreview" Accessibility="Public" Target="Projection.AzureResourceGroup" Assembly="PreviewForms" TypeName="PreviewForms.AzureResourcePreview">
+      <Category>Form</Category>
+    </Form>
+  <Form ID="Form.AzureNetSubnetPreview" Accessibility="Public" Target="Projection.AzureSubnet" Assembly="PreviewForms" TypeName="PreviewForms.AzureNetSubnetPreview">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.AzureNetworkPreview" Accessibility="Public" Target="Projection.AzureNnet" Assembly="PreviewForms" TypeName="PreviewForms.AzureNetworkPreview">
+      <Category>Form</Category>
+    </Form>
+
   </Forms>
   </Presentation>
   <Resources>

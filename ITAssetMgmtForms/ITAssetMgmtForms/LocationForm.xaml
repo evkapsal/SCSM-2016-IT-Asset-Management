@@ -469,9 +469,7 @@
                     </Expander>
                 </Grid>
             </TabItem>
-            <TabItem Header="History" x:Name="tabItemHistory">
-                <smcontrols:HistoryTab></smcontrols:HistoryTab>
-            </TabItem>
+           
             <TabItem Header="Map" x:Name="MapTab">
                 <map:Map x:Name="myMap" 
                          ZoomLevel="18">
@@ -479,6 +477,9 @@
                 </map:Map>
                <!-- <StackPanel Style="{StaticResource stackPanelStyle}" Grid.Row="2" Grid.Column="8" Grid.ColumnSpan="6" Margin="10,10,10,10" Grid.RowSpan="4">
                 </StackPanel> -->
+            </TabItem>
+            <TabItem Header="History" x:Name="tabItemHistory">
+                <smcontrols:HistoryTab></smcontrols:HistoryTab>
             </TabItem>
         </TabControl>
 

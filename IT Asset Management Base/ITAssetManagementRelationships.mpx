@@ -68,7 +68,7 @@
         </RelationshipType>
         <RelationshipType ID="Relationship.AzureNetHasGatewaySubnet" Accessibility="Public" Abstract="false" Base="System!System.Reference">
           <Source ID="AzureNet" Type="AzureNet"  />
-          <Target ID="AzureVNetGateway" Type="AzureVNetGateway" />
+          <Target ID="AzureVNetGateway" Type="AzureVNetGateway"  MinCardinality="0" MaxCardinality="1" />
         </RelationshipType>
         <RelationshipType ID="Relationship.AzureLocationHasNLocation" Accessibility="Public" Abstract="false" Base="System!System.Reference">
           <Source ID="AzureLocation" Type="AzureLocation"  />

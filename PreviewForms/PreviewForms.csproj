@@ -117,8 +117,32 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AzureLocationPreview.xaml.cs">
+      <DependentUpon>AzureLocationPreview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AzureNetGatewayPreview.xaml.cs">
+      <DependentUpon>AzureNetGatewayPreview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AzureNetSubnetPreview.xaml.cs">
+      <DependentUpon>AzureNetSubnetPreview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AzureNetworkPreview.xaml.cs">
+      <DependentUpon>AzureNetworkPreview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AzureResourcePreview.xaml.cs">
+      <DependentUpon>AzureResourcePreview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AzureSubscriptionPreview.xaml.cs">
+      <DependentUpon>AzureSubscriptionPreview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AzureVMPreview.xaml.cs">
+      <DependentUpon>AzureVMPreview.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CompanyPreview.xaml.cs">
       <DependentUpon>CompanyPreview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumptionPreview.xaml.cs">
+      <DependentUpon>ConsumptionPreview.xaml</DependentUpon>
     </Compile>
     <Compile Include="ContactPreview.xaml.cs">
       <DependentUpon>ContactPreview.xaml</DependentUpon>
@@ -126,11 +150,20 @@
     <Compile Include="CostCenterPreview.xaml.cs">
       <DependentUpon>CostCenterPreview.xaml</DependentUpon>
     </Compile>
+    <Compile Include="HardwareAssetPreview.xaml.cs">
+      <DependentUpon>HardwareAssetPreview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HardwarePreview.xaml.cs">
+      <DependentUpon>HardwarePreview.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LocationPreview.xaml.cs">
       <DependentUpon>LocationPreview.xaml</DependentUpon>
     </Compile>
     <Compile Include="OfficeDeskPreview.xaml.cs">
       <DependentUpon>OfficeDeskPreview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OrganizationPreview.xaml.cs">
+      <DependentUpon>OrganizationPreview.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources.xaml.cs">
@@ -138,7 +171,39 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="AzureLocationPreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AzureNetGatewayPreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AzureNetSubnetPreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AzureNetworkPreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AzureResourcePreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AzureSubscriptionPreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AzureVMPreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CompanyPreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ConsumptionPreview.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -150,11 +215,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="HardwareAssetPreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HardwarePreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="LocationPreview.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="OfficeDeskPreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OrganizationPreview.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
