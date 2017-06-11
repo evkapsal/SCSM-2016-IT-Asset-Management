@@ -1,4 +1,4 @@
-﻿  <UserControl x:Class="PreviewForms.OfficeDeskPreview"
+﻿ <UserControl x:Class="PreviewForms.SoftwarePreview"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -81,7 +81,7 @@
             <TextBlock Grid.ColumnSpan="3"  VerticalAlignment="Center" Text="{Binding Path= DisplayName}" Foreground="White" Margin="60,0,0,30" FontSize="16" />
             <TextBlock Grid.ColumnSpan="4" VerticalAlignment="Center" Text="{Binding $Class$.DisplayName}" Foreground="White" Margin="60,30,0,0" FontSize="16"/>
             <Image HorizontalAlignment="Left" VerticalAlignment="Stretch" Height="84" Margin="0,0,0,0" Grid.ColumnSpan="5" Source="Pictures/header-bg1.png" Stretch="Fill" Focusable="True"/>
-            <Image HorizontalAlignment="Left" VerticalAlignment="Center" Height="50" Margin="5,0,0,15" Grid.Row="0" Source="Pictures/ic_public_company.png" Stretch="Fill" Width="50" RenderTransformOrigin="0.18,0.468" Focusable="True"/>
+            <Image HorizontalAlignment="Left" VerticalAlignment="Center" Height="50" Margin="5,0,0,15" Grid.Row="0" Source="Pictures/ic_diskkete.png" Stretch="Fill" Width="50" RenderTransformOrigin="0.18,0.468" Focusable="True"/>
             <TabControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" Grid.ColumnSpan="6" Grid.Column="0">
                 <TabItem Header="General" x:Name="tabItemGeneral">
                     <Grid>
@@ -118,30 +118,74 @@
                                 <StackPanel Style="{StaticResource stackPanelStyle}" Grid.Row="0" Grid.ColumnSpan="5">
                                     <Label Content="Display Name"/>
                                     <TextBox Style="{StaticResource textBoxStyle}"  Text="{Binding Path=DisplayName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
-                                    <Label Content="Type"/>
-                                    <TextBox Style="{StaticResource textBoxStyle}"  Text="{Binding Path=Type.DisplayName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
-                                    <Label Content="User"/>
-                                    <TextBox Style="{StaticResource textBoxStyle}"  Text="{Binding Path=User.DisplayName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+                                    <Label Content="Publisher Name"/>
+                                    <TextBox Style="{StaticResource textBoxStyle}"  Text="{Binding Path=Publisher.DisplayName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+                                    <Label Content="Software License Key"/>
+                                    <TextBox Style="{StaticResource textBoxStyle}"  Text="{Binding Path=SoftwareLicenseKey.DisplayName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
                                 </StackPanel>
                                 <StackPanel Style="{StaticResource stackPanelStyle}" Grid.Column="5"   Grid.Row="0" Grid.ColumnSpan="8">
-                                    <Label Content="Office Desk Name"/>
-                                    <TextBox Style="{StaticResource textBoxStyle}"  Text="{Binding Path=DeskName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
-                                    <Label Content="Organization"/>
-                                    <TextBox Style="{StaticResource textBoxStyle}"  Text="{Binding Path=Organization.DisplayName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
-                                    <Label Content="Location"/>
-                                    <TextBox Style="{StaticResource textBoxStyle}"  Text="{Binding Path=Location.DisplayName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+                                    <Label Content="Software Name"/>
+                                    <TextBox Style="{StaticResource textBoxStyle}"  Text="{Binding Path=SoftwareName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+                                    <Label Content="SKU "/>
+                                    <TextBox Style="{StaticResource textBoxStyle}"  Text="{Binding Path=SKU.DisplayName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+                                    <Label Content="Installed to Computers Number"/>
+                                    <TextBox Style="{StaticResource textBoxStyle}"  Text="{Binding Path=Installed, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
                                 </StackPanel>
                                 <StackPanel Style="{StaticResource stackPanelStyle}" Grid.Row="2"  Grid.ColumnSpan="8">
                                     <Label Content="Description"/>
                                     <TextBox Style="{StaticResource textBoxMediumStyle}" Text="{Binding Path=Description, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
                                 </StackPanel>
-                                <StackPanel Style="{StaticResource stackPanelSLVStyle}" Grid.Row="3" Grid.ColumnSpan="8">
-                                    <Label Content="Hardware Assets"/>
-                                    <scwpf:SortableListView x:Name="HardwareAsset" ItemsSource="{Binding HardwareAssets}" Style="{StaticResource slvStyle}" MouseDoubleClick="MouseDoubleClick_HardwareAsset" SelectionChanged="HardwareAsset_SelectionChanged">
+                            </Grid>
+                        </Expander>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="References" x:Name="tabItemReferences">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Expander Name="expMainRef" Grid.Row="1" Grid.ColumnSpan="6" Header="Main" IsExpanded="True" BorderThickness="1,5" Margin="0,10,0,0" Loaded="expMain_Loaded">
+                            <Grid HorizontalAlignment="Stretch">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Style="{StaticResource stackPanelSLVStyle}" Grid.Row="0" Grid.ColumnSpan="6">
+                                    <Label Content="Versions"/>
+                                    <scwpf:SortableListView x:Name="Versions" ItemsSource="{Binding Version}" Style="{StaticResource slvStyle}" MouseDoubleClick="MouseDoubleClick_Version" SelectionChanged="Version_SelectionChanged">
                                         <scwpf:SortableListView.View>
                                             <GridView>
-                                                <scwpf:SortableGridViewColumn SortPropertyName="AssetName" DisplayMemberBinding="{Binding AssetName}" Header="Asset Name" Width="Auto"/>
-                                                <scwpf:SortableGridViewColumn SortPropertyName="AssetTag" DisplayMemberBinding="{Binding AssetTag}" Header="Asset Tag" Width="Auto"/>
+                                                <scwpf:SortableGridViewColumn SortPropertyName="DisplayName" DisplayMemberBinding="{Binding DisplayName}" Header="Name" Width="Auto"/>
+                                                <scwpf:SortableGridViewColumn SortPropertyName="Installed" DisplayMemberBinding="{Binding Installed}" Header="Installed" Width="Auto"/>
+                                            </GridView>
+                                        </scwpf:SortableListView.View>
+                                    </scwpf:SortableListView>
+                                </StackPanel>
+                                <StackPanel Style="{StaticResource stackPanelSLVStyle}" Grid.Row="1" Grid.ColumnSpan="6">
+                                    <Label Content="Installed in Hardware Assets"/>
+                                    <scwpf:SortableListView x:Name="HardwareAsset" ItemsSource="{Binding HardwareAsset}" Style="{StaticResource slvStyle}" MouseDoubleClick="MouseDoubleClick_HardwareAsset" SelectionChanged="HardwareAsset_SelectionChanged">
+                                        <scwpf:SortableListView.View>
+                                            <GridView>
+                                                <scwpf:SortableGridViewColumn SortPropertyName="DisplayName" DisplayMemberBinding="{Binding DisplayName}" Header="Name" Width="Auto"/>
                                             </GridView>
                                         </scwpf:SortableListView.View>
                                     </scwpf:SortableListView>

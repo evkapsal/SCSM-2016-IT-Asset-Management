@@ -137,7 +137,7 @@
                                         <GridView>
                                             <scwpf:SortableGridViewColumn SortPropertyName="DisplayName" DisplayMemberBinding="{Binding DisplayName}" Header="Name" Width="Auto"/>
                                             <scwpf:SortableGridViewColumn SortPropertyName="Installed" DisplayMemberBinding="{Binding Installed}" Header="Installed Count" Width="Auto"/>
-                                            
+
                                         </GridView>
                                     </scwpf:SortableListView.View>
                                 </scwpf:SortableListView>
@@ -151,8 +151,10 @@
                     </Expander>
                 </Grid>
             </TabItem>
+            <TabItem Header="History" x:Name="tabItemHistory">
+                <smcontrols:HistoryTab></smcontrols:HistoryTab>
+            </TabItem>
         </TabControl>
-
 
         <Grid>
 

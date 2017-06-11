@@ -146,7 +146,7 @@
                                     </scwpf:SortableListView.View>
                                 </scwpf:SortableListView>
                             </StackPanel>
-                            <StackPanel Style="{StaticResource stackPanelButtonStyle}" Grid.Row="4" Grid.Column="7">
+                            <StackPanel Style="{StaticResource stackPanelButtonStyle}" Grid.Row="4" Grid.Column="7" >
                                 <Button x:Name="btnAdd_HardwareAsset" Style="{StaticResource buttonStyle}" Content="Add" Margin="0,27,0,0" Click="btnAdd_Click_HardwareAsset" />
                                 <Button x:Name="btnRemove_HardwareAsset" Style="{StaticResource buttonStyle}" Content="Remove" Margin="0,5,0,0" Click="btnRemove_Click_HardwareAsset" />
                                 <Button x:Name="btnOpen_HardwareAsset" Style="{StaticResource buttonStyle}" Content="Open" Margin="0,5,0,0" Click="btnOpen_Click_HardwareAsset" />

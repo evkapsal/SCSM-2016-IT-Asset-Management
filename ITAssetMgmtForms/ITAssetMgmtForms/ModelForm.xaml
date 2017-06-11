@@ -131,7 +131,7 @@
                                     Browse Website
                                 </scwpf:Hyperlink>
                             </StackPanel>
-                      
+
 
                         </Grid>
                     </Expander>
@@ -166,10 +166,10 @@
                                 <Button x:Name="btnRemove_Hardware" Style="{StaticResource buttonStyle}" Content="Remove" Margin="0,5,0,0" Click="btnRemove_Click_Hardware" />
                                 <Button x:Name="btnOpen_Hardware" Style="{StaticResource buttonStyle}" Content="Open" Margin="0,5,0,0" Click="btnOpen_Click_Hardware" />
                             </StackPanel>
-                           
+
                         </Grid>
                     </Expander>
-                  
+
                 </Grid>
             </TabItem>
             <TabItem Header="Devices" x:Name="tabItemDevices">
@@ -195,12 +195,12 @@
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
+                                <ColumnDefinition Width="99*"/>
+                                <ColumnDefinition Width="99"/>
+                                <ColumnDefinition Width="98*"/>
+                                <ColumnDefinition Width="99*"/>
+                                <ColumnDefinition Width="98*"/>
+                                <ColumnDefinition Width="99*"/>
                             </Grid.ColumnDefinitions>
                             <StackPanel Style="{StaticResource stackPanelSLVStyle}" Grid.Row="0" Grid.ColumnSpan="5">
                                 <Label Content="Printers"/>
@@ -345,9 +345,9 @@
                         </Grid>
                     </Expander>
                 </Grid>
-                
+
             </TabItem>
-            
+
             <TabItem Header="History" x:Name="tabItemHistory">
                 <smcontrols:HistoryTab></smcontrols:HistoryTab>
             </TabItem>

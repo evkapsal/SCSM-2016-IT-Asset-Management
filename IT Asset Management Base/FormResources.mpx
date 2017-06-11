@@ -193,7 +193,75 @@
     <Form ID="Form.AzureNetworkPreview" Accessibility="Public" Target="Projection.AzureNnet" Assembly="PreviewForms" TypeName="PreviewForms.AzureNetworkPreview">
       <Category>Form</Category>
     </Form>
-
+     <Form ID="Form.MonitorPreview" Accessibility="Public" Target="Projection.Monitor" Assembly="PreviewForms" TypeName="PreviewForms.MonitorPreview">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.NetworkDevicePreview" Accessibility="Public" Target="Projection.NetworkDevice" Assembly="PreviewForms" TypeName="PreviewForms.NetworkDevicePreview">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.OtherDevicePreview" Accessibility="Public" Target="Projection.OtherDevice" Assembly="PreviewForms" TypeName="PreviewForms.OtherDevice">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.PrinterPreview" Accessibility="Public" Target="Projection.Printer" Assembly="PreviewForms" TypeName="PreviewForms.PrinterPreview">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.ScannerPreview" Accessibility="Public" Target="Projection.Scanner" Assembly="PreviewForms" TypeName="PreviewForms.ScannerPreview">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.StoragePreview" Accessibility="Public" Target="Projection.StorageDevice" Assembly="PreviewForms" TypeName="PreviewForms.StoragePreview">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.MobileDevicePreview" Accessibility="Public" Target="Projection.MobileDevice" Assembly="PreviewForms" TypeName="PreviewForms.MobileDevicePreview">
+      <Category>Form</Category>
+    </Form>
+      <Form ID="Form.ModelPreview" Accessibility="Public" Target="Projection.DeviceModel" Assembly="PreviewForms" TypeName="PreviewForms.ModelPreview">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.ManufacturerPreview" Accessibility="Public" Target="Projection.DeviceManufacturer" Assembly="PreviewForms" TypeName="PreviewForms.ManufacturerPreview">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.SoftwarePreview" Accessibility="Public" Target="Projection.Software" Assembly="PreviewForms" TypeName="PreviewForms.SoftwarePreview">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.KeyPreview" Accessibility="Public" Target="Projection.SoftwareLicenseKey" Assembly="PreviewForms" TypeName="PreviewForms.KeyPreview">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.PublisherPreview" Accessibility="Public" Target="Projection.SoftwarePublisher" Assembly="PreviewForms" TypeName="PreviewForms.PublisherPreview">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.SKUPreview" Accessibility="Public" Target="Projection.SKU" Assembly="PreviewForms" TypeName="PreviewForms.SKUPreview">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.SoftwareAssetPreview" Accessibility="Public" Target="Projection.SoftwareAsset" Assembly="PreviewForms" TypeName="PreviewForms.SoftwareAssetPreview">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.VersionPreview" Accessibility="Public" Target="Projection.SoftwareVersion" Assembly="PreviewForms" TypeName="PreviewForms.VersionPreview">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.LicensePreview" Accessibility="Public" Target="Projection.LicenseStatus" Assembly="PreviewForms" TypeName="PreviewForms.LicensePreview">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.HardwareAgreementPreview" Accessibility="Public" Target="Projection.HardwareAgreement" Assembly="PreviewForms" TypeName="PreviewForms.HardwareAgreementPreview">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.SoftwareAgreementPreview" Accessibility="Public" Target="Projection.SoftwareAgreement" Assembly="PreviewForms" TypeName="PreviewForms.SoftwareAgreementPreview">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.SupportAgreementPreview" Accessibility="Public" Target="Projection.SupportAgreement" Assembly="PreviewForms" TypeName="PreviewForms.SupportAgreementPreview">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.LeaseAgreementPreview" Accessibility="Public" Target="Projection.LeaseAgreement" Assembly="PreviewForms" TypeName="PreviewForms.LeaseAgreementPreview">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.CostPreview" Accessibility="Public" Target="Projection.Cost" Assembly="PreviewForms" TypeName="PreviewForms.CostPreview">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.InvoicePreview" Accessibility="Public" Target="Projection.Invoice" Assembly="PreviewForms" TypeName="PreviewForms.InvoicePreview">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.PurchaseOrderPreview" Accessibility="Public" Target="Projection.PurchaseOrder" Assembly="PreviewForms" TypeName="PreviewForms.PurchaseOrderPreview">
+      <Category>Form</Category>
+    </Form>
   </Forms>
   </Presentation>
   <Resources>

@@ -91,23 +91,13 @@ namespace ITAssetMgmtForms
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            this.AddHandler(FormEvents.PreviewSubmitEvent, new EventHandler<PreviewFormCommandEventArgs>(this.OnPreviewSubmit));
-            EnterpriseManagementGroup mg = new EnterpriseManagementGroup("localhost");
-            EnterpriseManagementObject hConn = mg.EntityObjects.GetObject<EnterpriseManagementObject>(new Guid("6ec06321-f6c7-6d8c-fa80-cb4df7d63f48"), ObjectQueryOptions.Default);
-            string Mapkey;
-            if (hConn.Values[9].Value == null) return;
-            Mapkey = hConn.Values[9].Value.ToString();
 
             BindMap();
         }
 
         private void UserControl_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            EnterpriseManagementGroup mg = new EnterpriseManagementGroup("localhost");
-            EnterpriseManagementObject hConn = mg.EntityObjects.GetObject<EnterpriseManagementObject>(new Guid("6ec06321-f6c7-6d8c-fa80-cb4df7d63f48"), ObjectQueryOptions.Default);
-            string Mapkey;
-            if (hConn.Values[9].Value == null) return;
-            Mapkey = hConn.Values[9].Value.ToString();
+
             BindMap();
         }
 

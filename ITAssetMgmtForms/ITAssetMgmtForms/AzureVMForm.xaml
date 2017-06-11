@@ -121,8 +121,10 @@
                                     <TextBox Style="{StaticResource textBoxStyle}"  Text="{Binding Path=DisplayName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                                     <Label Content="IP Address"/>
                                     <TextBox Style="{StaticResource textBoxStyle}"  Text="{Binding Path=IPAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                    <Label Content="VM Size"/>
+                                    <Label Content="Azure VM Size"/>
                                     <TextBox Style="{StaticResource textBoxStyle}"  Text="{Binding Path=InstanceSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    <Label Content="Azure VM State"/>
+                                    <TextBox Style="{StaticResource textBoxStyle}"  Text="{Binding Path=PowerState, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                                     <Label Content="Azure Subnet"/>
                                     <smcontrols:SingleInstancePicker Style="{StaticResource sipStyle}" BaseClassId="{Binding Source={x:Static local:Resources.guidAzureSubnet},Mode=OneWay}"
                                                                  Instance="{Binding Path=Subnet, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="InstancePicker_MouseDoubleClick"/>
@@ -135,6 +137,8 @@
                                     <TextBox Style="{StaticResource textBoxStyle}"  Text="{Binding Path=PublicIPAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                                     <Label Content="Operating System"/>
                                     <TextBox Style="{StaticResource textBoxStyle}"  Text="{Binding Path=OperatingSystem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    <Label Content="Azure VM Status"/>
+                                    <TextBox Style="{StaticResource textBoxStyle}"  Text="{Binding Path=Status, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                                     <Label Content="Resource Group"/>
                                     <smcontrols:SingleInstancePicker Style="{StaticResource sipStyle}" BaseClassId="{Binding Source={x:Static local:Resources.guidAzureResourceGroup},Mode=OneWay}"
                                                                  Instance="{Binding Path=ResourceGroup, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="InstancePicker_MouseDoubleClick"/>

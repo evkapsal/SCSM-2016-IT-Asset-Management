@@ -150,14 +150,47 @@
     <Compile Include="CostCenterPreview.xaml.cs">
       <DependentUpon>CostCenterPreview.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CostPreview.xaml.cs">
+      <DependentUpon>CostPreview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HardwareAgreementPreview.xaml.cs">
+      <DependentUpon>HardwareAgreementPreview.xaml</DependentUpon>
+    </Compile>
     <Compile Include="HardwareAssetPreview.xaml.cs">
       <DependentUpon>HardwareAssetPreview.xaml</DependentUpon>
     </Compile>
     <Compile Include="HardwarePreview.xaml.cs">
       <DependentUpon>HardwarePreview.xaml</DependentUpon>
     </Compile>
+    <Compile Include="InvoicePreview.xaml.cs">
+      <DependentUpon>InvoicePreview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="KeyPreview.xaml.cs">
+      <DependentUpon>KeyPreview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LeaseAgreementPreview.xaml.cs">
+      <DependentUpon>LeaseAgreementPreview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LicensePreview.xaml.cs">
+      <DependentUpon>LicensePreview.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LocationPreview.xaml.cs">
       <DependentUpon>LocationPreview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManufacturerPreview.xaml.cs">
+      <DependentUpon>ManufacturerPreview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MobileDevicePreview.xaml.cs">
+      <DependentUpon>MobileDevicePreview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ModelPreview.xaml.cs">
+      <DependentUpon>ModelPreview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MonitorPreview.xaml.cs">
+      <DependentUpon>MonitorPreview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NetworkDevicePreview.xaml.cs">
+      <DependentUpon>NetworkDevicePreview.xaml</DependentUpon>
     </Compile>
     <Compile Include="OfficeDeskPreview.xaml.cs">
       <DependentUpon>OfficeDeskPreview.xaml</DependentUpon>
@@ -165,9 +198,45 @@
     <Compile Include="OrganizationPreview.xaml.cs">
       <DependentUpon>OrganizationPreview.xaml</DependentUpon>
     </Compile>
+    <Compile Include="OtherDevice.xaml.cs">
+      <DependentUpon>OtherDevice.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PrinterPreview.xaml.cs">
+      <DependentUpon>PrinterPreview.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PublisherPreview.xaml.cs">
+      <DependentUpon>PublisherPreview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PurchaseOrderPreview.xaml.cs">
+      <DependentUpon>PurchaseOrderPreview.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Resources.xaml.cs">
       <DependentUpon>Resources.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ScannerPreview.xaml.cs">
+      <DependentUpon>ScannerPreview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SKUPreview.xaml.cs">
+      <DependentUpon>SKUPreview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SoftwareAgreementPreview.xaml.cs">
+      <DependentUpon>SoftwareAgreementPreview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SoftwareAssetPreview.xaml.cs">
+      <DependentUpon>SoftwareAssetPreview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SoftwarePreview.xaml.cs">
+      <DependentUpon>SoftwarePreview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="StoragePreview.xaml.cs">
+      <DependentUpon>StoragePreview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SupportAgreementPreview.xaml.cs">
+      <DependentUpon>SupportAgreementPreview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VersionPreview.xaml.cs">
+      <DependentUpon>VersionPreview.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -215,6 +284,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="CostPreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HardwareAgreementPreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="HardwareAssetPreview.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -223,7 +300,43 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="InvoicePreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="KeyPreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LeaseAgreementPreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LicensePreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="LocationPreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ManufacturerPreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MobileDevicePreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ModelPreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MonitorPreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NetworkDevicePreview.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -235,9 +348,57 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="OtherDevice.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PrinterPreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PublisherPreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PurchaseOrderPreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ScannerPreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SKUPreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SoftwareAgreementPreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SoftwareAssetPreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SoftwarePreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StoragePreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SupportAgreementPreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VersionPreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

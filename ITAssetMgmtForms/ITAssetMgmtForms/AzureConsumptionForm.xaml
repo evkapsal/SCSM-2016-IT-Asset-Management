@@ -125,15 +125,14 @@
                                     <scwpf:ListPicker Style="{StaticResource listPickerStyle}" ParentCategoryId="{Binding Mode= OneWay, Source={x:Static local:Resources.guidCurrencyEnumRoot}}" 
                                 	SelectedItem="{Binding Path=CostCurrency, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="23" />
                                     <Label Content="Overage Cost"/>
-                                    <TextBox Style="{StaticResource textBoxStyle}"  Text="{Binding Path=OverageCost, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                  
+                                    <TextBox Style="{StaticResource textBoxStyle}"  Text="{Binding Path=OverageCost, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged  }"/>
                                     <Label Content="Azure Subscription"/>
                                     <smcontrols:SingleInstancePicker Style="{StaticResource sipStyle}" BaseClassId="{Binding Source={x:Static local:Resources.guidAzureSubscrtiptionClass},Mode=OneWay}"
                                                                  Instance="{Binding Path=AzureSubscription, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="InstancePicker_MouseDoubleClick"/>
                                     <Label Content="Azure Web Application"/>
                                     <smcontrols:SingleInstancePicker Style="{StaticResource sipStyle}" BaseClassId="{Binding Source={x:Static local:Resources.guidAzureWebAppClass},Mode=OneWay}"
                                                                  Instance="{Binding Path=AzureWebApplication, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="InstancePicker_MouseDoubleClick"/>
-                                    <CheckBox Content="Has Overage Cost" IsChecked="{Binding OverageCost, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    <CheckBox Content="Has Overage Cost" IsChecked="{Binding HasOverageCost, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                                 </StackPanel>
                                 <StackPanel Style="{StaticResource stackPanelStyle}" Grid.Column="5"   Grid.Row="0" Grid.ColumnSpan="8">
                                     <Label Content="Consumption Plan Name"/>

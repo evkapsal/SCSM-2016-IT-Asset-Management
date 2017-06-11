@@ -16,8 +16,29 @@
     <Category ID="Category.AzureNetGateway.Preview" Target="Form.AzureNetGatewayPreview" Value="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.OverviewForm"/>
     <Category ID="Category.AzureNetSubnet.Preview" Target="Form.AzureNetSubnetPreview" Value="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.OverviewForm"/>
     <Category ID="Category.AzureNetwork.Preview" Target="Form.AzureNetworkPreview" Value="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.OverviewForm"/>
-    
-    
+    <Category ID="Category.Monitor.Preview" Target="Form.MonitorPreview" Value="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.OverviewForm"/>
+    <Category ID="Category.NetworkDevice.Preview" Target="Form.NetworkDevicePreview" Value="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.OverviewForm"/>
+    <Category ID="Category.OtherDevice.Preview" Target="Form.OtherDevicePreview" Value="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.OverviewForm"/>
+    <Category ID="Category.Printer.Preview" Target="Form.PrinterPreview" Value="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.OverviewForm"/>
+    <Category ID="Category.Scanner.Preview" Target="Form.ScannerPreview" Value="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.OverviewForm"/>
+    <Category ID="Category.Storage.Preview" Target="Form.StoragePreview" Value="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.OverviewForm"/>
+    <Category ID="Category.Manufacturer.Preview" Target="Form.ManufacturerPreview" Value="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.OverviewForm"/>
+    <Category ID="Category.Model.Preview" Target="Form.ModelPreview" Value="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.OverviewForm"/>
+    <Category ID="Category.MobileDevice.Preview" Target="Form.MobileDevicePreview" Value="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.OverviewForm"/>
+    <Category ID="Category.Software.Preview" Target="Form.SoftwarePreview" Value="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.OverviewForm"/>
+    <Category ID="Category.Key.Preview" Target="Form.KeyPreview" Value="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.OverviewForm"/>
+    <Category ID="Category.Publisher.Preview" Target="Form.PublisherPreview" Value="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.OverviewForm"/>
+    <Category ID="Category.SKU.Preview" Target="Form.SKUPreview" Value="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.OverviewForm"/>
+    <Category ID="Category.SoftwareAsset.Preview" Target="Form.SoftwareAssetPreview" Value="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.OverviewForm"/>
+    <Category ID="Category.Version.Preview" Target="Form.VersionPreview" Value="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.OverviewForm"/>
+    <Category ID="Category.License.Preview" Target="Form.LicensePreview" Value="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.OverviewForm"/>
+    <Category ID="Category.HardwareAgreement.Preview" Target="Form.HardwareAgreementPreview" Value="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.OverviewForm"/>
+    <Category ID="Category.SoftwareAgreement.Preview" Target="Form.SoftwareAgreementPreview" Value="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.OverviewForm"/>
+    <Category ID="Category.SupportAgreement.Preview" Target="Form.SupportAgreementPreview" Value="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.OverviewForm"/>
+    <Category ID="Category.LeaseAgreement.Preview" Target="Form.LeaseAgreementPreview" Value="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.OverviewForm"/>
+    <Category ID="Category.Cost.Preview" Target="Form.CostPreview" Value="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.OverviewForm"/>
+    <Category ID="Category.Invoice.Preview" Target="Form.InvoicePreview" Value="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.OverviewForm"/>
+    <Category ID="Category.PurchaseOrder.Preview" Target="Form.PurchaseOrderPreview" Value="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.OverviewForm"/>
     <Category ID="Category.6ce828594a3b4a489de708b1ec4c90fb" Target="Folder.c8f17f47d9524b1ba61a0f70af798b3a" Value="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.FolderTasks" />
     <Category ID="Category.cb3db5687ae24119be8e470a09c06606" Target="Folder.d051a482b501414d84c7a016c5a2e117" Value="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.FolderTasks" />
     <Category ID="Category.84f18fc8dd764dba9482384083e8636d" Target="Folder.7d1d3444f69442c7b72cef7908ade728" Value="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.FolderTasks" />
@@ -7663,8 +7684,8 @@
           <Description>Azure Administration </Description>
         </DisplayString>
         <DisplayString ElementID="Folder.eb4191e1d7e140329f5c64fa927cce0e">
-          <Name>Azure IaaS Management</Name>
-          <Description>Azure IaaS Managenent</Description>
+          <Name>Azure Virtual Machine Management</Name>
+          <Description>Azure Virtual Machine Managenent</Description>
         </DisplayString>
         <DisplayString ElementID="Folder.fccedf6d8b374c95a35942c8ef8adae6">
           <Name>Azure Networking Management</Name>

@@ -52,6 +52,14 @@ namespace PreviewForms
             string iMapkey = HWConnector[null, "Mapkey"].Value.ToString();
             myMap.CredentialsProvider = new ApplicationIdCredentialsProvider(iMapkey);
         }
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.AddHandler(FormEvents.PreviewSubmitEvent, new EventHandler<PreviewFormCommandEventArgs>(this.OnPreviewSubmit));
+
+            LocationBindMap();
+        }
+
+
         private void OnPreviewSubmit(object sender, PreviewFormCommandEventArgs e)
         {
             IDataItem DisplayName = this.DataContext as IDataItem;
@@ -79,12 +87,6 @@ namespace PreviewForms
 
             LocationBindMap();
 
-        }
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
-        {
-            this.AddHandler(FormEvents.PreviewSubmitEvent, new EventHandler<PreviewFormCommandEventArgs>(this.OnPreviewSubmit));
-
-            LocationBindMap();
         }
 
         private void UserControl_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)

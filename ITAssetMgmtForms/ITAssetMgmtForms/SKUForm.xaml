@@ -137,7 +137,7 @@
                                 	SelectedItem="{Binding Path=LicensingModel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="23" />
                                 <Label Content="Licensing Unit"/>
                                 <scwpf:ListPicker Style="{StaticResource listPickerStyle}" ParentCategoryId="{Binding Mode=OneWay, Source={x:Static local:Resources.guidLicensingUnit}}" 
-                                	SelectedItem="{Binding Path=LicensingUnit, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="23" />
+                                	SelectedItem="{Binding Path= LicensingUnit, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="23" />
                                 <Label Content="Purchase Order"/>
                                 <smcontrols:SingleInstancePicker Style="{StaticResource sipStyle}" BaseClassId="{Binding Source={x:Static local:Resources.guidPurchaseOrderClass},Mode=OneWay}"
                                                                  Instance="{Binding Path=PurchaseOrder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="InstancePicker_MouseDoubleClick"/>
