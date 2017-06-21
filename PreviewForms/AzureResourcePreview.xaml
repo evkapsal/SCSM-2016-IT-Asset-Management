@@ -118,8 +118,8 @@
                                 <StackPanel Style="{StaticResource stackPanelStyle}" Grid.Row="0" Grid.ColumnSpan="5">
                                     <Label Content="Azure Resource Group Name"/>
                                     <TextBox Style="{StaticResource textBoxStyle}"  Text="{Binding Path=ResourceName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
-                                    <Label Content="Azure Resource Group Type"/>
-                                    <TextBox Style="{StaticResource textBoxStyle}"  Text="{Binding Path=ResourceType, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+                                    <Label Content="Azure Resource Group Provisioning State"/>
+                                    <TextBox Style="{StaticResource textBoxStyle}"  Text="{Binding Path=ProvisioningState, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
                                 </StackPanel>
                                 <StackPanel Style="{StaticResource stackPanelStyle}" Grid.Column="5"   Grid.Row="0" Grid.ColumnSpan="8">
                                     <Label Content="Azure Resource Group ID"/>

@@ -133,7 +133,7 @@
                                         <scwpf:SortableListView.View>
                                             <GridView>
                                                 <scwpf:SortableGridViewColumn SortPropertyName="ResourceName" DisplayMemberBinding="{Binding ResourceName}" Header="Resource Group Name" Width="Auto"/>
-                                                <scwpf:SortableGridViewColumn SortPropertyName="ResourceType" DisplayMemberBinding="{Binding ResourceType}" Header="Resource Group Type" Width="Auto"/>
+                                                <scwpf:SortableGridViewColumn SortPropertyName="ProvisioningState" DisplayMemberBinding="{Binding ProvisioningState}" Header="Resource Group State" Width="Auto"/>
                                             </GridView>
                                         </scwpf:SortableListView.View>
                                     </scwpf:SortableListView>

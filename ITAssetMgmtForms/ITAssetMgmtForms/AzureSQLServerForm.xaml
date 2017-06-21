@@ -79,7 +79,7 @@
                     </LinearGradientBrush>
                 </Rectangle.Fill>
             </Rectangle>
-            <TextBlock Grid.ColumnSpan="4" VerticalAlignment="Center" Text="{Binding Path= SQLServerName }" Foreground="White" Margin="60,0,0,30" FontSize="16" />
+            <TextBlock Grid.ColumnSpan="4" VerticalAlignment="Center" Text="{Binding Path= DisplayName }" Foreground="White" Margin="60,0,0,30" FontSize="16" />
             <TextBlock Grid.ColumnSpan="4" VerticalAlignment="Center" Text="{Binding $Class$.DisplayName}" Foreground="White" Margin="60,30,0,0" FontSize="16"/>
             <Image HorizontalAlignment="Left" VerticalAlignment="Stretch" Height="84" Margin="0,0,0,0" Grid.ColumnSpan="5" Source="Pictures/header-bg1.png" Stretch="Fill" Focusable="True"/>
             <Image HorizontalAlignment="Left" VerticalAlignment="Center" Height="50" Margin="5,0,0,15" Grid.Row="0" Source="Pictures/AzureSQLServer.png" Stretch="Fill" Width="50" RenderTransformOrigin="0.18,0.468" Focusable="True"/>

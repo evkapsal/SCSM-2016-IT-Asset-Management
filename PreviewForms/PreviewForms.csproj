@@ -132,11 +132,20 @@
     <Compile Include="AzureResourcePreview.xaml.cs">
       <DependentUpon>AzureResourcePreview.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AzureSQLDBPreview.xaml.cs">
+      <DependentUpon>AzureSQLDBPreview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AzureSQLServerPreview.xaml.cs">
+      <DependentUpon>AzureSQLServerPreview.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AzureSubscriptionPreview.xaml.cs">
       <DependentUpon>AzureSubscriptionPreview.xaml</DependentUpon>
     </Compile>
     <Compile Include="AzureVMPreview.xaml.cs">
       <DependentUpon>AzureVMPreview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AzureWebAppPreview.xaml.cs">
+      <DependentUpon>AzureWebAppPreview.xaml</DependentUpon>
     </Compile>
     <Compile Include="CompanyPreview.xaml.cs">
       <DependentUpon>CompanyPreview.xaml</DependentUpon>
@@ -260,11 +269,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AzureSQLDBPreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AzureSQLServerPreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AzureSubscriptionPreview.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AzureVMPreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AzureWebAppPreview.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

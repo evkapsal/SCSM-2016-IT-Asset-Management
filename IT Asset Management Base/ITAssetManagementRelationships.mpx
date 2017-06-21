@@ -67,7 +67,7 @@
           <Target ID="AzureSubnet" Type="AzureSubnet" />
         </RelationshipType>
         <RelationshipType ID="Relationship.AzureNetHasGatewaySubnet" Accessibility="Public" Abstract="false" Base="System!System.Reference">
-          <Source ID="AzureNet" Type="AzureNet"  />
+          <Source ID="AzureNet" Type="AzureNet" MinCardinality="0" MaxCardinality="1" />
           <Target ID="AzureVNetGateway" Type="AzureVNetGateway"  MinCardinality="0" MaxCardinality="1" />
         </RelationshipType>
         <RelationshipType ID="Relationship.AzureLocationHasNLocation" Accessibility="Public" Abstract="false" Base="System!System.Reference">
@@ -91,7 +91,7 @@
           <Target ID="AzureConsumption" Type="AzureConsumption"  />
         </RelationshipType>
         <RelationshipType ID="Relationship.AzureResourceGroupHasNetwork" Accessibility="Public" Abstract="false" Base="System!System.Reference">
-          <Source ID="AzureResourceGroup" Type="AzureResourceGroup"  />
+          <Source ID="AzureResourceGroup" Type="AzureResourceGroup" MinCardinality="0" MaxCardinality="1" />
           <Target ID="AzureNet" Type="AzureNet" />
         </RelationshipType>
         <RelationshipType ID="Relationship.AzureVMHasConsumption" Accessibility="Public" Abstract="false" Base="System!System.Reference">

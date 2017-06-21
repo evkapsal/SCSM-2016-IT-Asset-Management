@@ -38,6 +38,9 @@
     <Category ID="Category.LeaseAgreement.Preview" Target="Form.LeaseAgreementPreview" Value="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.OverviewForm"/>
     <Category ID="Category.Cost.Preview" Target="Form.CostPreview" Value="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.OverviewForm"/>
     <Category ID="Category.Invoice.Preview" Target="Form.InvoicePreview" Value="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.OverviewForm"/>
+    <Category ID="Category.AzureSQLDB.Preview" Target="Form.AzureSQLDBPreview" Value="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.OverviewForm"/>
+    <Category ID="Category.AzureSQLServer.Preview" Target="Form.AzureSQLServerPreview" Value="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.OverviewForm"/>
+    <Category ID="Category.AzureWebApp.Preview" Target="Form.AzureWebAppPreview" Value="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.OverviewForm"/>
     <Category ID="Category.PurchaseOrder.Preview" Target="Form.PurchaseOrderPreview" Value="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.OverviewForm"/>
     <Category ID="Category.6ce828594a3b4a489de708b1ec4c90fb" Target="Folder.c8f17f47d9524b1ba61a0f70af798b3a" Value="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.FolderTasks" />
     <Category ID="Category.cb3db5687ae24119be8e470a09c06606" Target="Folder.d051a482b501414d84c7a016c5a2e117" Value="Console!Microsoft.EnterpriseManagement.ServiceManager.UI.Console.FolderTasks" />
@@ -484,7 +487,7 @@
           <Columns>
             <mux:ColumnCollection xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mux="http://schemas.microsoft.com/SystemCenter/Common/UI/Views/GridView" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:datebinding="clr-namespace:Microsoft.EnterpriseManagement.UI.Extensions;assembly=Microsoft.EnterpriseManagement.UI.Extensions" xmlns:data="clr-namespace:Microsoft.EnterpriseManagement.UI.Extensions;assembly=Microsoft.EnterpriseManagement.UI.Extensions" xmlns:appCommon="clr-namespace:Microsoft.EnterpriseManagement.ServiceManager.Application.Common;assembly=Microsoft.EnterpriseManagement.ServiceManager.Application.Common" xmlns:toolbox="clr-namespace:Microsoft.EnterpriseManagement.UI.WpfToolbox;assembly=Microsoft.EnterpriseManagement.UI.FormsInfra" xmlns:slaBinding="clr-namespace:Microsoft.EnterpriseManagement.ServiceManager.SLA.Common;assembly=Microsoft.EnterpriseManagement.ServiceManager.SLA.Common" xmlns:converters="clr-namespace:itnetX.SCSM.AdvancedViewEditor.Converters;assembly=itnetX.SCSM.AdvancedViewEditor">
               <mux:Column Name="ResourceName" DisplayMemberBinding="{Binding Path=ResourceName}" DisplayName="ResourceName.91db355203fb45ecb038ae6292e84ad4" Property="ResourceName" DataType="s:String" IsVisible="True" />
-              <mux:Column Name="ResourceType" DisplayMemberBinding="{Binding Path=ResourceType}" DisplayName="ResourceType.3a9281a860c243e78557ed917445c396" Property="ResourceType" DataType="s:String" IsVisible="True" />
+              <mux:Column Name="ProvisioningState" DisplayMemberBinding="{Binding Path=ProvisioningState}" DisplayName="ResourceType.3a9281a860c243e78557ed917445c396" Property="ProvisioningState" DataType="s:String" IsVisible="True" />
               <mux:Column Name="GenericLocationDisplayName" DisplayMemberBinding="{Binding Path=Location.DisplayName}" DisplayName="DisplayName.7067aeea70504c5a85af36ec9945bd49" Property="Location.DisplayName" DataType="s:String" IsVisible="True" />
             </mux:ColumnCollection>
           </Columns>
@@ -675,7 +678,7 @@
             <mux:ColumnCollection xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mux="http://schemas.microsoft.com/SystemCenter/Common/UI/Views/GridView" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:datebinding="clr-namespace:Microsoft.EnterpriseManagement.UI.Extensions;assembly=Microsoft.EnterpriseManagement.UI.Extensions" xmlns:data="clr-namespace:Microsoft.EnterpriseManagement.UI.Extensions;assembly=Microsoft.EnterpriseManagement.UI.Extensions" xmlns:appCommon="clr-namespace:Microsoft.EnterpriseManagement.ServiceManager.Application.Common;assembly=Microsoft.EnterpriseManagement.ServiceManager.Application.Common" xmlns:toolbox="clr-namespace:Microsoft.EnterpriseManagement.UI.WpfToolbox;assembly=Microsoft.EnterpriseManagement.UI.FormsInfra" xmlns:slaBinding="clr-namespace:Microsoft.EnterpriseManagement.ServiceManager.SLA.Common;assembly=Microsoft.EnterpriseManagement.ServiceManager.SLA.Common" xmlns:converters="clr-namespace:itnetX.SCSM.AdvancedViewEditor.Converters;assembly=itnetX.SCSM.AdvancedViewEditor">
               <mux:Column Name="GenericDisplayName" DisplayMemberBinding="{Binding Path=DisplayName}" DisplayName="DisplayName.acbd1bf607f54771b7fbe5be6c2368b5" Property="DisplayName" DataType="s:String" IsVisible="True" />
               <mux:Column Name="GatewaySKU" DisplayMemberBinding="{Binding Path=GatewaySKU}" DisplayName="GatewaySKU.904df6e0e7a14732941656d440b91420" Property="GatewaySKU" DataType="s:String" IsVisible="True" />
-              <mux:Column Name="State" DisplayMemberBinding="{Binding Path=State}" DisplayName="State.c2d38ae336a94c8ca0a446a2659e58f3" Property="State" DataType="s:String" IsVisible="True" />
+              <mux:Column Name="OperationStatus" DisplayMemberBinding="{Binding Path=OperationStatus}" DisplayName="State.c2d38ae336a94c8ca0a446a2659e58f3" Property="OperationStatus" DataType="s:String" IsVisible="True" />
             </mux:ColumnCollection>
           </Columns>
           <AdditonalProperties />
@@ -7067,7 +7070,7 @@
           <Name>Resource Name</Name>
         </DisplayString>
         <DisplayString ElementID="ResourceType.77a6ecc9c0e3451195dae7274393b1ad">
-          <Name>Resource Type</Name>
+          <Name>Resource State</Name>
         </DisplayString>
         <DisplayString ElementID="DisplayName.d87f5b91b0e44525933b1d63428f7a3e">
           <Name>Resource Group Location</Name>
@@ -7109,7 +7112,7 @@
           <Name>Gateway SKU</Name>
         </DisplayString>
         <DisplayString ElementID="State.33b1adc2a0694e94801b831eeef449b8">
-          <Name>State</Name>
+          <Name>Operation Status</Name>
         </DisplayString>
         <DisplayString ElementID="View.9eb943fe6ec74eef84ac26a64f16457d">
           <Name>Azure Network Gateway</Name>

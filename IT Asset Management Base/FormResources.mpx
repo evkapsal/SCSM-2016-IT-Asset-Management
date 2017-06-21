@@ -262,6 +262,16 @@
     <Form ID="Form.PurchaseOrderPreview" Accessibility="Public" Target="Projection.PurchaseOrder" Assembly="PreviewForms" TypeName="PreviewForms.PurchaseOrderPreview">
       <Category>Form</Category>
     </Form>
+    <Form ID="Form.AzureSQLDBPreview" Accessibility="Public" Target="Projection.AzureSQLDatabase" Assembly="PreviewForms" TypeName="PreviewForms.AzureSQLDBPreview">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.AzureSQLServerPreview" Accessibility="Public" Target="Projection.AzureSQLServer" Assembly="PreviewForms" TypeName="PreviewForms.AzureSQLServerPreview">
+      <Category>Form</Category>
+    </Form>
+    <Form ID="Form.AzureWebAppPreview" Accessibility="Public" Target="Projection.AzureWebApp" Assembly="PreviewForms" TypeName="PreviewForms.AzureWebAppPreview">
+      <Category>Form</Category>
+    </Form>
+    
   </Forms>
   </Presentation>
   <Resources>

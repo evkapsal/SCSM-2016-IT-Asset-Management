@@ -129,8 +129,8 @@
                                 <StackPanel Style="{StaticResource stackPanelStyle}" Grid.Column="5"   Grid.Row="0" Grid.ColumnSpan="8">
                                     <Label Content="Resource Group Name"/>
                                     <TextBox Style="{StaticResource textBoxStyle}"  Text="{Binding Path=ResourceName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                    <Label Content="Resource Type"/>
-                                    <TextBox Style="{StaticResource textBoxStyle}"  Text="{Binding Path=ResourceType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    <Label Content="Provisioning State"/>
+                                    <TextBox Style="{StaticResource textBoxStyle}"  Text="{Binding Path=ProvisioningState, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                                 </StackPanel>
                                 <StackPanel Style="{StaticResource stackPanelStyle}" Grid.Row="2"  Grid.ColumnSpan="8">
                                     <Label Content="Description"/>

@@ -472,6 +472,7 @@
           <Property ID="ResourceType" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
           <Property ID="ResourceName" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
           <Property ID="ResourceId" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
+          <Property ID="ProvisioningState" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
         </ClassType>
         <ClassType ID="AzureService" Accessibility="Public" Abstract="false" Base="System!System.ConfigItem" Hosted="false" Singleton="false" Extension="false">
           <Property ID="ServID" Type="string" AutoIncrement="true" Key="true" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" DefaultValue="ServID{0}" />
@@ -532,6 +533,7 @@
           <Property ID="OperationStatus" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
           <Property ID="GatewayName" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
           <Property ID="LastEventTimeStamp" Type="datetime" />
+          <Property ID="GatewayType" Type="string" MinLength="0" MaxLength="256" AutoIncrement="false" />
           <Property ID="Connected" Type="bool" />
         </ClassType>
         <ClassType ID="AzureSubnet" Accessibility="Public" Abstract="false" Base="System!System.ConfigItem" Hosted="false" Singleton="false" Extension="false">
@@ -882,6 +884,7 @@
        <EnumerationValue ID="LocationType.RepairDepot" Accessibility="Public" Parent="LocationType" Ordinal="50" />
        <EnumerationValue ID="LocationType.Room" Accessibility="Public" Parent="LocationType" Ordinal="40" />
        <EnumerationValue ID="LocationType.State" Accessibility="Public" Parent="LocationType" Ordinal="20" />
+       <EnumerationValue ID="LocationType.CloudLocation" Accessibility="Public" Parent="LocationType" Ordinal="60" />
      <EnumerationValue ID="PurchaseOrderLifeCycle" Accessibility="Public" />
       <EnumerationValue ID="PurchaseOrderLifeCycle.Active" Accessibility="Public" Parent="PurchaseOrderLifeCycle" Ordinal="10" />
       <EnumerationValue ID="PurchaseOrderLifeCycle.Approved" Accessibility="Public" Parent="PurchaseOrderLifeCycle" Ordinal="15" />
@@ -1358,15 +1361,11 @@
 		  <Name> Resource Type</Name>
      <Description>Resource Type </Description>
      </DisplayString>
-          <DisplayString ElementID= "AzureResourceGroup" SubElementID="ResourceName"  >
-		  <Name>Resource Name </Name>
-     <Description>Resource Name </Description>
-     </DisplayString>
-          <DisplayString ElementID= "AzureResourceGroup" SubElementID="ResourceId"  >
-		  <Name>Resource ID </Name>
-     <Description> Resource ID</Description>
-     </DisplayString>
-          <DisplayString ElementID="AzureService" >
+        <DisplayString ElementID= "AzureResourceGroup" SubElementID="ProvisioningState"  >
+          <Name> Provisioning State</Name>
+          <Description>Provisioning State </Description>
+        </DisplayString>
+        <DisplayString ElementID="AzureService" >
 		  <Name>Azure Service </Name>
      <Description>Azure Service </Description>
      </DisplayString>
@@ -1553,6 +1552,10 @@
         <DisplayString ElementID= "AzureVNetGateway" SubElementID="AzVNetGwID" >
           <Name>AzVNetGwID </Name>
           <Description>AzVNetGwID </Description>
+        </DisplayString>
+        <DisplayString ElementID= "AzureVNetGateway" SubElementID="GatewayType" >
+          <Name>Gateway Type </Name>
+          <Description>Gateway Type </Description>
         </DisplayString>
         <DisplayString ElementID= "AzureVNetGateway" SubElementID="GatewayName" >
           <Name>Gateway Name </Name>
@@ -3586,6 +3589,9 @@
         </DisplayString>
         <DisplayString ElementID="LocationType.State" >
           <Name>State</Name>
+        </DisplayString>
+        <DisplayString ElementID="LocationType.CloudLocation" >
+          <Name>Cloud Location</Name>
         </DisplayString>
         <DisplayString ElementID="PurchaseOrderLifeCycle" >
           <Name>Purchase Order LifeCycle</Name>
